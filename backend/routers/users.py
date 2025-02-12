@@ -1,6 +1,5 @@
 from fastapi import APIRouter, Depends, HTTPException, status
 from bson import ObjectId
-from fastapi.encoders import jsonable_encoder
 
 # Importamos Modelo y Esquema de la Entidad
 from models.user import User, UpdateUser
@@ -8,9 +7,12 @@ from schemas.user import user_schema, users_schema
 
 # Importamos cliente DB
 from config import db_client
-from services.users import search_user
-from utils.authentication import current_user
 
+# Importamos utilidades
+from services.users import search_user
+
+# Importamos metodo de autenticación JWT
+from utils.authentication import current_user
 
 # Definimos el prefijo y una respuesta si no existe.
 router = APIRouter(
@@ -54,7 +56,7 @@ async def user(user: User, current_user: User = Depends(current_user)):
     # Crear el Usuario en la BD y obtener el ID
     id = db_client.users.insert_one(user_dict).inserted_id
 
-    # Buscar el usuario creado y devolver el usuario creado
+    # Buscar el usuario creado y devolverlo
     new_user = user_schema(db_client.users.find_one({"_id": id}))
 
     return User(**new_user)

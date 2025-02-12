@@ -8,9 +8,12 @@ from schemas.role import role_schema, roles_schema
 
 # Importamos cliente DB
 from config import db_client
-from services.roles import search_role
-from utils.authentication import current_user
 
+# Importamos utilidades
+from services.roles import search_role
+
+# Importamos metodo de autenticación JWT
+from utils.authentication import current_user
 
 # Definimos el prefijo y una respuesta si no existe.
 router = APIRouter(
@@ -22,13 +25,13 @@ router = APIRouter(
 
 # Ruta para obtener todos los Roles
 @router.get("/")
-async def roles(role: Role = Depends(current_user)):
+async def roles(user: User = Depends(current_user)):
     return roles_schema(db_client.roles.find())
 
 
 # Ruta para obtener un Rol
 @router.get("/{id}")  # Path
-async def role(id: str, role: Role = Depends(current_user)):
+async def role(id: str, current_user: User = Depends(current_user)):
 
     return search_role("_id", ObjectId(id))
 
@@ -49,7 +52,7 @@ async def role(role: Role, current_user: User = Depends(current_user)):
     # Crear el Rol en la BD y obtener el ID
     id = db_client.roles.insert_one(role_dict).inserted_id
 
-    # Buscar el usuario creado y devolver el usuario creado
+    # Buscar el rol creado y devolverlo
     new_role = role_schema(db_client.roles.find_one({"_id": id}))
 
     return Role(**new_role)

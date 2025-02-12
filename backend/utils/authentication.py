@@ -22,7 +22,7 @@ router = APIRouter(
 # ejecutar comando: openssl rand -hex 32
 SECRET_KEY = "ff2031bb7ab10940108585eb799adecca55aafee12572b36d3060e4c7123724c"  # Clave Secreta generada
 ALGORITHM = "HS256"
-ACCESS_TOKEN_EXPIRE_MINUTES = 5
+ACCESS_TOKEN_EXPIRE_MINUTES = 15
 
 oauth2 = OAuth2PasswordBearer(tokenUrl="login")
 
