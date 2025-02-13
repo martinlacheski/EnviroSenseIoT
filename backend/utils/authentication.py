@@ -51,7 +51,6 @@ async def auth_user(token: str = Depends(oauth2)):
     except:
         raise exception
 
-    # return db_client.users.find_one({"username": username})
     user = db_client.users.find_one({"username": username})
     return User(**user_schema(user))
 

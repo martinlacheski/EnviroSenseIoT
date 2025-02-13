@@ -18,7 +18,7 @@ from utils.authentication import current_user
 # Definimos el prefijo y una respuesta si no existe.
 router = APIRouter(
     prefix="/environments/types",
-    tags=["environment_types"],  # TAG para la documentación. Agrupar por Router
+    tags=["environment types"],  # TAG para la documentación. Agrupar por Router
     responses={404: {"mensaje": "No encontrado"}},
 )
 
