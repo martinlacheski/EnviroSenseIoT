@@ -56,7 +56,7 @@ async def auth_user(token: str = Depends(oauth2)):
 
 
 async def current_user(user: User = Depends(auth_user)):
-    if  user.disabled:
+    if  not user.enabled:
         raise HTTPException(
             status_code=status.HTTP_400_BAD_REQUEST, detail="Usuario deshabilitado"
         )

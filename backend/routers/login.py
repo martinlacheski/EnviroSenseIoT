@@ -41,5 +41,6 @@ async def login(form: OAuth2PasswordRequestForm = Depends()):
     return {
         "access_token": jwt.encode(access_token, SECRET_KEY, algorithm=ALGORITHM),
         "token_type": "bearer",
+        "exp": access_token["exp"],
     }
 

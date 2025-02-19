@@ -10,7 +10,7 @@ class User(BaseModel):
     name: str
     surname: str
     email: str
-    disabled: bool
+    enabled: bool
     role_id: Optional[str]
 
 class UpdateUser(BaseModel):
