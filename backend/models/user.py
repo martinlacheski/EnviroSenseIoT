@@ -11,7 +11,7 @@ class User(BaseModel):
     surname: str
     email: str
     enabled: bool
-    role_id: Optional[str]
+    is_admin: bool
 
 class UpdateUser(BaseModel):
     id: Optional[str] = None

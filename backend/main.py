@@ -1,5 +1,12 @@
-from fastapi import FastAPI
+from fastapi import FastAPI, Depends
 from fastapi.staticfiles import StaticFiles
+from fastapi.middleware.cors import CORSMiddleware
+
+# Importamos Modelo y Esquema de la Entidad
+from models.user import User
+
+# Importamos metodo de autenticación JWT
+from utils.authentication import current_user
 
 from routers import (
     login,
@@ -56,8 +63,22 @@ app.include_router(sensors_nutrient_solution_data.router)
 # Incluir Archivos estáticos
 app.mount("/static", StaticFiles(directory="static"), name="static")
 
+# Habilitar Origenes
+origins = [
+    "http://localhost:5173",
+]
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=origins,
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
+
 
 # Lanzar APP
-@app.get("/")
-def read_root():
+@app.get("/api")
+def read_root(user: User = Depends(current_user)):
     return {"Hello": "World"}
+

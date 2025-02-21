@@ -8,7 +8,7 @@ def user_schema(user) -> dict:
             "surname": user["surname"],
             "email": user["email"],
             "enabled": user["enabled"],
-            "role_id": user["role_id"]}
+            "is_admin": user["is_admin"]}
 
 
 def users_schema(users) -> list:

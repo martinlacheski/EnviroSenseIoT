@@ -26,15 +26,17 @@ async def login(form: OAuth2PasswordRequestForm = Depends()):
     user = db_client.users.find_one({"username": form.username})
     if not user:
         raise HTTPException(
-            status_code=status.HTTP_400_BAD_REQUEST, detail="El usuario no es correcto")
+            # status_code=status.HTTP_400_BAD_REQUEST, detail="El usuario ingresado no es correcto")
+            status_code=status.HTTP_400_BAD_REQUEST, detail="Los datos ingresados no son correctos")
     if not crypt.verify(form.password, user.get("password")):
         raise HTTPException(
             status_code=status.HTTP_400_BAD_REQUEST,
-            detail="La contraseña no es correcta",
+            detail="Los datos ingresados no son correctos",
         )
 
     access_token = {
-        "sub": user.get("username"),
+        "_id": str(user.get("_id")),
+        "username": user.get("username"),
         "exp": datetime.now(timezone.utc) + timedelta(minutes=ACCESS_TOKEN_EXPIRE_MINUTES),
     }
 
