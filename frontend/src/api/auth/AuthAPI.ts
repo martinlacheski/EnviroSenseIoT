@@ -11,11 +11,7 @@ export async function loginUser(formData: UserLoginForm): Promise<string> {
         formBody.append("password", formData.password);
 
         // Se envía formData en el body de la petición POST
-        const { data } = await api.post("/login", formBody, {
-            headers: {
-                "Accept": "application/json",
-            },
-        });
+        const { data } = await api.post("/login", formBody);
         localStorage.setItem('AUTH_TOKEN', data.access_token);
         return data;
     } catch (error) {

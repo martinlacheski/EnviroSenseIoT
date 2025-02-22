@@ -13,5 +13,17 @@ api.interceptors.request.use( config => {
     return config
 })
 
+// Configuración global de Axios
+api.interceptors.response.use(
+    response => response,
+    error => {
+      // Aquí evitas loggear el error si es 400, pero lo rechazas para que lo maneje tu código
+      if (error.response && error.response.status === 400) {
+        return Promise.reject(error);
+      }
+      return Promise.reject(error);
+    }
+  );
+
 
 export default api

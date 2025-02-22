@@ -1,2 +1,3 @@
-export * from './app/AppLayout'
-export * from './auth/AuthLayout'
+export * from './AppLayout'
+export * from './AuthLayout'
+export * from './ProfileLayout'

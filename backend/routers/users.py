@@ -1,8 +1,9 @@
 from fastapi import APIRouter, Depends, HTTPException, status
 from bson import ObjectId
+from passlib.context import CryptContext
 
 # Importamos Modelo y Esquema de la Entidad
-from models.user import User, UpdateUser
+from models.user import User, UpdateUser, UpdateUserPassword
 from schemas.user import user_schema, users_schema
 
 # Importamos cliente DB
@@ -13,6 +14,8 @@ from services.users import search_user
 
 # Importamos metodo de autenticación JWT
 from utils.authentication import current_user
+
+crypt = CryptContext(schemes=["bcrypt"], deprecated="auto")
 
 # Definimos el prefijo y una respuesta si no existe.
 router = APIRouter(
@@ -42,12 +45,12 @@ async def user(user: User, current_user: User = Depends(current_user)):
     if type(search_user("email", user.email)) == User:
         raise HTTPException(
             status_code=status.HTTP_404_NOT_FOUND,
-            detail="Ya existe un usuario con ese correo electrónico",
+            error="Ya existe un usuario con ese correo electrónico",
         )
     if type(search_user("username", user.username)) == User:
         raise HTTPException(
             status_code=status.HTTP_404_NOT_FOUND,
-            detail="Ya existe un usuario con ese nombre de usuario",
+            error="Ya existe un usuario con ese nombre de usuario",
         )
 
     user_dict = dict(user)
@@ -77,16 +80,62 @@ async def user(user: User, current_user: User = Depends(current_user)):
     return search_user("_id", ObjectId(user.id))
 
 
-# Ruta para actualizar parte de un Usuario
 @router.patch("/", response_model=User)
-async def user(user: UpdateUser, current_user: User = Depends(current_user)):
-
+async def update_user_name(
+    user: UpdateUser, current_user: User = Depends(current_user)
+):
+    # Buscar el usuario en la base de datos
     stored_item_data = dict(search_user("_id", ObjectId(user.id)))
-    stored_item_model = User(**stored_item_data)
-    update_data = user.model_dump(exclude_unset=True)
-    updated_item = stored_item_model.model_copy(update=update_data)
-    db_client.users.find_one_and_replace({"_id": ObjectId(user.id)}, dict(updated_item))
+    if not stored_item_data:
+        raise HTTPException(status_code=404, detail="Usuario no encontrado")
+
+    # Solo se permiten actualizar los campos name y surname
+    update_data = {"name": user.name, "surname": user.surname}
+
+    # Actualizar el usuario en la base de datos
+    db_client.users.find_one_and_update(
+        {"_id": ObjectId(user.id)}, {"$set": update_data}
+    )
+
+    # Buscar el usuario actualizado y retornarlo
+    updated_item_data = dict(search_user("_id", ObjectId(user.id)))
+    updated_item = User(**updated_item_data)
     return updated_item
+
+
+# Ruta para actualizar la contraseña de un Usuario
+@router.patch("/change/password")
+async def change_password(
+    user: UpdateUserPassword, current_user: User = Depends(current_user)
+):
+    print(user)
+    # Buscar el usuario en la base de datos
+    stored_item_data = db_client.users.find_one({"_id": ObjectId(current_user.id)})
+    if not stored_item_data:
+        # return {"message": "Usuario no encontrado"}
+        raise HTTPException(status_code=404, detail="Usuario no encontrado")
+
+    stored_item_model = User(**stored_item_data)
+
+    # Verificar si la contraseña actual es válida
+    if not crypt.verify(user.current_password, stored_item_model.password):
+        # return {"message": "Contraseña actual incorrecta"}
+        raise HTTPException(status_code=400, detail="Contraseña actual incorrecta")
+
+    # Verificar que las nuevas contraseñas coincidan
+    if user.new_password != user.new_password_confirmation:
+        # return {"message": "Las contraseñas no coinciden"}
+        raise HTTPException(status_code=400, detail="Las contraseñas no coinciden")
+
+    # Hashear la nueva contraseña
+    hashed_new_password = crypt.hash(user.new_password)
+
+    # Actualizar el usuario en la base de datos
+    db_client.users.find_one_and_update(
+        {"_id": ObjectId(current_user.id)}, {"$set": {"password": hashed_new_password}}
+    )
+
+    return {"message": "Contraseña actualizada exitosamente"}
 
 
 # Ruta para eliminar un Usuario

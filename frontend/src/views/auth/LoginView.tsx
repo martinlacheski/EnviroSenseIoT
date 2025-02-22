@@ -4,7 +4,7 @@ import ErrorMessage from "@/components/ErrorMessage";
 import { UserLoginForm } from "@/types/index";
 import { loginUser } from "@/api/auth/AuthAPI";
 import { toast } from "react-toastify";
-import { Navigate, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 export default function LoginView() {
 
