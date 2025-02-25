@@ -8,6 +8,7 @@ import LoginView from './views/auth/LoginView'
 import CurrentUserView from './views/user/CurrentUserView'
 import ProfileLayout from './layouts/ProfileLayout'
 import ChangePasswordView from './views/user/ChangePasswordView'
+import EnvironmentTypesView from './views/environment_types/EnvironmentTypesView'
 
 export default function Router() {
     return (
@@ -17,6 +18,7 @@ export default function Router() {
                     <Route path='/' element={<DashboardView />} index />
                     <Route path='/users' element={<UsersView />} />
                     <Route path='/users/create' element={<CreateUser />} />
+                    <Route path='/environments/types/' element={<EnvironmentTypesView />} />
                     <Route element={<ProfileLayout />}>
                         <Route path='/users/me' element={<CurrentUserView />} />
                         <Route path='/users/me/change/password' element={<ChangePasswordView />} />

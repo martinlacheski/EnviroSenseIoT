@@ -3,7 +3,7 @@
 import { isAxiosError } from "axios";
 
 import api from "../../services/api.service";
-import { User, UserFormData, userSchema, userSchemaEdit } from "../../types";
+import { User, UserFormData, UserListSchema, userSchemaEdit } from "../../types";
 
 // Crear un usuario
 
@@ -12,10 +12,10 @@ export async function createUser(formData: UserFormData) {
         const { data } = await api.post('/users', formData)
         return data
     } catch (error) {
-        console.log(error.response.data)
-        // if (isAxiosError(error) && error.response) {
-            // throw new Error(error.response.data.error)
-        // }
+        //console.log(error.response.data)
+        if (isAxiosError(error) && error.response) {
+            throw new Error(error.response.data.error)
+        }
     }
 }
 
@@ -23,7 +23,7 @@ export async function createUser(formData: UserFormData) {
 export async function getUsers() {
     try {
         const { data } = await api('/users')
-        const response = userSchema.safeParse(data)
+        const response = UserListSchema.safeParse(data)
         if (response.success) {
             return response.data
         }
@@ -35,7 +35,7 @@ export async function getUsers() {
 }
 
 // Obtener un usuario
-export async function getUserById(id: User['_id']) {
+export async function getUserById(id: User['id']) {
     try {
         const { data } = await api(`/users/${id}`)
         const response = userSchemaEdit.safeParse(data)
@@ -53,7 +53,7 @@ export async function getUserById(id: User['_id']) {
 // Definimos el tipo de API para Actualizar un Usuario
 type UserAPIType = {
     formData: UserFormData
-    userId: User['_id']
+    userId: User['id']
 }
 
 // Actualizar un usuario
@@ -69,7 +69,7 @@ export async function updateProject({ formData, userId }: UserAPIType) {
 }
 
 // Eliminar un Usuario
-export async function deleteUser(id: User['_id']) {
+export async function deleteUser(id: User['id']) {
     try {
         const url = `/users/${id}`
         const { data } = await api.delete<string>(url)

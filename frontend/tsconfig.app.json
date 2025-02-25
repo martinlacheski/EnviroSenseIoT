@@ -10,8 +10,10 @@
     "paths": {
       "@/api/*" : ["api/*"],
       "@/components/*" : ["components/*"],
+      "@/context/*" : ["context/*"],
       "@/hooks/*" : ["hooks/*"],
       "@/layouts/*" : ["layouts/*"],
+      "@/reducers/*" : ["reducers/*"],
       "@/services/*" : ["services/*"],
       "@/types/*" : ["types/*"],
       "@/views/*" : ["views/*"],

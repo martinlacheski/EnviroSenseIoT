@@ -27,7 +27,11 @@ export default function AppLayout() {
                             Usuarios
                         </Link>
                     </div>
-
+                    <div className=" bg-gray-800 px-10 py-3 text-white text-xl font-bold cursor-pointer transition-colors">
+                        <Link to={'/environments/types/'}>
+                            Tipos de entorno
+                        </Link>
+                    </div>
                     <NavMenu
                         username={data.username}
                     />

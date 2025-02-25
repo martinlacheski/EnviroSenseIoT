@@ -39,7 +39,7 @@ async def environment_type(id: str, current_user: User = Depends(current_user)):
 # Ruta para crear un Tipo de Ambiente
 @router.post("/", response_model=EnvironmentType, status_code=status.HTTP_201_CREATED)
 async def environment_type(environment_type: EnvironmentType, current_user: User = Depends(current_user)):
-
+    
     if type(search_environment_type("name", environment_type.name)) == EnvironmentType:
         raise HTTPException(
             status_code=status.HTTP_404_NOT_FOUND,
