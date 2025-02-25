@@ -22,23 +22,20 @@ const TypesForm = (props: { handleClose: () => void; type?: Type }) => {
             if (props.type) {
                 // Si hay un type, actualizamos
                 return updateType({ formData, typeId: props.type.id });
-                
             } else {
                 // Si no hay type, creamos uno nuevo
                 return createType(formData);
             }
         },
-        onError: (error) => {
-            //console.log("Respuesta con error:", error.message);
-            toast.error(error.message); // Mostrar toast de error
+        onError: (error: { message: string }) => {
+            if (error.message.includes("Ya existe un tipo de ambiente con ese nombre")) {
+                toast.error("Ya existe un tipo de ambiente con ese nombre"); // Mensaje específico para nombre duplicado
+            } else {
+                toast.error(error.message); // Mostrar otros errores
+            }
         },
         onSuccess: (data: { message: string }) => {
-            console.log("Respuesta exitosa:", data); // Depuración
-            if (props.type) {
-                toast.success("Tipo de entorno modificado correctamente"); // Mostrar toast de éxito
-            } else {
-                toast.success("Tipo de entorno creado correctamente"); // Mostrar toast de éxito
-            } 
+            toast.success(data?.message || "Operación exitosa"); // Mostrar toast de éxito
             queryClient.invalidateQueries({ queryKey: ["types"] }); // Forzar la actualización del listado
             props.handleClose(); // Cerrar el modal
         },

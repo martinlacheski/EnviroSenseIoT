@@ -58,9 +58,30 @@ async def environment_type(environment_type: EnvironmentType, current_user: User
     return EnvironmentType(**new_environment_type)
 
 
+# # Ruta para actualizar un Tipo de Ambiente
+# @router.put("/", response_model=EnvironmentType)
+# async def environment_type(environment_type: EnvironmentType, current_user: User = Depends(current_user)):
+
+#     environment_type_dict = dict(environment_type)
+#     del environment_type_dict["id"]
+
+#     try:
+#         db_client.environment_types.find_one_and_replace({"_id": ObjectId(environment_type.id)}, environment_type_dict)
+#     except:
+#         return {"error": "No se ha actualizado el tipo de ambiente"}
+
+#     return search_environment_type("_id", ObjectId(environment_type.id))
+
 # Ruta para actualizar un Tipo de Ambiente
 @router.put("/", response_model=EnvironmentType)
 async def environment_type(environment_type: EnvironmentType, current_user: User = Depends(current_user)):
+    # Verificar si ya existe un tipo de ambiente con el mismo nombre (excluyendo el actual)
+    existing_type = db_client.environment_types.find_one({"name": environment_type.name, "_id": {"$ne": ObjectId(environment_type.id)}})
+    if existing_type:
+        raise HTTPException(
+            status_code=status.HTTP_400_BAD_REQUEST,
+            detail="Ya existe un tipo de ambiente con ese nombre",
+        )
 
     environment_type_dict = dict(environment_type)
     del environment_type_dict["id"]
@@ -68,9 +89,19 @@ async def environment_type(environment_type: EnvironmentType, current_user: User
     try:
         db_client.environment_types.find_one_and_replace({"_id": ObjectId(environment_type.id)}, environment_type_dict)
     except:
-        return {"error": "No se ha actualizado el tipo de ambiente"}
+        raise HTTPException(
+            status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
+            detail="No se ha actualizado el tipo de ambiente",
+        )
 
-    return search_environment_type("_id", ObjectId(environment_type.id))
+    updated_type = search_environment_type("_id", ObjectId(environment_type.id))
+    if not updated_type:
+        raise HTTPException(
+            status_code=status.HTTP_404_NOT_FOUND,
+            detail="No se encontró el tipo de ambiente actualizado",
+        )
+
+    return updated_type
 
 
 # Ruta para eliminar un Tipo de Ambiente

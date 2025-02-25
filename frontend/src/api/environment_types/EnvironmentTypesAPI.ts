@@ -72,8 +72,9 @@ export async function updateType({ formData }: TypeAPI) {
         return data
     } catch (error) {
         if (isAxiosError(error) && error.response) {
-            throw new Error(error.response.data.error)
+            throw new Error(error.response.data.detail || "Error al actualizar el tipo de ambiente");
         }
+        throw new Error("Error desconocido al actualizar el tipo de ambiente");
     }
 }
 
