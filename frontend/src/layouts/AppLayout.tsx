@@ -28,8 +28,33 @@ export default function AppLayout() {
                         </Link>
                     </div>
                     <div className=" bg-gray-800 px-10 py-3 text-white text-xl font-bold cursor-pointer transition-colors">
+                        <Link to={'/roles'}>
+                            Roles
+                        </Link>
+                    </div>
+                    <div className=" bg-gray-800 px-10 py-3 text-white text-xl font-bold cursor-pointer transition-colors">
                         <Link to={'/environments/types/'}>
-                            Tipos de entorno
+                            Tipos de ambiente
+                        </Link>
+                    </div>
+                    <div className=" bg-gray-800 px-10 py-3 text-white text-xl font-bold cursor-pointer transition-colors">
+                        <Link to={'/countries/'}>
+                            Paises
+                        </Link>
+                    </div>
+                    <div className=" bg-gray-800 px-10 py-3 text-white text-xl font-bold cursor-pointer transition-colors">
+                        <Link to={'/provinces/'}>
+                            Provincias
+                        </Link>
+                    </div>
+                    <div className=" bg-gray-800 px-10 py-3 text-white text-xl font-bold cursor-pointer transition-colors">
+                        <Link to={'/cities/'}>
+                            Ciudades
+                        </Link>
+                    </div>
+                    <div className=" bg-gray-800 px-10 py-3 text-white text-xl font-bold cursor-pointer transition-colors">
+                        <Link to={'/nutrients/types/'}>
+                            Tipos de nutrientes
                         </Link>
                     </div>
                     <NavMenu

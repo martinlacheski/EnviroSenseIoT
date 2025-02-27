@@ -1,27 +1,29 @@
-import { Type } from '@/types/environment_types/environmentTypes';
+
 import { useState } from 'react';
-import ModalForm from '@/components/environment_types/EnvironmentTypesModalForm';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
-import { deleteType } from '@/api/environment_types/EnvironmentTypesAPI';
+
 import { toast } from 'react-toastify';
 import ConfirmationDialog from '@/components/ConfirmationDialog'; // Importa el nuevo componente
+import { Country } from '@/types/geographics/countries';
+import { deleteCountry } from '@/api/index';
+import CountriesModalForm from './countriesModalForm';
 
-type TypeDetailsProps = { type: Type };
+type CountryDetailsProps = { country: Country };
 
-export default function EnvironmentTypeDetails({ type }: TypeDetailsProps) {
+export default function CountryDetails({ country }: CountryDetailsProps) {
     const [isEditModalOpen, setIsEditModalOpen] = useState(false);
     const [isDeleteDialogOpen, setIsDeleteDialogOpen] = useState(false); // Estado para el diálogo de confirmación
     const queryClient = useQueryClient();
 
     // Mutación para eliminar un tipo
     const { mutate: deleteMutation } = useMutation({
-        mutationFn: deleteType,
+        mutationFn: deleteCountry,
         onError: (error: { message: string }) => {
             toast.error(error.message); // Mostrar toast de error
         },
         onSuccess: (data: { message: string }) => {
-            toast.success(data?.message || "Tipo eliminado correctamente"); // Mostrar toast de éxito
-            queryClient.invalidateQueries({ queryKey: ['types'] }); // Actualizar la lista de tipos
+            toast.success(data?.message || "País eliminado correctamente"); // Mostrar toast de éxito
+            queryClient.invalidateQueries({ queryKey: ['countries'] }); // Actualizar la lista de Paises
         },
     });
 
@@ -32,14 +34,14 @@ export default function EnvironmentTypeDetails({ type }: TypeDetailsProps) {
 
     // Función para confirmar la eliminación
     const confirmDelete = () => {
-        deleteMutation(type.id); // Llamar a la mutación para eliminar
+        deleteMutation(country.id); // Llamar a la mutación para eliminar
         setIsDeleteDialogOpen(false); // Cerrar el diálogo
     };
 
     return (
         <>
             <tr className="border-b">
-                <td className="p-4 text-lg text-gray-800 w-4/5">{type.name}</td>
+                <td className="p-4 text-lg text-gray-800 w-4/5">{country.name}</td>
                 <td className="p-2 text-lg text-gray-800 w-1/5">
                     <div className="flex justify-center gap-2">
                         <button
@@ -63,12 +65,12 @@ export default function EnvironmentTypeDetails({ type }: TypeDetailsProps) {
                 isOpen={isDeleteDialogOpen}
                 onClose={() => setIsDeleteDialogOpen(false)}
                 onConfirm={confirmDelete}
-                title="Eliminar Tipo de Ambiente"
-                message={`¿Estás seguro de eliminar el tipo "${type.name}"?`}
+                title="Eliminar País"
+                message={`¿Estás seguro de eliminar el país "${country.name}"?`}
             />
 
             {/* Modal de edición */}
-            <ModalForm open={isEditModalOpen} setOpen={setIsEditModalOpen} type={type} />
+            <CountriesModalForm open={isEditModalOpen} setOpen={setIsEditModalOpen} country={country} />
         </>
     );
 }

@@ -9,6 +9,11 @@ import CurrentUserView from './views/user/CurrentUserView'
 import ProfileLayout from './layouts/ProfileLayout'
 import ChangePasswordView from './views/user/ChangePasswordView'
 import EnvironmentTypesView from './views/environment_types/EnvironmentTypesView'
+import CountriesView from './views/geographics/CountriesView'
+import ProvincesView from './views/geographics/ProvincesView'
+import CitiesView from './views/geographics/CitiesView'
+import RoleTypesView from './views/role_types/RoleTypesView'
+import NutrientTypesView from './views/sensors/nutrient_types/NutrientTypesView'
 
 export default function Router() {
     return (
@@ -18,7 +23,12 @@ export default function Router() {
                     <Route path='/' element={<DashboardView />} index />
                     <Route path='/users' element={<UsersView />} />
                     <Route path='/users/create' element={<CreateUser />} />
+                    <Route path='/roles' element={<RoleTypesView />} />
                     <Route path='/environments/types/' element={<EnvironmentTypesView />} />
+                    <Route path='/countries' element={<CountriesView />} />
+                    <Route path='/provinces' element={<ProvincesView />} />
+                    <Route path='/cities' element={<CitiesView />} />
+                    <Route path='/nutrients/types/' element={<NutrientTypesView />} />
                     <Route element={<ProfileLayout />}>
                         <Route path='/users/me' element={<CurrentUserView />} />
                         <Route path='/users/me/change/password' element={<ChangePasswordView />} />

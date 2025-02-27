@@ -38,7 +38,9 @@ async def nutrient_type(id: str, current_user: User = Depends(current_user)):
 
 # Ruta para crear un Tipo de Nutriente
 @router.post("/", response_model=NutrientType, status_code=status.HTTP_201_CREATED)
-async def nutrient_type(nutrient_type: NutrientType, current_user: User = Depends(current_user)):
+async def nutrient_type(
+    nutrient_type: NutrientType, current_user: User = Depends(current_user)
+):
 
     if type(search_nutrient_type("name", nutrient_type.name)) == NutrientType:
         raise HTTPException(
@@ -53,30 +55,48 @@ async def nutrient_type(nutrient_type: NutrientType, current_user: User = Depend
     id = db_client.nutrient_types.insert_one(nutrient_type_dict).inserted_id
 
     # Buscar el Tipo de Nutriente creado y devolverlo
-    new_nutrient_type = nutrient_type_schema(db_client.nutrient_types.find_one({"_id": id}))
+    new_nutrient_type = nutrient_type_schema(
+        db_client.nutrient_types.find_one({"_id": id})
+    )
 
     return NutrientType(**new_nutrient_type)
 
 
 # Ruta para actualizar un Tipo de Nutriente
 @router.put("/", response_model=NutrientType)
-async def nutrient_type(nutrient_type: NutrientType, current_user: User = Depends(current_user)):
+async def role(nutrient_type: NutrientType, current_user: User = Depends(current_user)):
+    # Verificar si ya existe un Tipo de Nutriente con el mismo nombre (excluyendo el actual)
+    print(role)
+    existing_type = db_client.nutrient_types.find_one(
+        {"name": nutrient_type.name, "_id": {"$ne": ObjectId(nutrient_type.id)}}
+    )
+    if existing_type:
+        raise HTTPException(
+            status_code=status.HTTP_400_BAD_REQUEST,
+            detail="Ya existe un tipo de nutriente con ese nombre",
+        )
 
     nutrient_type_dict = dict(nutrient_type)
     del nutrient_type_dict["id"]
-    
-    if not db_client.nutrient_types.find_one({"_id": ObjectId(nutrient_type.id)}):
-        raise HTTPException(
-            status_code=status.HTTP_404_NOT_FOUND,
-            detail="No existe un tipo de nutriente con ese identificador",
-        )
 
     try:
-        db_client.nutrient_types.find_one_and_replace({"_id": ObjectId(nutrient_type.id)}, nutrient_type_dict)
+        db_client.nutrient_types.find_one_and_replace(
+            {"_id": ObjectId(nutrient_type.id)}, nutrient_type_dict
+        )
     except:
-        return {"error": "No se ha actualizado el tipo de nutriente"}
+        raise HTTPException(
+            status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
+            detail="No se ha actualizado el tipo de nutriente",
+        )
 
-    return search_nutrient_type("_id", ObjectId(nutrient_type.id))
+    updated_nutrient_type = search_nutrient_type("_id", ObjectId(nutrient_type.id))
+    if not updated_nutrient_type:
+        raise HTTPException(
+            status_code=status.HTTP_404_NOT_FOUND,
+            detail="No se encontró el tipo de nutriente",
+        )
+
+    return updated_nutrient_type
 
 
 # Ruta para eliminar un Tipo de Nutriente

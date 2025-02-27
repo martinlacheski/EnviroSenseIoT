@@ -1,27 +1,27 @@
-import { Type } from '@/types/environment_types/environmentTypes';
 import { useState } from 'react';
-import ModalForm from '@/components/environment_types/EnvironmentTypesModalForm';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
-import { deleteType } from '@/api/environment_types/EnvironmentTypesAPI';
 import { toast } from 'react-toastify';
 import ConfirmationDialog from '@/components/ConfirmationDialog'; // Importa el nuevo componente
+import { NutrientType } from '@/types/index';
+import { deleteNutrientType } from '@/api/sensors/NutrientTypesAPI';
+import NutrientTypeModalForm from './NutrientTypesModalForm';
 
-type TypeDetailsProps = { type: Type };
+type NutrientTypeDetailsProps = { type: NutrientType };
 
-export default function EnvironmentTypeDetails({ type }: TypeDetailsProps) {
+export default function NutrientTypeDetails({ type }: NutrientTypeDetailsProps) {
     const [isEditModalOpen, setIsEditModalOpen] = useState(false);
     const [isDeleteDialogOpen, setIsDeleteDialogOpen] = useState(false); // Estado para el diálogo de confirmación
     const queryClient = useQueryClient();
 
     // Mutación para eliminar un tipo
     const { mutate: deleteMutation } = useMutation({
-        mutationFn: deleteType,
+        mutationFn: deleteNutrientType,
         onError: (error: { message: string }) => {
             toast.error(error.message); // Mostrar toast de error
         },
         onSuccess: (data: { message: string }) => {
             toast.success(data?.message || "Tipo eliminado correctamente"); // Mostrar toast de éxito
-            queryClient.invalidateQueries({ queryKey: ['types'] }); // Actualizar la lista de tipos
+            queryClient.invalidateQueries({ queryKey: ['nutrient_types'] }); // Actualizar la lista de tipos
         },
     });
 
@@ -63,12 +63,12 @@ export default function EnvironmentTypeDetails({ type }: TypeDetailsProps) {
                 isOpen={isDeleteDialogOpen}
                 onClose={() => setIsDeleteDialogOpen(false)}
                 onConfirm={confirmDelete}
-                title="Eliminar Tipo de Ambiente"
-                message={`¿Estás seguro de eliminar el tipo "${type.name}"?`}
+                title="Eliminar Tipo de Nutriente"
+                message={`¿Estás seguro de eliminar el tipo de nutriente "${type.name}"?`}
             />
 
             {/* Modal de edición */}
-            <ModalForm open={isEditModalOpen} setOpen={setIsEditModalOpen} type={type} />
+            <NutrientTypeModalForm open={isEditModalOpen} setOpen={setIsEditModalOpen} type={type} />
         </>
     );
 }

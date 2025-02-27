@@ -1,7 +1,7 @@
 import Box from "@mui/material/Box";
 import Modal from "@mui/material/Modal";
-import TypesForm from "./TypesForm";
-import { Type } from "../types";
+import TypesForm from "./RoleTypesForm";
+import { RoleType } from "@/types/role_types/roleTypes";
 
 const style = {
     position: "absolute",
@@ -14,7 +14,7 @@ const style = {
     p: 4,
 };
 
-export default function ModalForm({ open, setOpen, type }: { open: boolean; setOpen: (open: boolean) => void; type?: Type }) {
+export default function ModalForm({ open, setOpen, type }: { open: boolean; setOpen: (open: boolean) => void; type?: RoleType }) {
     return (
         <Modal open={open} onClose={() => setOpen(false)}>
             <Box sx={style}>

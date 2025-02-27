@@ -1,20 +1,20 @@
-import { getTypes } from '@/api/environment_types/EnvironmentTypesAPI';
 import { useAuth } from '@/hooks/useAuth';
-import EnvironmentTypeDetails from '@/components/environment_types/EnvironmentTypesDetails';
-import ModalForm from '@/components/environment_types/EnvironmentTypesModalForm';
 import { useState } from 'react';
 import { useQuery } from '@tanstack/react-query';
+import { getCountries } from '@/api/index';
+import CountriesModalForm from '@/components/geographics/countries/countriesModalForm';
+import CountryDetails from '@/components/geographics/countries/countriesDetails';
 
-export default function Types() {
+export default function Countries() {
 
     const { data: user } = useAuth();
-    const { data } = useQuery({ queryKey: ['types'], queryFn: getTypes });
+    const { data } = useQuery({ queryKey: ['countries'], queryFn: getCountries });
     const [isNewModalOpen, setIsNewModalOpen] = useState(false);
 
     if (data && user) return (
         <>
             <div className='flex justify-between'>
-                <h2 className='text-3xl font-black text-gray-800'>Tipos de ambiente</h2>
+                <h2 className='text-3xl font-black text-gray-800'>Paises</h2>
                 <button
                     className="bg-blue-600 px-10 py-3 text-white uppercase font-bold text-xs text-center rounded-lg"
                     onClick={() => setIsNewModalOpen(true)}
@@ -23,7 +23,8 @@ export default function Types() {
                 </button>
             </div>
 
-            <ModalForm open={isNewModalOpen} setOpen={setIsNewModalOpen} />
+            <CountriesModalForm open={isNewModalOpen} setOpen={setIsNewModalOpen} />
+
 
             <div className='flex justify-between'>
                 <table className="w-full mt-5 table-auto">
@@ -34,8 +35,8 @@ export default function Types() {
                         </tr>
                     </thead>
                     <tbody>
-                        {data.map(type => (
-                            <EnvironmentTypeDetails key={type.id} type={type} />
+                        {data.map(country => (
+                            <CountryDetails key={country.id} country={country} />
                         ))}
                     </tbody>
                 </table>

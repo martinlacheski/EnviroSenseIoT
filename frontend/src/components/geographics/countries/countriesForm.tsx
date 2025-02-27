@@ -1,42 +1,44 @@
-import { createType, updateType } from "@/api/environment_types/EnvironmentTypesAPI";
+
+import { createCountry, updateCountry } from "@/api/index";
+import { Country } from "@/types/geographics/countries";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import React, { useEffect, useState } from "react";
-import { Type } from "../types";
+
 import { toast } from "react-toastify";
 
-const TypesForm = (props: { handleClose: () => void; type?: Type }) => {
+const CountriesForm = (props: { handleClose: () => void; country?: Country }) => {
     const [name, setName] = useState("");
     const [id, setId] = useState("");
 
     const queryClient = useQueryClient(); // Obtener el cliente de consultas
 
     useEffect(() => {
-        if (props.type) {
-            setId(props.type.id); // Precargar el ID si estamos editando
-            setName(props.type.name); // Precargar el nombre si estamos editando
+        if (props.country) {
+            setId(props.country.id); // Precargar el ID si estamos editando
+            setName(props.country.name); // Precargar el nombre si estamos editando
         }
-    }, [props.type]);
+    }, [props.country]);
 
     const { mutate } = useMutation({
         mutationFn: (formData: { id?: string; name: string }) => {
-            if (props.type) {
-                // Si hay un type, actualizamos
-                return updateType({ formData, typeId: props.type.id });
+            if (props.country) {
+                // Si hay un Pais, actualizamos
+                return updateCountry({ formData, countryId: props.country.id });
             } else {
-                // Si no hay type, creamos uno nuevo
-                return createType(formData);
+                // Si no hay Pais, creamos uno nuevo
+                return createCountry(formData);
             }
         },
         onError: (error: { message: string }) => {
-            if (error.message.includes("Ya existe un tipo de ambiente con ese nombre")) {
-                toast.error("Ya existe un tipo de ambiente con ese nombre"); // Mensaje específico para nombre duplicado
+            if (error.message.includes("Ya existe un país con ese nombre")) {
+                toast.error("Ya existe un país con ese nombre"); // Mensaje específico para nombre duplicado
             } else {
                 toast.error(error.message); // Mostrar otros errores
             }
         },
         onSuccess: (data: { message: string }) => {
             toast.success(data?.message || "Operación exitosa"); // Mostrar toast de éxito
-            queryClient.invalidateQueries({ queryKey: ["types"] }); // Forzar la actualización del listado
+            queryClient.invalidateQueries({ queryKey: ["countries"] }); // Forzar la actualización del listado
             props.handleClose(); // Cerrar el modal
         },
     });
@@ -50,7 +52,7 @@ const TypesForm = (props: { handleClose: () => void; type?: Type }) => {
         <form onSubmit={handleForm}>
             <div className="mb-5 space-y-3">
                 <p className="text-2xl font-light text-gray-500 mb-5">
-                    {props.type ? "Editar Tipo de Ambiente" : "Crear Tipo de Ambiente"}
+                    {props.country ? "Editar País" : "Crear País"}
                 </p>
                 <label htmlFor="name" className="text-sm uppercase font-bold">
                     Nombre
@@ -59,7 +61,7 @@ const TypesForm = (props: { handleClose: () => void; type?: Type }) => {
                     id="name"
                     className="w-full p-3 border border-gray-200"
                     type="text"
-                    placeholder="Tipo de ambiente"
+                    placeholder="País"
                     required
                     value={name}
                     onChange={(e) => setName(e.target.value)}
@@ -68,7 +70,7 @@ const TypesForm = (props: { handleClose: () => void; type?: Type }) => {
             <div>
                 <input
                     type="submit"
-                    value={props.type ? "Actualizar Tipo" : "Crear Tipo"}
+                    value={props.country ? "Actualizar País" : "Crear País"}
                     className="bg-blue-600 px-10 py-3 text-white uppercase font-bold text-xs w-full text-center rounded-lg"
                 />
             </div>
@@ -76,4 +78,4 @@ const TypesForm = (props: { handleClose: () => void; type?: Type }) => {
     );
 };
 
-export default TypesForm;
+export default CountriesForm;

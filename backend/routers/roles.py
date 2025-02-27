@@ -53,7 +53,7 @@ async def role(role: Role, current_user: User = Depends(current_user)):
     id = db_client.roles.insert_one(role_dict).inserted_id
 
     # Buscar el rol creado y devolverlo
-    new_role = role_schema(db_client.roles.find_one({"_id": id}))
+    new_role = role_schema(db_client.countries.find_one({"_id": id}))
 
     return Role(**new_role)
 
@@ -61,6 +61,14 @@ async def role(role: Role, current_user: User = Depends(current_user)):
 # Ruta para actualizar un Rol
 @router.put("/", response_model=Role)
 async def role(role: Role, current_user: User = Depends(current_user)):
+    # Verificar si ya existe un rol con el mismo nombre (excluyendo el actual)
+    print(role)
+    existing_type = db_client.roles.find_one({"name": role.name, "_id": {"$ne": ObjectId(role.id)}})
+    if existing_type:
+        raise HTTPException(
+            status_code=status.HTTP_400_BAD_REQUEST,
+            detail="Ya existe un rol con ese nombre",
+        )
 
     role_dict = dict(role)
     del role_dict["id"]
@@ -68,9 +76,19 @@ async def role(role: Role, current_user: User = Depends(current_user)):
     try:
         db_client.roles.find_one_and_replace({"_id": ObjectId(role.id)}, role_dict)
     except:
-        return {"error": "No se ha actualizado el rol"}
+        raise HTTPException(
+            status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
+            detail="No se ha actualizado el rol",
+        )
 
-    return search_role("_id", ObjectId(role.id))
+    updated_role = search_role("_id", ObjectId(role.id))
+    if not updated_role:
+        raise HTTPException(
+            status_code=status.HTTP_404_NOT_FOUND,
+            detail="No se encontró el rol",
+        )
+
+    return updated_role
 
 
 # Ruta para eliminar un Rol

@@ -38,12 +38,14 @@ async def province(id: str, user: User = Depends(current_user)):
 
 # Ruta para crear una Provincia
 @router.post("/", response_model=Province, status_code=status.HTTP_201_CREATED)
-async def province(province: Province, current_user: User = Depends(current_user)):
-
-    if type(search_province("name", province.name)) == Province:
+async def create_province(province: Province, current_user: User = Depends(current_user)):
+    # Buscar si ya existe una provincia con el mismo nombre y país
+    existing_province = db_client.provinces.find_one({"name": province.name, "country_id": province.country_id})
+    
+    if existing_province:
         raise HTTPException(
-            status_code=status.HTTP_404_NOT_FOUND,
-            detail="Ya existe una provincia con ese nombre",
+            status_code=status.HTTP_400_BAD_REQUEST,
+            detail="Ya existe una provincia con ese nombre y país",
         )
 
     province_dict = dict(province)
@@ -60,7 +62,19 @@ async def province(province: Province, current_user: User = Depends(current_user
 
 # Ruta para actualizar una Provincia
 @router.put("/", response_model=Province)
-async def province(province: Province, current_user: User = Depends(current_user)):
+async def update_province(province: Province, current_user: User = Depends(current_user)):
+    # Verificar si ya existe una provincia con el mismo nombre y país (excluyendo el actual)
+    existing_province = db_client.provinces.find_one({
+        "name": province.name,
+        "country_id": province.country_id,
+        "_id": {"$ne": ObjectId(province.id)}
+    })
+    
+    if existing_province:
+        raise HTTPException(
+            status_code=status.HTTP_400_BAD_REQUEST,
+            detail="Ya existe una provincia con ese nombre y país",
+        )
 
     province_dict = dict(province)
     del province_dict["id"]
@@ -68,9 +82,19 @@ async def province(province: Province, current_user: User = Depends(current_user
     try:
         db_client.provinces.find_one_and_replace({"_id": ObjectId(province.id)}, province_dict)
     except:
-        return {"error": "No se ha actualizado la provincia"}
+        raise HTTPException(
+            status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
+            detail="No se ha actualizado la provincia",
+        )
 
-    return search_province("_id", ObjectId(province.id))
+    updated_province = search_province("_id", ObjectId(province.id))
+    if not updated_province:
+        raise HTTPException(
+            status_code=status.HTTP_404_NOT_FOUND,
+            detail="No se encontró la provincia",
+        )
+
+    return updated_province
 
 
 # Ruta para eliminar una Provincia

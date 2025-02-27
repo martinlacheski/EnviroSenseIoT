@@ -61,6 +61,13 @@ async def country(country: Country, current_user: User = Depends(current_user)):
 # Ruta para actualizar un País
 @router.put("/", response_model=Country)
 async def country(country: Country, current_user: User = Depends(current_user)):
+    # Verificar si ya existe un país con el mismo nombre (excluyendo el actual)
+    existing_type = db_client.countries.find_one({"name": country.name, "_id": {"$ne": ObjectId(country.id)}})
+    if existing_type:
+        raise HTTPException(
+            status_code=status.HTTP_400_BAD_REQUEST,
+            detail="Ya existe un país con ese nombre",
+        )
 
     country_dict = dict(country)
     del country_dict["id"]
@@ -68,9 +75,19 @@ async def country(country: Country, current_user: User = Depends(current_user)):
     try:
         db_client.countries.find_one_and_replace({"_id": ObjectId(country.id)}, country_dict)
     except:
-        return {"error": "No se ha actualizado el país"}
+        raise HTTPException(
+            status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
+            detail="No se ha actualizado el país",
+        )
 
-    return search_country("_id", ObjectId(country.id))
+    updated_country = search_country("_id", ObjectId(country.id))
+    if not updated_country:
+        raise HTTPException(
+            status_code=status.HTTP_404_NOT_FOUND,
+            detail="No se encontró el país",
+        )
+
+    return updated_country
 
 
 # Ruta para eliminar un País

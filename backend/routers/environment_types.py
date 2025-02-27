@@ -58,20 +58,6 @@ async def environment_type(environment_type: EnvironmentType, current_user: User
     return EnvironmentType(**new_environment_type)
 
 
-# # Ruta para actualizar un Tipo de Ambiente
-# @router.put("/", response_model=EnvironmentType)
-# async def environment_type(environment_type: EnvironmentType, current_user: User = Depends(current_user)):
-
-#     environment_type_dict = dict(environment_type)
-#     del environment_type_dict["id"]
-
-#     try:
-#         db_client.environment_types.find_one_and_replace({"_id": ObjectId(environment_type.id)}, environment_type_dict)
-#     except:
-#         return {"error": "No se ha actualizado el tipo de ambiente"}
-
-#     return search_environment_type("_id", ObjectId(environment_type.id))
-
 # Ruta para actualizar un Tipo de Ambiente
 @router.put("/", response_model=EnvironmentType)
 async def environment_type(environment_type: EnvironmentType, current_user: User = Depends(current_user)):

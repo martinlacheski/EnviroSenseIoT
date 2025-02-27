@@ -38,12 +38,14 @@ async def city(id: str, user: User = Depends(current_user)):
 
 # Ruta para crear una Ciudad
 @router.post("/", response_model=City, status_code=status.HTTP_201_CREATED)
-async def city(city: City, current_user: User = Depends(current_user)):
-
-    if type(search_city("name", city.name)) == City:
+async def create_city(city: City, current_user: User = Depends(current_user)):
+    # Verificar si ya existe una ciudad con el mismo nombre en la misma provincia
+    existing_city = db_client.cities.find_one({"name": city.name, "province_id": city.province_id})
+    
+    if existing_city:
         raise HTTPException(
-            status_code=status.HTTP_404_NOT_FOUND,
-            detail="Ya existe una ciudad con ese nombre",
+            status_code=status.HTTP_400_BAD_REQUEST,
+            detail="Ya existe una ciudad con ese nombre en la misma provincia",
         )
 
     city_dict = dict(city)
@@ -60,7 +62,19 @@ async def city(city: City, current_user: User = Depends(current_user)):
 
 # Ruta para actualizar una Ciudad
 @router.put("/", response_model=City)
-async def city(city: City, current_user: User = Depends(current_user)):
+async def update_city(city: City, current_user: User = Depends(current_user)):
+    # Verificar si ya existe una ciudad con el mismo nombre en la misma provincia, excluyendo la ciudad actual
+    existing_city = db_client.cities.find_one({
+        "name": city.name,
+        "province_id": city.province_id,
+        "_id": {"$ne": ObjectId(city.id)}  # Excluir la ciudad actual
+    })
+    
+    if existing_city:
+        raise HTTPException(
+            status_code=status.HTTP_400_BAD_REQUEST,
+            detail="Ya existe una ciudad con ese nombre en la misma provincia",
+        )
 
     city_dict = dict(city)
     del city_dict["id"]
