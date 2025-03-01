@@ -25,11 +25,10 @@ export const userSchemaEdit = z.object({
     new_password_confirmation: z.string()
 })
 
-// Para Datatables2
-export type User = z.infer<typeof userSchema>
 export const UserListSchema = z.array(userSchema.pick({
     id: true,
     username: true,
+    password: true,
     name: true,
     surname: true,
     email: true,
@@ -37,19 +36,24 @@ export const UserListSchema = z.array(userSchema.pick({
     is_admin: true
 }))
 
-// Material table
+export type User = z.infer<typeof userSchema>
+
+export type CurrentUser = z.infer<typeof userSchemaEdit>
 
 // Listar usuarios
 export type UsersList = Pick<User, 'id' | 'username' | 'password' | 'name' | 'surname' | 'email' | 'enabled' | 'is_admin'>
 
-// Nuevo Usuario
+// Usuario
 export type UserFormData = Pick<User, 'username' | 'password' | 'name' | 'surname' | 'email' | 'enabled' | 'is_admin'>
 
 // Editar Usuario
-export type UserEdit = z.infer<typeof userSchemaEdit>
+export type UserEdit = Pick<User, 'id' | 'username' | 'name' | 'surname' | 'email' | 'enabled' | 'is_admin'>
 
 // Usuario actual
 export type UserProfileForm = Pick<User, 'name' | 'surname'>
 
-// Cambiar Contraseña
-export type UpdateCurrentUserPasswordForm = Pick<UserEdit, 'current_password' | 'new_password' | 'new_password_confirmation'>
+// Cambiar Contraseña desde el usuario actual
+export type UpdateCurrentUserPasswordForm = Pick<CurrentUser, 'current_password' | 'new_password' | 'new_password_confirmation'>
+
+// Cambiar Contraseña desde usuarios administradores
+export type UpdateUserPasswordForm = Pick<CurrentUser, 'id' | 'new_password' | 'new_password_confirmation'>

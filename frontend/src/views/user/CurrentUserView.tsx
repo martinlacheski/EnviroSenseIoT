@@ -1,4 +1,4 @@
-import ProfileForm from "@/components/users/ProfileForm"
+import ProfileForm from "@/components/user_profile/ProfileForm"
 import { useAuth } from "@/hooks/useAuth"
 
 export default function CurrentUserView() {

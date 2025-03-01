@@ -18,8 +18,8 @@ from utils.authentication import current_user
 
 # Definimos el prefijo y una respuesta si no existe.
 router = APIRouter(
-    prefix="/companies",
-    tags=["companies"],  # TAG para la documentación. Agrupar por Router
+    prefix="/company",
+    tags=["company"],  # TAG para la documentación. Agrupar por Router
     responses={404: {"mensaje": "No encontrado"}},
 )
 

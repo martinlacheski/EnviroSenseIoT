@@ -13,13 +13,12 @@ export async function updateProfile(formData: UserProfileForm) {
     }
 }
 
-export async function changePassword(formData: UpdateCurrentUserPasswordForm) {
+export async function changeCurrentPassword(formData: UpdateCurrentUserPasswordForm) {
     try {
         const { data } = await api.patch<string>('/users/change/password', formData)
         return data
     } catch (error) {
         if(isAxiosError(error) && error.response) {
-            console.log(error.response.data.detail)
             throw new Error(error.response.data.detail)
         }
     }

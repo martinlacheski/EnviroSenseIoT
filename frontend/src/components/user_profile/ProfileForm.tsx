@@ -1,5 +1,5 @@
 import { useForm } from "react-hook-form"
-import ErrorMessage from "../ErrorMessage"
+import ErrorMessage from "../common/ErrorMessage"
 import { UserProfileForm } from "@/types/index"
 import { useMutation, useQueryClient } from "@tanstack/react-query"
 import { updateProfile } from "@/api/current_user/CurrentUserAPI"

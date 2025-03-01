@@ -62,7 +62,6 @@ async def role(role: Role, current_user: User = Depends(current_user)):
 @router.put("/", response_model=Role)
 async def role(role: Role, current_user: User = Depends(current_user)):
     # Verificar si ya existe un rol con el mismo nombre (excluyendo el actual)
-    print(role)
     existing_type = db_client.roles.find_one({"name": role.name, "_id": {"$ne": ObjectId(role.id)}})
     if existing_type:
         raise HTTPException(

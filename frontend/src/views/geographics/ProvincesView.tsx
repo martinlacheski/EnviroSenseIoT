@@ -29,7 +29,7 @@ export default function Provinces() {
 
             <div className='flex justify-between'>
                 <table className="w-full mt-5 table-auto">
-                    <thead className="bg-slate-800 text-white">
+                    <thead className="bg-gray-100">
                         <tr>
                             <th className="p-4 text-left m-2 w-2/5">Provincia</th>
                             <th className="p-4 text-left m-2 w-2/5">País</th>

@@ -1,6 +1,6 @@
 import { isAxiosError } from "axios";
 import api from "../../services/api.service";
-import { CitiesListSchema, CitiesSchema, City, CreateCity } from "@/types/index";
+import { CitiesListSchema, CitiesSchema, City, CreateCity, Province } from "@/types/index";
 
 // Crear una Ciudad
 export async function createCity(formData: CreateCity) {

@@ -1,6 +1,7 @@
 /backend/venv/
 __pycache__/
 .venv/
+/backend/static/
 *.log
 *.pot
 *.pyc

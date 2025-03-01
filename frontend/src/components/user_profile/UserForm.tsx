@@ -1,5 +1,5 @@
 import { UseFormRegister, FieldErrors } from "react-hook-form"
-import ErrorMessage from "../ErrorMessage"
+import ErrorMessage from "../common/ErrorMessage"
 import { UserFormData } from "@/types/index"
 
 

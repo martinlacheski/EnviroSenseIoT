@@ -3,10 +3,11 @@ import { useState } from 'react';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 
 import { toast } from 'react-toastify';
-import ConfirmationDialog from '@/components/ConfirmationDialog'; // Importa el nuevo componente
+import ConfirmationDialog from '@/components/common/ConfirmationDialog'; // Importa el nuevo componente
 import { Country } from '@/types/geographics/countries';
 import { deleteCountry } from '@/api/index';
 import CountriesModalForm from './countriesModalForm';
+import { PencilIcon, TrashIcon } from '@heroicons/react/20/solid';
 
 type CountryDetailsProps = { country: Country };
 
@@ -46,15 +47,15 @@ export default function CountryDetails({ country }: CountryDetailsProps) {
                     <div className="flex justify-center gap-2">
                         <button
                             onClick={() => setIsEditModalOpen(true)}
-                            className="bg-yellow-500 text-white rounded-lg p-2 uppercase font-bold text-xs text-center w-24"
+                            className="bg-gray-100 rounded-lg p-2 uppercase font-bold text-xs text-center w-24 flex items-center justify-center"
                         >
-                            Editar
+                            <PencilIcon className="h-5 w-5" />
                         </button>
                         <button
                             onClick={handleDelete}
-                            className="bg-red-600 text-white rounded-lg p-2 uppercase font-bold text-xs text-center w-24"
+                            className="bg-gray-100 rounded-lg p-2 uppercase font-bold text-xs text-center w-24 flex items-center justify-center"
                         >
-                            Eliminar
+                            <TrashIcon className="h-5 w-5" />
                         </button>
                     </div>
                 </td>

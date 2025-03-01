@@ -1,6 +1,6 @@
 import { useForm } from "react-hook-form";
 import { useMutation } from '@tanstack/react-query'
-import ErrorMessage from "@/components/ErrorMessage";
+import ErrorMessage from "@/components/common/ErrorMessage";
 import { UserLoginForm } from "@/types/index";
 import { loginUser } from "@/api/auth/AuthAPI";
 import { toast } from "react-toastify";
@@ -18,7 +18,6 @@ export default function LoginView() {
   const { mutate } = useMutation({
     mutationFn: loginUser,
     onError: (error) => {
-      //console.log(error)
       toast.error(error.message)
     },
     onSuccess: () => {

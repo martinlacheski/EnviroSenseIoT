@@ -13,13 +13,20 @@ class User(BaseModel):
     enabled: bool
     is_admin: bool
 
-class UpdateUser(BaseModel):
+
+class UpdateCurrentUser(BaseModel):
     id: Optional[str] = None
     name: str = None
     surname: str = None
+
+
+class UpdateCurrentUserPassword(BaseModel):
+    id: Optional[str] = None
+    current_password: str = None
+    new_password: str = None
+    new_password_confirmation: str = None
     
 class UpdateUserPassword(BaseModel):
     id: Optional[str] = None
-    current_password: str = None
     new_password: str = None
     new_password_confirmation: str = None

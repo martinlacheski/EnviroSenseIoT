@@ -9,14 +9,11 @@ import { CreateNutrientType, NutrientType, NutrientTypesListSchema, NutrientType
 // Crear un Tipo de Nutriente
 export async function createNutrientType(formData: CreateNutrientType) {
     try {
-        // console.log(formData)
         const { data } = await api.post('/nutrients/types/', formData)
         return data
     } catch (error) {
         if (isAxiosError(error) && error.response) {
             const errorMessage = error.response.data?.detail || "Error desconocido en el servidor";
-            console.log(errorMessage);
-
             throw new Error(errorMessage);
         }
     }

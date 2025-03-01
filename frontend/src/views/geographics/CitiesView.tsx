@@ -28,7 +28,7 @@ export default function Cities() {
 
             <div className='flex justify-between'>
                 <table className="w-full mt-5 table-auto">
-                    <thead className="bg-slate-800 text-white">
+                    <thead className="bg-gray-100">
                         <tr>
                             <th className="p-4 m-2 text-left w-[26.67%]">Ciudad</th>
                             <th className="p-4 m-2 text-left w-[26.67%]">Provincia</th>

@@ -1,6 +1,6 @@
 import { Link, Navigate, Outlet } from "react-router-dom"
-import Logo from "@/components/Logo"
-import NavMenu from "@/components/NavMenu"
+import Logo from "@/components/common/Logo"
+import NavMenu from "@/components/common/NavMenu"
 import { useAuth } from "@/hooks/useAuth"
 import { ToastContainer } from "react-toastify"
 
@@ -22,37 +22,47 @@ export default function AppLayout() {
                             <Logo />
                         </Link>
                     </div>
-                    <div className=" bg-gray-800 px-10 py-3 text-white text-xl font-bold cursor-pointer transition-colors">
+                    <div className=" bg-gray-800 px-10 py-3 text-white font-bold cursor-pointer transition-colors">
                         <Link to={'/users'}>
                             Usuarios
                         </Link>
                     </div>
-                    <div className=" bg-gray-800 px-10 py-3 text-white text-xl font-bold cursor-pointer transition-colors">
+                    <div className=" bg-gray-800 px-10 py-3 text-white font-bold cursor-pointer transition-colors">
                         <Link to={'/roles'}>
                             Roles
                         </Link>
                     </div>
-                    <div className=" bg-gray-800 px-10 py-3 text-white text-xl font-bold cursor-pointer transition-colors">
+                    <div className=" bg-gray-800 px-10 py-3 text-white font-bold cursor-pointer transition-colors">
                         <Link to={'/environments/types/'}>
                             Tipos de ambiente
                         </Link>
                     </div>
-                    <div className=" bg-gray-800 px-10 py-3 text-white text-xl font-bold cursor-pointer transition-colors">
+                    <div className=" bg-gray-800 px-10 py-3 text-white font-bold cursor-pointer transition-colors">
                         <Link to={'/countries/'}>
                             Paises
                         </Link>
                     </div>
-                    <div className=" bg-gray-800 px-10 py-3 text-white text-xl font-bold cursor-pointer transition-colors">
+                    <div className=" bg-gray-800 px-10 py-3 text-white font-bold cursor-pointer transition-colors">
                         <Link to={'/provinces/'}>
                             Provincias
                         </Link>
                     </div>
-                    <div className=" bg-gray-800 px-10 py-3 text-white text-xl font-bold cursor-pointer transition-colors">
+                    <div className=" bg-gray-800 px-10 py-3 text-white font-bold cursor-pointer transition-colors">
                         <Link to={'/cities/'}>
                             Ciudades
                         </Link>
                     </div>
-                    <div className=" bg-gray-800 px-10 py-3 text-white text-xl font-bold cursor-pointer transition-colors">
+                    <div className=" bg-gray-800 px-10 py-3 text-white font-bold cursor-pointer transition-colors">
+                        <Link to={'/company/'}>
+                            Empresa
+                        </Link>
+                    </div>
+                    <div className=" bg-gray-800 px-10 py-3 text-white font-bold cursor-pointer transition-colors">
+                        <Link to={'/environments/'}>
+                            Ambientes
+                        </Link>
+                    </div>                    
+                    <div className=" bg-gray-800 px-10 py-3 text-white font-bold cursor-pointer transition-colors">
                         <Link to={'/nutrients/types/'}>
                             Tipos de nutrientes
                         </Link>

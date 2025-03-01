@@ -66,7 +66,6 @@ async def nutrient_type(
 @router.put("/", response_model=NutrientType)
 async def role(nutrient_type: NutrientType, current_user: User = Depends(current_user)):
     # Verificar si ya existe un Tipo de Nutriente con el mismo nombre (excluyendo el actual)
-    print(role)
     existing_type = db_client.nutrient_types.find_one(
         {"name": nutrient_type.name, "_id": {"$ne": ObjectId(nutrient_type.id)}}
     )

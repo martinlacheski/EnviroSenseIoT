@@ -11,8 +11,6 @@ export async function createRoleType(formData: CreateRoleType) {
     } catch (error) {
         if (isAxiosError(error) && error.response) {
             const errorMessage = error.response.data?.detail || "Error desconocido en el servidor";
-            console.log(errorMessage);
-
             throw new Error(errorMessage);
         }
     }

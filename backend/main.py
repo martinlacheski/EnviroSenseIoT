@@ -9,6 +9,7 @@ from models.user import User
 from utils.authentication import current_user
 
 from routers import (
+    statics,
     login,
     users,
     roles,
@@ -37,6 +38,7 @@ from routers import (
 app = FastAPI()
 
 # Routers
+app.include_router(statics.router)
 app.include_router(login.router)
 app.include_router(roles.router)
 app.include_router(users.router)

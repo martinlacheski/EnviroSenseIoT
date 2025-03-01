@@ -4,7 +4,8 @@ import ModalForm from '@/components/environment_types/EnvironmentTypesModalForm'
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { deleteType } from '@/api/environment_types/EnvironmentTypesAPI';
 import { toast } from 'react-toastify';
-import ConfirmationDialog from '@/components/ConfirmationDialog'; // Importa el nuevo componente
+import ConfirmationDialog from '@/components/common/ConfirmationDialog'; // Importa el nuevo componente
+import { PencilIcon, TrashIcon } from '@heroicons/react/20/solid';
 
 type TypeDetailsProps = { type: Type };
 
@@ -44,15 +45,15 @@ export default function EnvironmentTypeDetails({ type }: TypeDetailsProps) {
                     <div className="flex justify-center gap-2">
                         <button
                             onClick={() => setIsEditModalOpen(true)}
-                            className="bg-yellow-500 text-white rounded-lg p-2 uppercase font-bold text-xs text-center w-24"
+                            className="bg-gray-100 rounded-lg p-2 uppercase font-bold text-xs text-center w-24 flex items-center justify-center"
                         >
-                            Editar
+                            <PencilIcon className="h-5 w-5" />
                         </button>
                         <button
                             onClick={handleDelete}
-                            className="bg-red-600 text-white rounded-lg p-2 uppercase font-bold text-xs text-center w-24"
+                            className="bg-gray-100 rounded-lg p-2 uppercase font-bold text-xs text-center w-24 flex items-center justify-center"
                         >
-                            Eliminar
+                            <TrashIcon className="h-5 w-5" />
                         </button>
                     </div>
                 </td>

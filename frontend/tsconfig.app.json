@@ -16,6 +16,7 @@
       "@/reducers/*" : ["reducers/*"],
       "@/services/*" : ["services/*"],
       "@/types/*" : ["types/*"],
+      "@/utils/*" : ["utils/*"],
       "@/views/*" : ["views/*"],
     },
 

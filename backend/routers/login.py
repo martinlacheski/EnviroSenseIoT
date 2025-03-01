@@ -34,6 +34,11 @@ async def login(form: OAuth2PasswordRequestForm = Depends()):
             status_code=status.HTTP_404_NOT_FOUND,
             detail="Los datos ingresados no son correctos",
         )
+    if user['enabled'] == False:
+        raise HTTPException(
+            status_code=status.HTTP_400_BAD_REQUEST,
+            detail="Usuario deshabilitado",
+        )
 
     access_token = {
         "_id": str(user.get("_id")),

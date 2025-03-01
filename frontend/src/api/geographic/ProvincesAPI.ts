@@ -10,8 +10,6 @@ export async function createProvince(formData: CreateProvince) {
     } catch (error) {
         if (isAxiosError(error) && error.response) {
             const errorMessage = error.response.data?.detail || "Error desconocido en el servidor";
-            console.log(errorMessage);
-
             throw new Error(errorMessage);
         }
     }
@@ -26,7 +24,7 @@ export async function getProvinces() {
             return response.data
         }
     } catch (error) {
-        
+
         if (isAxiosError(error) && error.response) {
 
             throw new Error(error.response.data.error)
@@ -49,8 +47,8 @@ export async function getProvinceById(id: Province['id']) {
     }
 }
 
-// Obtener las Provincias del país
-export async function getProvincesById(id: Country['id']) {
+/* // Obtener las Provincias del país
+export async function getProvincesByCountry(id: Country['id']) {
     try {
         const { data } = await api(`/provinces/country/${id}`)
         const response = ProvincesSchema.safeParse(data)
@@ -62,7 +60,7 @@ export async function getProvincesById(id: Country['id']) {
             throw new Error(error.response.data.error)
         }
     }
-}
+} */
 
 // Definimos el tipo de API para Actualizar
 type ProvinceAPI = {

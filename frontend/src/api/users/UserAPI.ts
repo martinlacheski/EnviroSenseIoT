@@ -1,9 +1,7 @@
-
-
 import { isAxiosError } from "axios";
 
 import api from "../../services/api.service";
-import { User, UserFormData, UserListSchema, userSchemaEdit } from "../../types";
+import { UpdateUserPasswordForm, User, UserFormData, UserListSchema, userSchemaEdit } from "../../types";
 
 // Crear un usuario
 
@@ -12,7 +10,6 @@ export async function createUser(formData: UserFormData) {
         const { data } = await api.post('/users', formData)
         return data
     } catch (error) {
-        //console.log(error.response.data)
         if (isAxiosError(error) && error.response) {
             throw new Error(error.response.data.error)
         }
@@ -49,17 +46,10 @@ export async function getUserById(id: User['id']) {
     }
 }
 
-
-// Definimos el tipo de API para Actualizar un Usuario
-type UserAPIType = {
-    formData: UserFormData
-    userId: User['id']
-}
-
-// Actualizar un usuario
-export async function updateProject({ formData, userId }: UserAPIType) {
+// Actualizar un Usuario
+export async function updateUser(formData: User) {
     try {
-        const { data } = await api.put<string>(`/users/${userId}`, formData)
+        const { data } = await api.put<string>('/users/', formData)
         return data
     } catch (error) {
         if (isAxiosError(error) && error.response) {
@@ -77,6 +67,18 @@ export async function deleteUser(id: User['id']) {
     } catch (error) {
         if (isAxiosError(error) && error.response) {
             throw new Error(error.response.data.error)
+        }
+    }
+}
+
+// Actualizar contraseña de un usuario
+export async function changePassword(formData: UpdateUserPasswordForm) {
+    try {
+        const { data } = await api.patch<string>('/users/password', formData)
+        return data
+    } catch (error) {
+        if(isAxiosError(error) && error.response) {
+            throw new Error(error.response.data.detail)
         }
     }
 }

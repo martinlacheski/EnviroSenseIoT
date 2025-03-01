@@ -9,14 +9,11 @@ import { Type, TypesSchema, TypesListSchema, CreateType } from "@/types/environm
 // Crear un Tipo
 export async function createType(formData: CreateType) {
     try {
-        // console.log(formData)
         const { data } = await api.post('/environments/types/', formData)
         return data
     } catch (error) {
         if (isAxiosError(error) && error.response) {
             const errorMessage = error.response.data?.detail || "Error desconocido en el servidor";
-            console.log(errorMessage);
-
             throw new Error(errorMessage);
         }
     }

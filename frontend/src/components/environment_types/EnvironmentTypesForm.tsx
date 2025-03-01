@@ -65,12 +65,20 @@ const TypesForm = (props: { handleClose: () => void; type?: Type }) => {
                     onChange={(e) => setName(e.target.value)}
                 />
             </div>
-            <div>
-                <input
+            <div className="flex w-full space-x-3">
+                <button
+                    type="button"
+                    onClick={props.handleClose}
+                    className="flex-1 bg-gray-500 px-6 py-3 text-white uppercase font-bold text-xs rounded-lg"
+                >
+                    Cancelar
+                </button>
+                <button
                     type="submit"
-                    value={props.type ? "Actualizar Tipo" : "Crear Tipo"}
-                    className="bg-blue-600 px-10 py-3 text-white uppercase font-bold text-xs w-full text-center rounded-lg"
-                />
+                    className="flex-1 bg-blue-600 px-6 py-3 text-white uppercase font-bold text-xs rounded-lg"
+                >
+                    Guardar
+                </button>
             </div>
         </form>
     );

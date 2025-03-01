@@ -1,12 +1,13 @@
 import { useState } from 'react';
 import { useMutation, useQueryClient, useQuery } from '@tanstack/react-query';
 import { toast } from 'react-toastify';
-import ConfirmationDialog from '@/components/ConfirmationDialog';
+import ConfirmationDialog from '@/components/common/ConfirmationDialog';
 import { City } from '@/types/index';
 import { getProvinces } from '@/api/geographic/ProvincesAPI';
 import { getCountries } from '@/api/geographic/CountriesAPI'; // Importar la función para obtener países
 import { deleteCity } from '@/api/geographic/CitiesAPI';
 import CitiesModalForm from './citiesModalForm';
+import { PencilIcon, TrashIcon } from '@heroicons/react/20/solid';
 
 type CityDetailsProps = { city: City };
 
@@ -66,15 +67,15 @@ export default function ProvinceDetails({ city }: CityDetailsProps) {
                     <div className="flex justify-center gap-2">
                         <button
                             onClick={() => setIsEditModalOpen(true)}
-                            className="bg-yellow-500 text-white rounded-lg p-2 uppercase font-bold text-xs text-center w-24"
+                            className="bg-gray-100 rounded-lg p-2 uppercase font-bold text-xs text-center w-24 flex items-center justify-center"
                         >
-                            Editar
+                            <PencilIcon className="h-5 w-5" />
                         </button>
                         <button
                             onClick={handleDelete}
-                            className="bg-red-600 text-white rounded-lg p-2 uppercase font-bold text-xs text-center w-24"
+                            className="bg-gray-100 rounded-lg p-2 uppercase font-bold text-xs text-center w-24 flex items-center justify-center"
                         >
-                            Eliminar
+                            <TrashIcon className="h-5 w-5" />
                         </button>
                     </div>
                 </td>
