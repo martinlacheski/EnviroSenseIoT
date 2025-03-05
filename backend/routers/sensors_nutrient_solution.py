@@ -77,6 +77,15 @@ async def sensor(
 async def sensor(
     sensor: NutrientSolutionSensor, current_user: User = Depends(current_user)
 ):
+    # Verificar si ya existe un sensor de solución nutritiva con el mismo código (excluyendo el actual)
+    existing_type = db_client.sensors_nutrient_solution.find_one(
+        {"sensor_code": sensor.sensor_code, "_id": {"$ne": ObjectId(sensor.id)}}
+    )
+    if existing_type:
+        raise HTTPException(
+            status_code=status.HTTP_400_BAD_REQUEST,
+            detail="Ya existe un sensor de solución nutritiva con ese código",
+        )
 
     sensor_dict = dict(sensor)
     del sensor_dict["id"]
@@ -86,9 +95,19 @@ async def sensor(
             {"_id": ObjectId(sensor.id)}, sensor_dict
         )
     except:
-        return {"error": "No se ha actualizado el sensor de solución nutritiva"}
+        raise HTTPException(
+            status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
+            detail="No se ha actualizado el sensor",
+        )
 
-    return search_nutrient_solution_sensor("_id", ObjectId(sensor.id))
+    updated_sensor = search_nutrient_solution_sensor("_id", ObjectId(sensor.id))
+    if not updated_sensor:
+        raise HTTPException(
+            status_code=status.HTTP_404_NOT_FOUND,
+            detail="No se encontró el sensor de solución nutritiva actualizado",
+        )
+
+    return updated_sensor
 
 
 # Ruta para eliminar un Sensor de solución nutritiva

@@ -53,8 +53,8 @@ export default function EnvironmentTypeDetails({ environment }: EnvironmentDetai
     const city = cities?.find((city) => city.id === environment.city_id);
     const cityName = city?.name || "Ciudad no encontrada";
 
-    // Buscar el nombre del país correspondiente a la provincia
-    const typeName = environment_types?.find((environment_type) => environment_type.id === environment?.type_id)?.name || "País no encontrado";
+    // Buscar el nombre del tipo de ambiente
+    const typeName = environment_types?.find((environment_type) => environment_type.id === environment?.type_id)?.name || "Tipo de ambiente no encontrado";
 
     // Función para construir el enlace de GPS
     const getGpsLink = (gpsLocation: string) => {

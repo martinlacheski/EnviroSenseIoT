@@ -35,7 +35,7 @@ def actuator_log_schema(log) -> dict:
         "channel_8_name": log["channel_8_name"],
         "channel_8_time": log["channel_8_time"],
         "minutes_to_report": log["minutes_to_report"],
-        "disabled": log["disabled"],
+        "enabled": log["enabled"],
         "user_id": log["user_id"],
         "timestamp": log["timestamp"],
     }

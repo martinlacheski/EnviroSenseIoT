@@ -14,6 +14,6 @@ class EnvironmentalSensorLog(BaseModel):
     atmospheric_pressure_alert: float
     co2_alert: float
     minutes_to_report: int
-    disabled: bool
+    enabled: bool
     user_id: Optional[str] = None
     timestamp: datetime = datetime.now(timezone.utc)

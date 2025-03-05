@@ -29,7 +29,7 @@ def consumption_sensor_schema(sensor) -> dict:
         "nutrient_6_type_id": sensor["nutrient_6_type_id"],
         "nutrient_6_alert": sensor["nutrient_6_alert"],
         "minutes_to_report": sensor["minutes_to_report"],
-        "disabled": sensor["disabled"],
+        "enabled": sensor["enabled"],
     }
 
 

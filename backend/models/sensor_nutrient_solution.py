@@ -8,8 +8,9 @@ class NutrientSolutionSensor(BaseModel):
     environment_id: Optional[str]
     description: str
     sensor_code: str
+    temperature_alert: float
     tds_alert: float
     ph_alert: float
     ce_alert: float
     minutes_to_report: int
-    disabled: bool
+    enabled: bool

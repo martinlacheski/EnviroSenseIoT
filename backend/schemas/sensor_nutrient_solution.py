@@ -7,11 +7,12 @@ def nutrient_solution_sensor_schema(sensor) -> dict:
         "environment_id": sensor["environment_id"],
         "description": sensor["description"],
         "sensor_code": sensor["sensor_code"],
+        "temperature_alert": sensor["temperature_alert"],
         "tds_alert": sensor["tds_alert"],
         "ph_alert": sensor["ph_alert"],
         "ce_alert": sensor["ce_alert"],
         "minutes_to_report": sensor["minutes_to_report"],
-        "disabled": sensor["disabled"],
+        "enabled": sensor["enabled"],
     }
 
 

@@ -4,7 +4,10 @@ from bson import ObjectId
 # Importamos Modelo y Esquema de la Entidad
 from models.user import User
 from models.sensor_environmental import EnvironmentalSensor
-from schemas.sensor_environmental import environmental_sensor_schema, environmental_sensors_schema
+from schemas.sensor_environmental import (
+    environmental_sensor_schema,
+    environmental_sensors_schema,
+)
 
 # Importamos cliente DB
 from config import db_client
@@ -37,10 +40,17 @@ async def sensor(id: str, current_user: User = Depends(current_user)):
 
 
 # Ruta para crear un Sensor Ambiental
-@router.post("/", response_model=EnvironmentalSensor, status_code=status.HTTP_201_CREATED)
-async def sensor(sensor: EnvironmentalSensor, current_user: User = Depends(current_user)):
+@router.post(
+    "/", response_model=EnvironmentalSensor, status_code=status.HTTP_201_CREATED
+)
+async def sensor(
+    sensor: EnvironmentalSensor, current_user: User = Depends(current_user)
+):
 
-    if type(search_environmental_sensor("sensor_code", sensor.sensor_code)) == EnvironmentalSensor:
+    if (
+        type(search_environmental_sensor("sensor_code", sensor.sensor_code))
+        == EnvironmentalSensor
+    ):
         raise HTTPException(
             status_code=status.HTTP_404_NOT_FOUND,
             detail="Ya existe un sensor ambiental con ese código",
@@ -51,26 +61,51 @@ async def sensor(sensor: EnvironmentalSensor, current_user: User = Depends(curre
 
     # Crear el Sensor Ambiental en la BD y obtener el ID
     id = db_client.sensors_environmental.insert_one(sensor_dict).inserted_id
-    
+
     # Buscar el Sensor creado y devolverlo
-    new_sensor = environmental_sensor_schema(db_client.sensors_environmental.find_one({"_id": id}))
+    new_sensor = environmental_sensor_schema(
+        db_client.sensors_environmental.find_one({"_id": id})
+    )
 
     return EnvironmentalSensor(**new_sensor)
 
 
 # Ruta para actualizar un Sensor Ambiental
 @router.put("/", response_model=EnvironmentalSensor)
-async def sensor(sensor: EnvironmentalSensor, current_user: User = Depends(current_user)):
+async def sensor(
+    sensor: EnvironmentalSensor, current_user: User = Depends(current_user)
+):
+    # Verificar si ya existe un sensor ambiental con el mismo código (excluyendo el actual)
+    existing_type = db_client.sensors_environmental.find_one(
+        {"sensor_code": sensor.sensor_code, "_id": {"$ne": ObjectId(sensor.id)}}
+    )
+    if existing_type:
+        raise HTTPException(
+            status_code=status.HTTP_400_BAD_REQUEST,
+            detail="Ya existe un sensor ambiental con ese código",
+        )
 
     sensor_dict = dict(sensor)
     del sensor_dict["id"]
 
     try:
-        db_client.sensors_environmental.find_one_and_replace({"_id": ObjectId(sensor.id)}, sensor_dict)
+        db_client.sensors_environmental.find_one_and_replace(
+            {"_id": ObjectId(sensor.id)}, sensor_dict
+        )
     except:
-        return {"error": "No se ha actualizado el sensor ambiental"}
+        raise HTTPException(
+            status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
+            detail="No se ha actualizado el sensor",
+        )
 
-    return search_environmental_sensor("_id", ObjectId(sensor.id))
+    updated_sensor = search_environmental_sensor("_id", ObjectId(sensor.id))
+    if not updated_sensor:
+        raise HTTPException(
+            status_code=status.HTTP_404_NOT_FOUND,
+            detail="No se encontró el sensor ambiental actualizado",
+        )
+
+    return updated_sensor
 
 
 # Ruta para eliminar un Sensor Ambiental

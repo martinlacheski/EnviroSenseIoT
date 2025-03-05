@@ -28,8 +28,8 @@ const NutrientTypesForm = (props: { handleClose: () => void; type?: NutrientType
             }
         },
         onError: (error: { message: string }) => {
-            if (error.message.includes("Ya existe un tipo de ambiente con ese nombre")) {
-                toast.error("Ya existe un tipo de ambiente con ese nombre"); // Mensaje específico para nombre duplicado
+            if (error.message.includes("Ya existe un tipo de nutriente con ese nombre")) {
+                toast.error("Ya existe un tipo de nutriente con ese nombre"); // Mensaje específico para nombre duplicado
             } else {
                 toast.error(error.message); // Mostrar otros errores
             }
@@ -59,7 +59,7 @@ const NutrientTypesForm = (props: { handleClose: () => void; type?: NutrientType
                     id="name"
                     className="w-full p-3 border border-gray-200"
                     type="text"
-                    placeholder="Tipo de ambiente"
+                    placeholder="Tipo de nutriente"
                     required
                     value={name}
                     onChange={(e) => setName(e.target.value)}

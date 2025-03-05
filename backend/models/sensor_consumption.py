@@ -30,4 +30,4 @@ class ConsumptionSensor(BaseModel):
     nutrient_6_type_id: Optional[str]
     nutrient_6_alert: int
     minutes_to_report: int
-    disabled: bool
+    enabled: bool

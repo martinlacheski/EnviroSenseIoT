@@ -32,7 +32,7 @@ def actuator_schema(actuator) -> dict:
         "channel_8_name": actuator["channel_8_name"],
         "channel_8_time": actuator["channel_8_time"],
         "minutes_to_report": actuator["minutes_to_report"],
-        "disabled": actuator["disabled"],
+        "enabled": actuator["enabled"],
     }
 
 

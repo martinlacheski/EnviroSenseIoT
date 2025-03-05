@@ -1,75 +1,116 @@
-import { Link, Navigate, Outlet } from "react-router-dom"
-import Logo from "@/components/common/Logo"
-import NavMenu from "@/components/common/NavMenu"
-import { useAuth } from "@/hooks/useAuth"
-import { ToastContainer } from "react-toastify"
+import { Link, Navigate, Outlet } from "react-router-dom";
+import Logo from "@/components/common/Logo";
+import NavMenu from "@/components/common/NavMenu";
+import { useAuth } from "@/hooks/useAuth";
+import { ToastContainer } from "react-toastify";
+import { useState } from "react";
+import React from "react";
+
+// Componente DropdownMenu para los submenús
+const DropdownMenu = ({ title, children }) => {
+    const [isOpen, setIsOpen] = useState(false);
+
+    // Función para cerrar el menú
+    const close = () => {
+        setIsOpen(false);
+    };
+
+    return (
+        <div className="relative">
+            <button
+                onClick={() => setIsOpen(!isOpen)}
+                className="bg-gray-800 px-10 text-white font-bold cursor-pointer transition-colors hover:bg-gray-700"
+            >
+                {title}
+            </button>
+            {isOpen && (
+                <div className="absolute bg-gray-800 mt-2 py-2 w-48 rounded-lg shadow-lg">
+                    {/* Pasar la función close a los hijos */}
+                    {React.Children.map(children, (child) =>
+                        React.cloneElement(child, { close })
+                    )}
+                </div>
+            )}
+        </div>
+    );
+};
+
+// Componente LinkWithClose para manejar el cierre del menú
+const LinkWithClose = ({ to, children, close }) => {
+    return (
+        <Link
+            to={to}
+            className="block px-4 py-2 text-white hover:bg-gray-700"
+            onClick={close} // Cerrar el menú al hacer clic
+        >
+            {children}
+        </Link>
+    );
+};
 
 export default function AppLayout() {
+    const { data, isError, isLoading } = useAuth();
 
-    const { data, isError, isLoading } = useAuth()
-
-    if (isLoading) return 'Cargando...'
+    if (isLoading) return 'Cargando...';
     if (isError) {
-        return <Navigate to='/login' />
+        return <Navigate to='/login' />;
     }
 
     if (data) return (
         <>
             <header className='bg-gray-800 py-1'>
-                <div className=' max-w-screen-2xl mx-auto flex flex-col lg:flex-row justify-between items-center'>
+                <div className='max-w-screen-2xl mx-auto flex flex-col lg:flex-row justify-between items-center'>
                     <div className='w-16'>
                         <Link to={'/'}>
                             <Logo />
                         </Link>
                     </div>
-                    <div className=" bg-gray-800 px-10 py-3 text-white font-bold cursor-pointer transition-colors">
-                        <Link to={'/users'}>
+                    <DropdownMenu title="Administración">
+                        <LinkWithClose to={'/users'} close={close}>
                             Usuarios
-                        </Link>
-                    </div>
-                    <div className=" bg-gray-800 px-10 py-3 text-white font-bold cursor-pointer transition-colors">
-                        <Link to={'/roles'}>
+                        </LinkWithClose>
+                        <LinkWithClose to={'/roles'} close={close}>
                             Roles
-                        </Link>
-                    </div>
-                    <div className=" bg-gray-800 px-10 py-3 text-white font-bold cursor-pointer transition-colors">
-                        <Link to={'/environments/types/'}>
-                            Tipos de ambiente
-                        </Link>
-                    </div>
-                    <div className=" bg-gray-800 px-10 py-3 text-white font-bold cursor-pointer transition-colors">
-                        <Link to={'/countries/'}>
-                            Paises
-                        </Link>
-                    </div>
-                    <div className=" bg-gray-800 px-10 py-3 text-white font-bold cursor-pointer transition-colors">
-                        <Link to={'/provinces/'}>
+                        </LinkWithClose>
+                        <LinkWithClose to={'/countries'} close={close}>
+                            Países
+                        </LinkWithClose>
+                        <LinkWithClose to={'/provinces'} close={close}>
                             Provincias
-                        </Link>
-                    </div>
-                    <div className=" bg-gray-800 px-10 py-3 text-white font-bold cursor-pointer transition-colors">
-                        <Link to={'/cities/'}>
+                        </LinkWithClose>
+                        <LinkWithClose to={'/cities'} close={close}>
                             Ciudades
-                        </Link>
-                    </div>
-                    <div className=" bg-gray-800 px-10 py-3 text-white font-bold cursor-pointer transition-colors">
-                        <Link to={'/company/'}>
+                        </LinkWithClose>
+                        <LinkWithClose to={'/company'} close={close}>
                             Empresa
-                        </Link>
-                    </div>
-                    <div className=" bg-gray-800 px-10 py-3 text-white font-bold cursor-pointer transition-colors">
-                        <Link to={'/environments/'}>
+                        </LinkWithClose>
+                    </DropdownMenu>
+
+                    <DropdownMenu title="Ambientes">
+                        <LinkWithClose to={'/environments/types'} close={close}>
+                            Tipos de ambiente
+                        </LinkWithClose>
+                        <LinkWithClose to={'/environments'} close={close}>
                             Ambientes
-                        </Link>
-                    </div>                    
-                    <div className=" bg-gray-800 px-10 py-3 text-white font-bold cursor-pointer transition-colors">
-                        <Link to={'/nutrients/types/'}>
+                        </LinkWithClose>
+                    </DropdownMenu>
+
+                    <DropdownMenu title="Actuadores">
+                        <LinkWithClose to={'/nutrients/types'} close={close}>
                             Tipos de nutrientes
-                        </Link>
-                    </div>
-                    <NavMenu
-                        username={data.username}
-                    />
+                        </LinkWithClose>
+                    </DropdownMenu>
+
+                    <DropdownMenu title="Sensores">
+                        <LinkWithClose to={'/sensors/environmental'} close={close}>
+                            Ambientales
+                        </LinkWithClose>
+                        <LinkWithClose to={'/sensors/nutrient/solution'} close={close}>
+                            Solución Nutritiva
+                        </LinkWithClose>
+                    </DropdownMenu>
+
+                    <NavMenu username={data.username} />
                 </div>
             </header>
 
@@ -82,11 +123,10 @@ export default function AppLayout() {
                     Todos los derechos reservados {new Date().getFullYear()}
                 </p>
             </footer>
-            {<ToastContainer
+            <ToastContainer
                 pauseOnHover={false}
                 pauseOnFocusLoss={false}
-            />}
+            />
         </>
-
-    )
+    );
 }

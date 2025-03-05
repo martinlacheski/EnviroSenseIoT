@@ -12,7 +12,7 @@ def environmental_sensor_schema(sensor) -> dict:
         "atmospheric_pressure_alert": sensor["atmospheric_pressure_alert"],
         "co2_alert": sensor["co2_alert"],
         "minutes_to_report": sensor["minutes_to_report"],
-        "disabled": sensor["disabled"],
+        "enabled": sensor["enabled"],
     }
 
 

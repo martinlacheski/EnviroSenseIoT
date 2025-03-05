@@ -34,7 +34,7 @@ class ActuatorLog(BaseModel):
     channel_8_name: Optional[str]
     channel_8_time: Optional[int]
     minutes_to_report: int
-    disabled: bool
+    enabled: bool
     user_id: Optional[str] = None
     timestamp: datetime = datetime.now(timezone.utc)
     

@@ -15,6 +15,8 @@ import RoleTypesView from './views/role_types/RoleTypesView'
 import NutrientTypesView from './views/sensors/nutrient_types/NutrientTypesView'
 import CompanyView from './views/company/CompanyView'
 import EnvironmentView from './views/environment/EnvironmentView'
+import EnvironmentalSensorsView from './views/sensors/environmental_sensors/EnvironmentalSensorsView'
+import NutrientSolutionSensorsView from './views/sensors/nutrient_solution_sensors/NutrientSolutionSensorsView'
 
 export default function Router() {
     return (
@@ -31,6 +33,8 @@ export default function Router() {
                     <Route path='/company' element={<CompanyView />} />
                     <Route path='/environments' element={<EnvironmentView />} />
                     <Route path='/nutrients/types/' element={<NutrientTypesView />} />
+                    <Route path='/sensors/environmental/' element={<EnvironmentalSensorsView />} />
+                    <Route path='/sensors/nutrient/solution/' element={<NutrientSolutionSensorsView />} />
                     <Route element={<ProfileLayout />}>
                         <Route path='/users/me' element={<CurrentUserView />} />
                         <Route path='/users/me/change/password' element={<ChangePasswordView />} />

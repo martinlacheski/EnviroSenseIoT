@@ -6,5 +6,6 @@ export * from './geographics/countries.ts'
 export * from './geographics/provinces.ts'
 export * from './geographics/cities.ts'
 export * from './company/company.ts'
-
 export * from './sensors/NutrientTypes.ts'
+export * from './sensors/EnvironmentalSensor.ts'
+export * from './sensors/NutrientSolutionSensor.ts'
