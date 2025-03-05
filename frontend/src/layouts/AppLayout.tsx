@@ -102,6 +102,9 @@ export default function AppLayout() {
                     </DropdownMenu>
 
                     <DropdownMenu title="Sensores">
+                    <LinkWithClose to={'/sensors/consumption'} close={close}>
+                            Consumos
+                        </LinkWithClose>
                         <LinkWithClose to={'/sensors/environmental'} close={close}>
                             Ambientales
                         </LinkWithClose>

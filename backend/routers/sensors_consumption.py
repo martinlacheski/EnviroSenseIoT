@@ -4,7 +4,10 @@ from bson import ObjectId
 # Importamos Modelo y Esquema de la Entidad
 from models.user import User
 from models.sensor_consumption import ConsumptionSensor
-from schemas.sensor_consumption import consumption_sensor_schema, consumption_sensors_schema
+from schemas.sensor_consumption import (
+    consumption_sensor_schema,
+    consumption_sensors_schema,
+)
 
 # Importamos cliente DB
 from config import db_client
@@ -37,10 +40,17 @@ async def sensor(id: str, current_user: User = Depends(current_user)):
 
 
 # Ruta para crear un Sensor de Consumos
-@router.post("/", response_model=ConsumptionSensor, status_code=status.HTTP_201_CREATED)
-async def sensor(sensor: ConsumptionSensor, current_user: User = Depends(current_user)):
+@router.post(
+    "/", response_model=ConsumptionSensor, status_code=status.HTTP_201_CREATED
+    )
+async def sensor(
+    sensor: ConsumptionSensor, current_user: User = Depends(current_user)
+):
 
-    if type(search_consumption_sensor("sensor_code", sensor.sensor_code)) == ConsumptionSensor:
+    if (
+        type(search_consumption_sensor("sensor_code", sensor.sensor_code))
+        == ConsumptionSensor
+    ):
         raise HTTPException(
             status_code=status.HTTP_404_NOT_FOUND,
             detail="Ya existe un sensor de consumos con ese código",
@@ -51,26 +61,51 @@ async def sensor(sensor: ConsumptionSensor, current_user: User = Depends(current
 
     # Crear el Sensor de Consumos en la BD y obtener el ID
     id = db_client.sensors_consumption.insert_one(sensor_dict).inserted_id
-    
+
     # Buscar el Sensor creado y devolverlo
-    new_sensor = consumption_sensor_schema(db_client.sensors_consumption.find_one({"_id": id}))
+    new_sensor = consumption_sensor_schema(
+        db_client.sensors_consumption.find_one({"_id": id})
+    )
 
     return ConsumptionSensor(**new_sensor)
 
 
 # Ruta para actualizar un Sensor de Consumos
 @router.put("/", response_model=ConsumptionSensor)
-async def sensor(sensor: ConsumptionSensor, current_user: User = Depends(current_user)):
+async def sensor(
+    sensor: ConsumptionSensor, current_user: User = Depends(current_user)
+):
+    # Verificar si ya existe un sensor ambiental con el mismo código (excluyendo el actual)
+    existing_type = db_client.sensors_consumption.find_one(
+        {"sensor_code": sensor.sensor_code, "_id": {"$ne": ObjectId(sensor.id)}}
+    )
+    if existing_type:
+        raise HTTPException(
+            status_code=status.HTTP_400_BAD_REQUEST,
+            detail="Ya existe un sensor de consumos con ese código",
+        )
 
     sensor_dict = dict(sensor)
     del sensor_dict["id"]
 
     try:
-        db_client.sensors_consumption.find_one_and_replace({"_id": ObjectId(sensor.id)}, sensor_dict)
+        db_client.sensors_consumption.find_one_and_replace(
+            {"_id": ObjectId(sensor.id)}, sensor_dict
+        )
     except:
-        return {"error": "No se ha actualizado el sensor de consumos"}
+        raise HTTPException(
+            status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
+            detail="No se ha actualizado el sensor",
+        )
 
-    return search_consumption_sensor("_id", ObjectId(sensor.id))
+    updated_sensor = search_consumption_sensor("_id", ObjectId(sensor.id))
+    if not updated_sensor:
+        raise HTTPException(
+            status_code=status.HTTP_404_NOT_FOUND,
+            detail="No se encontró el sensor de consumos actualizado",
+        )
+
+    return updated_sensor
 
 
 # Ruta para eliminar un Sensor de Consumos

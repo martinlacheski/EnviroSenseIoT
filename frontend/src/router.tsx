@@ -17,6 +17,7 @@ import CompanyView from './views/company/CompanyView'
 import EnvironmentView from './views/environment/EnvironmentView'
 import EnvironmentalSensorsView from './views/sensors/environmental_sensors/EnvironmentalSensorsView'
 import NutrientSolutionSensorsView from './views/sensors/nutrient_solution_sensors/NutrientSolutionSensorsView'
+import ConsumptionSensorsView from './views/sensors/consumption_sensors/ConsumptionSensorsView'
 
 export default function Router() {
     return (
@@ -33,6 +34,7 @@ export default function Router() {
                     <Route path='/company' element={<CompanyView />} />
                     <Route path='/environments' element={<EnvironmentView />} />
                     <Route path='/nutrients/types/' element={<NutrientTypesView />} />
+                    <Route path='/sensors/consumption/' element={<ConsumptionSensorsView />} />
                     <Route path='/sensors/environmental/' element={<EnvironmentalSensorsView />} />
                     <Route path='/sensors/nutrient/solution/' element={<NutrientSolutionSensorsView />} />
                     <Route element={<ProfileLayout />}>

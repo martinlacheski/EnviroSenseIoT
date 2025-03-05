@@ -1,9 +1,9 @@
-<img src="src/appLogo.png" alt="logo" title="EnviroSenseIoT"/>
+<img src="frontend/public/appLogo.png" alt="logo" title="EnviroSenseIoT"/>
 
 EnviroSense
 ==================
 
-Este proyecto es una aplicación fullstack IoT que se ejecuta sobre el ecosistema `Docker`. La programación de los microcontroladores, backend y frontend  se realiza a través de  `Python`. Además posee una `base de datos` MongoDB que permite interactuar con el backend para guardar y consultar datos.
+Este proyecto es una aplicación fullstack IoT que se ejecuta sobre el ecosistema `Docker`. La programación de los microcontroladores se realiza con `Micro Python`, el backend se realiza con `FastAPI` y el frontend  se realiza en `React`. Además posee una `base de datos` MongoDB que permite interactuar con el backend para guardar y consultar datos.
 
 Contenido
 ------------------

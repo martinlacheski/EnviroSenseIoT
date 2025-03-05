@@ -11,6 +11,7 @@ export * from './company/CompanyView.tsx'
 export * from './environment_types/EnvironmentTypesView.tsx'
 export * from './environment/EnvironmentView.tsx'
 export * from './sensors/nutrient_types/NutrientTypesView.tsx'
+export * from './sensors/consumption_sensors/ConsumptionSensorsView.tsx'
 export * from './sensors/environmental_sensors/EnvironmentalSensorsView.tsx'
 export * from './sensors/nutrient_solution_sensors/NutrientSolutionSensorsView.tsx'
 

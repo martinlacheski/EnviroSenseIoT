@@ -14,7 +14,6 @@ export async function uploadLogo(file: File): Promise<string> {
                 "Content-Type": "multipart/form-data", // Especificar el tipo de contenido
             },
         });
-        console.log(data)
         return data.url; // Devolver la URL del logo subido
     } catch (error) {
         if (isAxiosError(error) && error.response) {

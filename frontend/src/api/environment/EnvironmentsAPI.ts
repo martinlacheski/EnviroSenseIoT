@@ -8,10 +8,8 @@ import { CreateEnvironment, Environment, EnvironmentsListSchema, EnvironmetSchem
 
 // Crear un Ambiente
 export async function createEnvironment(formData: CreateEnvironment) {
-    console.log(formData)
     try {
         const { data } = await api.post('/environments/', formData)
-        console.log(data)
         return data
     } catch (error) {
         if (isAxiosError(error) && error.response) {
