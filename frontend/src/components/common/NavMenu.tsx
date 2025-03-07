@@ -44,13 +44,13 @@ export default function NavMenu({ username }: NavMenuProps) {
                 <p className='text-center'>Hola: {username}</p>
                 <Link
                   to='/users/me'
-                  className='block p-2 hover:text-purple-950'
+                  className='block p-2'
                   onClick={() => close()} // Cierra el Popover al hacer clic
                 >
                   Mi Perfil
                 </Link>
                 <button
-                  className='block p-2 hover:text-purple-950'
+                  className='block p-2'
                   type='button'
                   onClick={() => {
                     logout();

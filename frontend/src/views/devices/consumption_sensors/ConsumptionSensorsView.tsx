@@ -2,8 +2,8 @@ import { useAuth } from '@/hooks/useAuth';
 import { useState } from 'react';
 import { useQuery } from '@tanstack/react-query';
 import { getConsumptionSensors } from '@/api/index';
-import ConsumptionSensorModalForm from '@/components/sensors/consumption_sensor/ConsumptionSensorModalForm';
-import ConsumptionSensorDetails from '@/components/sensors/consumption_sensor/ConsumptionSensorDetails';
+import ConsumptionSensorModalForm from '@/components/devices/consumption_sensor/ConsumptionSensorModalForm';
+import ConsumptionSensorDetails from '@/components/devices/consumption_sensor/ConsumptionSensorDetails';
 
 
 export default function ConsumptionSensorsView() {

@@ -1,9 +1,9 @@
 import { useAuth } from '@/hooks/useAuth';
 import { useState } from 'react';
 import { useQuery } from '@tanstack/react-query';
-import { getNutrientTypes } from '@/api/sensors/NutrientTypesAPI';
-import NutrientTypeModalForm from '@/components/sensors/nutrient_types/NutrientTypesModalForm';
-import NutrientTypeDetails from '@/components/sensors/nutrient_types/NutrientTypesDetails';
+import { getNutrientTypes } from '@/api/devices/NutrientTypesAPI';
+import NutrientTypeModalForm from '@/components/devices/nutrient_types/NutrientTypesModalForm';
+import NutrientTypeDetails from '@/components/devices/nutrient_types/NutrientTypesDetails';
 
 export default function NutrientTypes() {
 

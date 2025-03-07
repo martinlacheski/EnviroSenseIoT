@@ -1,9 +1,19 @@
 import { createConsumptionSensor, getEnvironments, getNutrientTypes, updateConsumptionSensor } from "@/api/index";
 import { ConsumptionSensor } from "@/types/index";
 import { Switch, TextField } from "@mui/material";
+
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import React, { useEffect, useState } from "react";
 import { toast } from "react-toastify";
+
+
+/* const useStyles = makeStyles({
+    textField: {
+        "& .MuiOutlinedInput-root": {
+            borderRadius: 0, // Quita el borde redondeado
+        },
+    },
+}); */
 
 const ConsumptionSensorForm = (props: { handleClose: () => void; sensor?: ConsumptionSensor }) => {
     const [id, setId] = useState("");
@@ -243,13 +253,14 @@ const ConsumptionSensorForm = (props: { handleClose: () => void; sensor?: Consum
         });
     };
 
+    // const classes = useStyles();
+
     return (
-        <form onSubmit={handleForm} className="space-y-3 max-w-5xl mx-auto p-6 bg-white rounded-lg shadow-md">
+        <form onSubmit={handleForm} className="space-y-2 mx-auto p-5 bg-white rounded-lg">
             <p className="text-2xl font-light text-gray-500 mb-6">
                 {props.sensor ? "Editar Sensor de Consumos" : "Crear Sensor de Consumos"}
             </p>
 
-            {/* Campos principales */}
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                 <div>
                     <label htmlFor="type_id" className="text-sm uppercase font-bold text-gray-700">
@@ -257,7 +268,7 @@ const ConsumptionSensorForm = (props: { handleClose: () => void; sensor?: Consum
                     </label>
                     <select
                         id="type_id"
-                        className="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                        className="w-full p-3 border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500"
                         value={environment_id}
                         onChange={(e) => setEnvironmentId(e.target.value)}
                         required
@@ -276,7 +287,7 @@ const ConsumptionSensorForm = (props: { handleClose: () => void; sensor?: Consum
                     </label>
                     <input
                         id="description"
-                        className="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                        className="w-full p-3 border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500"
                         type="text"
                         placeholder="Descripción"
                         required
@@ -290,7 +301,7 @@ const ConsumptionSensorForm = (props: { handleClose: () => void; sensor?: Consum
                     </label>
                     <input
                         id="sensor_code"
-                        className="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                        className="w-full p-3 border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500"
                         type="text"
                         placeholder="Código"
                         required
@@ -300,9 +311,8 @@ const ConsumptionSensorForm = (props: { handleClose: () => void; sensor?: Consum
                 </div>
             </div>
 
-            {/* Voltaje y solución nutritiva */}
             <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
-                
+
                 <div>
                     <label htmlFor="min_voltage_alert" className="text-sm uppercase font-bold text-gray-700">
                         Voltaje mínimo
@@ -318,6 +328,7 @@ const ConsumptionSensorForm = (props: { handleClose: () => void; sensor?: Consum
                         helperText={minVoltageError}
                         variant="outlined"
                         size="small"
+                        // className={classes.textField} // Aplica los estilos personalizados
                     />
                 </div>
                 <div>
@@ -335,6 +346,7 @@ const ConsumptionSensorForm = (props: { handleClose: () => void; sensor?: Consum
                         helperText={maxVoltageError}
                         variant="outlined"
                         size="small"
+                        // className={classes.textField} // Aplica los estilos personalizados
                     />
                 </div>
                 <div>
@@ -352,6 +364,7 @@ const ConsumptionSensorForm = (props: { handleClose: () => void; sensor?: Consum
                         helperText={solutionLevelError}
                         variant="outlined"
                         size="small"
+                        // className={classes.textField} // Aplica los estilos personalizados
                     />
                 </div>
                 <div>
@@ -369,6 +382,7 @@ const ConsumptionSensorForm = (props: { handleClose: () => void; sensor?: Consum
                         helperText={minutesError}
                         variant="outlined"
                         size="small"
+                        // className={classes.textField} // Aplica los estilos personalizados
                     />
                 </div>
                 <div>
@@ -383,8 +397,7 @@ const ConsumptionSensorForm = (props: { handleClose: () => void; sensor?: Consum
                 </div>
             </div>
 
-            {/* Nutrientes */}
-            {[1, 2, 3, 4, 5, 6].map((nutrientNumber) => (
+            {[1, 2, 3, 4, 5, 6].map((nutrientNumber) => ( //Nutrientes
                 <div key={nutrientNumber} className="grid grid-cols-1 md:grid-cols-3 gap-6">
                     <div>
                         <label htmlFor={`nutrient_${nutrientNumber}_enabled`} className="text-sm uppercase font-bold text-gray-700">
@@ -430,28 +443,23 @@ const ConsumptionSensorForm = (props: { handleClose: () => void; sensor?: Consum
                             helperText={eval(`nutrient${nutrientNumber}Error`)}
                             variant="outlined"
                             size="small"
+                            // className={classes.textField} // Aplica los estilos personalizados
                         />
                     </div>
                 </div>
             ))}
 
-            {/* Minutos para reportar y estado del sensor */}
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                
-            </div>
-
-            {/* Botones de acción */}
             <div className="flex justify-end space-x-4 mt-6">
                 <button
                     type="button"
                     onClick={props.handleClose}
-                    className="bg-gray-500 px-6 py-2 text-white uppercase font-bold text-sm rounded-lg hover:bg-gray-600 transition-colors"
+                    className="bg-gray-500 px-6 py-2 text-white uppercase font-bold text-sm rounded-lg transition-colors"
                 >
                     Cancelar
                 </button>
                 <button
                     type="submit"
-                    className="bg-blue-600 px-6 py-2 text-white uppercase font-bold text-sm rounded-lg hover:bg-blue-700 transition-colors"
+                    className="bg-blue-600 px-6 py-2 text-white uppercase font-bold text-sm rounded-lg transition-colors"
                 >
                     Guardar
                 </button>

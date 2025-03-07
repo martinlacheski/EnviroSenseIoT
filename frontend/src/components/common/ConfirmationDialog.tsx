@@ -17,13 +17,13 @@ export default function ConfirmationDialog({ isOpen, onClose, onConfirm, title, 
                 <div className="flex justify-end gap-4">
                     <button
                         onClick={onClose}
-                        className="bg-gray-500 text-white px-4 py-2 rounded-lg hover:bg-gray-600"
+                        className="bg-gray-500 text-white px-4 py-2 rounded-lg"
                     >
                         Cancelar
                     </button>
                     <button
                         onClick={onConfirm}
-                        className="bg-red-600 text-white px-4 py-2 rounded-lg hover:bg-red-700"
+                        className="bg-red-600 text-white px-4 py-2 rounded-lg"
                     >
                         Confirmar
                     </button>

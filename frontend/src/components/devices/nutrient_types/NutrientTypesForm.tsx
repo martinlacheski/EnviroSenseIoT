@@ -1,4 +1,4 @@
-import { createNutrientType, updateNutrientType } from "@/api/sensors/NutrientTypesAPI";
+import { createNutrientType, updateNutrientType } from "@/api/devices/NutrientTypesAPI";
 import { NutrientType } from "@/types/index";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import React, { useEffect, useState } from "react";

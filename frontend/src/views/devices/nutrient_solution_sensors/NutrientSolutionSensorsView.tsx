@@ -2,8 +2,8 @@ import { useAuth } from '@/hooks/useAuth';
 import { useState } from 'react';
 import { useQuery } from '@tanstack/react-query';
 import { getNutrientSolutionSensors } from '@/api/index';
-import NutrientSolutionSensorModalForm from '@/components/sensors/nutrient_solution_sensor/NutrientSolutionSensorModalForm';
-import NutrientSolutionSensorDetails from '@/components/sensors/nutrient_solution_sensor/NutrientSolutionSensorDetails';
+import NutrientSolutionSensorModalForm from '@/components/devices/nutrient_solution_sensor/NutrientSolutionSensorModalForm';
+import NutrientSolutionSensorDetails from '@/components/devices/nutrient_solution_sensor/NutrientSolutionSensorDetails';
 
 
 export default function NutrientSolutionSensorsView() {

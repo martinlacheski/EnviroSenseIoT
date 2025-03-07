@@ -19,12 +19,12 @@ const DropdownMenu = ({ title, children }) => {
         <div className="relative">
             <button
                 onClick={() => setIsOpen(!isOpen)}
-                className="bg-gray-800 px-10 text-white font-bold cursor-pointer transition-colors hover:bg-gray-700"
+                className="bg-gray-800 px-10 text-white font-bold cursor-pointer transition-colors"
             >
                 {title}
             </button>
             {isOpen && (
-                <div className="absolute bg-gray-800 mt-2 py-2 w-48 rounded-lg shadow-lg">
+                <div className="absolute bg-gray-800 mt-2 py-2 w-64 rounded-lg shadow-lg">
                     {/* Pasar la función close a los hijos */}
                     {React.Children.map(children, (child) =>
                         React.cloneElement(child, { close })
@@ -40,7 +40,7 @@ const LinkWithClose = ({ to, children, close }) => {
     return (
         <Link
             to={to}
-            className="block px-4 py-2 text-white hover:bg-gray-700"
+            className="block px-4 py-2 text-white"
             onClick={close} // Cerrar el menú al hacer clic
         >
             {children}
@@ -84,6 +84,9 @@ export default function AppLayout() {
                         <LinkWithClose to={'/company'} close={close}>
                             Empresa
                         </LinkWithClose>
+                        <LinkWithClose to={'/nutrients/types'} close={close}>
+                            Tipos de nutrientes
+                        </LinkWithClose>
                     </DropdownMenu>
 
                     <DropdownMenu title="Ambientes">
@@ -95,21 +98,18 @@ export default function AppLayout() {
                         </LinkWithClose>
                     </DropdownMenu>
 
-                    <DropdownMenu title="Actuadores">
-                        <LinkWithClose to={'/nutrients/types'} close={close}>
-                            Tipos de nutrientes
+                    <DropdownMenu title="Dispositivos">
+                        <LinkWithClose to={'/actuators'} close={close}>
+                            Actuadores
                         </LinkWithClose>
-                    </DropdownMenu>
-
-                    <DropdownMenu title="Sensores">
-                    <LinkWithClose to={'/sensors/consumption'} close={close}>
-                            Consumos
+                        <LinkWithClose to={'/sensors/consumption'} close={close}>
+                            Sensores de Consumos
                         </LinkWithClose>
                         <LinkWithClose to={'/sensors/environmental'} close={close}>
-                            Ambientales
+                            Sensores Ambientales
                         </LinkWithClose>
                         <LinkWithClose to={'/sensors/nutrient/solution'} close={close}>
-                            Solución Nutritiva
+                            Sensores de Solución Nutritiva
                         </LinkWithClose>
                     </DropdownMenu>
 

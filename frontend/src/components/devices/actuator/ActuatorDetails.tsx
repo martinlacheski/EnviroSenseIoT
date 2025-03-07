@@ -1,28 +1,34 @@
 import { useState } from 'react';
-import { useMutation, useQueryClient } from '@tanstack/react-query';
+import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import { toast } from 'react-toastify';
 import ConfirmationDialog from '@/components/common/ConfirmationDialog'; // Importa el nuevo componente
-import { NutrientType } from '@/types/index';
-import { deleteNutrientType } from '@/api/sensors/NutrientTypesAPI';
-import NutrientTypeModalForm from './NutrientTypesModalForm';
 import { PencilIcon, TrashIcon } from '@heroicons/react/20/solid';
+import { Actuator } from '@/types/index';
+import { deleteActuator, getEnvironments } from '@/api/index';
+import ActuatorModalForm from './ActuatorModalForm';
 
-type NutrientTypeDetailsProps = { type: NutrientType };
+type ActuatorDetailsProps = { actuator: Actuator };
 
-export default function NutrientTypeDetails({ type }: NutrientTypeDetailsProps) {
+export default function ActuatorDetails({ actuator }: ActuatorDetailsProps) {
     const [isEditModalOpen, setIsEditModalOpen] = useState(false);
     const [isDeleteDialogOpen, setIsDeleteDialogOpen] = useState(false); // Estado para el diálogo de confirmación
     const queryClient = useQueryClient();
 
-    // Mutación para eliminar un tipo
+    // Obtener la lista de Ambientes
+    const { data: environments } = useQuery({
+        queryKey: ['environments'],
+        queryFn: getEnvironments,
+    });
+
+    // Mutación para eliminar un actuador
     const { mutate: deleteMutation } = useMutation({
-        mutationFn: deleteNutrientType,
+        mutationFn: deleteActuator,
         onError: (error: { message: string }) => {
             toast.error(error.message); // Mostrar toast de error
         },
         onSuccess: (data: { message: string }) => {
-            toast.success(data?.message || "Tipo eliminado correctamente"); // Mostrar toast de éxito
-            queryClient.invalidateQueries({ queryKey: ['nutrient_types'] }); // Actualizar la lista de tipos
+            toast.success(data?.message || "Actuador eliminado correctamente"); // Mostrar toast de éxito
+            queryClient.invalidateQueries({ queryKey: ['actuators'] }); // Actualizar la lista
         },
     });
 
@@ -33,15 +39,19 @@ export default function NutrientTypeDetails({ type }: NutrientTypeDetailsProps) 
 
     // Función para confirmar la eliminación
     const confirmDelete = () => {
-        deleteMutation(type.id); // Llamar a la mutación para eliminar
+        deleteMutation(actuator.id); // Llamar a la mutación para eliminar
         setIsDeleteDialogOpen(false); // Cerrar el diálogo
     };
+
+    // Buscar el nombre del tipo de ambiente
+    const EnvironmentName = environments?.find((environment) => environment.id === actuator?.environment_id)?.name || "Tipo de ambiente no encontrado";
 
     return (
         <>
             <tr className="border-b">
-                <td className="p-4 text-lg text-gray-800 w-4/5">{type.name}</td>
-                <td className="p-2 text-lg text-gray-800 w-1/5">
+                <td className="p-4 text-lg text-gray-800 w-[50%]">{actuator.description}</td>
+                <td className="p-4 text-lg text-gray-800 w-[40%]">{EnvironmentName}</td>
+                <td className="p-2 text-lg text-gray-800 w-[10%]">
                     <div className="flex justify-center gap-2">
                         <button
                             onClick={() => setIsEditModalOpen(true)}
@@ -59,17 +69,15 @@ export default function NutrientTypeDetails({ type }: NutrientTypeDetailsProps) 
                 </td>
             </tr>
 
-            {/* Diálogo de confirmación */}
             <ConfirmationDialog
                 isOpen={isDeleteDialogOpen}
                 onClose={() => setIsDeleteDialogOpen(false)}
                 onConfirm={confirmDelete}
-                title="Eliminar Tipo de Nutriente"
-                message={`¿Estás seguro de eliminar el tipo de nutriente "${type.name}"?`}
+                title="Eliminar Actuador"
+                message={`¿Estás seguro de eliminar el Actuador "${actuator.description}"?`}
             />
 
-            {/* Modal de edición */}
-            <NutrientTypeModalForm open={isEditModalOpen} setOpen={setIsEditModalOpen} type={type} />
+            <ActuatorModalForm open={isEditModalOpen} setOpen={setIsEditModalOpen} actuator={actuator} />
         </>
     );
 }

@@ -2,8 +2,8 @@ import { useAuth } from '@/hooks/useAuth';
 import { useState } from 'react';
 import { useQuery } from '@tanstack/react-query';
 import { getEnvironmentalSensors } from '@/api/index';
-import EnvironmentalSensorModalForm from '@/components/sensors/environmental_sensor/EnvironmentalSensorModalForm';
-import EnvironmentalSensorDetails from '@/components/sensors/environmental_sensor/EnvironmentalSensorDetails';
+import EnvironmentalSensorModalForm from '@/components/devices/environmental_sensor/EnvironmentalSensorModalForm';
+import EnvironmentalSensorDetails from '@/components/devices/environmental_sensor/EnvironmentalSensorDetails';
 
 
 export default function EnvironmentalSensorsView() {

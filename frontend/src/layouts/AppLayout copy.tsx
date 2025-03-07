@@ -28,7 +28,7 @@ const DropdownMenu = ({ title, children, isOpen, onClick, onClose }) => {
         <div className="relative" ref={ref}>
             <button
                 onClick={onClick}
-                className="bg-gray-800 px-10 text-white font-bold cursor-pointer transition-colors hover:bg-gray-700"
+                className="bg-gray-800 px-10 text-white font-bold cursor-pointer transition-colors"
             >
                 {title}
             </button>
@@ -76,71 +76,67 @@ export default function AppLayout() {
                         </Link>
                     </div>
 
-                    {/* Menú de Administración */}
                     <DropdownMenu
                         title="Administración"
                         isOpen={openMenu === "Administración"}
                         onClick={() => handleMenuClick("Administración")}
                         onClose={closeAllMenus}
                     >
-                        <Link to={'/users'} className="block px-4 py-2 text-white hover:bg-gray-700">
+                        <Link to={'/users'} className="block px-4 py-2 text-white">
                             Usuarios
                         </Link>
-                        <Link to={'/roles'} className="block px-4 py-2 text-white hover:bg-gray-700">
+                        <Link to={'/roles'} className="block px-4 py-2 text-white">
                             Roles
                         </Link>
-                        <Link to={'/countries'} className="block px-4 py-2 text-white hover:bg-gray-700">
+                        <Link to={'/countries'} className="block px-4 py-2 text-white">
                             Países
                         </Link>
-                        <Link to={'/provinces'} className="block px-4 py-2 text-white hover:bg-gray-700">
+                        <Link to={'/provinces'} className="block px-4 py-2 text-white">
                             Provincias
                         </Link>
-                        <Link to={'/cities'} className="block px-4 py-2 text-white hover:bg-gray-700">
+                        <Link to={'/cities'} className="block px-4 py-2 text-white">
                             Ciudades
                         </Link>
-                        <Link to={'/company'} className="block px-4 py-2 text-white hover:bg-gray-700">
+                        <Link to={'/company'} className="block px-4 py-2 text-white">
                             Empresa
                         </Link>
                     </DropdownMenu>
 
-                    {/* Menú de Ambientes */}
                     <DropdownMenu
                         title="Ambientes"
                         isOpen={openMenu === "Ambientes"}
                         onClick={() => handleMenuClick("Ambientes")}
                         onClose={closeAllMenus}
                     >
-                        <Link to={'/environments/types'} className="block px-4 py-2 text-white hover:bg-gray-700">
+                        <Link to={'/environments/types'} className="block px-4 py-2 text-white">
                             Tipos de ambiente
                         </Link>
-                        <Link to={'/environments'} className="block px-4 py-2 text-white hover:bg-gray-700">
+                        <Link to={'/environments'} className="block px-4 py-2 text-white">
                             Ambientes
                         </Link>
                     </DropdownMenu>
 
-                    {/* Menú de Actuadores */}
                     <DropdownMenu
                         title="Actuadores"
                         isOpen={openMenu === "Actuadores"}
                         onClick={() => handleMenuClick("Actuadores")}
                         onClose={closeAllMenus}
                     >
-                        <Link to={'/nutrients/types'} className="block px-4 py-2 text-white hover:bg-gray-700">
+                        <Link to={'/nutrients/types'} className="block px-4 py-2 text-white">
                             Tipos de nutrientes
                         </Link>
                     </DropdownMenu>
 
-                    {/* Menú de Sensores */}
                     <DropdownMenu
                         title="Sensores"
                         isOpen={openMenu === "Sensores"}
                         onClick={() => handleMenuClick("Sensores")}
                         onClose={closeAllMenus}
                     >
-                        <Link to={'/sensors/environmental'} className="block px-4 py-2 text-white hover:bg-gray-700">
+                        <Link to={'/sensors/environmental'} className="block px-4 py-2 text-white">
                             Sensores Ambientales
                         </Link>
-                        <Link to={'/sensors/nutrient/solution'} className="block px-4 py-2 text-white hover:bg-gray-700">
+                        <Link to={'/sensors/nutrient/solution'} className="block px-4 py-2 text-white">
                             Sensores de Solución Nutritiva
                         </Link>
                     </DropdownMenu>

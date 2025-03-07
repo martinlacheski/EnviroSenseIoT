@@ -82,7 +82,7 @@ export default function EnvironmentTypeDetails({ environment }: EnvironmentDetai
                         href={getGpsLink(environment.gps_location)} // Enlace dinámico
                         target="_blank" // Abrir en una nueva pestaña
                         rel="noopener noreferrer" // Seguridad para abrir enlaces externos
-                        className="inline-flex items-center justify-center p-2 bg-blue-100 rounded-lg hover:bg-blue-200"
+                        className="inline-flex items-center justify-center p-2 bg-blue-100 rounded-lg"
                     >
                         <MapPinIcon className="h-5 w-5 text-blue-600" /> {/* Ícono de GPS */}
                     </a>
