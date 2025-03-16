@@ -1,10 +1,16 @@
-from pydantic import BaseModel
+from beanie import Document, Link, PydanticObjectId
 from typing import Optional
+
+from models.province import Province
 
 
 # City Model
-class City(BaseModel):
-    id: Optional[str] = None
-    province_id: Optional[str]
+class City(Document):
+    id: Optional[PydanticObjectId] = None
+    province: Link[Province]
     name: str
     postal_code: str
+
+
+    class Settings:
+        collection_name = "cities"

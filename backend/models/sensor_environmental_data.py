@@ -1,11 +1,11 @@
 from datetime import datetime, timezone
-from pydantic import BaseModel
+from beanie import Document, PydanticObjectId
 from typing import Optional
 
 
 # SensorEnvironmentalData Model
-class SensorEnvironmentalData(BaseModel):
-    id: Optional[str] = None
+class EnvironmentalSensorData(Document):
+    id: Optional[PydanticObjectId] = None
     sensor_code: str
     temperature: Optional[str]
     humidity: Optional[str]
@@ -13,3 +13,6 @@ class SensorEnvironmentalData(BaseModel):
     luminosity: Optional[str]
     co2: Optional[str]
     timestamp: datetime = datetime.now(timezone.utc)
+    
+    class Settings:
+        collection_name = "environmental_sensors_data"

@@ -1,16 +1,10 @@
+from typing import List
+from beanie import PydanticObjectId
 from fastapi import APIRouter, Depends, HTTPException, status
-from bson import ObjectId
 
 # Importamos Modelo y Esquema de la Entidad
 from models.user import User
 from models.environment import Environment
-from schemas.environment import environment_schema, environments_schema
-
-# Importamos cliente DB
-from config import db_client
-
-# Importamos utilidades
-from services.environment import search_environment
 
 # Importamos metodo de autenticación JWT
 from utils.authentication import current_user
@@ -24,62 +18,78 @@ router = APIRouter(
 )
 
 
-# Ruta para obtener todas los Ambientes
-@router.get("/")
-async def environments(user: User = Depends(current_user)):
-    return environments_schema(db_client.environments.find())
+# Ruta para obtener todos los Ambientes
+@router.get("/", response_model=List[Environment])
+async def get_environments(user: dict = Depends(current_user)):
+    return await Environment.find(fetch_links=True).to_list()
 
 
 # Ruta para obtener un Ambiente
-@router.get("/{id}")  # Path
-async def environment(id: str, user: User = Depends(current_user)):
-
-    return search_environment("_id", ObjectId(id))
+@router.get("/{id}", response_model=Environment)
+async def get_environment(id: PydanticObjectId, user: User = Depends(current_user)):
+    environment = await Environment.get(id, fetch_links=True)
+    if not environment:
+        raise HTTPException(status_code=404, detail="Ambiente no encontrado")
+    return environment
 
 
 # Ruta para crear un Ambiente
 @router.post("/", response_model=Environment, status_code=status.HTTP_201_CREATED)
-async def environment(environment: Environment, current_user: User = Depends(current_user)):
-
-    if type(search_environment("name", environment.name)) == Environment:
+async def create_environment(environment: Environment, user: User = Depends(current_user)):
+    # Verificar si ya existe un ambiente con el mismo nombre
+    existing_environment = await Environment.find_one({"name": environment.name})
+    if existing_environment:
         raise HTTPException(
-            status_code=status.HTTP_404_NOT_FOUND,
-            detail="Ya existe un ambiente con ese nombre",
+            status_code=status.HTTP_400_BAD_REQUEST,
+            detail="Ya existe un ambiente con ese nombre"
         )
 
-    environment_dict = dict(environment)
-    del environment_dict["id"]
-
-    # Crear el Ambiente en la BD y obtener el ID
-    id = db_client.environments.insert_one(environment_dict).inserted_id
-
-    # Buscar el Ambiente creado y devolverlo
-    new_environment = environment_schema(db_client.environments.find_one({"_id": id}))
-
-    return Environment(**new_environment)
+    # Insertar el nuevo ambiente
+    await environment.insert()
+    return environment
 
 
 # Ruta para actualizar un Ambiente
 @router.put("/", response_model=Environment)
-async def environment(environment: Environment, current_user: User = Depends(current_user)):
+async def update_environment(environment: Environment, user: User = Depends(current_user)):
+    # Verificar si el ID está presente
+    if environment.id is None:
+        raise HTTPException(
+            status_code=status.HTTP_400_BAD_REQUEST,
+            detail="El ID del ambiente es requerido para actualizar"
+        )
 
-    environment_dict = dict(environment)
-    del environment_dict["id"]
+    # Buscar el ambiente existente
+    existing_environment = await Environment.get(environment.id)
+    if not existing_environment:
+        raise HTTPException(
+            status_code=status.HTTP_404_NOT_FOUND,
+            detail="Ambiente no encontrado"
+        )
 
-    try:
-        db_client.environments.find_one_and_replace({"_id": ObjectId(environment.id)}, environment_dict)
-    except:
-        return {"error": "No se ha actualizado el ambiente"}
+    # Verificar si ya existe otro ambiente con el mismo nombre (excluyendo el actual)
+    duplicate = await Environment.find_one(
+        {"name": environment.name, "_id": {"$ne": environment.id}}
+    )
+    if duplicate:
+        raise HTTPException(
+            status_code=status.HTTP_400_BAD_REQUEST,
+            detail="Ya existe un ambiente con ese nombre"
+        )
 
-    return search_environment("_id", ObjectId(environment.id))
+    # Actualizar el ambiente
+    await environment.replace()
+    return environment
 
 
 # Ruta para eliminar un Ambiente
 @router.delete("/{id}")
-async def environment(id: str, current_user: User = Depends(current_user)):
+async def delete_environment(id: PydanticObjectId, user: User = Depends(current_user)):
+    # Buscar el ambiente
+    environment = await Environment.get(id)
+    if not environment:
+        raise HTTPException(status_code=404, detail="Ambiente no encontrado")
 
-    found = db_client.environments.find_one_and_delete({"_id": ObjectId(id)})
-    if found == None:
-        return {"error": "No se ha encontrado el ambiente"}
-    else:
-        return {"mensaje": "Ambiente eliminado"}
+    # Eliminar el ambiente
+    await environment.delete()
+    return {"message": "Ambiente eliminado correctamente"}

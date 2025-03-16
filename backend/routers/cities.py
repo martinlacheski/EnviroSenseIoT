@@ -1,18 +1,14 @@
+from typing import List
+from beanie import PydanticObjectId
 from fastapi import APIRouter, Depends, HTTPException, status
-from bson import ObjectId
 
 # Importamos Modelo y Esquema de la Entidad
-from models.user import User
+from models.company import Company
+from models.environment import Environment
 from models.city import City
-from schemas.city import city_schema, cities_schema
-
-# Importamos cliente DB
-from config import db_client
-
-# Importamos utilidades
-from services.cities import search_city
 
 # Importamos metodo de autenticación JWT
+from models.user import User
 from utils.authentication import current_user
 
 # Definimos el prefijo y una respuesta si no existe.
@@ -23,76 +19,106 @@ router = APIRouter(
 )
 
 
-# Ruta para obtener todos las Ciudades
-@router.get("/")
-async def cities(user: User = Depends(current_user)):
-    return cities_schema(db_client.cities.find())
+# Ruta para obtener todas las Ciudades
+@router.get("/", response_model=List[City])
+async def get_cities(user: dict = Depends(current_user)):
+    return await City.find(fetch_links=True).to_list()
 
 
 # Ruta para obtener una Ciudad
-@router.get("/{id}")  # Path
-async def city(id: str, user: User = Depends(current_user)):
-
-    return search_city("_id", ObjectId(id))
+@router.get("/{id}", response_model=dict)
+async def get_city(id: PydanticObjectId, user: User = Depends(current_user)):
+    city = await City.get(id, fetch_links=True)
+    if not city:
+        raise HTTPException(status_code=404, detail="Ciudad no encontrada")
+    
+    return {
+        "id": str(city.id),
+        "name": city.name,
+        "province": city.province.name,
+        "country": city.province.country.name
+    }
 
 
 # Ruta para crear una Ciudad
 @router.post("/", response_model=City, status_code=status.HTTP_201_CREATED)
-async def create_city(city: City, current_user: User = Depends(current_user)):
-    # Verificar si ya existe una ciudad con el mismo nombre en la misma provincia
-    existing_city = db_client.cities.find_one({"name": city.name, "province_id": city.province_id})
-    
+async def create_city(city: City, user: User = Depends(current_user)):
+    # Validar si ya existe una ciudad con el mismo nombre en la misma provincia
+    existing_city = await City.find_one(
+        {"name": city.name, "province": city.province}
+    )
     if existing_city:
         raise HTTPException(
             status_code=status.HTTP_400_BAD_REQUEST,
-            detail="Ya existe una ciudad con ese nombre en la misma provincia",
+            detail="Ya existe una ciudad con ese nombre en la misma provincia"
         )
 
-    city_dict = dict(city)
-    del city_dict["id"]
-
-    # Crear la Ciudad en la BD y obtener el ID
-    id = db_client.cities.insert_one(city_dict).inserted_id
-
-    # Buscar la Ciudad creada y devolverla
-    new_city = city_schema(db_client.cities.find_one({"_id": id}))
-
-    return City(**new_city)
+    await city.insert()
+    return city
 
 
 # Ruta para actualizar una Ciudad
 @router.put("/", response_model=City)
-async def update_city(city: City, current_user: User = Depends(current_user)):
-    # Verificar si ya existe una ciudad con el mismo nombre en la misma provincia, excluyendo la ciudad actual
-    existing_city = db_client.cities.find_one({
-        "name": city.name,
-        "province_id": city.province_id,
-        "_id": {"$ne": ObjectId(city.id)}  # Excluir la ciudad actual
-    })
-    
-    if existing_city:
+async def update_city(city: City, user: User = Depends(current_user)):
+    # Verifica que el ID esté presente en el cuerpo de la solicitud
+    if city.id is None:
         raise HTTPException(
             status_code=status.HTTP_400_BAD_REQUEST,
-            detail="Ya existe una ciudad con ese nombre en la misma provincia",
+            detail="El ID de la ciudad es requerido para actualizar"
         )
 
-    city_dict = dict(city)
-    del city_dict["id"]
+    # Busca la ciudad existente por ID
+    existing_city = await City.get(city.id)
+    if not existing_city:
+        raise HTTPException(
+            status_code=status.HTTP_404_NOT_FOUND,
+            detail="Ciudad no encontrada"
+        )
 
-    try:
-        db_client.cities.find_one_and_replace({"_id": ObjectId(city.id)}, city_dict)
-    except:
-        return {"error": "No se ha actualizado la ciudad"}
+    # Verifica si ya existe otra ciudad con el mismo nombre en la misma provincia
+    duplicate = await City.find_one(
+        {"name": city.name, "province": city.province, "_id": {"$ne": city.id}}
+    )
+    if duplicate:
+        raise HTTPException(
+            status_code=status.HTTP_400_BAD_REQUEST,
+            detail="Ya existe una ciudad con ese nombre en la misma provincia"
+        )
 
-    return search_city("_id", ObjectId(city.id))
+    # Actualiza la ciudad
+    await city.replace()
+    return city
 
 
 # Ruta para eliminar una Ciudad
 @router.delete("/{id}")
-async def city(id: str, current_user: User = Depends(current_user)):
+async def delete_city(id: PydanticObjectId, user: User = Depends(current_user)):
 
-    found = db_client.cities.find_one_and_delete({"_id": ObjectId(id)})
-    if found == None:
-        return {"error": "No se ha encontrado la ciudad"}
-    else:
-        return {"mensaje": "Ciudad eliminada"}
+    # Verificar si hay Empresa que referencien esta Ciudad
+    companies = await Company.find(Company.city.id == id).to_list()
+
+    if companies:
+        raise HTTPException(
+            status_code=status.HTTP_400_BAD_REQUEST,
+            detail=f"No se puede eliminar la ciudad porque está asociada a una empresa"
+        )
+        
+    # Verificar si hay Ambientes que referencien esta Ciudad
+    environments = await Environment.find(Environment.city.id == id).to_list()
+
+    if environments:
+        raise HTTPException(
+            status_code=status.HTTP_400_BAD_REQUEST,
+            detail=f"No se puede eliminar la ciudad porque tiene ambientes asociados"
+        )
+
+    # Si no hay referencias, eliminar la ciudad
+    city = await City.get(id)
+    if not city:
+        raise HTTPException(status_code=404, detail="Ciudad no encontrada")
+    
+    # Eliminar la ciudad
+    await city.delete()
+
+    # Respuesta exitosa
+    return {"message": "Ciudad eliminada correctamente"}

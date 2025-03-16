@@ -3,16 +3,11 @@ from fastapi import APIRouter, Depends, HTTPException, status
 from fastapi.security import OAuth2PasswordRequestForm
 import jwt
 
-
 # Importamos Modelo y Esquema de la Entidad
 from models.user import User
-from schemas.user import user_schema, users_schema
 
-# Importamos metodos de authentication
+# Importamos métodos de autenticación
 from utils.authentication import crypt, ACCESS_TOKEN_EXPIRE_MINUTES, SECRET_KEY, ALGORITHM
-
-# Importamos cliente DB
-from config import db_client
 
 # Definimos el prefijo y una respuesta si no existe.
 router = APIRouter(
@@ -23,26 +18,32 @@ router = APIRouter(
 
 @router.post("/login")
 async def login(form: OAuth2PasswordRequestForm = Depends()):
-    user = db_client.users.find_one({"username": form.username})
+    # Buscar el usuario por nombre de usuario
+    user = await User.find_one({"username": form.username})
     if not user:
         raise HTTPException(
             status_code=status.HTTP_404_NOT_FOUND,
             detail="Los datos ingresados no son correctos",
         )
-    if not crypt.verify(form.password, user.get("password")):
+
+    # Verificar la contraseña
+    if not crypt.verify(form.password, user.password):
         raise HTTPException(
             status_code=status.HTTP_404_NOT_FOUND,
             detail="Los datos ingresados no son correctos",
         )
-    if user['enabled'] == False:
+
+    # Verificar si el usuario está habilitado
+    if not user.enabled:
         raise HTTPException(
             status_code=status.HTTP_400_BAD_REQUEST,
             detail="Usuario deshabilitado",
         )
 
+    # Crear el token de acceso
     access_token = {
-        "_id": str(user.get("_id")),
-        "username": user.get("username"),
+        "_id": str(user.id),
+        "username": user.username,
         "exp": datetime.now(timezone.utc) + timedelta(minutes=ACCESS_TOKEN_EXPIRE_MINUTES),
     }
 
@@ -51,4 +52,3 @@ async def login(form: OAuth2PasswordRequestForm = Depends()):
         "token_type": "bearer",
         "exp": access_token["exp"],
     }
-

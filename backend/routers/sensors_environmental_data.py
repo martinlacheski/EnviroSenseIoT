@@ -1,19 +1,11 @@
-from fastapi import APIRouter, Depends, status
+from typing import List
+from beanie import PydanticObjectId
+from fastapi import APIRouter, Depends, HTTPException, status
 from bson import ObjectId
 
 # Importamos Modelo y Esquema de la Entidad
 from models.user import User
-from models.sensor_environmental_data import SensorEnvironmentalData
-from schemas.sensor_environmental_data import (
-    sensor_environmental_data_schema,
-    sensors_environmental_data_schema,
-)
-
-# Importamos cliente DB
-from config import db_client
-
-# Importamos utilidades
-from services.sensor_environmental_data import search_sensor_environmental_data
+from models.sensor_environmental_data import EnvironmentalSensorData
 
 # Importamos metodo de autenticación JWT
 from utils.authentication import current_user
@@ -29,35 +21,24 @@ router = APIRouter(
 
 
 # Ruta para obtener todos los datos de Sensores Ambientales
-@router.get("/")
-async def data(user: User = Depends(current_user)):
-    return sensors_environmental_data_schema(
-        db_client.sensors_environmental_data.find()
-    )
+@router.get("/", response_model=List[EnvironmentalSensorData])
+async def get_environmental_sensor_data(user: User = Depends(current_user)):
+    data = await EnvironmentalSensorData.find().to_list()
+    return data
 
 
 # Ruta para obtener un Dato de Sensor Ambiental
-@router.get("/{id}")  # Path
-async def data(id: str, current_user: User = Depends(current_user)):
-
-    return search_sensor_environmental_data("_id", ObjectId(id))
+@router.get("/{id}", response_model=EnvironmentalSensorData)
+async def get_environmental_sensor_data(id: PydanticObjectId, user: User = Depends(current_user)):
+    data = await EnvironmentalSensorData.get(id)
+    if not data:
+        raise HTTPException(status_code=404, detail="Dato de Sensor Ambiental no encontrado")
+    return data
 
 
 # Ruta para crear un Dato de Sensor Ambiental
-@router.post(
-    "/", response_model=SensorEnvironmentalData, status_code=status.HTTP_201_CREATED
-)
-async def data(sensor_data: SensorEnvironmentalData):
-
-    data_dict = dict(sensor_data)
-    del data_dict["id"]
-
-    # Crear el Dato del Sensor Ambiental en la BD y obtener el ID
-    id = db_client.sensors_environmental_data.insert_one(data_dict).inserted_id
-
-    # Buscar el dato creado y devolverlo
-    new_data = sensor_environmental_data_schema(
-        db_client.sensors_environmental_data.find_one({"_id": id})
-    )
-
-    return SensorEnvironmentalData(**new_data)
+@router.post("/", response_model=EnvironmentalSensorData, status_code=status.HTTP_201_CREATED)
+async def create_environmental_sensor_data(sensor_data: EnvironmentalSensorData):
+    # Insertar el nuevo dato de sensor ambiental
+    await sensor_data.insert()
+    return sensor_data

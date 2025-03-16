@@ -1,11 +1,13 @@
-from pydantic import BaseModel
+from beanie import Document, Link, PydanticObjectId
 from typing import Optional
+
+from models.environment import Environment
 
 
 # Actuator Model
-class Actuator(BaseModel):
-    id: Optional[str] = None
-    environment_id: Optional[str]
+class Actuator(Document):
+    id: Optional[PydanticObjectId] = None
+    environment: Link[Environment]
     description: str
     actuator_code: str
     channel_1_enabled: bool
@@ -34,3 +36,6 @@ class Actuator(BaseModel):
     channel_8_time: Optional[int]
     minutes_to_report: int
     enabled: bool
+    
+    class Settings:
+        collection_name = "actuators"

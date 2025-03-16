@@ -1,16 +1,11 @@
+from typing import List
+from beanie import PydanticObjectId
 from fastapi import APIRouter, Depends, HTTPException, status
-from bson import ObjectId
 
 # Importamos Modelo y Esquema de la Entidad
+from models.sensor_consumption import ConsumptionSensor
 from models.user import User
 from models.nutrient_type import NutrientType
-from schemas.nutrient_type import nutrient_type_schema, nutrient_types_schema
-
-# Importamos cliente DB
-from config import db_client
-
-# Importamos utilidades
-from services.nutrient_type import search_nutrient_type
 
 # Importamos metodo de autenticación JWT
 from utils.authentication import current_user
@@ -24,86 +19,119 @@ router = APIRouter(
 
 
 # Ruta para obtener todos los Tipos de Nutrientes
-@router.get("/")
-async def nutrient_types(user: User = Depends(current_user)):
-    return nutrient_types_schema(db_client.nutrient_types.find())
+@router.get("/", response_model=List[NutrientType])
+async def get_nutrient_types(user: User = Depends(current_user)):
+    return await NutrientType.find().to_list()
 
 
 # Ruta para obtener un Tipo de Nutriente
-@router.get("/{id}")  # Path
-async def nutrient_type(id: str, current_user: User = Depends(current_user)):
-
-    return search_nutrient_type("_id", ObjectId(id))
-
+@router.get("/{id}", response_model=NutrientType)
+async def get_nutrient_type(id: PydanticObjectId, user: User = Depends(current_user)):
+    nutrient_type = await NutrientType.get(id)
+    if not nutrient_type:
+        raise HTTPException(status_code=404, detail="Tipo de Nutriente no encontrado")
+    return nutrient_type
 
 # Ruta para crear un Tipo de Nutriente
 @router.post("/", response_model=NutrientType, status_code=status.HTTP_201_CREATED)
-async def nutrient_type(
-    nutrient_type: NutrientType, current_user: User = Depends(current_user)
-):
-
-    if type(search_nutrient_type("name", nutrient_type.name)) == NutrientType:
+async def create_nutrient_type(nutrient_type: NutrientType, user: User = Depends(current_user)):
+    # Validar si ya existe un tipo de nutriente con el mismo nombre
+    existing_type = await NutrientType.find_one({"name": nutrient_type.name})
+    if existing_type:
         raise HTTPException(
-            status_code=status.HTTP_404_NOT_FOUND,
-            detail="Ya existe un tipo de nutriente con ese nombre",
+            status_code=status.HTTP_400_BAD_REQUEST,
+            detail="Ya existe un tipo de nutriente con ese nombre"
         )
 
-    nutrient_type_dict = dict(nutrient_type)
-    del nutrient_type_dict["id"]
-
-    # Crear el Tipo de Nutriente en la BD y obtener el ID
-    id = db_client.nutrient_types.insert_one(nutrient_type_dict).inserted_id
-
-    # Buscar el Tipo de Nutriente creado y devolverlo
-    new_nutrient_type = nutrient_type_schema(
-        db_client.nutrient_types.find_one({"_id": id})
-    )
-
-    return NutrientType(**new_nutrient_type)
+    # Insertar el nuevo tipo de nutriente
+    await nutrient_type.insert()
+    return nutrient_type
 
 
 # Ruta para actualizar un Tipo de Nutriente
 @router.put("/", response_model=NutrientType)
-async def role(nutrient_type: NutrientType, current_user: User = Depends(current_user)):
-    # Verificar si ya existe un Tipo de Nutriente con el mismo nombre (excluyendo el actual)
-    existing_type = db_client.nutrient_types.find_one(
-        {"name": nutrient_type.name, "_id": {"$ne": ObjectId(nutrient_type.id)}}
-    )
-    if existing_type:
+async def update_nutrient_type(nutrient_type: NutrientType, user: User = Depends(current_user)):
+    # Verificar si el ID está presente
+    if nutrient_type.id is None:
         raise HTTPException(
             status_code=status.HTTP_400_BAD_REQUEST,
-            detail="Ya existe un tipo de nutriente con ese nombre",
+            detail="El ID del tipo de nutriente es requerido para actualizar"
         )
 
-    nutrient_type_dict = dict(nutrient_type)
-    del nutrient_type_dict["id"]
-
-    try:
-        db_client.nutrient_types.find_one_and_replace(
-            {"_id": ObjectId(nutrient_type.id)}, nutrient_type_dict
-        )
-    except:
-        raise HTTPException(
-            status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
-            detail="No se ha actualizado el tipo de nutriente",
-        )
-
-    updated_nutrient_type = search_nutrient_type("_id", ObjectId(nutrient_type.id))
-    if not updated_nutrient_type:
+    # Buscar el tipo de nutriente existente
+    existing_type = await NutrientType.get(nutrient_type.id)
+    if not existing_type:
         raise HTTPException(
             status_code=status.HTTP_404_NOT_FOUND,
-            detail="No se encontró el tipo de nutriente",
+            detail="Tipo de Nutriente no encontrado"
         )
 
-    return updated_nutrient_type
+    # Verificar si ya existe otro tipo de nutriente con el mismo nombre (excluyendo el actual)
+    duplicate = await NutrientType.find_one(
+        {"name": nutrient_type.name, "_id": {"$ne": nutrient_type.id}}
+    )
+    if duplicate:
+        raise HTTPException(
+            status_code=status.HTTP_400_BAD_REQUEST,
+            detail="Ya existe un tipo de nutriente con ese nombre"
+        )
+
+    # Actualizar el tipo de nutriente
+    await nutrient_type.replace()
+    return nutrient_type
 
 
 # Ruta para eliminar un Tipo de Nutriente
 @router.delete("/{id}")
-async def nutrient_type(id: str, current_user: User = Depends(current_user)):
+async def delete_nutrient_type(id: PydanticObjectId, user: User = Depends(current_user)):
+    # Verificar si hay referencias a este tipo de nutriente
+    nutrient_type_1 = await ConsumptionSensor.find(ConsumptionSensor.nutrient_1_type.id == id).to_list()
+    nutrient_type_2 = await ConsumptionSensor.find(ConsumptionSensor.nutrient_2_type.id == id).to_list()
+    nutrient_type_3 = await ConsumptionSensor.find(ConsumptionSensor.nutrient_3_type.id == id).to_list()
+    nutrient_type_4 = await ConsumptionSensor.find(ConsumptionSensor.nutrient_4_type.id == id).to_list()
+    nutrient_type_5 = await ConsumptionSensor.find(ConsumptionSensor.nutrient_5_type.id == id).to_list()
+    nutrient_type_6 = await ConsumptionSensor.find(ConsumptionSensor.nutrient_6_type.id == id).to_list() 
+    if nutrient_type_1:
+        raise HTTPException(
+            status_code=status.HTTP_400_BAD_REQUEST,
+            detail=f"No se puede eliminar el tipo de nutriente porque tiene sensores asociados"
+        )
+        
+    if nutrient_type_2:
+        raise HTTPException(
+            status_code=status.HTTP_400_BAD_REQUEST,
+            detail=f"No se puede eliminar el tipo de nutriente porque tiene sensores asociados"
+        )
+        
+    if nutrient_type_3:
+        raise HTTPException(
+            status_code=status.HTTP_400_BAD_REQUEST,
+            detail=f"No se puede eliminar el tipo de nutriente porque tiene sensores asociados"
+        )
+    
+    if nutrient_type_4:
+        raise HTTPException(
+            status_code=status.HTTP_400_BAD_REQUEST,
+            detail=f"No se puede eliminar el tipo de nutriente porque tiene sensores asociados"
+        )
+        
+    if nutrient_type_5:
+        raise HTTPException(
+            status_code=status.HTTP_400_BAD_REQUEST,
+            detail=f"No se puede eliminar el tipo de nutriente porque tiene sensores asociados"
+        )
+        
+    if nutrient_type_6:
+        raise HTTPException(
+            status_code=status.HTTP_400_BAD_REQUEST,
+            detail=f"No se puede eliminar el tipo de nutriente porque tiene sensores asociados"
+        )
+    
+    # Buscar el tipo de nutriente
+    nutrient_type = await NutrientType.get(id)
+    if not nutrient_type:
+        raise HTTPException(status_code=404, detail="Tipo de Nutriente no encontrado")
 
-    found = db_client.nutrient_types.find_one_and_delete({"_id": ObjectId(id)})
-    if found == None:
-        return {"error": "No se ha encontrado el tipo de nutriente"}
-    else:
-        return {"mensaje": "Tipo de nutriente eliminado"}
+    # Eliminar el tipo de nutriente
+    await nutrient_type.delete()
+    return {"message": "Tipo de Nutriente eliminado correctamente"}

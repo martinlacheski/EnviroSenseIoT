@@ -1,11 +1,11 @@
 from datetime import datetime, timezone
-from pydantic import BaseModel
+from beanie import Document, PydanticObjectId
 from typing import Optional
 
 
 # ActuatorData Model
-class ActuatorData(BaseModel):
-    id: Optional[str] = None
+class ActuatorData(Document):
+    id: Optional[PydanticObjectId] = None
     actuator_code: str
     channel_1_state: Optional[bool]
     channel_2_state: Optional[bool]
@@ -16,3 +16,6 @@ class ActuatorData(BaseModel):
     channel_7_state: Optional[bool]
     channel_8_state: Optional[bool]
     timestamp: datetime = datetime.now(timezone.utc)
+
+    class Settings:
+        collection_name = "actuators_data"

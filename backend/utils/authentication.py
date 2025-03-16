@@ -6,10 +6,6 @@ import bcrypt
 
 # Importamos Modelo y Esquema de la Entidad
 from models.user import User
-from schemas.user import user_schema
-
-# Importamos cliente DB
-from config import db_client
 
 # Definimos el prefijo y una respuesta si no existe.
 router = APIRouter(
@@ -22,7 +18,7 @@ router = APIRouter(
 # ejecutar comando: openssl rand -hex 32
 SECRET_KEY = "ff2031bb7ab10940108585eb799adecca55aafee12572b36d3060e4c7123724c"  # Clave Secreta generada
 ALGORITHM = "HS256"
-ACCESS_TOKEN_EXPIRE_MINUTES = 15
+ACCESS_TOKEN_EXPIRE_MINUTES = 120
 
 oauth2 = OAuth2PasswordBearer(tokenUrl="login")
 
@@ -36,7 +32,6 @@ setattr(bcrypt, "__about__", SolveBugBcryptWarning())
 
 
 async def auth_user(token: str = Depends(oauth2)):
-
     exception = HTTPException(
         status_code=status.HTTP_401_UNAUTHORIZED,
         detail="Credenciales de autenticación inválidas",
@@ -51,12 +46,16 @@ async def auth_user(token: str = Depends(oauth2)):
     except:
         raise exception
 
-    user = db_client.users.find_one({"username": username})
-    return User(**user_schema(user))
+    # Buscar el usuario por nombre de usuario
+    user = await User.find_one({"username": username})
+    if not user:
+        raise exception
+
+    return user
 
 
 async def current_user(user: User = Depends(auth_user)):
-    if  not user.enabled:
+    if not user.enabled:
         raise HTTPException(
             status_code=status.HTTP_400_BAD_REQUEST, detail="Usuario deshabilitado"
         )

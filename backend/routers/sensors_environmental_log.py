@@ -1,16 +1,10 @@
-from fastapi import APIRouter, Depends, status
-from bson import ObjectId
+from typing import List
+from beanie import PydanticObjectId
+from fastapi import APIRouter, Depends, HTTPException
 
 # Importamos Modelo y Esquema de la Entidad
 from models.user import User
 from models.sensor_environmental_log import EnvironmentalSensorLog
-from schemas.sensor_environmental_log import environmental_sensor_log_schema, environmental_sensors_log_schema
-
-# Importamos cliente DB
-from config import db_client
-
-# Importamos utilidades
-from services.sensor_environmental_log import search_environmental_sensor_log
 
 # Importamos metodo de autenticación JWT
 from utils.authentication import current_user
@@ -24,33 +18,15 @@ router = APIRouter(
 
 
 # Ruta para obtener todos los logs de Sensores Ambientales
-@router.get("/")
-async def sensors_log(user: User = Depends(current_user)):
-    
-    return environmental_sensors_log_schema(db_client.sensors_environmental_log.find())
-
+@router.get("/", response_model=List[EnvironmentalSensorLog])
+async def get_environmental_sensor_logs(user: User = Depends(current_user)):
+    logs = await EnvironmentalSensorLog.find(fetch_links=True).to_list()
+    return logs
 
 # Ruta para obtener un log de un Sensor Ambiental
-@router.get("/{id}")  # Path
-async def sensor_log(id: str, current_user: User = Depends(current_user)):
-
-    return search_environmental_sensor_log("_id", ObjectId(id))
-
-
-# Ruta para crear un Log de un Sensor Ambiental
-@router.post("/", response_model = EnvironmentalSensorLog, status_code=status.HTTP_201_CREATED)
-async def sensor_log(sensor_log: EnvironmentalSensorLog, current_user: User = Depends(current_user)):
-
-    sensor_log_dict = dict(sensor_log)
-    del sensor_log_dict["id"]
-    
-    # Agregamos el Usuario actual que realiza la operación
-    sensor_log_dict["user_id"] = current_user.id
-
-    # Crear el Log del Sensor en la BD y obtener el ID
-    id = db_client.sensors_environmental_log.insert_one(sensor_log_dict).inserted_id
-
-    # Buscar el Log del Sensor creado y devolverlo
-    new_log = environmental_sensor_log_schema(db_client.sensors_environmental_log.find_one({"_id": id}))
-
-    return EnvironmentalSensorLog(**new_log)
+@router.get("/{id}", response_model=EnvironmentalSensorLog)
+async def get_environmental_sensor_log(id: PydanticObjectId, user: User = Depends(current_user)):
+    log = await EnvironmentalSensorLog.get(id, fetch_links=True)
+    if not log:
+        raise HTTPException(status_code=404, detail="Log de sensor ambiental no encontrado")
+    return log

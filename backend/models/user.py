@@ -1,10 +1,10 @@
-from pydantic import BaseModel
+from beanie import Document, PydanticObjectId
 from typing import Optional
 
 
 # USER Model
-class User(BaseModel):
-    id: Optional[str] = None
+class User(Document):
+    id: Optional[PydanticObjectId] = None
     username: str
     password: str
     name: str
@@ -14,19 +14,19 @@ class User(BaseModel):
     is_admin: bool
 
 
-class UpdateCurrentUser(BaseModel):
-    id: Optional[str] = None
+class UpdateCurrentUser(Document):
+    id: Optional[PydanticObjectId] = None
     name: str = None
     surname: str = None
 
 
-class UpdateCurrentUserPassword(BaseModel):
-    id: Optional[str] = None
+class UpdateCurrentUserPassword(Document):
+    id: Optional[PydanticObjectId] = None
     current_password: str = None
     new_password: str = None
     new_password_confirmation: str = None
     
-class UpdateUserPassword(BaseModel):
-    id: Optional[str] = None
+class UpdateUserPassword(Document):
+    id: Optional[PydanticObjectId] = None
     new_password: str = None
     new_password_confirmation: str = None

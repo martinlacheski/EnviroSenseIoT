@@ -1,15 +1,16 @@
+import os
 from fastapi import FastAPI, Depends
 from fastapi.staticfiles import StaticFiles
 from fastapi.middleware.cors import CORSMiddleware
 
 # Importamos Modelo y Esquema de la Entidad
+from config import init_db
 from models.user import User
 
 # Importamos metodo de autenticación JWT
 from utils.authentication import current_user
 
 from routers import (
-    statics,
     login,
     users,
     roles,
@@ -37,8 +38,11 @@ from routers import (
 
 app = FastAPI()
 
+@app.on_event("startup")
+async def startup():
+    await init_db()
+
 # Routers
-app.include_router(statics.router)
 app.include_router(login.router)
 app.include_router(roles.router)
 app.include_router(users.router)
@@ -62,8 +66,13 @@ app.include_router(sensors_nutrient_solution.router)
 app.include_router(sensors_nutrient_solution_log.router)
 app.include_router(sensors_nutrient_solution_data.router)
 
-# Incluir Archivos estáticos
-app.mount("/static", StaticFiles(directory="static"), name="static")
+# Verificar y crear la carpeta "static" si no existe
+static_dir = "static"
+if not os.path.exists(static_dir):
+    os.makedirs(static_dir)
+
+# Montar archivos estáticos
+app.mount("/static", StaticFiles(directory=static_dir), name="static")
 
 # Habilitar Origenes
 origins = [

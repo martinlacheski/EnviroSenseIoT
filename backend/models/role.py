@@ -1,9 +1,9 @@
-from pydantic import BaseModel
+from beanie import Document, PydanticObjectId
 from typing import Optional
 
 
 # Role Model
-class Role(BaseModel):
-    id: Optional[str] = None
+class Role(Document):
+    id: Optional[PydanticObjectId] = None
     name: str
     is_admin: bool

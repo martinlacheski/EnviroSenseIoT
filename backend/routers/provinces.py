@@ -1,18 +1,13 @@
+from typing import List
+from beanie import PydanticObjectId
 from fastapi import APIRouter, Depends, HTTPException, status
-from bson import ObjectId
 
 # Importamos Modelo y Esquema de la Entidad
-from models.user import User
+from models.city import City
 from models.province import Province
-from schemas.province import province_schema, provinces_schema
-
-# Importamos cliente DB
-from config import db_client
-
-# Importamos utilidades
-from services.provinces import search_province
 
 # Importamos metodo de autenticación JWT
+from models.user import User
 from utils.authentication import current_user
 
 # Definimos el prefijo y una respuesta si no existe.
@@ -23,86 +18,86 @@ router = APIRouter(
 )
 
 
-# Ruta para obtener todos las Provincias
-@router.get("/")
-async def provinces(user: User = Depends(current_user)):
-    return provinces_schema(db_client.provinces.find())
+# Obtener todas las provincias con el nombre del país
+@router.get("/", response_model=List[Province])
+async def get_provinces(user: dict = Depends(current_user)):
+    return await Province.find(fetch_links=True).to_list()
 
 
-# Ruta para obtener una Provincia
-@router.get("/{id}")  # Path
-async def province(id: str, user: User = Depends(current_user)):
+# Obtener una provincia por ID
+@router.get("/{id}", response_model=dict)
+async def get_province(id: PydanticObjectId, user: User = Depends(current_user)):
+    province = await Province.get(id, fetch_links=True)
+    if not province:
+        raise HTTPException(status_code=404, detail="Provincia no encontrada")
+    
+    return {"id": str(province.id), "name": province.name, "country": province.country.name}
 
-    return search_province("_id", ObjectId(id))
-
-
-# Ruta para crear una Provincia
+# Crear una provincia
 @router.post("/", response_model=Province, status_code=status.HTTP_201_CREATED)
-async def create_province(province: Province, current_user: User = Depends(current_user)):
-    # Buscar si ya existe una provincia con el mismo nombre y país
-    existing_province = db_client.provinces.find_one({"name": province.name, "country_id": province.country_id})
-    
+async def create_province(province: Province, user: User = Depends(current_user)):
+    # Validar si ya existe una provincia con el mismo nombre en el país
+    existing_province = await Province.find_one(
+        {"name": province.name, "country": province.country}
+    )
     if existing_province:
-        raise HTTPException(
-            status_code=status.HTTP_400_BAD_REQUEST,
-            detail="Ya existe una provincia con ese nombre y país",
-        )
+        raise HTTPException(status_code=400, detail="Ya existe una provincia con ese nombre en el país")
 
-    province_dict = dict(province)
-    del province_dict["id"]
+    await province.insert()
+    return province
 
-    # Crear la Provincia en la BD y obtener el ID
-    id = db_client.provinces.insert_one(province_dict).inserted_id
-
-    # Buscar la Provincia creada y devolverla
-    new_province = province_schema(db_client.provinces.find_one({"_id": id}))
-
-    return Province(**new_province)
-
-
-# Ruta para actualizar una Provincia
+# Actualizar una provincia
 @router.put("/", response_model=Province)
-async def update_province(province: Province, current_user: User = Depends(current_user)):
-    # Verificar si ya existe una provincia con el mismo nombre y país (excluyendo el actual)
-    existing_province = db_client.provinces.find_one({
-        "name": province.name,
-        "country_id": province.country_id,
-        "_id": {"$ne": ObjectId(province.id)}
-    })
-    
-    if existing_province:
+async def update_province(province: Province, user: User = Depends(current_user)):
+    # Verifica que el ID esté presente en el cuerpo de la solicitud
+    if province.id is None:
         raise HTTPException(
             status_code=status.HTTP_400_BAD_REQUEST,
-            detail="Ya existe una provincia con ese nombre y país",
+            detail="El ID de la provincia es requerido para actualizar"
         )
 
-    province_dict = dict(province)
-    del province_dict["id"]
-
-    try:
-        db_client.provinces.find_one_and_replace({"_id": ObjectId(province.id)}, province_dict)
-    except:
-        raise HTTPException(
-            status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
-            detail="No se ha actualizado la provincia",
-        )
-
-    updated_province = search_province("_id", ObjectId(province.id))
-    if not updated_province:
+    # Busca la provincia existente por ID
+    existing_province = await Province.get(province.id)
+    if not existing_province:
         raise HTTPException(
             status_code=status.HTTP_404_NOT_FOUND,
-            detail="No se encontró la provincia",
+            detail="Provincia no encontrada"
         )
 
-    return updated_province
+    # Verifica si ya existe otra provincia con el mismo nombre en el mismo país
+    duplicate = await Province.find_one(
+        {"name": province.name, "country": province.country, "_id": {"$ne": province.id}}
+    )
+    if duplicate:
+        raise HTTPException(
+            status_code=status.HTTP_400_BAD_REQUEST,
+            detail="Ya existe una provincia con ese nombre en el país"
+        )
 
+    # Actualiza la provincia
+    await province.replace()
+    return province
 
-# Ruta para eliminar una Provincia
+# Eliminar una provincia
 @router.delete("/{id}")
-async def province(id: str, current_user: User = Depends(current_user)):
+async def delete_province(id: PydanticObjectId, user: User = Depends(current_user)):
 
-    found = db_client.provinces.find_one_and_delete({"_id": ObjectId(id)})
-    if found == None:
-        return {"error": "No se ha encontrado la provincia"}
-    else:
-        return {"mensaje": "Provincia eliminada"}
+    # Verificar si hay ciudades que referencien esta provincia
+    cities = await City.find(City.province.id == id).to_list()
+
+    if cities:
+        raise HTTPException(
+            status_code=status.HTTP_400_BAD_REQUEST,
+            detail=f"No se puede eliminar la provincia porque tiene ciudades asociadas"
+        )
+
+    # Si no hay referencias, eliminar la provincia
+    province = await Province.get(id)
+    if not province:
+        raise HTTPException(status_code=404, detail="Provincia no encontrada")
+    
+    # Eliminar la provincia
+    await province.delete()
+
+    # Respuesta exitosa
+    return {"message": "Provincia eliminada correctamente"}

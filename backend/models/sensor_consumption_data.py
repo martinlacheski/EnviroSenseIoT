@@ -1,11 +1,11 @@
 from datetime import datetime, timezone
-from pydantic import BaseModel
+from beanie import Document, PydanticObjectId
 from typing import Optional
 
 
 # SensorConsumptionData Model
-class SensorConsumptionData(BaseModel):
-    id: Optional[str] = None
+class ConsumptionSensorData(Document):
+    id: Optional[PydanticObjectId] = None
     sensor_code: str
     voltage: Optional[str]
     current: Optional[str]
@@ -21,3 +21,7 @@ class SensorConsumptionData(BaseModel):
     nutrient_5_level: Optional[str]
     nutrient_6_level: Optional[str]
     timestamp: datetime = datetime.now(timezone.utc)
+    
+
+    class Settings:
+        collection_name = "consumption_sensors_data"

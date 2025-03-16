@@ -1,16 +1,11 @@
-from fastapi import APIRouter, Depends, HTTPException, status
-from bson import ObjectId
+import datetime
+from typing import List
+from beanie import PydanticObjectId
+from fastapi import APIRouter, Depends, File, HTTPException, UploadFile, status
 
 # Importamos Modelo y Esquema de la Entidad
 from models.user import User
 from models.company import Company
-from schemas.company import company_schema, companies_schema
-
-# Importamos cliente DB
-from config import db_client
-
-# Importamos utilidades
-from services.company import search_company
 
 # Importamos metodo de autenticación JWT
 from utils.authentication import current_user
@@ -25,66 +20,128 @@ router = APIRouter(
 
 
 # Ruta para obtener todas las Empresas
-@router.get("/")
-async def companies(user: User = Depends(current_user)):
-    return companies_schema(db_client.companies.find())
+@router.get("/", response_model=List[Company])
+async def get_companies(user: User = Depends(current_user)):
+    return await Company.find(fetch_links=True).to_list()
 
 
 # Ruta para obtener una Empresa
-@router.get("/{id}")  # Path
-async def company(id: str, user: User = Depends(current_user)):
-
-    return search_company("_id", ObjectId(id))
+@router.get("/{id}", response_model=Company)
+async def get_company(id: PydanticObjectId, user: User = Depends(current_user)):
+    company = await Company.get(id, fetch_links=True)
+    if not company:
+        raise HTTPException(status_code=404, detail="Empresa no encontrada")
+    return company
 
 
 # Ruta para crear una Empresa
 @router.post("/", response_model=Company, status_code=status.HTTP_201_CREATED)
-async def company(company: Company, current_user: User = Depends(current_user)):
-
-    if type(search_company("name", company.name)) == Company:
+async def create_company(company: Company, user: User = Depends(current_user)):
+    # Verificar si ya existe una empresa con el mismo nombre o correo electrónico
+    existing_company_by_name = await Company.find_one({"name": company.name})
+    if existing_company_by_name:
         raise HTTPException(
-            status_code=status.HTTP_404_NOT_FOUND,
-            detail="Ya existe una empresa con ese nombre",
-        )
-    if type(search_company("email", company.email)) == Company:
-        raise HTTPException(
-            status_code=status.HTTP_404_NOT_FOUND,
-            detail="Ya existe una empresa con ese correo electrónico",
+            status_code=status.HTTP_400_BAD_REQUEST,
+            detail="Ya existe una empresa con ese nombre"
         )
 
-    company_dict = dict(company)
-    del company_dict["id"]
+    existing_company_by_email = await Company.find_one({"email": company.email})
+    if existing_company_by_email:
+        raise HTTPException(
+            status_code=status.HTTP_400_BAD_REQUEST,
+            detail="Ya existe una empresa con ese correo electrónico"
+        )
 
-    # Crear la Empresa en la BD y obtener el ID
-    id = db_client.companies.insert_one(company_dict).inserted_id
-
-    # Buscar la Empresa creada y devolverla
-    new_company = company_schema(db_client.companies.find_one({"_id": id}))
-
-    return Company(**new_company)
+    # Insertar la nueva empresa
+    await company.insert()
+    return company
 
 
 # Ruta para actualizar una Empresa
 @router.put("/", response_model=Company)
-async def company(company: Company, current_user: User = Depends(current_user)):
+async def update_company(company: Company, user: User = Depends(current_user)):
+    # Verificar si el ID está presente
+    if company.id is None:
+        raise HTTPException(
+            status_code=status.HTTP_400_BAD_REQUEST,
+            detail="El ID de la empresa es requerido para actualizar"
+        )
 
-    company_dict = dict(company)
-    del company_dict["id"]
+    # Buscar la empresa existente
+    existing_company = await Company.get(company.id)
+    if not existing_company:
+        raise HTTPException(
+            status_code=status.HTTP_404_NOT_FOUND,
+            detail="Empresa no encontrada"
+        )
 
-    try:
-        db_client.companies.find_one_and_replace({"_id": ObjectId(company.id)}, company_dict)
-    except:
-        return {"error": "No se ha actualizado la empresa"}
+    # Verificar si ya existe otra empresa con el mismo nombre o correo electrónico (excluyendo la actual)
+    duplicate_by_name = await Company.find_one(
+        {"name": company.name, "_id": {"$ne": company.id}}
+    )
+    if duplicate_by_name:
+        raise HTTPException(
+            status_code=status.HTTP_400_BAD_REQUEST,
+            detail="Ya existe una empresa con ese nombre"
+        )
 
-    return search_company("_id", ObjectId(company.id))
+    duplicate_by_email = await Company.find_one(
+        {"email": company.email, "_id": {"$ne": company.id}}
+    )
+    if duplicate_by_email:
+        raise HTTPException(
+            status_code=status.HTTP_400_BAD_REQUEST,
+            detail="Ya existe una empresa con ese correo electrónico"
+        )
+
+    # Actualizar la empresa
+    await company.replace()
+    return company
 
 
 # Ruta para eliminar una Empresa
 @router.delete("/{id}")
-async def company(id: str, current_user: User = Depends(current_user)):
+async def delete_company(id: PydanticObjectId, user: User = Depends(current_user)):
+    # Buscar la empresa
+    company = await Company.get(id)
+    if not company:
+        raise HTTPException(status_code=404, detail="Empresa no encontrada")
 
-    found = db_client.companies.find_one_and_delete({"_id": ObjectId(id)})
-    if found == None:
-        return {"error": "No se ha encontrado la empresa"}
-    else:
-        return {"mensaje": "Empresa eliminada"}
+    # Eliminar la empresa
+    await company.delete()
+    return {"message": "Empresa eliminada correctamente"}
+
+
+@router.post("/uploadLogo")
+async def upload_logo(
+    file: UploadFile = File(...),
+    user: User = Depends(current_user)  # Verificar que el usuario esté autenticado
+):
+    try:
+        # Generar un nombre de archivo único basado en la fecha y hora
+        timestamp = datetime.datetime.now().strftime("%Y%m%d_%H%M%S")
+        file_extension = file.filename.split(".")[-1]  # Obtener la extensión del archivo
+        unique_filename = f"{timestamp}.{file_extension}"
+
+        # Guardar el archivo en la carpeta "static"
+        file_path = f"static/images/{unique_filename}"
+        with open(file_path, "wb") as buffer:
+            buffer.write(await file.read())
+
+        # Obtener la única compañía de la base de datos
+        company = await Company.find_one()  # Asumiendo que solo hay una compañía
+        if not company:
+            raise HTTPException(
+                status_code=404,
+                detail="No se encontró ninguna compañía en la base de datos"
+            )
+
+        # Actualizar el campo logo de la compañía
+        company.logo = f"/static/images/{unique_filename}"
+        await company.save()  # Guardar los cambios en la base de datos
+
+        # Devolver la URL del archivo subido
+        return {"url": company.logo}
+
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))

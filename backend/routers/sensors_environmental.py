@@ -1,19 +1,12 @@
+from typing import List
+from beanie import PydanticObjectId
 from fastapi import APIRouter, Depends, HTTPException, status
 from bson import ObjectId
 
 # Importamos Modelo y Esquema de la Entidad
+from models.sensor_environmental_log import EnvironmentalSensorLog
 from models.user import User
 from models.sensor_environmental import EnvironmentalSensor
-from schemas.sensor_environmental import (
-    environmental_sensor_schema,
-    environmental_sensors_schema,
-)
-
-# Importamos cliente DB
-from config import db_client
-
-# Importamos utilidades
-from services.sensor_environmental import search_environmental_sensor
 
 # Importamos metodo de autenticación JWT
 from utils.authentication import current_user
@@ -27,93 +20,128 @@ router = APIRouter(
 
 
 # Ruta para obtener todos los Sensores ambientales
-@router.get("/")
-async def sensors(user: User = Depends(current_user)):
-    return environmental_sensors_schema(db_client.sensors_environmental.find())
+@router.get("/", response_model=List[EnvironmentalSensor])
+async def get_environmental_sensors(user: User = Depends(current_user)):
+    sensors = await EnvironmentalSensor.find(fetch_links=True).to_list()
+    return sensors
 
 
 # Ruta para obtener un Sensor Ambiental
-@router.get("/{id}")  # Path
-async def sensor(id: str, current_user: User = Depends(current_user)):
-
-    return search_environmental_sensor("_id", ObjectId(id))
+@router.get("/{id}", response_model=EnvironmentalSensor)
+async def get_environmental_sensor(id: PydanticObjectId, user: User = Depends(current_user)):
+    sensor = await EnvironmentalSensor.get(id, fetch_links=True)
+    if not sensor:
+        raise HTTPException(status_code=404, detail="Sensor ambiental no encontrado")
+    return sensor
 
 
 # Ruta para crear un Sensor Ambiental
-@router.post(
-    "/", response_model=EnvironmentalSensor, status_code=status.HTTP_201_CREATED
-)
-async def sensor(
-    sensor: EnvironmentalSensor, current_user: User = Depends(current_user)
-):
-
-    if (
-        type(search_environmental_sensor("sensor_code", sensor.sensor_code))
-        == EnvironmentalSensor
-    ):
+@router.post("/", response_model=EnvironmentalSensor, status_code=status.HTTP_201_CREATED)
+async def create_environmental_sensor(sensor: EnvironmentalSensor, user: User = Depends(current_user)):
+    # Validar si ya existe un sensor con el mismo código
+    existing_sensor = await EnvironmentalSensor.find_one({"sensor_code": sensor.sensor_code})
+    if existing_sensor:
         raise HTTPException(
-            status_code=status.HTTP_404_NOT_FOUND,
-            detail="Ya existe un sensor ambiental con ese código",
+            status_code=status.HTTP_400_BAD_REQUEST,
+            detail="Ya existe un sensor ambiental con ese código"
         )
 
-    sensor_dict = dict(sensor)
-    del sensor_dict["id"]
-
-    # Crear el Sensor Ambiental en la BD y obtener el ID
-    id = db_client.sensors_environmental.insert_one(sensor_dict).inserted_id
-
-    # Buscar el Sensor creado y devolverlo
-    new_sensor = environmental_sensor_schema(
-        db_client.sensors_environmental.find_one({"_id": id})
+    # Insertar el nuevo sensor
+    await sensor.insert()
+    
+    # Crear el log de la operación
+    log = EnvironmentalSensorLog(
+        environment=sensor.environment,
+        description=sensor.description,
+        sensor_code=sensor.sensor_code,
+        temperature_alert=sensor.temperature_alert,
+        humidity_alert=sensor.humidity_alert,
+        atmospheric_pressure_alert=sensor.atmospheric_pressure_alert,
+        co2_alert=sensor.co2_alert,
+        minutes_to_report=sensor.minutes_to_report,
+        enabled=sensor.enabled,
+        user=user,
+        operation="create"
     )
-
-    return EnvironmentalSensor(**new_sensor)
+    await log.insert()
+    
+    return sensor
 
 
 # Ruta para actualizar un Sensor Ambiental
 @router.put("/", response_model=EnvironmentalSensor)
-async def sensor(
-    sensor: EnvironmentalSensor, current_user: User = Depends(current_user)
-):
-    # Verificar si ya existe un sensor ambiental con el mismo código (excluyendo el actual)
-    existing_type = db_client.sensors_environmental.find_one(
-        {"sensor_code": sensor.sensor_code, "_id": {"$ne": ObjectId(sensor.id)}}
-    )
-    if existing_type:
+async def update_environmental_sensor(sensor: EnvironmentalSensor, user: User = Depends(current_user)):
+    # Verificar si el ID está presente
+    if sensor.id is None:
         raise HTTPException(
             status_code=status.HTTP_400_BAD_REQUEST,
-            detail="Ya existe un sensor ambiental con ese código",
+            detail="El ID del sensor es requerido para actualizar"
         )
 
-    sensor_dict = dict(sensor)
-    del sensor_dict["id"]
-
-    try:
-        db_client.sensors_environmental.find_one_and_replace(
-            {"_id": ObjectId(sensor.id)}, sensor_dict
-        )
-    except:
-        raise HTTPException(
-            status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
-            detail="No se ha actualizado el sensor",
-        )
-
-    updated_sensor = search_environmental_sensor("_id", ObjectId(sensor.id))
-    if not updated_sensor:
+    # Buscar el sensor existente
+    existing_sensor = await EnvironmentalSensor.get(sensor.id)
+    if not existing_sensor:
         raise HTTPException(
             status_code=status.HTTP_404_NOT_FOUND,
-            detail="No se encontró el sensor ambiental actualizado",
+            detail="Sensor ambiental no encontrado"
         )
 
-    return updated_sensor
+    # Verificar si ya existe otro sensor con el mismo código (excluyendo el actual)
+    duplicate = await EnvironmentalSensor.find_one(
+        {"sensor_code": sensor.sensor_code, "_id": {"$ne": sensor.id}}
+    )
+    if duplicate:
+        raise HTTPException(
+            status_code=status.HTTP_400_BAD_REQUEST,
+            detail="Ya existe un sensor ambiental con ese código"
+        )
+
+    # Actualizar el sensor
+    await sensor.replace()
+    
+    # Crear el log de la operación
+    log = EnvironmentalSensorLog(
+        environment=sensor.environment,
+        description=sensor.description,
+        sensor_code=sensor.sensor_code,
+        temperature_alert=sensor.temperature_alert,
+        humidity_alert=sensor.humidity_alert,
+        atmospheric_pressure_alert=sensor.atmospheric_pressure_alert,
+        co2_alert=sensor.co2_alert,
+        minutes_to_report=sensor.minutes_to_report,
+        enabled=sensor.enabled,
+        user=user,
+        operation="update"
+    )
+    await log.insert()
+    
+    return sensor
 
 
 # Ruta para eliminar un Sensor Ambiental
 @router.delete("/{id}")
-async def sensor(id: str, current_user: User = Depends(current_user)):
+async def delete_environmental_sensor(id: PydanticObjectId, user: User = Depends(current_user)):
+    # Buscar el sensor
+    sensor = await EnvironmentalSensor.get(id)
+    if not sensor:
+        raise HTTPException(status_code=404, detail="Sensor ambiental no encontrado")
+    
+    # Crear el log de la operación antes de eliminar el sensor
+    log = EnvironmentalSensorLog(
+        environment=sensor.environment,
+        description=sensor.description,
+        sensor_code=sensor.sensor_code,
+        temperature_alert=sensor.temperature_alert,
+        humidity_alert=sensor.humidity_alert,
+        atmospheric_pressure_alert=sensor.atmospheric_pressure_alert,
+        co2_alert=sensor.co2_alert,
+        minutes_to_report=sensor.minutes_to_report,
+        enabled=sensor.enabled,
+        user=user,
+        operation="delete"
+    )
+    await log.insert()
 
-    found = db_client.sensors_environmental.find_one_and_delete({"_id": ObjectId(id)})
-    if found == None:
-        return {"error": "No se ha encontrado el sensor ambiental"}
-    else:
-        return {"mensaje": "Sensor ambiental eliminado"}
+    # Eliminar el sensor
+    await sensor.delete()
+    return {"message": "Sensor ambiental eliminado correctamente"}

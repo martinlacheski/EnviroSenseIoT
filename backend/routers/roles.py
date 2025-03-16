@@ -1,16 +1,10 @@
+from typing import List
+from beanie import PydanticObjectId
 from fastapi import APIRouter, Depends, HTTPException, status
-from bson import ObjectId
 
 # Importamos Modelo y Esquema de la Entidad
 from models.user import User
 from models.role import Role
-from schemas.role import role_schema, roles_schema
-
-# Importamos cliente DB
-from config import db_client
-
-# Importamos utilidades
-from services.roles import search_role
 
 # Importamos metodo de autenticación JWT
 from utils.authentication import current_user
@@ -24,78 +18,80 @@ router = APIRouter(
 
 
 # Ruta para obtener todos los Roles
-@router.get("/")
-async def roles(user: User = Depends(current_user)):
-    return roles_schema(db_client.roles.find())
+@router.get("/", response_model=List[Role])
+async def get_roles(user: User = Depends(current_user)):
+    return await Role.find().to_list()
 
 
 # Ruta para obtener un Rol
-@router.get("/{id}")  # Path
-async def role(id: str, current_user: User = Depends(current_user)):
-
-    return search_role("_id", ObjectId(id))
+@router.get("/{id}", response_model=Role)
+async def get_role(id: PydanticObjectId, user: User = Depends(current_user)):
+    role = await Role.get(id)
+    if not role:
+        raise HTTPException(status_code=404, detail="Rol no encontrado")
+    return role
 
 
 # Ruta para crear un Rol
 @router.post("/", response_model=Role, status_code=status.HTTP_201_CREATED)
-async def role(role: Role, current_user: User = Depends(current_user)):
-
-    if type(search_role("name", role.name)) == Role:
+async def create_role(role: Role, user: User = Depends(current_user)):
+    # Validar si ya existe un rol con el mismo nombre
+    existing_role = await Role.find_one({"name": role.name})
+    if existing_role:
         raise HTTPException(
-            status_code=status.HTTP_404_NOT_FOUND,
-            detail="Ya existe un rol con ese nombre",
+            status_code=status.HTTP_400_BAD_REQUEST,
+            detail="Ya existe un rol con ese nombre"
         )
 
-    role_dict = dict(role)
-    del role_dict["id"]
-
-    # Crear el Rol en la BD y obtener el ID
-    id = db_client.roles.insert_one(role_dict).inserted_id
-
-    # Buscar el rol creado y devolverlo
-    new_role = role_schema(db_client.countries.find_one({"_id": id}))
-
-    return Role(**new_role)
+    # Insertar el nuevo rol
+    await role.insert()
+    return role
 
 
 # Ruta para actualizar un Rol
 @router.put("/", response_model=Role)
-async def role(role: Role, current_user: User = Depends(current_user)):
-    # Verificar si ya existe un rol con el mismo nombre (excluyendo el actual)
-    existing_type = db_client.roles.find_one({"name": role.name, "_id": {"$ne": ObjectId(role.id)}})
-    if existing_type:
+async def update_role(role: Role, user: User = Depends(current_user)):
+    # Verificar si el ID está presente
+    if role.id is None:
         raise HTTPException(
             status_code=status.HTTP_400_BAD_REQUEST,
-            detail="Ya existe un rol con ese nombre",
+            detail="El ID del rol es requerido para actualizar"
         )
 
-    role_dict = dict(role)
-    del role_dict["id"]
-
-    try:
-        db_client.roles.find_one_and_replace({"_id": ObjectId(role.id)}, role_dict)
-    except:
-        raise HTTPException(
-            status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
-            detail="No se ha actualizado el rol",
-        )
-
-    updated_role = search_role("_id", ObjectId(role.id))
-    if not updated_role:
+    # Buscar el rol existente
+    existing_role = await Role.get(role.id)
+    if not existing_role:
         raise HTTPException(
             status_code=status.HTTP_404_NOT_FOUND,
-            detail="No se encontró el rol",
+            detail="Rol no encontrado"
         )
 
-    return updated_role
+    # Verificar si ya existe otro rol con el mismo nombre (excluyendo el actual)
+    duplicate = await Role.find_one(
+        {"name": role.name, "_id": {"$ne": role.id}}
+    )
+    if duplicate:
+        raise HTTPException(
+            status_code=status.HTTP_400_BAD_REQUEST,
+            detail="Ya existe un rol con ese nombre"
+        )
+
+    # Actualizar el rol
+    await role.replace()
+    return role
 
 
 # Ruta para eliminar un Rol
 @router.delete("/{id}")
-async def role(id: str, current_user: User = Depends(current_user)):
+async def delete_role(id: PydanticObjectId, user: User = Depends(current_user)):
+    # Verificar si hay referencias a este rol
+    # (Aquí debes agregar la lógica para verificar si hay dependencias, si es necesario)
 
-    found = db_client.roles.find_one_and_delete({"_id": ObjectId(id)})
-    if found == None:
-        return {"error": "No se ha encontrado el rol"}
-    else:
-        return {"mensaje": "Rol eliminado"}
+    # Buscar el rol
+    role = await Role.get(id)
+    if not role:
+        raise HTTPException(status_code=404, detail="Rol no encontrado")
+
+    # Eliminar el rol
+    await role.delete()
+    return {"message": "Rol eliminado correctamente"}

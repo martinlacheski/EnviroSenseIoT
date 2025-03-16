@@ -1,18 +1,13 @@
+from typing import List
+from beanie import PydanticObjectId
 from fastapi import APIRouter, Depends, HTTPException, status
-from bson import ObjectId
 
 # Importamos Modelo y Esquema de la Entidad
-from models.user import User
+from models.environment import Environment
 from models.environment_type import EnvironmentType
-from schemas.environment_type import environment_type_schema, environment_types_schema
-
-# Importamos cliente DB
-from config import db_client
-
-# Importamos utilidades
-from services.environment_type import search_environment_type
 
 # Importamos metodo de autenticación JWT
+from models.user import User
 from utils.authentication import current_user
 
 # Definimos el prefijo y una respuesta si no existe.
@@ -24,78 +19,92 @@ router = APIRouter(
 
 
 # Ruta para obtener todos los Tipos de Ambientes
-@router.get("/")
-async def environment_types(user: User = Depends(current_user)):
-    return environment_types_schema(db_client.environment_types.find())
-
+@router.get("/", response_model=List[EnvironmentType])
+async def get_environment_types(user: User = Depends(current_user)):
+    return await EnvironmentType.find().to_list()
+    
 
 # Ruta para obtener un Tipo de Ambiente
-@router.get("/{id}")  # Path
-async def environment_type(id: str, current_user: User = Depends(current_user)):
-
-    return search_environment_type("_id", ObjectId(id))
+@router.get("/{id}", response_model=dict)
+async def get_environment_type(id: PydanticObjectId, user: User = Depends(current_user)):
+    env_type = await EnvironmentType.get(id)
+    if not env_type:
+        raise HTTPException(status_code=404, detail="Tipo de Ambiente no encontrado")
+    
+    return {
+        "id": str(env_type.id),
+        "name": env_type.name
+    }
 
 
 # Ruta para crear un Tipo de Ambiente
 @router.post("/", response_model=EnvironmentType, status_code=status.HTTP_201_CREATED)
-async def environment_type(environment_type: EnvironmentType, current_user: User = Depends(current_user)):
-    
-    if type(search_environment_type("name", environment_type.name)) == EnvironmentType:
+async def create_environment_type(environment_type: EnvironmentType, user: User = Depends(current_user)):
+    # Validar si ya existe un tipo de ambiente con el mismo nombre
+    existing_type = await EnvironmentType.find_one({"name": environment_type.name})
+    if existing_type:
         raise HTTPException(
-            status_code=status.HTTP_404_NOT_FOUND,
-            detail="Ya existe un tipo de ambiente con ese nombre",
+            status_code=status.HTTP_400_BAD_REQUEST,
+            detail="Ya existe un tipo de ambiente con ese nombre"
         )
 
-    environment_type_dict = dict(environment_type)
-    del environment_type_dict["id"]
-
-    # Crear el Tipo de Ambiente en la BD y obtener el ID
-    id = db_client.environment_types.insert_one(environment_type_dict).inserted_id
-
-    # Buscar el Tipo de Ambiente creado y devolverlo
-    new_environment_type = environment_type_schema(db_client.environment_types.find_one({"_id": id}))
-
-    return EnvironmentType(**new_environment_type)
+    await environment_type.insert()
+    return environment_type
 
 
 # Ruta para actualizar un Tipo de Ambiente
 @router.put("/", response_model=EnvironmentType)
-async def environment_type(environment_type: EnvironmentType, current_user: User = Depends(current_user)):
-    # Verificar si ya existe un tipo de ambiente con el mismo nombre (excluyendo el actual)
-    existing_type = db_client.environment_types.find_one({"name": environment_type.name, "_id": {"$ne": ObjectId(environment_type.id)}})
-    if existing_type:
+async def update_environment_type(environment_type: EnvironmentType, user: User = Depends(current_user)):
+    # Verifica que el ID esté presente en el cuerpo de la solicitud
+    if environment_type.id is None:
         raise HTTPException(
             status_code=status.HTTP_400_BAD_REQUEST,
-            detail="Ya existe un tipo de ambiente con ese nombre",
+            detail="El ID del tipo de ambiente es requerido para actualizar"
         )
 
-    environment_type_dict = dict(environment_type)
-    del environment_type_dict["id"]
-
-    try:
-        db_client.environment_types.find_one_and_replace({"_id": ObjectId(environment_type.id)}, environment_type_dict)
-    except:
-        raise HTTPException(
-            status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
-            detail="No se ha actualizado el tipo de ambiente",
-        )
-
-    updated_type = search_environment_type("_id", ObjectId(environment_type.id))
-    if not updated_type:
+    # Busca el tipo de ambiente existente por ID
+    existing_type = await EnvironmentType.get(environment_type.id)
+    if not existing_type:
         raise HTTPException(
             status_code=status.HTTP_404_NOT_FOUND,
-            detail="No se encontró el tipo de ambiente actualizado",
+            detail="Tipo de Ambiente no encontrado"
         )
 
-    return updated_type
+    # Verifica si ya existe otro tipo de ambiente con el mismo nombre
+    duplicate = await EnvironmentType.find_one(
+        {"name": environment_type.name, "_id": {"$ne": environment_type.id}}
+    )
+    if duplicate:
+        raise HTTPException(
+            status_code=status.HTTP_400_BAD_REQUEST,
+            detail="Ya existe un tipo de ambiente con ese nombre"
+        )
+
+    # Actualiza el tipo de ambiente
+    await environment_type.replace()
+    return environment_type
 
 
 # Ruta para eliminar un Tipo de Ambiente
 @router.delete("/{id}")
-async def environment_type(id: str, current_user: User = Depends(current_user)):
+async def delete_environment_type(id: PydanticObjectId, user: User = Depends(current_user)):
 
-    found = db_client.environment_types.find_one_and_delete({"_id": ObjectId(id)})
-    if found == None:
-        return {"error": "No se ha encontrado el tipo de ambiente"}
-    else:
-        return {"mensaje": "Tipo de ambiente eliminado"}
+    # Verificar si hay Ambientes que referencien este Tipo de Ambiente
+    environments = await Environment.find(Environment.type.id == id).to_list()
+
+    if environments:
+        raise HTTPException(
+            status_code=status.HTTP_400_BAD_REQUEST,
+            detail=f"No se puede eliminar el tipo de ambiente porque tiene ambientes asociados"
+        )
+
+    # Si no hay referencias, eliminar el tipo de ambiente
+    env_type = await EnvironmentType.get(id)
+    if not env_type:
+        raise HTTPException(status_code=404, detail="Tipo de Ambiente no encontrado")
+    
+    # Eliminar el tipo de ambiente
+    await env_type.delete()
+
+    # Respuesta exitosa
+    return {"message": "Tipo de Ambiente eliminado correctamente"}
