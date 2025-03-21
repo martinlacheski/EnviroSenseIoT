@@ -17,127 +17,249 @@
 \endgroup
 
 \datalist[entry]{none/global//global/global}
-  \entry{ARTICLE:1}{article}{}
+  \entry{GAPReport2016}{report}{}
     \name{author}{1}{}{%
-      {{hash=DJ}{%
-         family={Doe},
-         familyi={D\bibinitperiod},
-         given={John},
-         giveni={J\bibinitperiod},
+      {{hash=GGAP}{%
+         family={(GAP)},
+         familyi={G\bibinitperiod},
+         given={Global Agricultural\bibnamedelima Productivity},
+         giveni={G\bibinitperiod\bibinitdelim A\bibinitperiod\bibinitdelim P\bibinitperiod},
       }}%
     }
-    \strng{namehash}{DJ1}
-    \strng{fullhash}{DJ1}
+    \strng{namehash}{GGAP1}
+    \strng{fullhash}{GGAP1}
     \field{labelnamesource}{author}
     \field{labeltitlesource}{title}
-    \field{title}{Title}
-    \field{journaltitle}{Journal}
-    \field{year}{2017}
-  \endentry
-
-  \entry{BOOK:1}{book}{}
-    \name{author}{1}{}{%
-      {{hash=DJ}{%
-         family={Doe},
-         familyi={D\bibinitperiod},
-         given={John},
-         giveni={J\bibinitperiod},
-      }}%
-    }
-    \list{publisher}{1}{%
-      {Dummy Publisher}%
-    }
-    \strng{namehash}{DJ1}
-    \strng{fullhash}{DJ1}
-    \field{labelnamesource}{author}
-    \field{labeltitlesource}{title}
-    \field{title}{The Book without Title}
-    \field{year}{2100}
-  \endentry
-
-  \entry{BOOK:2}{inbook}{}
-    \name{author}{1}{}{%
-      {{hash=DJ}{%
-         family={Doe},
-         familyi={D\bibinitperiod},
-         given={John},
-         giveni={J\bibinitperiod},
-      }}%
-    }
-    \list{publisher}{1}{%
-      {Dummy Publisher}%
-    }
-    \strng{namehash}{DJ1}
-    \strng{fullhash}{DJ1}
-    \field{labelnamesource}{author}
-    \field{labeltitlesource}{title}
-    \field{pages}{100\bibrangedash 200}
-    \field{title}{The Book without Title}
-    \field{year}{2100}
-  \endentry
-
-  \entry{WEBSITE:1}{misc}{}
-    \name{author}{1}{}{%
-      {{hash=I}{%
-         family={Intel},
-         familyi={I\bibinitperiod},
-      }}%
-    }
-    \strng{namehash}{I2}
-    \strng{fullhash}{I2}
-    \field{labelnamesource}{author}
-    \field{labeltitlesource}{title}
-    \field{howpublished}{\url{http://example.com}}
-    \field{title}{Example Website}
-    \field{month}{12}
-    \field{year}{1988}
-    \field{urlday}{26}
-    \field{urlmonth}{11}
-    \field{urlyear}{2012}
-  \endentry
-
-  \entry{IEEE:citation}{book}{}
-    \name{author}{1}{}{%
-      {{hash=I}{%
-         family={IEEE},
-         familyi={I\bibinitperiod},
-      }}%
-    }
-    \list{publisher}{1}{%
-      {IEEE Publications}%
-    }
-    \strng{namehash}{I1}
-    \strng{fullhash}{I1}
-    \field{labelnamesource}{author}
-    \field{labeltitlesource}{title}
-    \field{edition}{1}
-    \field{title}{IEEE Citation Reference}
+    \field{note}{Documento en línea}
+    \field{title}{2016 Global Agricultural Productivity Report}
     \verb{url}
-    \verb http://www.ieee.org/documents/ieeecitationref.pdf
+    \verb https://globalagriculturalproductivity.org/wp-content/uploads/2019/01
+    \verb /2016_GAP_Report.pdf
     \endverb
+    \list{institution}{1}{%
+      {Global Agricultural Productivity}%
+    }
+    \field{type}{techreport}
     \field{year}{2016}
-    \field{urlday}{26}
-    \field{urlmonth}{09}
-    \field{urlyear}{2016}
+    \field{urlday}{20}
+    \field{urlmonth}{03}
+    \field{urlyear}{2025}
   \endentry
 
-  \entry{CIAA}{misc}{}
-    \name{author}{1}{}{%
-      {{hash=P}{%
-         family={{Proyecto CIAA}},
-         familyi={P\bibinitperiod},
+  \entry{EficienciaAgua2014}{article}{}
+    \name{author}{3}{}{%
+      {{hash=SMR}{%
+         family={Salazar-Moreno},
+         familyi={S\bibinithyphendelim M\bibinitperiod},
+         given={Raquel},
+         giveni={R\bibinitperiod},
+      }}%
+      {{hash=RAA}{%
+         family={Rojano-Aguilar},
+         familyi={R\bibinithyphendelim A\bibinitperiod},
+         given={Abraham},
+         giveni={A\bibinitperiod},
+      }}%
+      {{hash=LCIL}{%
+         family={López-Cruz},
+         familyi={L\bibinithyphendelim C\bibinitperiod},
+         given={Irineo\bibnamedelima Lorenzo},
+         giveni={I\bibinitperiod\bibinitdelim L\bibinitperiod},
       }}%
     }
-    \strng{namehash}{P1}
-    \strng{fullhash}{P1}
+    \strng{namehash}{SMRRAALCIL1}
+    \strng{fullhash}{SMRRAALCIL1}
     \field{labelnamesource}{author}
     \field{labeltitlesource}{title}
-    \field{note}{Visitado el 2016-06-25}
-    \field{title}{Computadora Industrial Abierta Argentina}
+    \field{note}{Documento en línea}
+    \field{number}{2}
+    \field{pages}{177\bibrangedash 183}
+    \field{title}{La eficiencia en el uso del agua en la agricultura controlada}
     \verb{url}
-    \verb http://proyecto-ciaa.com.ar/devwiki/doku.php?id=start
+    \verb http://www.scielo.org.mx/scielo.php?script=sci_arttext&pid=S2007-2422
+    \verb 2014000200012&lng=es&tlng=es
     \endverb
+    \field{volume}{5}
+    \field{journaltitle}{Tecnología y ciencias del agua}
     \field{year}{2014}
+    \field{urlday}{20}
+    \field{urlmonth}{03}
+    \field{urlyear}{2025}
+  \endentry
+
+  \entry{HorticulturaMisiones2024}{online}{}
+    \name{author}{1}{}{%
+      {{hash=OM}{%
+         family={Online},
+         familyi={O\bibinitperiod},
+         given={Misiones},
+         giveni={M\bibinitperiod},
+      }}%
+    }
+    \list{organization}{1}{%
+      {Misiones Online}%
+    }
+    \strng{namehash}{OM1}
+    \strng{fullhash}{OM1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{note}{Artículo en línea}
+    \field{title}{Horticultura en Misiones}
+    \verb{url}
+    \verb https://misionesonline.net/2024/06/14/horticultura-en-misiones-2/
+    \endverb
+    \field{year}{2024}
+    \field{urlday}{20}
+    \field{urlmonth}{03}
+    \field{urlyear}{2025}
+  \endentry
+
+  \entry{HidroponiaMisiones2024}{online}{}
+    \name{author}{1}{}{%
+      {{hash=EP}{%
+         family={Edición},
+         familyi={E\bibinitperiod},
+         given={Primera},
+         giveni={P\bibinitperiod},
+      }}%
+    }
+    \list{organization}{1}{%
+      {Primera Edición}%
+    }
+    \strng{namehash}{EP1}
+    \strng{fullhash}{EP1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{note}{Artículo en línea}
+    \field{title}{Misiones: la hidroponía, cada vez más presente}
+    \verb{url}
+    \verb https://www.primeraedicion.com.ar/nota/100627758/misiones-la-hidropon
+    \verb ia-cada-vez-mas-presente/
+    \endverb
+    \field{year}{2024}
+    \field{urlday}{20}
+    \field{urlmonth}{03}
+    \field{urlyear}{2024}
+  \endentry
+
+  \entry{seguridadAlimentariaGaribaldi2018}{article}{}
+    \name{author}{4}{}{%
+      {{hash=GLA}{%
+         family={Garibaldi},
+         familyi={G\bibinitperiod},
+         given={Lucas\bibnamedelima A.},
+         giveni={L\bibinitperiod\bibinitdelim A\bibinitperiod},
+      }}%
+      {{hash=AG}{%
+         family={Andersson},
+         familyi={A\bibinitperiod},
+         given={Georg},
+         giveni={G\bibinitperiod},
+      }}%
+      {{hash=FFC}{%
+         family={Fernández\bibnamedelima Ferrari},
+         familyi={F\bibinitperiod\bibinitdelim F\bibinitperiod},
+         given={Celeste},
+         giveni={C\bibinitperiod},
+      }}%
+      {{hash=PMN}{%
+         family={Pérez-Méndez},
+         familyi={P\bibinithyphendelim M\bibinitperiod},
+         given={Néstor},
+         giveni={N\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{GLA+1}
+    \strng{fullhash}{GLAAGFFCPMN1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{number}{3}
+    \field{pages}{572\bibrangedash 580}
+    \field{title}{Seguridad alimentaria, medio ambiente y nuestros hábitos de Consumo}
+    \verb{url}
+    \verb https://www.scielo.org.ar/scielo.php?script=sci_arttext&pid=S1667-782
+    \verb X2018000400011&lng=es&tlng=es
+    \endverb
+    \field{volume}{28}
+    \field{journaltitle}{Ecología Austral}
+    \field{year}{2018}
+    \field{urlday}{20}
+    \field{urlmonth}{03}
+    \field{urlyear}{2024}
+  \endentry
+
+  \entry{HidroponiaFIL}{online}{}
+    \name{author}{1}{}{%
+      {{hash=FH}{%
+         family={FIL},
+         familyi={F\bibinitperiod},
+         given={Hidroponía},
+         giveni={H\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{FH1}
+    \strng{fullhash}{FH1}
+    \field{labelnamesource}{author}
+    \verb{url}
+    \verb https://hidroponiafil.com.ar/
+    \endverb
+    \field{urlday}{20}
+    \field{urlmonth}{03}
+    \field{urlyear}{2024}
+  \endentry
+
+  \entry{Hidrosense}{online}{}
+    \name{author}{1}{}{%
+      {{hash=H}{%
+         family={Hidrosense},
+         familyi={H\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{H1}
+    \strng{fullhash}{H1}
+    \field{labelnamesource}{author}
+    \verb{url}
+    \verb https://www.hidrosense.com.br/
+    \endverb
+    \field{urlday}{20}
+    \field{urlmonth}{03}
+    \field{urlyear}{2024}
+  \endentry
+
+  \entry{iPonia}{online}{}
+    \name{author}{1}{}{%
+      {{hash=i}{%
+         family={iPonia},
+         familyi={i\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{i1}
+    \strng{fullhash}{i1}
+    \field{labelnamesource}{author}
+    \verb{url}
+    \verb https://iponia.com.br/
+    \endverb
+    \field{urlday}{20}
+    \field{urlmonth}{03}
+    \field{urlyear}{2024}
+  \endentry
+
+  \entry{Growcast}{online}{}
+    \name{author}{1}{}{%
+      {{hash=G}{%
+         family={Growcast},
+         familyi={G\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{G1}
+    \strng{fullhash}{G1}
+    \field{labelnamesource}{author}
+    \verb{url}
+    \verb https://www.growcast.io/
+    \endverb
+    \field{urlday}{20}
+    \field{urlmonth}{03}
+    \field{urlyear}{2024}
   \endentry
 \enddatalist
 \endinput
