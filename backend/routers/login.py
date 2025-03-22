@@ -7,7 +7,7 @@ import jwt
 from models.user import User
 
 # Importamos métodos de autenticación
-from utils.authentication import crypt, ACCESS_TOKEN_EXPIRE_MINUTES, SECRET_KEY, ALGORITHM
+from utils.authentication import crypt, ACCESS_TOKEN_EXPIRE_MINUTES, SECRET_KEY, ALGORITHM, current_user
 
 # Definimos el prefijo y una respuesta si no existe.
 router = APIRouter(
@@ -18,6 +18,7 @@ router = APIRouter(
 
 @router.post("/login")
 async def login(form: OAuth2PasswordRequestForm = Depends()):
+
     # Buscar el usuario por nombre de usuario
     user = await User.find_one({"username": form.username})
     if not user:
@@ -48,6 +49,32 @@ async def login(form: OAuth2PasswordRequestForm = Depends()):
     }
 
     return {
+        "user": {
+            "id": str(user.id),
+            "username": user.username,
+            "name": user.name + " " + user.surname,
+            "roles": ["ADMIN"],
+        },
+        "access_token": jwt.encode(access_token, SECRET_KEY, algorithm=ALGORITHM),
+        "token_type": "bearer",
+        "exp": access_token["exp"],
+    }
+
+@router.get("/renew-token")
+async def renew_token(user: User = Depends(current_user)):
+    access_token = {
+        "_id": str(user.id),
+        "username": user.username,
+        "exp": datetime.now(timezone.utc) + timedelta(minutes=ACCESS_TOKEN_EXPIRE_MINUTES),
+    }
+
+    return {
+        "user": {
+            "id": str(user.id),
+            "username": user.username,
+            "name": user.name + " " + user.surname,
+            "roles": ["ADMIN"],
+        },
         "access_token": jwt.encode(access_token, SECRET_KEY, algorithm=ALGORITHM),
         "token_type": "bearer",
         "exp": access_token["exp"],

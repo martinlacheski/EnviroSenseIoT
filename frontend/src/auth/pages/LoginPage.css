@@ -1,0 +1,25 @@
+.div-centered {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+.div-100h {
+  height: 100vh;
+}
+
+.img-initial-height {
+  height: 200px;
+}
+
+.bg-melamina {
+  background-image: url(/backgrounds/texture.jpg);
+  background-position: center;
+  /* background-repeat: no-repeat; */
+  background-size: cover;
+}
+
+.bg-blur {
+  background-color: rgba(255, 255, 255, 0.2);
+}

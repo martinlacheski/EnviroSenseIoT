@@ -1,20 +1,18 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-import './index.css'
-import Router from './router'
-import { CitySelectorProvider } from './context';
+// import React from "react";
+import ReactDOM from "react-dom/client";
+import App from "./App.tsx";
+import { Provider } from "react-redux";
+import { store } from "./store/index.ts";
+import { BrowserRouter } from "react-router-dom";
 
-// Crea una instancia de QueryClient
-const queryClient = new QueryClient();
+import "bootstrap/dist/css/bootstrap.min.css";
 
-ReactDOM.createRoot(document.getElementById('root')!).render(
-  <React.StrictMode>
-    <QueryClientProvider client={queryClient}>
-      <CitySelectorProvider>
-        <Router />
-      </CitySelectorProvider>
-
-    </QueryClientProvider>
-  </React.StrictMode>
+ReactDOM.createRoot(document.getElementById("root")!).render(
+  // <React.StrictMode>
+  <Provider store={store}>
+    <BrowserRouter>
+      <App />
+    </BrowserRouter>
+  </Provider>
+  // </React.StrictMode>
 );
