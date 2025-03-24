@@ -1,4 +1,4 @@
-<img src="frontend/public/appLogo.png" alt="logo" title="EnviroSenseIoT"/>
+<img src="frontend/public/logo-sidebar.png" alt="logo" title="EnviroSenseIoT"/>
 
 EnviroSense
 ==================
