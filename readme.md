@@ -3,7 +3,7 @@
 EnviroSense
 ==================
 
-Este proyecto es una aplicación fullstack IoT que se ejecuta sobre el ecosistema `Docker`. La programación de los microcontroladores se realiza con el IDE de desarrollo de `ESP-IDF`, el backend se realiza con `FastAPI` y el frontend  se realiza en `React`. Además posee una `base de datos` MongoDB que permite interactuar con el backend para guardar y consultar datos.
+Este proyecto es una aplicación fullstack IoT que se ejecuta sobre el ecosistema `Docker`. La programación de los microcontroladores se realiza en `MicroPython`, el backend se realiza con `FastAPI` y el frontend  se realiza en `React`. Además posee una `base de datos` MongoDB que permite interactuar con el backend para guardar y consultar datos.
 
 Contenido
 ------------------
