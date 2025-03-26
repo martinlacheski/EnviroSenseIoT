@@ -31,9 +31,10 @@ los requerimientos asociados a los diferentes componentes del sistema.
 
 La agricultura enfrenta desafíos crecientes en la optimización de la
 productividad y la eficiencia, especialmente en regiones con condiciones
-climáticas adversas y variables. Según la FAO \cite{GAPReport2016}, para el año
-2050, se estima que la población superará los 9 mil millones de personas, lo
-que demandará un aumento del 60\code{\%} en la producción de alimentos. Para
+climáticas adversas y variables. Según la FAO (\textit{Food and Agriculture
+      Organization of the United Nations}) \cite{GAPReport2016}, para el año 2050, se
+estima que la población superará los 9 mil millones de personas, lo que
+demandará un aumento del 60\code{\%} en la producción de alimentos. Para
 abordar este desafío, es fundamental optimizar el uso del agua, mejorar la
 productividad agrícola y fomentar prácticas que contribuyan a la sostenibilidad
 ambiental.
@@ -65,10 +66,10 @@ optimizadas.
 \section{Motivación}
 
 La motivación de este trabajo radica en el desarrollo e implementación de un
-sistema basado en Internet de las Cosas (IoT, del inglés \textit{Internet of
-      Things}) y de bajo costo, que permite monitorear en tiempo real y controlar de
-manera remota los invernaderos de la Facultad de Ciencias Forestales (FCF) de
-la Universidad Nacional de Misiones (UNaM).
+sistema basado en IoT (\textit{Internet of Things}) y de bajo costo, que
+permite monitorear en tiempo real y controlar de manera remota los invernaderos
+de la Facultad de Ciencias Forestales (FCF) de la Universidad Nacional de
+Misiones (UNaM).
 
 Este sistema posibilita el registro continuo de diversas variables de interés,
 como temperatura ambiente, humedad relativa, dióxido de carbono ($CO_2$),
@@ -93,25 +94,27 @@ ventilación y circulación de nutrientes o riego. La tabla \ref{tab:competencia
 presenta una comparación de algunas de las soluciones disponibles y sus
 características más relevantes.
 
-\begin{table}[ht]
+\begin{table}[h]
       \centering
-      \caption{Características de la competencia.}
-      \begin{tabular}{|p{3.2cm}|p{9.6cm}|}
-            \hline
-            \rowcolor[HTML]{C0C0C0}
-            Empresa                                              & Características                                                                  \\ \hline
+      \caption[Características de la competencia.]{Características de la competencia.}
+      \begin{tabular}{p{3.2cm}p{9.6cm}}
+            \toprule
+            \textbf{Empresa}                                     & \textbf{Características}                                                         \\
+            \midrule
             \multirow{1}{*}{Hidroponía FIL \cite{HidroponiaFIL}} & Ofrece servicios en comodato de sensores y actuadores
             para monitorear y controlar en tiempo real variables críticas como temperatura ambiente, humedad relativa, conductividad
-            eléctrica, pH, riego e iluminación.                                                                                                     \\ \hline
+            eléctrica, pH, riego e iluminación.                                                                                                     \\
             \multirow{1}{*}{Hidrosense \cite{Hidrosense}}        & Ofrece productos para automatizar la inyección de nutrientes en el sistema
             de riego a través del control del nivel de la conductividad eléctrica, la temperatura y el nivel de pH. Ofrece una plataforma para la
-            visualización del estado, reportes y el envío de alertas.                                                                               \\ \hline
+            visualización del estado, reportes y el envío de alertas.                                                                               \\
             \multirow{1}{*}{iPONIA \cite{iPonia}}                & Ofrece productos y una plataforma para monitorear y controlar el invernadero
             hidropónico. Integra sensores para medir el nivel de pH, conductividad eléctrica, temperatura de la solución, temperatura ambiente
-            y humedad relativa del aire. También ofrece dosificadores para inyectar los fertilizantes a la solución nutritiva.                      \\ \hline
+            y humedad relativa del aire. También ofrece dosificadores para inyectar los fertilizantes a la solución nutritiva.                      \\
             \multirow{1}{*}{Growcast \cite{Growcast}}            & Ofrece productos y una plataforma para controlar cultivos a través de sensores y
             actuadores que procesan y reportan datos en tiempo real. Integra sensores para medir temperatura ambiente, humedad relativa y
-            $CO_2$. Realiza el control del riego, la iluminación y la ventilación.                                                                  \\ \hline
+            $CO_2$. Realiza el control del riego, la iluminación y la ventilación.                                                                  \\
+            \bottomrule
+            \hline
       \end{tabular}
       \label{tab:competencia}
 \end{table}
@@ -160,7 +163,8 @@ El alcance del trabajo incluyó las siguientes tareas:
             \begin{itemize}
                   \item Configuración de un servidor IoT para gestión de mensajes entre nodos y
                         aplicaciones.
-                  \item Transmisión de datos al servidor IoT mediante MQTT.
+                  \item Transmisión de datos al servidor IoT mediante MQTT (\textit{Message Queue
+                              Telemetry Transport}).
                   \item Cifrado de comunicaciones mediante TLS (\textit{Transport Layer Security}).
             \end{itemize}
 \end{itemize}
@@ -200,7 +204,7 @@ evidencia la integración de hardware, software y servicios en la nube.
 
 \begin{figure}[htpb]
       \centering
-      \includegraphics[width=.99\textwidth]{./Figures/1.png}
+      \includegraphics[width=.90\textwidth]{./Images/1.png}
       \caption{Diagrama en bloques del sistema.}
       \label{fig:diagBloques}
 \end{figure}
@@ -222,11 +226,12 @@ diferentes componentes del sistema.
                   \item Configuración remota del intervalo de envío de datos.
                   \item Los nodos sensores deben transmitir al servidor IoT:
                         \begin{enumerate}
-                              \item Nodos ambientales: Temperatura, humedad relativa, presión atmosférica, nivel de
-                                    luminosidad y nivel de ($CO_2$).
-                              \item Nodos de solución nutritiva: Valores de pH, conductividad eléctrica (CE), TDS,
-                                    nivel y temperatura de la solución.
-                              \item Nodos de consumos: Agua, nutrientes y energía eléctrica.
+                              \item Nodos ambientales: temperatura, humedad relativa, presión atmosférica, nivel de
+                                    luminosidad y nivel de $CO_2$.
+                              \item Nodos de solución nutritiva: valores de pH (potencial de Hidrógeno),
+                                    conductividad eléctrica (CE), TDS (\textit{Total Dissolved Solids}), nivel y
+                                    temperatura de la solución.
+                              \item Nodos de consumos: agua, nutrientes y energía eléctrica.
                         \end{enumerate}
                   \item Los nodos actuadores deben transmitir al servidor IoT:
                         \begin{enumerate}
@@ -244,7 +249,7 @@ diferentes componentes del sistema.
                         mensajes.
             \end{enumerate}
 
-      \item Frontend (Aplicación Web)
+      \item Frontend (aplicación web)
             \begin{enumerate}
                   \item Interfaz intuitiva y responsiva (accesible desde móviles y escritorio).
                   \item Autenticación de usuarios mediante credenciales.
@@ -260,8 +265,8 @@ diferentes componentes del sistema.
                   \item Soportar conexiones seguras mediante TLS.
                   \item Implementar JWT (\textit{JSON Web Token}).
                   \item Persistencia de los datos.
-                  \item Soporte para métodos HTTP (CRUD y reportes), WebSockets (datos en tiempo real) y MQTT
-                        (interacción con dispositivos).
+                  \item Soporte para métodos HTTP (CRUD y reportes), WebSockets (datos en tiempo real)
+                        y MQTT (interacción con dispositivos).
             \end{enumerate}
 
       \item Requerimientos de documentación:

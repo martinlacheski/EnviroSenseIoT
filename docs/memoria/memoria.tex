@@ -27,6 +27,7 @@
 \usepackage{array}       % Para mejorar el manejo de tablas
 \usepackage[table]{xcolor} % Para usar \rowcolor
 \usepackage{multirow}    % Para usar \multirow
+\usepackage{float} % Para usar [H] en figuras
 
 % Redefinición de caracteres problemáticos en marcadores
 \hypersetup{
@@ -117,7 +118,7 @@ Esta sección es para agradecimientos personales y es totalmente \textbf{OPCIONA
 
 % Incluir capítulos desde archivos separados
 \include{Chapters/Chapter1}
-% \include{Chapters/Chapter2}
+\include{Chapters/Chapter2}
 % \include{Chapters/Chapter3}
 % \include{Chapters/Chapter4}
 % \include{Chapters/Chapter5}
@@ -136,7 +137,7 @@ Esta sección es para agradecimientos personales y es totalmente \textbf{OPCIONA
 %----------------------------------------------------------------------------------------
 
 \renewcommand{\bibname}{Bibliografía} % Para asegurarte de que el título sea correcto
-\phantomsection % Necesario para que el enlace del marcador sea correcto
+\phantomsection% Necesario para que el enlace del marcador sea correcto
 
 \printbibliography[heading=bibintoc]
 

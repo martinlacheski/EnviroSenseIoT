@@ -1,3 +1,16 @@
 \babel@toc {spanish}{}\relax 
 \addvspace {10\p@ }
 \contentsline {figure}{\numberline {1.1}{\ignorespaces Diagrama en bloques del sistema.}}{4}{figure.caption.8}%
+\addvspace {10\p@ }
+\contentsline {figure}{\numberline {2.1}{\ignorespaces Arquitectura del protocolo MQTT.}}{8}{figure.caption.9}%
+\contentsline {figure}{\numberline {2.2}{\ignorespaces Microcontrolador ESP-WROOM-32.}}{9}{figure.caption.10}%
+\contentsline {figure}{\numberline {2.3}{\ignorespaces Sensor BME280.}}{9}{figure.caption.11}%
+\contentsline {figure}{\numberline {2.4}{\ignorespaces Sensor BH1750.}}{9}{figure.caption.12}%
+\contentsline {figure}{\numberline {2.5}{\ignorespaces Sensor MHZ19C.}}{10}{figure.caption.13}%
+\contentsline {figure}{\numberline {2.6}{\ignorespaces Sensor PH-4502C.}}{10}{figure.caption.14}%
+\contentsline {figure}{\numberline {2.7}{\ignorespaces Sensor CE.}}{10}{figure.caption.15}%
+\contentsline {figure}{\numberline {2.8}{\ignorespaces Sensor TDS.}}{11}{figure.caption.16}%
+\contentsline {figure}{\numberline {2.9}{\ignorespaces Sensor de temperatura DS18B20.}}{11}{figure.caption.17}%
+\contentsline {figure}{\numberline {2.10}{\ignorespaces Sensor HC-SR04.}}{11}{figure.caption.18}%
+\contentsline {figure}{\numberline {2.11}{\ignorespaces Sensor de medición de consumo eléctrico.}}{11}{figure.caption.19}%
+\contentsline {figure}{\numberline {2.12}{\ignorespaces Relay de 2 Canales 5v 10a}}{12}{figure.caption.20}%

@@ -9,4 +9,39 @@
 \contentsline {subsection}{\numberline {1.4.2}Objetivos específicos}{3}{subsection.1.4.2}%
 \contentsline {subsection}{\numberline {1.4.3}Alcance del trabajo}{3}{subsection.1.4.3}%
 \contentsline {section}{\numberline {1.5}Requerimientos}{4}{section.1.5}%
-\contentsline {chapter}{Bibliografía}{7}{appendix*.10}%
+\contentsline {chapter}{\numberline {2}Introducción específica}{7}{chapter.2}%
+\contentsline {section}{\numberline {2.1}Protocolos de comunicación}{7}{section.2.1}%
+\contentsline {subsection}{\numberline {2.1.1}Wi-Fi}{7}{subsection.2.1.1}%
+\contentsline {subsection}{\numberline {2.1.2}MQTT}{7}{subsection.2.1.2}%
+\contentsline {subsection}{\numberline {2.1.3}TLS}{8}{subsection.2.1.3}%
+\contentsline {subsection}{\numberline {2.1.4}HTTP}{8}{subsection.2.1.4}%
+\contentsline {subsection}{\numberline {2.1.5}WebSocket}{8}{subsection.2.1.5}%
+\contentsline {section}{\numberline {2.2}Componentes de hardware}{8}{section.2.2}%
+\contentsline {subsection}{\numberline {2.2.1}Microcontrolador}{9}{subsection.2.2.1}%
+\contentsline {subsection}{\numberline {2.2.2}Sensor de temperatura ambiente, humedad relativa y presión atmosférica}{9}{subsection.2.2.2}%
+\contentsline {subsection}{\numberline {2.2.3}Sensor de luz digital}{9}{subsection.2.2.3}%
+\contentsline {subsection}{\numberline {2.2.4}Sensor infrarrojo de $CO_2$}{10}{subsection.2.2.4}%
+\contentsline {subsection}{\numberline {2.2.5}Sensor de detección de pH}{10}{subsection.2.2.5}%
+\contentsline {subsection}{\numberline {2.2.6}Sensor de conductividad eléctrica}{10}{subsection.2.2.6}%
+\contentsline {subsection}{\numberline {2.2.7}Sensor de sólidos disueltos totales}{10}{subsection.2.2.7}%
+\contentsline {subsection}{\numberline {2.2.8}Sensor de temperatura digital sumergible}{11}{subsection.2.2.8}%
+\contentsline {subsection}{\numberline {2.2.9}Sensor ultrasónico}{11}{subsection.2.2.9}%
+\contentsline {subsection}{\numberline {2.2.10}Sensor de medición de consumo eléctrico}{11}{subsection.2.2.10}%
+\contentsline {subsection}{\numberline {2.2.11}Módulo Relay}{11}{subsection.2.2.11}%
+\contentsline {section}{\numberline {2.3}Desarrollo de firmware}{12}{section.2.3}%
+\contentsline {subsection}{\numberline {2.3.1}MicroPython}{12}{subsection.2.3.1}%
+\contentsline {section}{\numberline {2.4}Desarrollo Backend y API}{12}{section.2.4}%
+\contentsline {subsection}{\numberline {2.4.1}FastAPI}{12}{subsection.2.4.1}%
+\contentsline {subsection}{\numberline {2.4.2}MongoDB}{12}{subsection.2.4.2}%
+\contentsline {section}{\numberline {2.5}Desarrollo Frontend}{13}{section.2.5}%
+\contentsline {subsection}{\numberline {2.5.1}React}{13}{subsection.2.5.1}%
+\contentsline {section}{\numberline {2.6}Infraestructura y despliegue}{13}{section.2.6}%
+\contentsline {subsection}{\numberline {2.6.1}Docker}{13}{subsection.2.6.1}%
+\contentsline {subsection}{\numberline {2.6.2}AWS IoT Core}{13}{subsection.2.6.2}%
+\contentsline {subsection}{\numberline {2.6.3}AWS EC2}{13}{subsection.2.6.3}%
+\contentsline {section}{\numberline {2.7}Herramientas de desarrollo}{13}{section.2.7}%
+\contentsline {subsection}{\numberline {2.7.1}Visual Studio Code}{13}{subsection.2.7.1}%
+\contentsline {subsection}{\numberline {2.7.2}Postman}{14}{subsection.2.7.2}%
+\contentsline {subsection}{\numberline {2.7.3}Git}{14}{subsection.2.7.3}%
+\contentsline {subsection}{\numberline {2.7.4}Github}{14}{subsection.2.7.4}%
+\contentsline {chapter}{Bibliografía}{15}{appendix*.22}%

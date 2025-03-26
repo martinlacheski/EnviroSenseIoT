@@ -96,19 +96,14 @@
          giveni={M\bibinitperiod},
       }}%
     }
-    \list{organization}{1}{%
-      {Misiones Online}%
-    }
     \strng{namehash}{OM1}
     \strng{fullhash}{OM1}
     \field{labelnamesource}{author}
     \field{labeltitlesource}{title}
-    \field{note}{Artículo en línea}
     \field{title}{Horticultura en Misiones}
     \verb{url}
     \verb https://misionesonline.net/2024/06/14/horticultura-en-misiones-2/
     \endverb
-    \field{year}{2024}
     \field{urlday}{20}
     \field{urlmonth}{03}
     \field{urlyear}{2025}
@@ -130,16 +125,14 @@
     \strng{fullhash}{EP1}
     \field{labelnamesource}{author}
     \field{labeltitlesource}{title}
-    \field{note}{Artículo en línea}
     \field{title}{Misiones: la hidroponía, cada vez más presente}
     \verb{url}
     \verb https://www.primeraedicion.com.ar/nota/100627758/misiones-la-hidropon
     \verb ia-cada-vez-mas-presente/
     \endverb
-    \field{year}{2024}
     \field{urlday}{20}
     \field{urlmonth}{03}
-    \field{urlyear}{2024}
+    \field{urlyear}{2025}
   \endentry
 
   \entry{seguridadAlimentariaGaribaldi2018}{article}{}
@@ -185,7 +178,7 @@
     \field{year}{2018}
     \field{urlday}{20}
     \field{urlmonth}{03}
-    \field{urlyear}{2024}
+    \field{urlyear}{2025}
   \endentry
 
   \entry{HidroponiaFIL}{online}{}
@@ -205,7 +198,7 @@
     \endverb
     \field{urlday}{20}
     \field{urlmonth}{03}
-    \field{urlyear}{2024}
+    \field{urlyear}{2025}
   \endentry
 
   \entry{Hidrosense}{online}{}
@@ -223,7 +216,7 @@
     \endverb
     \field{urlday}{20}
     \field{urlmonth}{03}
-    \field{urlyear}{2024}
+    \field{urlyear}{2025}
   \endentry
 
   \entry{iPonia}{online}{}
@@ -241,7 +234,7 @@
     \endverb
     \field{urlday}{20}
     \field{urlmonth}{03}
-    \field{urlyear}{2024}
+    \field{urlyear}{2025}
   \endentry
 
   \entry{Growcast}{online}{}
@@ -251,15 +244,694 @@
          familyi={G\bibinitperiod},
       }}%
     }
-    \strng{namehash}{G1}
-    \strng{fullhash}{G1}
+    \strng{namehash}{G3}
+    \strng{fullhash}{G3}
     \field{labelnamesource}{author}
     \verb{url}
     \verb https://www.growcast.io/
     \endverb
     \field{urlday}{20}
     \field{urlmonth}{03}
-    \field{urlyear}{2024}
+    \field{urlyear}{2025}
+  \endentry
+
+  \entry{Li2019}{article}{}
+    \name{author}{1}{}{%
+      {{hash=LS}{%
+         family={Li},
+         familyi={L\bibinitperiod},
+         given={Shanna},
+         giveni={S\bibinitperiod},
+      }}%
+    }
+    \list{publisher}{1}{%
+      {EDP Sciences}%
+    }
+    \strng{namehash}{LS1}
+    \strng{fullhash}{LS1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \verb{doi}
+    \verb https://doi.org/10.1051/itmconf/20192501009
+    \endverb
+    \field{issn}{2271-2097}
+    \field{note}{Article number 01009}
+    \field{pages}{01009}
+    \field{series}{Proceedings of the International Conference on Intelligent Computing, Communication \& Information Technologies (ICICCI 2018)}
+    \field{title}{Comparative analysis of infrastructure and Ad-Hoc wireless networks}
+    \verb{url}
+    \verb https://www.itm-conferences.org/articles/itmconf/pdf/2019/02/itmconf_
+    \verb icicci2018_01009.pdf
+    \endverb
+    \field{volume}{25}
+    \field{journaltitle}{ITM Web of Conferences}
+    \field{year}{2019}
+  \endentry
+
+  \entry{OASIS_MQTT_Standard}{online}{}
+    \name{author}{1}{}{%
+      {{hash=OO}{%
+         family={Open},
+         familyi={O\bibinitperiod},
+         given={OASIS},
+         giveni={O\bibinitperiod},
+      }}%
+    }
+    \list{organization}{1}{%
+      {OASIS Open}%
+    }
+    \strng{namehash}{OO1}
+    \strng{fullhash}{OO1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{title}{Foundational IoT Messaging Protocol {MQTT} Becomes International {OASIS} Standard}
+    \verb{url}
+    \verb https://www.oasis-open.org/2014/11/13/foundational-iot-messaging-prot
+    \verb ocol-mqtt-becomes-international-oasis-standard/
+    \endverb
+    \field{urlday}{25}
+    \field{urlmonth}{03}
+    \field{urlyear}{2025}
+  \endentry
+
+  \entry{AWS_MQTT}{online}{}
+    \name{author}{1}{}{%
+      {{hash=A}{%
+         family={{Amazon Web Services}},
+         familyi={A\bibinitperiod},
+      }}%
+    }
+    \list{organization}{1}{%
+      {AWS}%
+    }
+    \strng{namehash}{A1}
+    \strng{fullhash}{A1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{title}{¿Qué es {MQTT}?}
+    \verb{url}
+    \verb https://aws.amazon.com/es/what-is/mqtt/
+    \endverb
+    \field{urlday}{25}
+    \field{urlmonth}{03}
+    \field{urlyear}{2025}
+  \endentry
+
+  \entry{tls}{misc}{}
+    \name{author}{1}{}{%
+      {{hash=RE}{%
+         family={Rescorla},
+         familyi={R\bibinitperiod},
+         given={E.},
+         giveni={E\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{RE1}
+    \strng{fullhash}{RE1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \verb{doi}
+    \verb 10.17487/RFC8446
+    \endverb
+    \field{howpublished}{Internet Requests for Comments}
+    \field{number}{8446}
+    \field{title}{The Transport Layer Security (TLS) Protocol Version 1.3}
+    \verb{url}
+    \verb https://datatracker.ietf.org/doc/html/rfc8446
+    \endverb
+    \field{type}{RFC}
+  \endentry
+
+  \entry{awsiot_tls}{online}{}
+    \name{author}{1}{}{%
+      {{hash=A}{%
+         family={{Amazon Web Services}},
+         familyi={A\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{A1}
+    \strng{fullhash}{A1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{title}{Transport Security in {AWS IoT Core}}
+    \verb{url}
+    \verb https://docs.aws.amazon.com/iot/latest/developerguide/transport-secur
+    \verb ity.html
+    \endverb
+    \field{urlday}{25}
+    \field{urlmonth}{03}
+    \field{urlyear}{2025}
+  \endentry
+
+  \entry{rfc2616}{misc}{}
+    \name{author}{6}{}{%
+      {{hash=MJ}{%
+         family={Mogul},
+         familyi={M\bibinitperiod},
+         given={Jeffrey},
+         giveni={J\bibinitperiod},
+      }}%
+      {{hash=MLM}{%
+         family={Masinter},
+         familyi={M\bibinitperiod},
+         given={Larry\bibnamedelima M},
+         giveni={L\bibinitperiod\bibinitdelim M\bibinitperiod},
+      }}%
+      {{hash=FRT}{%
+         family={Fielding},
+         familyi={F\bibinitperiod},
+         given={Roy\bibnamedelima T.},
+         giveni={R\bibinitperiod\bibinitdelim T\bibinitperiod},
+      }}%
+      {{hash=GJ}{%
+         family={Gettys},
+         familyi={G\bibinitperiod},
+         given={Jim},
+         giveni={J\bibinitperiod},
+      }}%
+      {{hash=LPJ}{%
+         family={Leach},
+         familyi={L\bibinitperiod},
+         given={Paul\bibnamedelima J.},
+         giveni={P\bibinitperiod\bibinitdelim J\bibinitperiod},
+      }}%
+      {{hash=BLT}{%
+         family={Berners-Lee},
+         familyi={B\bibinithyphendelim L\bibinitperiod},
+         given={Tim},
+         giveni={T\bibinitperiod},
+      }}%
+    }
+    \list{publisher}{1}{%
+      {RFC Editor}%
+    }
+    \strng{namehash}{MJ+1}
+    \strng{fullhash}{MJMLMFRTGJLPJBLT1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{abstract}{%
+    HTTP has been in use by the World-Wide Web global information initiative since 1990. This specification defines the protocol referred to as &quot;HTTP/1.1&quot;, and is an update to RFC 2068. [STANDARDS-TRACK]%
+    }
+    \verb{doi}
+    \verb 10.17487/rfc2616
+    \endverb
+    \field{howpublished}{RFC 2616}
+    \field{number}{2616}
+    \field{series}{Request for Comments}
+    \field{title}{{Hypertext Transfer Protocol -- HTTP/1.1}}
+    \verb{url}
+    \verb https://rfc-editor.org/rfc/rfc2616.txt
+    \endverb
+  \endentry
+
+  \entry{RFC6455}{report}{}
+    \name{author}{2}{}{%
+      {{hash=FI}{%
+         family={Fette},
+         familyi={F\bibinitperiod},
+         given={I.},
+         giveni={I\bibinitperiod},
+      }}%
+      {{hash=MA}{%
+         family={Melnikov},
+         familyi={M\bibinitperiod},
+         given={A.},
+         giveni={A\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{FIMA1}
+    \strng{fullhash}{FIMA1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \verb{doi}
+    \verb 10.17487/RFC6455
+    \endverb
+    \field{howpublished}{RFC 6455}
+    \field{title}{The WebSocket Protocol}
+    \verb{url}
+    \verb https://tools.ietf.org/html/rfc6455
+    \endverb
+    \list{institution}{1}{%
+      {IETF}%
+    }
+    \field{type}{techreport}
+  \endentry
+
+  \entry{EspressifESP32WROOM}{manual}{}
+    \name{author}{1}{}{%
+      {{hash=E}{%
+         family={{Espressif Systems (Shanghai) Co., Ltd.}},
+         familyi={E\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{E1}
+    \strng{fullhash}{E1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{title}{ESP32-WROOM-32 Datasheet}
+    \verb{url}
+    \verb https://www.espressif.com/sites/default/files/documentation/esp32-wro
+    \verb om-32_datasheet_en.pdf
+    \endverb
+    \field{urlday}{26}
+    \field{urlmonth}{03}
+    \field{urlyear}{2025}
+  \endentry
+
+  \entry{BoschBME280}{manual}{}
+    \name{author}{1}{}{%
+      {{hash=B}{%
+         family={{Bosch Sensortec}},
+         familyi={B\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{B1}
+    \strng{fullhash}{B1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{title}{BME280 - Combined humidity, pressure and temperature sensor}
+    \verb{url}
+    \verb https://www.bosch-sensortec.com/products/environmental-sensors/humidi
+    \verb ty-sensors-bme280/
+    \endverb
+    \field{urlday}{26}
+    \field{urlmonth}{03}
+    \field{urlyear}{2025}
+  \endentry
+
+  \entry{ROHM_BH1750}{manual}{}
+    \name{author}{1}{}{%
+      {{hash=R}{%
+         family={{ROHM Semiconductor}},
+         familyi={R\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{R1}
+    \strng{fullhash}{R1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{title}{BH1750 - Ambient Light Sensor (ALS) - Datasheet}
+    \verb{url}
+    \verb https://www.mouser.com/catalog/specsheets/Rohm_11162017_ROHMS34826-1.
+    \verb pdf
+    \endverb
+    \field{urlday}{26}
+    \field{urlmonth}{03}
+    \field{urlyear}{2025}
+  \endentry
+
+  \entry{WINSEN_MHZ19C}{manual}{}
+    \name{author}{1}{}{%
+      {{hash=Z}{%
+         family={{Zhengzhou Winsen Electronics Technology Co., Ltd.}},
+         familyi={Z\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{Z1}
+    \strng{fullhash}{Z1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{title}{MH-Z19C NDIR $CO_2$ Sensor - Terminal Type Manual}
+    \verb{url}
+    \verb https://www.mouser.com/datasheet/2/1398/Soldered_108994_co2_sensor_mh
+    \verb _z19-3532446.pdf
+    \endverb
+    \field{urlday}{26}
+    \field{urlmonth}{03}
+    \field{urlyear}{2025}
+  \endentry
+
+  \entry{PH-4502C}{online}{}
+    \name{author}{1}{}{%
+      {{hash=D}{%
+         family={{DFRobot}},
+         familyi={D\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{D1}
+    \strng{fullhash}{D1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{title}{Datos técnicos del sensor de pH líquido PH-4502C}
+    \verb{url}
+    \verb https://image.dfrobot.com/image/data/SEN0161/PH%20composite%20electro
+    \verb de%20manual.pdf
+    \endverb
+    \field{urlday}{26}
+    \field{urlmonth}{03}
+    \field{urlyear}{2025}
+  \endentry
+
+  \entry{EC-Sensor}{online}{}
+    \name{author}{1}{}{%
+      {{hash=BE}{%
+         family={Buying},
+         familyi={B\bibinitperiod},
+         given={EC},
+         giveni={E\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{BE1}
+    \strng{fullhash}{BE1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{title}{Datos técnicos del sensor de CE}
+    \verb{url}
+    \verb https://es.aliexpress.com/item/1005003479288815.html?spm=a2g0o.order_
+    \verb list.order_list_main.40.42e8194dYjUbr1&gatewayAdapt=glo2esp
+    \endverb
+    \field{urlday}{26}
+    \field{urlmonth}{03}
+    \field{urlyear}{2025}
+  \endentry
+
+  \entry{TDS-Sensor}{online}{}
+    \name{author}{1}{}{%
+      {{hash=D}{%
+         family={DFRobot},
+         familyi={D\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{D2}
+    \strng{fullhash}{D2}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{title}{Datos técnicos Sensor TDS}
+    \verb{url}
+    \verb https://www.dfrobot.com/product-1662.html?srsltid
+    \endverb
+    \field{urlday}{26}
+    \field{urlmonth}{03}
+    \field{urlyear}{2025}
+  \endentry
+
+  \entry{DS18B20}{online}{}
+    \name{author}{1}{}{%
+      {{hash=SD}{%
+         family={Semiconductor},
+         familyi={S\bibinitperiod},
+         given={Dallas},
+         giveni={D\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{SD1}
+    \strng{fullhash}{SD1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{title}{Datos técnicos Sensor DS18B20}
+    \verb{url}
+    \verb https://cdn.sparkfun.com/datasheets/Sensors/Temp/DS18B20.pdf
+    \endverb
+    \field{urlday}{26}
+    \field{urlmonth}{03}
+    \field{urlyear}{2025}
+  \endentry
+
+  \entry{HC-SR04}{online}{}
+    \name{author}{1}{}{%
+      {{hash=ES}{%
+         family={Electronics},
+         familyi={E\bibinitperiod},
+         given={Sparkfun},
+         giveni={S\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{ES1}
+    \strng{fullhash}{ES1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{title}{Datos técnicos del sensor ultrasónico}
+    \verb{url}
+    \verb https://cdn.sparkfun.com/datasheets/Sensors/Proximity/HCSR04.pdf
+    \endverb
+    \field{urlday}{26}
+    \field{urlmonth}{03}
+    \field{urlyear}{2025}
+  \endentry
+
+  \entry{PZEM-004T}{online}{}
+    \name{author}{1}{}{%
+      {{hash=EU}{%
+         family={Electronics},
+         familyi={E\bibinitperiod},
+         given={Unit},
+         giveni={U\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{EU1}
+    \strng{fullhash}{EU1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{title}{Datos técnicos del sensor de energía eléctrica PZEM-004T}
+    \verb{url}
+    \verb https://uelectronics.com/wp-content/uploads/2024/06/AR4189-AR4190-Med
+    \verb idor-de-Energia-Electrica-AC-100A-Manual.pdf
+    \endverb
+    \field{urlday}{26}
+    \field{urlmonth}{03}
+    \field{urlyear}{2025}
+  \endentry
+
+  \entry{Relay}{online}{}
+    \name{author}{1}{}{%
+      {{hash=RS}{%
+         family={Relay},
+         familyi={R\bibinitperiod},
+         given={Songle},
+         giveni={S\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{RS1}
+    \strng{fullhash}{RS1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{title}{Datos técnicos del Relay Songle}
+    \verb{url}
+    \verb https://datasheet4u.com/pdf-down/S/R/D/SRD-12VDC-xx-x_ETC.pdf
+    \endverb
+    \field{urlday}{26}
+    \field{urlmonth}{03}
+    \field{urlyear}{2025}
+  \endentry
+
+  \entry{MicroPython}{online}{}
+    \name{author}{2}{}{%
+      {{hash=GDP}{%
+         family={George},
+         familyi={G\bibinitperiod},
+         given={Damien\bibnamedelima P.},
+         giveni={D\bibinitperiod\bibinitdelim P\bibinitperiod},
+      }}%
+      {{hash=c}{%
+         family={contributors},
+         familyi={c\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{GDPc1}
+    \strng{fullhash}{GDPc1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{title}{MicroPython}
+    \verb{url}
+    \verb https://micropython.org/
+    \endverb
+    \field{urlday}{26}
+    \field{urlmonth}{03}
+    \field{urlyear}{2025}
+  \endentry
+
+  \entry{FastAPI}{online}{}
+    \name{author}{1}{}{%
+      {{hash=T}{%
+         family={Tiangolo},
+         familyi={T\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{T1}
+    \strng{fullhash}{T1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{title}{FastAPI}
+    \verb{url}
+    \verb https://fastapi.tiangolo.com/
+    \endverb
+    \field{urlday}{26}
+    \field{urlmonth}{03}
+    \field{urlyear}{2025}
+  \endentry
+
+  \entry{MongoDB}{online}{}
+    \name{author}{1}{}{%
+      {{hash=M}{%
+         family={{MongoDB, Inc.}},
+         familyi={M\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{M3}
+    \strng{fullhash}{M3}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{title}{MongoDB Documentation}
+    \verb{url}
+    \verb https://www.mongodb.com/
+    \endverb
+    \field{urlday}{26}
+    \field{urlmonth}{03}
+    \field{urlyear}{2025}
+  \endentry
+
+  \entry{React}{online}{}
+    \name{author}{1}{}{%
+      {{hash=M}{%
+         family={{Meta (formerly Facebook) and contributors}},
+         familyi={M\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{M1}
+    \strng{fullhash}{M1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{title}{React: Biblioteca de JavaScript para interfaces de usuario}
+    \verb{url}
+    \verb https://es.react.dev/
+    \endverb
+    \field{urlday}{26}
+    \field{urlmonth}{03}
+    \field{urlyear}{2025}
+  \endentry
+
+  \entry{Docker}{online}{}
+    \name{author}{1}{}{%
+      {{hash=D}{%
+         family={{Docker, Inc.}},
+         familyi={D\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{D3}
+    \strng{fullhash}{D3}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{title}{Docker: Desarrollo acelerado de aplicaciones en contenedores}
+    \verb{url}
+    \verb https://www.docker.com/
+    \endverb
+    \field{urlday}{26}
+    \field{urlmonth}{03}
+    \field{urlyear}{2025}
+  \endentry
+
+  \entry{AWS_IoT}{online}{}
+    \name{author}{1}{}{%
+      {{hash=A}{%
+         family={{Amazon.com, Inc.}},
+         familyi={A\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{A2}
+    \strng{fullhash}{A2}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{title}{{AWS IoT Core}}
+    \verb{url}
+    \verb https://aws.amazon.com/es/iot-core/
+    \endverb
+    \field{urlday}{26}
+    \field{urlmonth}{03}
+    \field{urlyear}{2025}
+  \endentry
+
+  \entry{AWS_EC2}{online}{}
+    \name{author}{1}{}{%
+      {{hash=A}{%
+         family={{Amazon.com, Inc.}},
+         familyi={A\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{A2}
+    \strng{fullhash}{A2}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{title}{EC2, Nube de cómputo elástica de Amazon}
+  \endentry
+
+  \entry{VSCode}{online}{}
+    \name{author}{1}{}{%
+      {{hash=M}{%
+         family={{Microsoft Corporation}},
+         familyi={M\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{M2}
+    \strng{fullhash}{M2}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{title}{Visual Studio Code}
+    \verb{url}
+    \verb https://code.visualstudio.com/
+    \endverb
+    \field{urlday}{26}
+    \field{urlmonth}{03}
+    \field{urlyear}{2025}
+  \endentry
+
+  \entry{Postman}{online}{}
+    \name{author}{1}{}{%
+      {{hash=P}{%
+         family={{Postman, Inc.}},
+         familyi={P\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{P1}
+    \strng{fullhash}{P1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{title}{Postman API Platform}
+    \verb{url}
+    \verb https://www.postman.com/
+    \endverb
+    \field{urlday}{26}
+    \field{urlmonth}{03}
+    \field{urlyear}{2025}
+  \endentry
+
+  \entry{Git}{online}{}
+    \name{author}{1}{}{%
+      {{hash=G}{%
+         family={{Git}},
+         familyi={G\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{G1}
+    \strng{fullhash}{G1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{title}{Sistema de control de versiones Git}
+    \verb{url}
+    \verb https://git-scm.com/
+    \endverb
+    \field{urlday}{26}
+    \field{urlmonth}{03}
+    \field{urlyear}{2025}
+  \endentry
+
+  \entry{Github}{online}{}
+    \name{author}{1}{}{%
+      {{hash=G}{%
+         family={{GitHub, Inc.}},
+         familyi={G\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{G2}
+    \strng{fullhash}{G2}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{title}{GitHub}
+    \verb{url}
+    \verb https://github.com/
+    \endverb
+    \field{urlday}{26}
+    \field{urlmonth}{03}
+    \field{urlyear}{2025}
   \endentry
 \enddatalist
 \endinput

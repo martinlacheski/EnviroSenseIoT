@@ -1,202 +1,433 @@
-\chapter{Introducción específica} % Main chapter title
+\chapter{Introducción específica}
 
-\label{Chapter2}
+En este capítulo se presentan los protocolos de comunicación, componentes de
+hardware y herramientas de software utilizados en el desarrollo del trabajo. Se
+detallan las características y sus especificaciones técnicas.
 
 %----------------------------------------------------------------------------------------
-%	SECTION 1
+%	SECTION 1 - Protocolos de comunicación
 %----------------------------------------------------------------------------------------
-Todos los capítulos deben comenzar con un breve párrafo introductorio que indique cuál es el contenido que se encontrará al leerlo.  La redacción sobre el contenido de la memoria debe hacerse en presente y todo lo referido al proyecto en pasado, siempre de modo impersonal.
 
-\section{Estilo y convenciones}
-\label{sec:ejemplo}
+\section{Protocolos de comunicación}
 
-\subsection{Uso de mayúscula inicial para los título de secciones}
+En esta sección se describen los diferentes protocolos de comunicación
+utilizados en el desarrollo del trabajo. % La tabla \ref{tab:comunicacion}
+% presenta los principales protocolos utilizados y su función.
 
-Si en el texto se hace alusión a diferentes partes del trabajo referirse a ellas como capítulo, sección o subsección según corresponda. Por ejemplo: ``En el capítulo \ref{Chapter1} se explica tal cosa'', o ``En la sección \ref{sec:ejemplo} se presenta lo que sea'', o ``En la subsección \ref{subsec:ejemplo} se discute otra cosa''.
+% \begin{table}[h]
+% 	\centering
+% 	\caption[Principales protocolos utilizados]{Principales protocolos utilizados}
+% 	\begin{tabular}{p{3.2cm}p{9.6cm}}
+% 		\toprule
+% 		\textbf{Protocolo}         & \textbf{Función}                                                     \\
+% 		\midrule
+% 		\multirow{1}{*}{Wi-Fi}     & Conexión entre dispositivos e Internet.                              \\
+% 		\multirow{1}{*}{MQTT}      & Protocolo ligero para mensajería entre dispositivos y servidor IoT.  \\
+% 		\multirow{1}{*}{TLS}       & Protocolo de seguridad que cifra la comunicación entre dispositivos. \\
+% 		\multirow{1}{*}{HTTP}      & Protocolo cliente/servidor utilizado entre backend y frontend.       \\
+% 		\multirow{1}{*}{WebSocket} & Protocolo de comunicación entre cliente y servidor.                  \\
+% 		\bottomrule
+% 		\hline
+% 	\end{tabular}
+% 	\label{tab:comunicacion}
+% \end{table}
 
-Cuando se quiere poner una lista tabulada, se hace así:
+\subsection{Wi-Fi}
+
+Wi-Fi es el nombre comercial propiedad de la Wi-Fi Alliance para designar su
+familia de protocolos de comunicación inalámbrica basados en el estándar IEEE
+802.11 para redes de área local sin cables \cite{Li2019}.
+
+El estandar identifica dos modos principales de topología de red:
+infraestructura y ad-hoc.
 
 \begin{itemize}
-	\item Este es el primer elemento de la lista.
-	\item Este es el segundo elemento de la lista.
+	\item Modo infraestructura: los dispositivos se conectan a una red inalámbrica a
+	      través de un router o AP (\textit{Access Point}) inalámbrico, como en las WLAN.
+	      Los AP se conectan a la infraestructura de la red mediante el sistema de
+	      distribución conectado por cable o de manera inalámbrica.
+	\item Modo ad-hoc: los dispositivos se conectan directamente entre sí sin necesidad
+	      de un punto de acceso.
 \end{itemize}
 
-Notar el uso de las mayúsculas y el punto al final de cada elemento.
+\subsection{MQTT}
 
-Si se desea poner una lista numerada el formato es este:
+MQTT es un protocolo de mensajería estándar internacional OASIS
+\cite{OASIS_MQTT_Standard} para el Internet de las Cosas (IoT). Está diseñado
+como un transporte de mensajería de publicación/suscripción extremadamente
+ligero, ideal para conectar dispositivos remotos con un consumo de código
+reducido y un ancho de banda de red mínimo.
 
-\begin{enumerate}
-	\item Este es el primer elemento de la lista.
-	\item Este es el segundo elemento de la lista.
-\end{enumerate}
+MQTT es un protocolo ligero basado en TCP/IP \cite{AWS_MQTT} que sigue un
+modelo de publicación/suscripción, donde:
 
-Notar el uso de las mayúsculas y el punto al final de cada elemento.
+\begin{itemize}
+	\item Broker: Actúa como servidor central, que actuando como intermediario entre los
+	      clientes, recibe todos los mensajes y los enruta a los clientes suscritos.
+	\item Cliente: Puede ser un dispositivo que envía mensajes (publicación en un tópico)
+	      o un dispositivo que recibe mensajes (suscripción a un tópico).
+	\item Tópico: Es la dirección a la que se envían los mensajes. El broker MQTT es
+	      responsable de enrutar los mensajes a los clientes suscritos a ese tema. Los
+	      temas son organizados en tópicos.
+\end{itemize}
 
-\subsection{Este es el título de una subsección}
-\label{subsec:ejemplo}
+La figura \ref{fig:MqttProtocol} muestra la arquitectura del protocolo MQTT.
 
-Se recomienda no utilizar \textbf{texto en negritas} en ningún párrafo, ni tampoco texto \underline{subrayado}. En cambio sí se debe utilizar \textit{texto en itálicas} para palabras en un idioma extranjero, al menos la primera vez que aparecen en el texto. En el caso de palabras que estamos inventando se deben utilizar ``comillas'', así como también para citas textuales. Por ejemplo, un \textit{digital filter} es una especie de ``selector'' que permite separar ciertos componentes armónicos en particular.
-
-La escritura debe ser impersonal. Por ejemplo, no utilizar ``el diseño del firmware lo hice de acuerdo con tal principio'', sino ``el firmware fue diseñado utilizando tal principio''. 
-
-El trabajo es algo que al momento de escribir la memoria se supone que ya está concluido, entonces todo lo que se refiera a hacer el trabajo se narra en tiempo pasado, porque es algo que ya ocurrió. Por ejemplo, "se diseñó el firmware empleando la técnica de test driven development".
-
-En cambio, la memoria es algo que está vivo cada vez que el lector la lee. Por eso transcurre siempre en tiempo presente, como por ejemplo:
-
-``En el presente capítulo se da una visión global sobre las distintas pruebas realizadas y los resultados obtenidos. Se explica el modo en que fueron llevados a cabo los test unitarios y las pruebas del sistema''.
-
-Se recomienda no utilizar una sección de glosario sino colocar la descripción de las abreviaturas como parte del mismo cuerpo del texto. Por ejemplo, RTOS (\textit{Real Time Operating System}, Sistema Operativo de Tiempo Real) o en caso de considerarlo apropiado mediante notas a pie de página.
-
-Si se desea indicar alguna página web utilizar el siguiente formato de referencias bibliográficas, dónde las referencias se detallan en la sección de bibliografía de la memoria, utilizado el formato establecido por IEEE en \citep{IEEE:citation}. Por ejemplo, ``el presente trabajo se basa en la plataforma EDU-CIAA-NXP \citep{CIAA}, la cual...''.
-
-\subsection{Figuras} 
-
-Al insertar figuras en la memoria se deben considerar determinadas pautas. Para empezar, usar siempre tipografía claramente legible. Luego, tener claro que \textbf{es incorrecto} escribir por ejemplo esto: ``El diseño elegido es un cuadrado, como se ve en la siguiente figura:''
-
-\begin{figure}[h]
-\centering
-\includegraphics[scale=.45]{./Figures/cuadradoAzul.png}
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=.70\textwidth]{./Images/2.png}
+	\caption{Arquitectura del protocolo MQTT.}
+	\label{fig:MqttProtocol}
 \end{figure}
 
-La forma correcta de utilizar una figura es con referencias cruzadas, por ejemplo: ``Se eligió utilizar un cuadrado azul para el logo, como puede observarse en la figura \ref{fig:cuadradoAzul}''.
+\subsection{TLS}
 
-\begin{figure}[ht]
+TLS es un protocolo de seguridad criptográfica diseñado para garantizar la
+privacidad y la integridad de los datos en comunicaciones sobre redes, como
+Internet \cite{tls}. Opera sobre la capa de transporte y permite autenticación,
+cifrado de datos y protección contra manipulación.
+
+TLS se utiliza para garantizar la confidencialidad de los protocolos de
+aplicación (MQTT, HTTP y WebSocket) \cite{awsiot_tls}.
+
+\subsection{HTTP}
+
+HTTP es un protocolo a nivel de aplicación que opera sobre TCP/IP y está
+diseñado para sistemas de información distribuidos, colaborativos e hipermedia.
+Está basado en el modelo cliente-servidor, diseñado para la transferencia de
+recursos web \cite{rfc2616}.
+
+Este protocolo es de naturaleza asíncrona: cuando un cliente envía una
+petición, no necesita mantener una conexión activa mientras espera la
+respuesta, lo que optimiza significativamente el uso de recursos en la red.
+Este diseño sin estado hace que cada interacción sea independiente.
+
+\subsection{WebSocket}
+
+WebSocket es un protocolo de comunicación bidireccional y full-duplex que
+establece una conexión persistente entre un cliente y un servidor sobre una
+única conexión TCP \cite{RFC6455}. A diferencia del modelo de HTTP, WebSocket
+permite el intercambio de datos en tiempo real sin necesidad de reabrir la
+conexión en cada mensaje. Esto lo hace ideal para aplicaciones que requieren
+baja latencia y actualizaciones instantáneas, como chats, juegos en línea y
+monitoreo en tiempo real.
+
+%----------------------------------------------------------------------------------------
+%	SECTION 2 - Componentes de hardware
+%----------------------------------------------------------------------------------------
+
+\section{Componentes de hardware}\label{sec:hardware}
+
+En esta sección se describen los diferentes elementos de hardware utilizados en
+el desarrollo del trabajo. % La tabla \ref{tab:hardware} presenta los principales
+% componentes utilizados y su función.
+
+% \begin{table}[h]
+% 	\centering
+% 	\caption[Principales componentes hardware utilizados]{Principales componentes hardware utilizados}
+% 	\begin{tabular}{p{3.2cm}p{9.6cm}}
+% 		\toprule
+% 		\textbf{Protocolo}                & \textbf{Función}                                                                                        \\
+% 		\midrule
+% 		\multirow{1}{*}{Módulo ESP32}     & Microcontrolador con Wi-Fi y Bluetooth integrado para conectividad y procesamiento central del sistema. \\
+% 		\multirow{1}{*}{Sensor BME280}    & Mide temperatura ambiental, humedad relativa y presión atmosférica con alta precisión.                  \\
+% 		\multirow{1}{*}{Sensor BH1750}    & Sensor de intensidad luminosa que mide la iluminación ambiental en lux.                                 \\
+% 		\multirow{1}{*}{Sensor MHZ19C}    & Detector de dióxido de carbono $CO_2$ por infrarrojo.                                                   \\
+% 		\multirow{1}{*}{Sensor de pH}     & Mide la acidez o alcalinidad de la solución nutritiva mediante electrodo.                               \\
+% 		\multirow{1}{*}{Sensor de CE}     & Determina la conductividad eléctrica de la solución para estimar cantidad de nutrientes.                \\
+% 		\multirow{1}{*}{Sensor de TDS}    & Mide sólidos disueltos totales en líquidos, relacionado con la concentración de nutrientes.             \\
+% 		\multirow{1}{*}{Sensor DS18B20}   & Sensor digital de temperatura sumergible para líquidos.                                                 \\
+% 		\multirow{1}{*}{Sensor HC-SR04}   & Mide distancias por ultrasonido (nivel de agua en depósitos).                                           \\
+% 		\multirow{1}{*}{Sensor PZEM-004T} & Módulo de medición de parámetros eléctricos (tensión, corriente, potencia).                             \\
+% 		\multirow{1}{*}{Relay 2 canales } & Actuador eléctrico para control ON/OFF de dispositivos (bombas, luces, etc.).                           \\
+% 		\bottomrule
+% 		\hline
+% 	\end{tabular}
+% 	\label{tab:hardware}
+% \end{table}
+
+\subsection{Microcontrolador}\label{sec:microcontrolador}
+
+Para el desarrollo de los nodos se utilizó el microcontrolador ESP-WROOM-32, un
+chip de bajo costo y bajo consumo de energía que integra Wi-Fi, Bluetooth y
+Bluetooth LE en un solo paquete. El ESP-WROOM-32 es un microcontrolador de 32
+bits con una arquitectura Xtensa LX6 de doble núcleo, que permite ejecutar dos
+hilos de ejecución simultáneos. Además, cuenta con una amplia gama de
+periféricos, como UART, SPI, I2C, ADC, DAC, PWM, entre otros, que lo hacen
+ideal para aplicaciones de IoT \cite{EspressifESP32WROOM}.
+
+En la siguiente figura \ref{fig:ESP32} puede observarse el módulo.
+
+\begin{figure}[H]
 	\centering
-	\includegraphics[scale=.45]{./Figures/cuadradoAzul.png}
-	\caption{Ilustración del cuadrado azul que se eligió para el diseño del logo.}
-	\label{fig:cuadradoAzul}
+	\includegraphics[width=.30\textwidth]{./Images/3.png}
+	\caption{Microcontrolador ESP-WROOM-32.}
+	\label{fig:ESP32}
 \end{figure}
 
-El texto de las figuras debe estar siempre en español, excepto que se decida reproducir una figura original tomada de alguna referencia. En ese caso la referencia de la cual se tomó la figura debe ser indicada en el epígrafe de la figura e incluida como una nota al pie, como se ilustra en la figura \ref{fig:palabraIngles}.
+\subsection{Sensor de temperatura ambiente, humedad relativa y presión atmosférica}
 
-\begin{figure}[htpb]
+El sensor BME280 (figura \ref{fig:BME280}) es un sensor de temperatura, humedad
+y presión atmosférica digital de alta precisión. Se comunica a través de la
+interfaz I2C y SPI, y es capaz de medir la temperatura ambiente con una
+precisión de ±1°C, la humedad relativa con una precisión de ±3\code{\%}, y la
+presión atmosférica con una precisión de ±1 hPa\cite{BoschBME280}.
+
+\begin{figure}[H]
 	\centering
-	\includegraphics[scale=.3]{./Figures/word.jpeg}
-	\caption{Imagen tomada de la página oficial del procesador\protect\footnotemark.}
-	\label{fig:palabraIngles}
+	\includegraphics[width=.15\textwidth]{./Images/4.png}
+	\caption{Sensor BME280.}
+	\label{fig:BME280}
 \end{figure}
 
-\footnotetext{Imagen tomada de \url{https://goo.gl/images/i7C70w}}
+\subsection{Sensor de luz digital}\label{sec:BH1750}
 
-La figura y el epígrafe deben conformar una unidad cuyo significado principal pueda ser comprendido por el lector sin necesidad de leer el cuerpo central de la memoria. Para eso es necesario que el epígrafe sea todo lo detallado que corresponda y si en la figura se utilizan abreviaturas entonces aclarar su significado en el epígrafe o en la misma figura.
+El sensor BH1750 (figura \ref{fig:BH1750}) es un sensor de intensidad luminosa
+digital que mide la iluminación ambiental en lux. Se comunica a través de la
+interfaz I2C y es capaz de medir la intensidad luminosa en un rango de 1 a
+65535 lux con una precisión de 1 lux \cite{ROHM_BH1750}.
 
-
-
-\begin{figure}[ht]
+\begin{figure}[H]
 	\centering
-	\includegraphics[scale=.37]{./Figures/questionMark.png}
-	\caption{¿Por qué de pronto aparece esta figura?}
-	\label{fig:questionMark}
+	\includegraphics[width=.20\textwidth]{./Images/5.png}
+	\caption{Sensor BH1750.}
+	\label{fig:BH1750}
 \end{figure}
 
-Nunca colocar una figura en el documento antes de hacer la primera referencia a ella, como se ilustra con la figura \ref{fig:questionMark}, porque sino el lector no comprenderá por qué de pronto aparece la figura en el documento, lo que distraerá su atención.
+\subsection{Sensor infrarrojo de $CO_2$}
 
-Otra posibilidad es utilizar el entorno \textit{subfigure} para incluir más de una figura, como se puede ver en la figura \ref{fig:three graphs}. Notar que se pueden referenciar también las figuras internas individualmente de esta manera: \ref{fig:1de3}, \ref{fig:2de3} y \ref{fig:3de3}.
- 
-\begin{figure}[!htpb]
-     \centering
-     \begin{subfigure}[b]{0.3\textwidth}
-         \centering
-         \includegraphics[width=.65\textwidth]{./Figures/questionMark}
-         \caption{Un caption.}
-         \label{fig:1de3}
-     \end{subfigure}
-     \hfill
-     \begin{subfigure}[b]{0.3\textwidth}
-         \centering
-         \includegraphics[width=.65\textwidth]{./Figures/questionMark}
-         \caption{Otro.}
-         \label{fig:2de3}
-     \end{subfigure}
-     \hfill
-     \begin{subfigure}[b]{0.3\textwidth}
-         \centering
-         \includegraphics[width=.65\textwidth]{./Figures/questionMark}
-         \caption{Y otro más.}
-         \label{fig:3de3}
-     \end{subfigure}
-        \caption{Tres gráficos simples.}
-        \label{fig:three graphs}
+El sensor MH-Z19C (figura \ref{fig:MHZ19C}) es un detector de dióxido de
+carbono ($CO_2$) por NDIR (\textit{Non Dispersive Infrared Detector}). Se
+comunica a través de la interfaz UART y es capaz de medir la concentración de
+$CO_2$ en un rango de 0 a 5000 ppm con una precisión de 50 ppm
+\cite{WINSEN_MHZ19C}.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=.15\textwidth]{./Images/6.png}
+	\caption{Sensor MHZ19C.}
+	\label{fig:MHZ19C}
 \end{figure}
 
-El código para generar las imágenes se encuentra disponible para su reutilización en el archivo \file{Chapter2.tex}.
+\subsection{Sensor de detección de pH}
 
-\subsection{Tablas}
+El sensor PH-4502C (figura \ref{fig:PH4502C}) mide la acidez o alcalinidad del
+líquido mediante un electrodo de vidrio. Se comunica a través de la interfaz
+analógica y es capaz de medir el pH en un rango de 0 a 14 \cite{PH-4502C}.
 
-Para las tablas utilizar el mismo formato que para las figuras, sólo que el epígrafe se debe colocar arriba de la tabla, como se ilustra en la tabla \ref{tab:peces}. Observar que sólo algunas filas van con líneas visibles y notar el uso de las negritas para los encabezados.  La referencia se logra utilizando el comando \verb|\ref{<label>}| donde label debe estar definida dentro del entorno de la tabla.
-
-\begin{verbatim}
-\begin{table}[h]
+\begin{figure}[H]
 	\centering
-	\caption[caption corto]{caption largo más descriptivo}
-	\begin{tabular}{l c c}    
-		\toprule
-		\textbf{Especie}     & \textbf{Tamaño} & \textbf{Valor}\\
-		\midrule
-		Amphiprion Ocellaris & 10 cm           & \$ 6.000 \\		
-		Hepatus Blue Tang    & 15 cm           & \$ 7.000 \\
-		Zebrasoma Xanthurus  & 12 cm           & \$ 6.800 \\
-		\bottomrule
-		\hline
-	\end{tabular}
-	\label{tab:peces}
-\end{table}
-\end{verbatim}
+	\includegraphics[width=.20\textwidth]{./Images/7.png}
+	\caption{Sensor PH-4502C.}
+	\label{fig:PH4502C}
+\end{figure}
 
+\subsection{Sensor de conductividad eléctrica}
 
-\begin{table}[h]
+El sensor de CE (figura \ref{fig:CE}) mide la conductividad eléctrica del
+líquido para estimar la cantidad de nutrientes disueltos en el agua. Se
+comunica a través de la interfaz analógica y es capaz de medir la conductividad
+en un rango de 0 a 20 mS/cm \cite{EC-Sensor}.
+
+\begin{figure}[H]
 	\centering
-	\caption[caption corto]{caption largo más descriptivo.}
-	\begin{tabular}{l c c}    
-		\toprule
-		\textbf{Especie} 	 & \textbf{Tamaño} 		& \textbf{Valor}  \\
-		\midrule
-		Amphiprion Ocellaris & 10 cm 				& \$ 6.000 \\		
-		Hepatus Blue Tang	 & 15 cm				& \$ 7.000 \\
-		Zebrasoma Xanthurus	 & 12 cm				& \$ 6.800 \\
-		\bottomrule
-		\hline
-	\end{tabular}
-	\label{tab:peces}
-\end{table}
+	\includegraphics[width=.20\textwidth]{./Images/8.png}
+	\caption{Sensor CE.}
+	\label{fig:CE}
+\end{figure}
 
-En cada capítulo se debe reiniciar el número de conteo de las figuras y las tablas, por ejemplo, figura 2.1 o tabla 2.1, pero no se debe reiniciar el conteo en cada sección. Por suerte la plantilla se encarga de esto por nosotros.
+\subsection{Sensor de sólidos disueltos totales}
 
-\subsection{Ecuaciones}
-\label{sec:Ecuaciones}
+El sensor de TDS (figura \ref{fig:TDS}) mide la cantidad de sólidos disueltos
+totales en el agua, relacionado con la concentración de nutrientes. Se comunica
+a través de la interfaz analógica y es capaz de medir la concentración de TDS
+en un rango de 0 a 1000 ppm \cite{TDS-Sensor}.
 
-Al insertar ecuaciones en la memoria dentro de un entorno \textit{equation}, éstas se numeran en forma automática  y se pueden referir al igual que como se hace con las figuras y tablas, por ejemplo ver la ecuación \ref{eq:metric}.
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=.20\textwidth]{./Images/9.png}
+	\caption{Sensor TDS.}
+	\label{fig:TDS}
+\end{figure}
 
-\begin{equation}
-	\label{eq:metric}
-	ds^2 = c^2 dt^2 \left( \frac{d\sigma^2}{1-k\sigma^2} + \sigma^2\left[ d\theta^2 + \sin^2\theta d\phi^2 \right] \right)
-\end{equation}
-                                                        
-Es importante tener presente que si bien las ecuaciones pueden ser referidas por su número, también es correcto utilizar los dos puntos, como por ejemplo ``la expresión matemática que describe este comportamiento es la siguiente:''
+\subsection{Sensor de temperatura digital sumergible}
 
-\begin{equation}
-	\label{eq:schrodinger}
-	\frac{\hbar^2}{2m}\nabla^2\Psi + V(\mathbf{r})\Psi = -i\hbar \frac{\partial\Psi}{\partial t}
-\end{equation}
+El sensor DS18B20 (figura \ref{fig:DS18B20}) es un sensor digital de
+temperatura sumergible en líquidos. Se comunica a través de la interfaz 1-Wire
+y es capaz de medir la temperatura en un rango de -55°C a 125°C con una
+precisión de ±0.5°C \cite{DS18B20}.
 
-Para generar la ecuación \ref{eq:metric} se utilizó el siguiente código:
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=.20\textwidth]{./Images/10.png}
+	\caption{Sensor de temperatura DS18B20.}
+	\label{fig:DS18B20}
+\end{figure}
 
-\begin{verbatim}
-\begin{equation}
-	\label{eq:metric}
-	ds^2 = c^2 dt^2 \left( \frac{d\sigma^2}{1-k\sigma^2} + 
-	\sigma^2\left[ d\theta^2 + 
-	\sin^2\theta d\phi^2 \right] \right)
-\end{equation}
-\end{verbatim}
+\subsection{Sensor ultrasónico}
 
-Y para la ecuación \ref{eq:schrodinger}:
+El sensor HC-SR04 (figura \ref{fig:HC-SR04}) mide distancias por ultrasonido en
+un rango de 2 cm a 400 cm con una precisión de 3 mm. Se comunica a través de la
+interfaz GPIO \cite{HC-SR04}.
 
-\begin{verbatim}
-\begin{equation}
-	\label{eq:schrodinger}
-	\frac{\hbar^2}{2m}\nabla^2\Psi + V(\mathbf{r})\Psi = 
-	-i\hbar \frac{\partial\Psi}{\partial t}
-\end{equation}
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=.20\textwidth]{./Images/11.png}
+	\caption{Sensor HC-SR04.}
+	\label{fig:HC-SR04}
+\end{figure}
 
-\end{verbatim}
+\subsection{Sensor de medición de consumo eléctrico}
+
+El sensor PZEM-004T (figura \ref{fig:PZEM-004T}) es un módulo de medición de
+parámetros eléctricos que mide la tensión, corriente, potencia activa y energía
+consumida. Se comunica a través de la interfaz UART y es capaz de medir la
+tensión en un rango de 80 a 260 V, la corriente en un rango de 0 a 100 A, y la
+potencia en un rango de 0 a 22 kW \cite{PZEM-004T}.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=.20\textwidth]{./Images/12.png}
+	\caption{Sensor de medición de consumo eléctrico.}
+	\label{fig:PZEM-004T}
+\end{figure}
+
+\subsection{Módulo Relay}
+
+El módulo Relay (figura \ref{fig:Relay}) es un actuador eléctrico de dos
+canales optocoplados que permite el control de encendido y apagado de
+dispositivos eléctricos. Se comunica a través de la interfaz GPIO y es capaz de
+controlar dispositivos de hasta 10 A y 250 VAC \cite{Relay}.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=.20\textwidth]{./Images/13.png}
+	\caption{Relay de 2 Canales 5v 10a}
+	\label{fig:Relay}
+\end{figure}
+
+%----------------------------------------------------------------------------------------
+%	SECTION 3 - Componentes de software
+%----------------------------------------------------------------------------------------
+
+\section{Desarrollo de firmware}
+
+En esta sección se describe la herramienta de software utilizada para la
+programación de los microcontroladores ESP32.
+
+\subsection{MicroPython}
+
+MicroPython es una implementación optimizada de Python 3 para
+microcontroladores y sistemas embebidos. Está diseñado para ejecutarse en
+dispositivos con recursos limitados, como el ESP32, y proporciona una forma
+sencilla de programar microcontroladores utilizando un lenguaje de alto nivel
+como Python \cite{MicroPython}.
+
+Su facilidad de uso, la amplia disponibilidad de bibliotecas y la reducción del
+tiempo de desarrollo lo convierten en una opción eficiente. Además, al ser un
+lenguaje interpretado, posibilita la ejecución interactiva de pruebas y
+depuración, facilitando la identificación y corrección de errores en el código.
+
+\section{Desarrollo Backend y API}
+
+En esta sección se presentan las herramientas de software utilizadas en el
+desarrollo del backend y la API REST.
+
+\subsection{FastAPI}
+
+FastAPI es un framework moderno para la construcción de APIs REST rápidas y
+escalables en Python. Está diseñado para ser fácil de usar, rápido de
+desarrollar y altamente eficiente en términos de rendimiento. FastAPI utiliza
+Python 3.6+ y aprovecha las características de tipado estático de Python para
+proporcionar una API autodocumentada y con validación de tipos integrada
+\cite{FastAPI}.
+
+\subsection{MongoDB}
+
+MongoDB es una base de datos NoSQL (\textit{Not Only SQL}) de código abierto y
+orientada a documentos que proporciona una forma flexible y escalable de
+almacenar y recuperar datos. Utiliza un modelo de datos basado en documentos
+BSON (\textit{Binary JavaScript Object Notation}) que permite almacenar datos
+de forma anidada y sin esquema fijo, lo que facilita la manipulación y consulta
+de datos no estructurados \cite{MongoDB}.
+
+\section{Desarrollo Frontend}
+
+\subsection{React}
+
+React es una biblioteca de JavaScript de código abierto para construir
+interfaces de usuario interactivas y reutilizables. Desarrollada por Facebook,
+React permite crear componentes de interfaz de usuario que se actualizan de
+forma eficiente cuando cambian los datos, lo que facilita la creación de
+aplicaciones web rápidas y dinámicas \cite{React}.
+
+\section{Infraestructura y despliegue}
+
+\subsection{Docker}
+
+Docker es una plataforma de código abierto que permite a los desarrolladores y
+a los equipos de operaciones construir, empaquetar y desplegar aplicaciones en
+contenedores. Los contenedores son unidades de software ligeros y portátiles
+que incluyen todo lo necesario para ejecutar una aplicación, incluidas las
+bibliotecas, las dependencias y el código \cite{Docker}.
+
+Docker facilita la creación de entornos de desarrollo y despliegue consistentes
+y reproducibles, lo que garantiza que las aplicaciones se ejecuten de la misma
+manera en cualquier entorno.
+
+\subsection{AWS IoT Core}
+
+AWS IoT Core es un servicio de AWS (\textit{Amazon Web Services}) que permite a
+los dispositivos conectarse de forma segura a la nube y comunicarse entre sí a
+través de protocolos de comunicación estándar como MQTT y HTTP. Proporciona una
+infraestructura escalable y segura para la gestión de dispositivos, la
+recopilación de datos y la integración con otros servicios de AWS
+\cite{AWS_IoT}. Utiliza TLS para cifrar la comunicación entre los dispositivos
+y la nube, garantizando la confidencialidad y la integridad de los datos.
+
+\subsection{AWS EC2}
+
+Amazon EC2 (\textit{Elastic Compute Cloud}) es un servicio de AWS que
+proporciona capacidad informática escalable en la nube. Permite a los usuarios
+lanzar instancias virtuales en la nube con diferentes configuraciones de CPU,
+memoria, almacenamiento y red, lo que facilita la implementación de
+aplicaciones escalables y de alta disponibilidad \cite{AWS_EC2}.
+
+\section{Herramientas de desarrollo}
+
+\subsection{Visual Studio Code}
+
+Visual Studio Code, comúnmente abreviado como VS Code, es un entorno de
+desarrollo integrado (IDE, \textit{integrated development environment}) de
+código abierto, altamente extensible y multiplataforma compatible con Windows,
+macOS y Linux \cite{VSCode}.
+
+VS Code es un editor de código ligero y rápido con soporte para cientos de
+lenguajes de programación y extensiones que permiten personalizar y mejorar la
+funcionalidad del editor. Además, cuenta con herramientas de depuración
+integradas, control de versiones y terminal integrada.
+
+\subsection{Postman}
+
+Postman es una plataforma de colaboración para el desarrollo de APIs que
+permite a los desarrolladores diseñar, probar y documentar APIs de forma
+rápida. Postman proporciona una interfaz gráfica intuitiva para enviar
+solicitudes HTTP a un servidor y visualizar las respuestas, lo que facilita la
+depuración y el desarrollo de APIs \cite{Postman}.
+
+\subsection{Git}
+
+Git es un sistema de control de versiones distribuido de código abierto
+diseñado para gestionar proyectos de software de cualquier tamaño con rapidez y
+eficiencia. Permite a los desarrolladores trabajar en paralelo en un mismo
+proyecto, realizar seguimiento de los cambios, revertir a versiones anteriores
+y colaborar en el desarrollo de software \cite{Git}.
+
+\subsection{Github}
+
+Github es una plataforma de alojamiento de repositorios Git que permite a los
+desarrolladores colaborar en proyectos de software de forma distribuida.
+Proporciona herramientas para gestionar el código fuente, realizar seguimiento
+de los cambios, revisar el código, realizar integración continua y despliegue
+automático \cite{Github}.
+
