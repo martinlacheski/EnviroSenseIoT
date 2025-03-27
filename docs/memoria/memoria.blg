@@ -20,50 +20,53 @@ Reallocated singl_function (elt_size=4) to 100 items from 50.
 Reallocated singl_function (elt_size=4) to 100 items from 50.
 Reallocated singl_function (elt_size=4) to 100 items from 50.
 Reallocated singl_function (elt_size=4) to 100 items from 50.
-Reallocated field_info (elt_size=4) to 10460 items from 5000.
+Reallocated field_info (elt_size=4) to 11300 items from 5000.
 Database file #1: memoria-blx.bib
 Database file #2: references.bib
+Warning--I'm ignoring IBMWebSocket's extra "author" field
+--line 162 of file references.bib
 Biblatex version: 3.19
 Reallocated wiz_functions (elt_size=4) to 9000 items from 6000.
 Reallocated singl_function (elt_size=4) to 100 items from 50.
-You've used 39 entries,
+You've used 45 entries,
             6399 wiz_defined-function locations,
-            1417 strings with 14815 characters,
-and the built_in function-call counts, 232092 in all, are:
-= -- 13501
-> -- 12014
-< -- 1216
-+ -- 11764
-- -- 8784
-* -- 12821
-:= -- 27161
+            1446 strings with 15714 characters,
+and the built_in function-call counts, 265670 in all, are:
+= -- 15244
+> -- 14145
+< -- 1469
++ -- 13677
+- -- 10338
+* -- 14340
+:= -- 30871
 add.period$ -- 0
-call.type$ -- 39
-change.case$ -- 322
-chr.to.int$ -- 834
-cite$ -- 76
-duplicate$ -- 21358
-empty$ -- 19642
-format.name$ -- 1875
-if$ -- 42144
+call.type$ -- 45
+change.case$ -- 426
+chr.to.int$ -- 978
+cite$ -- 88
+duplicate$ -- 24499
+empty$ -- 22389
+format.name$ -- 2149
+if$ -- 48193
 int.to.chr$ -- 0
-int.to.str$ -- 101
+int.to.str$ -- 119
 missing$ -- 0
-newline$ -- 937
-num.names$ -- 1606
-pop$ -- 12794
+newline$ -- 1069
+num.names$ -- 1919
+pop$ -- 14772
 preamble$ -- 1
-purify$ -- 464
+purify$ -- 586
 quote$ -- 0
-skip$ -- 6771
+skip$ -- 8003
 stack$ -- 0
-substring$ -- 25044
-swap$ -- 4917
-text.length$ -- 1033
+substring$ -- 27890
+swap$ -- 5714
+text.length$ -- 1195
 text.prefix$ -- 0
 top$ -- 1
-type$ -- 1308
+type$ -- 1512
 warning$ -- 0
-while$ -- 2665
+while$ -- 3013
 width$ -- 0
-write$ -- 899
+write$ -- 1025
+(There was 1 warning)

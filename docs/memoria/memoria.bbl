@@ -383,6 +383,30 @@
     \field{urlyear}{2025}
   \endentry
 
+  \entry{IBMTCPIP}{online}{}
+    \name{author}{1}{}{%
+      {{hash=I}{%
+         family={{IBM Corporation}},
+         familyi={I\bibinitperiod},
+      }}%
+    }
+    \list{organization}{1}{%
+      {International Business Machines (IBM)}%
+    }
+    \strng{namehash}{I1}
+    \strng{fullhash}{I1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{title}{Protocolos TCP/IP}
+    \verb{url}
+    \verb https://docs.aws.amazon.com/iot/latest/developerguide/transport-secur
+    \verb ity.html
+    \endverb
+    \field{urlday}{25}
+    \field{urlmonth}{03}
+    \field{urlyear}{2025}
+  \endentry
+
   \entry{rfc2616}{misc}{}
     \name{author}{6}{}{%
       {{hash=MJ}{%
@@ -444,6 +468,28 @@
     \endverb
   \endentry
 
+  \entry{MicrosoftHTTPAsync}{online}{}
+    \name{author}{1}{}{%
+      {{hash=M}{%
+         family={{Microsoft Corporation}},
+         familyi={M\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{M3}
+    \strng{fullhash}{M3}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{title}{Interactuar con recursos HTTP/HTTPS de forma asíncrona}
+    \verb{url}
+    \verb https://learn.microsoft.com/es-es/power-apps/developer/model-driven-a
+    \verb pps/best-practices/business-logic/interact-http-https-resources-async
+    \verb hronously
+    \endverb
+    \field{urlday}{25}
+    \field{urlmonth}{03}
+    \field{urlyear}{2025}
+  \endentry
+
   \entry{RFC6455}{report}{}
     \name{author}{2}{}{%
       {{hash=FI}{%
@@ -475,6 +521,26 @@
       {IETF}%
     }
     \field{type}{techreport}
+  \endentry
+
+  \entry{IBMWebSocket}{online}{}
+    \name{author}{1}{}{%
+      {{hash=AW}{%
+         family={Applications},
+         familyi={A\bibinitperiod},
+         given={WebSocket},
+         giveni={W\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{AW1}
+    \strng{fullhash}{AW1}
+    \field{labelnamesource}{author}
+    \verb{url}
+    \verb https://www.ibm.com/docs/es/was/9.0.5?topic=applications-websocket
+    \endverb
+    \field{urlday}{25}
+    \field{urlmonth}{03}
+    \field{urlyear}{2025}
   \endentry
 
   \entry{EspressifESP32WROOM}{manual}{}
@@ -582,6 +648,30 @@
     \field{urlyear}{2025}
   \endentry
 
+  \entry{MTConductivitySensor}{online}{}
+    \name{author}{1}{}{%
+      {{hash=M}{%
+         family={{METTLER TOLEDO}},
+         familyi={M\bibinitperiod},
+      }}%
+    }
+    \list{organization}{1}{%
+      {METTLER TOLEDO International Inc.}%
+    }
+    \strng{namehash}{M2}
+    \strng{fullhash}{M2}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{title}{Sensores de Conductividad}
+    \verb{url}
+    \verb https://www.mt.com/es/es/home/products/Process-Analytics/conductivity
+    \verb -resistivity-analyzers/conductivity-sensor.html
+    \endverb
+    \field{urlday}{26}
+    \field{urlmonth}{03}
+    \field{urlyear}{2025}
+  \endentry
+
   \entry{EC-Sensor}{online}{}
     \name{author}{1}{}{%
       {{hash=BE}{%
@@ -599,6 +689,28 @@
     \verb{url}
     \verb https://es.aliexpress.com/item/1005003479288815.html?spm=a2g0o.order_
     \verb list.order_list_main.40.42e8194dYjUbr1&gatewayAdapt=glo2esp
+    \endverb
+    \field{urlday}{26}
+    \field{urlmonth}{03}
+    \field{urlyear}{2025}
+  \endentry
+
+  \entry{TDS-description}{online}{}
+    \name{author}{1}{}{%
+      {{hash=CH}{%
+         family={Company},
+         familyi={C\bibinitperiod},
+         given={Hach},
+         giveni={H\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{CH1}
+    \strng{fullhash}{CH1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{title}{Sólidos (totales y disueltos)}
+    \verb{url}
+    \verb https://es.hach.com/parameters/solids/
     \endverb
     \field{urlday}{26}
     \field{urlmonth}{03}
@@ -740,6 +852,26 @@
     \field{urlyear}{2025}
   \endentry
 
+  \entry{CTAMicroPython}{online}{}
+    \name{author}{1}{}{%
+      {{hash=C}{%
+         family={{CTA Electronics}},
+         familyi={C\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{C1}
+    \strng{fullhash}{C1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{title}{MicroPython - Recursos y Guías}
+    \verb{url}
+    \verb https://www.ctaelectronics.com/es/micropython/
+    \endverb
+    \field{urlday}{26}
+    \field{urlmonth}{03}
+    \field{urlyear}{2025}
+  \endentry
+
   \entry{FastAPI}{online}{}
     \name{author}{1}{}{%
       {{hash=T}{%
@@ -767,8 +899,8 @@
          familyi={M\bibinitperiod},
       }}%
     }
-    \strng{namehash}{M3}
-    \strng{fullhash}{M3}
+    \strng{namehash}{M4}
+    \strng{fullhash}{M4}
     \field{labelnamesource}{author}
     \field{labeltitlesource}{title}
     \field{title}{MongoDB Documentation}
@@ -861,8 +993,8 @@
          familyi={M\bibinitperiod},
       }}%
     }
-    \strng{namehash}{M2}
-    \strng{fullhash}{M2}
+    \strng{namehash}{M3}
+    \strng{fullhash}{M3}
     \field{labelnamesource}{author}
     \field{labeltitlesource}{title}
     \field{title}{Visual Studio Code}

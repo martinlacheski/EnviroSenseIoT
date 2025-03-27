@@ -177,7 +177,7 @@ El alcance del trabajo incluyó las siguientes tareas:
                         REST (\textit{Representational State Transfer}) que permita la comunicación con
                         el sistema utilizando HTTP (\textit{Hypertext Transfer Protocol}), MQTT y
                         WebSockets.
-                  \item Desarrollo de una aplicación Web responsiva para la visualización de datos en
+                  \item Desarrollo de una aplicación web responsiva para la visualización de datos en
                         tiempo real y el control remoto de actuadores.
             \end{itemize}
 \end{itemize}
@@ -204,7 +204,7 @@ evidencia la integración de hardware, software y servicios en la nube.
 
 \begin{figure}[htpb]
       \centering
-      \includegraphics[width=.90\textwidth]{./Images/1.png}
+      \includegraphics[width=.85\textwidth]{./Images/1.png}
       \caption{Diagrama en bloques del sistema.}
       \label{fig:diagBloques}
 \end{figure}
@@ -226,18 +226,21 @@ diferentes componentes del sistema.
                   \item Configuración remota del intervalo de envío de datos.
                   \item Los nodos sensores deben transmitir al servidor IoT:
                         \begin{enumerate}
-                              \item Nodos ambientales: temperatura, humedad relativa, presión atmosférica, nivel de
+                              \item Nodos ambientales: temperatura ambiente, humedad relativa, presión atmosférica, nivel de
                                     luminosidad y nivel de $CO_2$.
                               \item Nodos de solución nutritiva: valores de pH (potencial de Hidrógeno),
-                                    conductividad eléctrica (CE), TDS (\textit{Total Dissolved Solids}), nivel y
+                                    conductividad eléctrica (CE) y TDS (\textit{Total Dissolved Solids}); nivel y
                                     temperatura de la solución.
                               \item Nodos de consumos: agua, nutrientes y energía eléctrica.
                         \end{enumerate}
                   \item Los nodos actuadores deben transmitir al servidor IoT:
                         \begin{enumerate}
-                              \item Configuración remota de parámetros por canal.
-                              \item Reporte del estado de cada canal al servidor IoT.
-                              \item Activación remota de canales.
+                              \item Configuración remota de parámetros por cada canal.
+                              \item Reporte del estado de cada canal.
+                        \end{enumerate}
+                  \item Los nodos actuadores deben recibir desde el servidor IoT:
+                        \begin{enumerate}
+                              \item Comandos de activación/desactivación remota de canales.
                         \end{enumerate}
             \end{enumerate}
 
