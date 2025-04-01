@@ -362,27 +362,6 @@
     \field{type}{RFC}
   \endentry
 
-  \entry{awsiot_tls}{online}{}
-    \name{author}{1}{}{%
-      {{hash=A}{%
-         family={{Amazon Web Services}},
-         familyi={A\bibinitperiod},
-      }}%
-    }
-    \strng{namehash}{A1}
-    \strng{fullhash}{A1}
-    \field{labelnamesource}{author}
-    \field{labeltitlesource}{title}
-    \field{title}{Transport Security in {AWS IoT Core}}
-    \verb{url}
-    \verb https://docs.aws.amazon.com/iot/latest/developerguide/transport-secur
-    \verb ity.html
-    \endverb
-    \field{urlday}{25}
-    \field{urlmonth}{03}
-    \field{urlyear}{2025}
-  \endentry
-
   \entry{IBMTCPIP}{online}{}
     \name{author}{1}{}{%
       {{hash=I}{%
@@ -401,89 +380,6 @@
     \verb{url}
     \verb https://docs.aws.amazon.com/iot/latest/developerguide/transport-secur
     \verb ity.html
-    \endverb
-    \field{urlday}{25}
-    \field{urlmonth}{03}
-    \field{urlyear}{2025}
-  \endentry
-
-  \entry{rfc2616}{misc}{}
-    \name{author}{6}{}{%
-      {{hash=MJ}{%
-         family={Mogul},
-         familyi={M\bibinitperiod},
-         given={Jeffrey},
-         giveni={J\bibinitperiod},
-      }}%
-      {{hash=MLM}{%
-         family={Masinter},
-         familyi={M\bibinitperiod},
-         given={Larry\bibnamedelima M},
-         giveni={L\bibinitperiod\bibinitdelim M\bibinitperiod},
-      }}%
-      {{hash=FRT}{%
-         family={Fielding},
-         familyi={F\bibinitperiod},
-         given={Roy\bibnamedelima T.},
-         giveni={R\bibinitperiod\bibinitdelim T\bibinitperiod},
-      }}%
-      {{hash=GJ}{%
-         family={Gettys},
-         familyi={G\bibinitperiod},
-         given={Jim},
-         giveni={J\bibinitperiod},
-      }}%
-      {{hash=LPJ}{%
-         family={Leach},
-         familyi={L\bibinitperiod},
-         given={Paul\bibnamedelima J.},
-         giveni={P\bibinitperiod\bibinitdelim J\bibinitperiod},
-      }}%
-      {{hash=BLT}{%
-         family={Berners-Lee},
-         familyi={B\bibinithyphendelim L\bibinitperiod},
-         given={Tim},
-         giveni={T\bibinitperiod},
-      }}%
-    }
-    \list{publisher}{1}{%
-      {RFC Editor}%
-    }
-    \strng{namehash}{MJ+1}
-    \strng{fullhash}{MJMLMFRTGJLPJBLT1}
-    \field{labelnamesource}{author}
-    \field{labeltitlesource}{title}
-    \field{abstract}{%
-    HTTP has been in use by the World-Wide Web global information initiative since 1990. This specification defines the protocol referred to as &quot;HTTP/1.1&quot;, and is an update to RFC 2068. [STANDARDS-TRACK]%
-    }
-    \verb{doi}
-    \verb 10.17487/rfc2616
-    \endverb
-    \field{howpublished}{RFC 2616}
-    \field{number}{2616}
-    \field{series}{Request for Comments}
-    \field{title}{{Hypertext Transfer Protocol -- HTTP/1.1}}
-    \verb{url}
-    \verb https://rfc-editor.org/rfc/rfc2616.txt
-    \endverb
-  \endentry
-
-  \entry{MicrosoftHTTPAsync}{online}{}
-    \name{author}{1}{}{%
-      {{hash=M}{%
-         family={{Microsoft Corporation}},
-         familyi={M\bibinitperiod},
-      }}%
-    }
-    \strng{namehash}{M3}
-    \strng{fullhash}{M3}
-    \field{labelnamesource}{author}
-    \field{labeltitlesource}{title}
-    \field{title}{Interactuar con recursos HTTP/HTTPS de forma asíncrona}
-    \verb{url}
-    \verb https://learn.microsoft.com/es-es/power-apps/developer/model-driven-a
-    \verb pps/best-practices/business-logic/interact-http-https-resources-async
-    \verb hronously
     \endverb
     \field{urlday}{25}
     \field{urlmonth}{03}
@@ -523,20 +419,21 @@
     \field{type}{techreport}
   \endentry
 
-  \entry{IBMWebSocket}{online}{}
+  \entry{awsiot_tls}{online}{}
     \name{author}{1}{}{%
-      {{hash=AW}{%
-         family={Applications},
+      {{hash=A}{%
+         family={{Amazon Web Services}},
          familyi={A\bibinitperiod},
-         given={WebSocket},
-         giveni={W\bibinitperiod},
       }}%
     }
-    \strng{namehash}{AW1}
-    \strng{fullhash}{AW1}
+    \strng{namehash}{A1}
+    \strng{fullhash}{A1}
     \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{title}{Transport Security in {AWS IoT Core}}
     \verb{url}
-    \verb https://www.ibm.com/docs/es/was/9.0.5?topic=applications-websocket
+    \verb https://docs.aws.amazon.com/iot/latest/developerguide/transport-secur
+    \verb ity.html
     \endverb
     \field{urlday}{25}
     \field{urlmonth}{03}

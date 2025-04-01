@@ -34,7 +34,7 @@ utilizados en el desarrollo del trabajo. % La tabla \ref{tab:comunicacion}
 
 \subsection{Wi-Fi}
 
-Wi-Fi es el nombre comercial propiedad de la Wi-Fi Alliance para designar su
+Wi-Fi es el nombre comercial propiedad de la Wi-Fi Alliance para designar a su
 familia de protocolos de comunicación inalámbrica basados en el estándar IEEE
 802.11 para redes de área local sin cables \cite{Li2019}.
 
@@ -43,7 +43,7 @@ infraestructura y ad-hoc.
 
 \begin{itemize}
 	\item Modo infraestructura: los dispositivos se conectan a una red inalámbrica a
-	      través de un router o AP (\textit{Access Point}) inalámbrico, como en las WLAN.
+	      través de un router o AP (del inglés, \textit{Access Point}) inalámbrico, como en las WLAN.
 	      Los AP se conectan a la infraestructura de la red mediante el sistema de
 	      distribución conectado por cable o de manera inalámbrica.
 	\item Modo ad-hoc: los dispositivos se conectan directamente entre sí sin necesidad
@@ -53,21 +53,21 @@ infraestructura y ad-hoc.
 \subsection{MQTT}
 
 MQTT es un protocolo de mensajería estándar internacional OASIS
-\cite{OASIS_MQTT_Standard} para el Internet de las Cosas (IoT). Está diseñado
-como un transporte de mensajería de publicación/suscripción extremadamente
-ligero, ideal para conectar dispositivos remotos con un consumo de código
-reducido y un ancho de banda de red mínimo.
+\cite{OASIS_MQTT_Standard} para Internet de las Cosas (IoT). Está diseñado como
+un transporte de mensajería de publicación/suscripción extremadamente ligero,
+ideal para conectar dispositivos remotos con un consumo de código reducido y un
+ancho de banda de red mínimo.
 
 MQTT es un protocolo ligero basado en TCP/IP \cite{AWS_MQTT} que sigue un
 modelo de publicación/suscripción, donde:
 
 \begin{itemize}
-	\item Broker: Funciona como un servidor central que recibe los mensajes de los
-	      clientes y los distribuye a los suscriptores correspondientes, actua como
+	\item Broker: funciona como un servidor central que recibe los mensajes de los
+	      clientes y los distribuye a los suscriptores correspondientes, actúa como
 	      intermediario en la comunicación.
-	\item Cliente: Puede ser un dispositivo que publica mensajes en un tópico o que
+	\item Cliente: puede ser un dispositivo que publica mensajes en un tópico o que
 	      recibe mensajes al estar suscrito a un tópico.
-	\item Tópico: Es la dirección a la que se envían los mensajes en MQTT. El broker se
+	\item Tópico: es la dirección a la que se envían los mensajes en MQTT. El broker se
 	      encarga de distribuirlos a los clientes suscritos. Los temas se organizan en
 	      una estructura jerárquica de tópicos.
 \end{itemize}
@@ -76,7 +76,7 @@ La figura \ref{fig:MqttProtocol} muestra la arquitectura del protocolo MQTT.
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=.95\textwidth]{./Images/2.png}
+	\includegraphics[width=.99\textwidth]{./Images/2.png}
 	\caption{Arquitectura del protocolo MQTT.}
 	\label{fig:MqttProtocol}
 \end{figure}
@@ -89,32 +89,33 @@ Internet \cite{tls}. Opera sobre la capa de transporte y permite autenticación,
 cifrado de datos y protección contra manipulación.
 
 TLS se utiliza para garantizar la confidencialidad de los protocolos de
-aplicación (MQTT, HTTP y WebSocket) \cite{awsiot_tls}.
+aplicación (MQTT \cite{OASIS_MQTT_Standard}, HTTP \cite{IBMTCPIP} y WebSocket
+\cite{RFC6455}) \cite{awsiot_tls}.
 
-\subsection{HTTP}
+% \subsection{HTTP}
 
-HTTP es un protocolo a nivel de aplicación que opera sobre TCP/IP
-\cite{IBMTCPIP} y está diseñado para sistemas de información distribuidos,
-colaborativos e hipermedia. Está basado en el modelo cliente-servidor, diseñado
-para la transferencia de recursos web \cite{rfc2616}.
+% HTTP es un protocolo a nivel de aplicación que opera sobre TCP/IP
+% \cite{IBMTCPIP} y está diseñado para sistemas de información distribuidos,
+% colaborativos e hipermedia. Está basado en el modelo cliente-servidor, diseñado
+% para la transferencia de recursos web \cite{rfc2616}.
 
-Este protocolo es asíncrono, lo que significa que un cliente puede enviar una
-petición sin necesidad de mantener una conexión activa mientras espera la
-respuesta. Esto optimiza el uso de recursos en la red \cite{MicrosoftHTTPAsync}
-y permite que cada interacción sea independiente, gracias a su diseño sin
-estado.
+% Este protocolo es asíncrono, lo que significa que un cliente puede enviar una
+% petición sin necesidad de mantener una conexión activa mientras espera la
+% respuesta. Esto optimiza el uso de recursos en la red \cite{MicrosoftHTTPAsync}
+% y permite que cada interacción sea independiente, gracias a su diseño sin
+% estado.
 
-\subsection{WebSocket}
+% \subsection{WebSocket}
 
-WebSocket es un protocolo de comunicación bidireccional y simultánea
-(full-duplex) que mantiene una conexión persistente entre un cliente y un
-servidor sobre una única conexión TCP \cite{RFC6455}. Para establecer la
-conexión, utiliza una secuencia de solicitud-respuesta HTTP estándar. Una vez
-conectados, la API WebSocket proporciona una interfaz para la lectura y
-escritura de datos de manera asíncrona y en modo dúplex \cite{IBMWebSocket}.
-Esto lo hace ideal para aplicaciones que requieren baja latencia y
-actualizaciones en tiempo real, como chats, juegos en línea y sistemas de
-monitoreo.
+% WebSocket es un protocolo de comunicación bidireccional y simultánea
+% (full-duplex) que mantiene una conexión persistente entre un cliente y un
+% servidor sobre una única conexión TCP \cite{RFC6455}. Para establecer la
+% conexión, utiliza una secuencia de solicitud-respuesta HTTP estándar. Una vez
+% conectados, la API WebSocket proporciona una interfaz para la lectura y
+% escritura de datos de manera asíncrona y en modo dúplex \cite{IBMWebSocket}.
+% Esto lo hace ideal para aplicaciones que requieren baja latencia y
+% actualizaciones en tiempo real, como chats, juegos en línea y sistemas de
+% monitoreo.
 
 %----------------------------------------------------------------------------------------
 %	SECTION 2 - Componentes de hardware
@@ -153,7 +154,7 @@ el desarrollo del trabajo. % La tabla \ref{tab:hardware} presenta los principale
 \subsection{Microcontrolador}\label{sec:microcontrolador}
 
 El microcontrolador ESP-WROOM-32 (figura \ref{fig:ESP32}), es un chip de tipo
-SoC (\textit{System on Chip}) de bajo costo y bajo consumo de energía que
+SoC (del inglés, \textit{System on Chip}) de bajo costo y bajo consumo de energía que
 integra Wi-Fi, Bluetooth y Bluetooth LE en un solo paquete. El ESP-WROOM-32
 \cite{EspressifESP32WROOM} es un microcontrolador de 32 bits con una
 arquitectura Xtensa LX6 de doble núcleo, lo que le permite ejecutar dos hilos
@@ -162,7 +163,7 @@ como UART, I2C, SPI y ADC, que lo hace ideal para aplicaciones de IoT.
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=.25\textwidth]{./Images/3.png}
+	\includegraphics[height=.15\textwidth]{./Images/3.png}
 	\caption{Microcontrolador ESP-WROOM-32.}
 	\label{fig:ESP32}
 \end{figure}
@@ -177,7 +178,7 @@ para la presión atmosférica \cite{BoschBME280}.
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=.10\textwidth]{./Images/4.png}
+	\includegraphics[height=.15\textwidth]{./Images/4.png}
 	\caption{Sensor BME280.}
 	\label{fig:BME280}
 \end{figure}
@@ -191,7 +192,7 @@ una precisión de 1 lux \cite{ROHM_BH1750}.
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=.12\textwidth]{./Images/5.png}
+	\includegraphics[height=.15\textwidth]{./Images/5.png}
 	\caption{Sensor BH1750.}
 	\label{fig:BH1750}
 \end{figure}
@@ -199,13 +200,13 @@ una precisión de 1 lux \cite{ROHM_BH1750}.
 \subsection{Sensor de dióxido de carbono}
 
 El sensor MH-Z19C (figura \ref{fig:MHZ19C}) es un detector de $CO_2$ por NDIR
-(\textit{Non Dispersive Infrared Detector}). Se comunica a través de la
+(del inglés, \textit{Non Dispersive Infrared Detector}). Se comunica a través de la
 interfaz UART y es capaz de medir la concentración de $CO_2$ en un rango de 0 a
 5000 ppm con una precisión de 50 ppm \cite{WINSEN_MHZ19C}.
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=.10\textwidth]{./Images/6.png}
+	\includegraphics[height=.15\textwidth]{./Images/6.png}
 	\caption{Sensor MHZ19C.}
 	\label{fig:MHZ19C}
 \end{figure}
@@ -218,7 +219,7 @@ analógica y es capaz de medir el pH en un rango de 0 a 14 \cite{PH-4502C}.
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=.15\textwidth]{./Images/7.png}
+	\includegraphics[height=.15\textwidth]{./Images/7.png}
 	\caption{Sensor PH-4502C.}
 	\label{fig:PH4502C}
 \end{figure}
@@ -233,7 +234,7 @@ conductividad en un rango de 0 a 20 mS/cm \cite{EC-Sensor}.
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=.15\textwidth]{./Images/8.png}
+	\includegraphics[height=.15\textwidth]{./Images/8.png}
 	\caption{Sensor CE.}
 	\label{fig:CE}
 \end{figure}
@@ -247,7 +248,7 @@ de TDS en un rango de 0 a 1000 ppm \cite{TDS-Sensor}.
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=.15\textwidth]{./Images/9.png}
+	\includegraphics[height=.15\textwidth]{./Images/9.png}
 	\caption{Sensor TDS.}
 	\label{fig:TDS}
 \end{figure}
@@ -255,13 +256,13 @@ de TDS en un rango de 0 a 1000 ppm \cite{TDS-Sensor}.
 \subsection{Sensor de temperatura digital sumergible}
 
 El DS18B20 (figura \ref{fig:DS18B20}) es un sensor digital de temperatura
-sumergible en líquidos. Se comunica a través de la interfaz 1-Wire y puede
-medir la temperatura en un rango de -55°C a 125°C con una precisión de ±0.5°C
-\cite{DS18B20}.
+sumergible en líquidos. Se comunica a través de la interfaz \textit{1-Wire} y puede
+medir la temperatura en un rango de -55 °C a 125 °C con una precisión de ±0.5
+°C \cite{DS18B20}.
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=.15\textwidth]{./Images/10.png}
+	\includegraphics[height=.15\textwidth]{./Images/10.png}
 	\caption{Sensor de temperatura DS18B20.}
 	\label{fig:DS18B20}
 \end{figure}
@@ -274,7 +275,7 @@ interfaz GPIO \cite{HC-SR04}.
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=.15\textwidth]{./Images/11.png}
+	\includegraphics[height=.15\textwidth]{./Images/11.png}
 	\caption{Sensor HC-SR04.}
 	\label{fig:HC-SR04}
 \end{figure}
@@ -289,7 +290,7 @@ potencia en un rango de 0 a 22 kW \cite{PZEM-004T}.
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=.25\textwidth]{./Images/12.png}
+	\includegraphics[height=.15\textwidth]{./Images/12.png}
 	\caption{Sensor de medición de consumo eléctrico.}
 	\label{fig:PZEM-004T}
 \end{figure}
@@ -303,8 +304,8 @@ controlar dispositivos de hasta 10 A y 250 VAC \cite{Relay}.
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=.15\textwidth]{./Images/13.png}
-	\caption{Relay de 2 Canales 5v 10a}
+	\includegraphics[height=.15\textwidth]{./Images/13.png}
+	\caption{Relay de 2 Canales 5 V 10 A}
 	\label{fig:Relay}
 \end{figure}
 
@@ -347,10 +348,10 @@ proporcionar una API autodocumentada y con validación de tipos integrada
 
 \subsection{MongoDB}
 
-MongoDB es una base de datos NoSQL (\textit{Not Only SQL}) de código abierto y
+MongoDB es una base de datos NoSQL (del inglés, \textit{Not Only SQL}) de código abierto y
 orientada a documentos que proporciona una forma flexible y escalable de
 almacenar y recuperar datos. Utiliza un modelo de datos basado en documentos
-BSON (\textit{Binary JavaScript Object Notation}) que permite almacenar datos
+que almacena datos en un formato similar a JSON (del inglés, \textit{JavaScript Object Notation}) llamado BSON (del inglés, \textit{Binary JSON}) que permite almacenar datos
 de forma anidada y sin esquema fijo, lo que facilita la manipulación y consulta
 de datos no estructurados \cite{MongoDB}.
 
@@ -380,7 +381,7 @@ manera en cualquier entorno.
 
 \subsection{AWS IoT Core}
 
-AWS IoT Core es un servicio de AWS (\textit{Amazon Web Services}) que permite a
+AWS IoT Core es un servicio de AWS (del inglés, \textit{Amazon Web Services}) que permite a
 los dispositivos conectarse de forma segura a la nube y comunicarse entre sí a
 través de protocolos de comunicación estándar como MQTT y HTTP. Proporciona una
 infraestructura escalable y segura para la gestión de dispositivos, la
@@ -390,7 +391,7 @@ y la nube, garantizando la confidencialidad y la integridad de los datos.
 
 \subsection{AWS EC2}
 
-Amazon EC2 (\textit{Elastic Compute Cloud}) es un servicio de AWS que
+Amazon EC2 (del inglés, \textit{Elastic Compute Cloud}) es un servicio de AWS que
 proporciona capacidad informática escalable en la nube. Permite a los usuarios
 lanzar instancias virtuales en la nube con diferentes configuraciones de CPU,
 memoria, almacenamiento y red, lo que facilita la implementación de
@@ -401,7 +402,7 @@ aplicaciones escalables y de alta disponibilidad \cite{AWS_EC2}.
 \subsection{Visual Studio Code}
 
 Visual Studio Code, comúnmente abreviado como VS Code, es un entorno de
-desarrollo integrado (IDE, \textit{Integrated Development Environment}) de
+desarrollo integrado (IDE, del inglés, \textit{Integrated Development Environment}) de
 código abierto, altamente extensible y multiplataforma compatible con Windows,
 macOS y Linux \cite{VSCode}.
 
@@ -418,19 +419,19 @@ Proporciona una interfaz gráfica intuitiva para enviar solicitudes HTTP a un
 servidor y visualizar las respuestas, lo que facilita la depuración y el
 desarrollo de APIs \cite{Postman}.
 
-\subsection{Git}
+% \subsection{Git}
 
-Git es un sistema de control de versiones distribuido de código abierto
-diseñado para gestionar proyectos de software de cualquier tamaño con rapidez y
-eficiencia. Permite a los desarrolladores trabajar en paralelo en un mismo
-proyecto, realizar seguimiento de los cambios, revertir a versiones anteriores
-y colaborar en el desarrollo de software \cite{Git}.
+% Git es un sistema de control de versiones distribuido de código abierto
+% diseñado para gestionar proyectos de software de cualquier tamaño con rapidez y
+% eficiencia. Permite a los desarrolladores trabajar en paralelo en un mismo
+% proyecto, realizar seguimiento de los cambios, revertir a versiones anteriores
+% y colaborar en el desarrollo de software \cite{Git}.
 
 \subsection{Github}
 
-Github es una plataforma de alojamiento de repositorios Git que permite a los
-desarrolladores colaborar en proyectos de software de forma distribuida.
-Proporciona herramientas para gestionar el código fuente, realizar seguimiento
-de los cambios, revisar el código, realizar integración continua y despliegue
-automático \cite{Github}.
+Github es una plataforma de alojamiento de repositorios Git \cite{Git} que
+permite a los desarrolladores colaborar en proyectos de software de forma
+distribuida. Proporciona herramientas para gestionar el código fuente, realizar
+seguimiento de los cambios, revisar el código, realizar integración continua y
+despliegue automático \cite{Github}.
 
