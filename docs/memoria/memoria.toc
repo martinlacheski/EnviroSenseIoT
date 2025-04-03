@@ -64,10 +64,14 @@
 \contentsline {subsection}{\numberline {3.4.2}Autenticación y autorización}{23}{subsection.3.4.2}%
 \contentsline {subsection}{\numberline {3.4.3}Persistencia de datos}{24}{subsection.3.4.3}%
 \contentsline {subsection}{\numberline {3.4.4}Comunicación con el broker MQTT}{25}{subsection.3.4.4}%
-\contentsline {subsection}{\numberline {3.4.5}Implementación de WebSockets}{25}{subsection.3.4.5}%
-\contentsline {section}{\numberline {3.5}Desarrollo del frontend}{25}{section.3.5}%
-\contentsline {section}{\numberline {3.6}Desarrollo de nodos sensores y actuadores}{25}{section.3.6}%
-\contentsline {section}{\numberline {3.7}Despliegue del sistema}{25}{section.3.7}%
-\contentsline {chapter}{\numberline {A}Resumen de endpoints de la API}{27}{appendix.Alph1}%
-\contentsline {chapter}{\numberline {B}Autenticación con JWT}{31}{appendix.Alph2}%
-\contentsline {chapter}{Bibliografía}{33}{appendix*.38}%
+\contentsline {subsubsection}{Pasos en AWS IoT Core}{25}{section*.34}%
+\contentsline {subsubsection}{Implementación de MQTT en FastAPI}{26}{section*.36}%
+\contentsline {subsubsection}{Comunicación con MQTT en FastAPI}{26}{section*.37}%
+\contentsline {subsection}{\numberline {3.4.5}Implementación de WebSockets}{28}{subsection.3.4.5}%
+\contentsline {section}{\numberline {3.5}Desarrollo del frontend}{28}{section.3.5}%
+\contentsline {section}{\numberline {3.6}Desarrollo de nodos sensores y actuadores}{28}{section.3.6}%
+\contentsline {section}{\numberline {3.7}Despliegue del sistema}{28}{section.3.7}%
+\contentsline {chapter}{\numberline {A}Resumen de endpoints de la API}{29}{appendix.Alph1}%
+\contentsline {chapter}{\numberline {B}Autenticación con JWT}{33}{appendix.Alph2}%
+\contentsline {chapter}{\numberline {C}Conexión al broker MQTT con FastAPI y AWS IoT SDK para Python}{35}{appendix.Alph3}%
+\contentsline {chapter}{Bibliografía}{39}{appendix*.46}%

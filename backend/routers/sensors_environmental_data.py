@@ -1,7 +1,6 @@
 from typing import List
 from beanie import PydanticObjectId
 from fastapi import APIRouter, Depends, HTTPException, status
-from bson import ObjectId
 
 # Importamos Modelo y Esquema de la Entidad
 from models.user import User

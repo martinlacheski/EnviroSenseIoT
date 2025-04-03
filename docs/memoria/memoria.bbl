@@ -1195,22 +1195,23 @@
     \field{urlyear}{2025}
   \endentry
 
-  \entry{FastApiMQTT}{online}{}
+  \entry{AWSIoTSDK}{online}{}
     \name{author}{1}{}{%
-      {{hash=SS}{%
-         family={Shukurov},
+      {{hash=SAW}{%
+         family={Services},
          familyi={S\bibinitperiod},
-         given={Sabuhi},
-         giveni={S\bibinitperiod},
+         given={Amazon\bibnamedelima Web},
+         giveni={A\bibinitperiod\bibinitdelim W\bibinitperiod},
       }}%
     }
-    \strng{namehash}{SS1}
-    \strng{fullhash}{SS1}
+    \strng{namehash}{SAW1}
+    \strng{fullhash}{SAW1}
     \field{labelnamesource}{author}
     \field{labeltitlesource}{title}
-    \field{title}{FastAPI-MQTT Documentation}
+    \field{title}{AWS IoT SDKs - Guía del desarrollador}
     \verb{url}
-    \verb https://sabuhish.github.io/fastapi-mqtt/
+    \verb https://docs.aws.amazon.com/es_es/iot/latest/developerguide/iot-sdks.
+    \verb html
     \endverb
     \field{urlday}{02}
     \field{urlmonth}{04}

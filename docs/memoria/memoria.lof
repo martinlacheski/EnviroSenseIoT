@@ -19,5 +19,11 @@
 \contentsline {figure}{\numberline {3.2}{\ignorespaces Modelo de datos implementado.}}{18}{figure.caption.23}%
 \contentsline {figure}{\numberline {3.3}{\ignorespaces Arquitectura del servidor del sistema IoT.}}{20}{figure.caption.28}%
 \contentsline {figure}{\numberline {3.4}{\ignorespaces Esquema de autenticación y autorización.}}{23}{figure.caption.33}%
+\contentsline {figure}{\numberline {3.5}{\ignorespaces Ejemplo de políticas de acceso en AWS IoT Core.}}{25}{figure.caption.35}%
+\contentsline {figure}{\numberline {3.6}{\ignorespaces Pruebas en Postman. Test de conexión al broker MQTT.}}{26}{figure.caption.38}%
+\contentsline {figure}{\numberline {3.7}{\ignorespaces Pruebas en Postman. Publicación de un mensaje en un tópico.}}{27}{figure.caption.39}%
+\contentsline {figure}{\numberline {3.8}{\ignorespaces Cliente MQTT en FastAPI.}}{27}{figure.caption.40}%
+\contentsline {figure}{\numberline {3.9}{\ignorespaces Datos almacenados en MongoDB.}}{28}{figure.caption.41}%
+\addvspace {10\p@ }
 \addvspace {10\p@ }
 \addvspace {10\p@ }

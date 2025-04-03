@@ -19,6 +19,12 @@
     showtabs=false, stepnumber=1, stringstyle=\color{mymauve}, tabsize=2,
     title=\lstname, morecomment=[s]{/*}{*/} }% where to put the line-numbers; possible values are (none, left, right)% how far the line-numbers are from the code% the style that is used for the line-numbers% if not set, the frame-color may be changed on line-breaks within not-black text (e.g. comments (green here))% show spaces everywhere adding particular underscores; it overrides 'showstringspaces'% underline spaces within strings only% show tabs within strings adding particular underscores% the step between two line-numbers. If it's 1, each line will be numbered% string literal style% sets default tabsize to 2 spaces% show the filename of files included with \lstinputlisting; also try caption instead of title
 
+\lstdefinelanguage{PythonUTF8}[]{Python}{
+literate={á}{{\'a}}1 {é}{{\'e}}1 {í}{{\'i}}1 {ó}{{\'o}}1 {ú}{{\'u}}1
+{Á}{{\'A}}1 {É}{{\'E}}1 {Í}{{\'I}}1 {Ó}{{\'O}}1 {Ú}{{\'U}}1
+{ñ}{{\~n}}1 {Ñ}{{\~N}}1
+}
+
 \definecolor{mygreen}{rgb}{0,0.6,0}
 \definecolor{mygray}{rgb}{0.5,0.5,0.5}
 \definecolor{mymauve}{rgb}{0.58,0,0.82}
@@ -234,11 +240,11 @@ Para el envío de los datos en tiempo real desde el backend al frontend, se
 utilizó la librería Websocket \cite{FastAPIWebSockets} de FastAPI, que permite
 establecer una conexión bidireccional entre el servidor y el cliente.
 
-La comunicación entre el backend y el broker MQTT se realizó a través de la
-librería FastApi-MQTT \cite{FastApiMQTT}, que facilita la integración de
-FastAPI con el protocolo MQTT. Esta librería permite publicar y suscribirse a
-temas de manera sencilla, lo que facilita la comunicación entre el backend y
-los nodos sensores y actuadores.
+La comunicación entre el backend y el broker MQTT se implementó mediante el SDK
+(del inglés, \textit{Software Development Kit}) de AWS IoT para Python
+\cite{AWSIoTSDK}, que simplifica la integración de FastAPI con el protocolo
+MQTT. Este SDK permite gestionar la conexión con el broker, así como publicar y
+suscribirse a tópicos.
 
 \subsubsection{Base de datos}
 
@@ -248,11 +254,9 @@ información relacionada con los requerimientos del sistema.
 
 La comunicación entre el backend y la base de datos se realizó a través de la
 librería Motor \cite{MotorMongoDB}, que proporciona una interfaz asíncrona para
-interactuar con MongoDB.
-
-Además se utilizó el ODM (del inglés, \textit{Object Document Mapper}), a
-través de la librería Beanie \cite{BeaniODM}, que permite definir modelos y
-realizar consultas de manera sencilla.
+interactuar con MongoDB. Además se utilizó el ODM (del inglés, \textit{Object
+    Document Mapper}), a través de la librería Beanie \cite{BeaniODM}, que permite
+definir modelos y realizar consultas de manera sencilla.
 
 \subsubsection{Frontend}
 
@@ -302,12 +306,12 @@ Está compuesta de los siguientes componentes principales:
           \end{itemize}
 \end{itemize}
 
-La siguiente figura \ref{fig:arquitectura servidor} muestra la arquitectura del
-del servidor del sistema IoT.
+La figura \ref{fig:arquitectura servidor} muestra la arquitectura del del
+servidor del sistema IoT.
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=.99\textwidth]{./Images/16.png}
+    \includegraphics[width=.97\textwidth]{./Images/16.png}
     \caption{Arquitectura del servidor del sistema IoT.}
     \label{fig:arquitectura servidor}
 \end{figure}
@@ -343,11 +347,8 @@ de abstracción sobre Motor, lo que facilita la interacción con la base de dato
 permite definir modelos de datos de manera declarativa.
 
 \textbf{Conexión con el broker MQTT:} Es el componente encargado de la comunicación
-bidireccional con los
-dispositivos IoT. Se implementó un cliente MQTT que se conecta al broker AWS
-IoT Core y gestiona la publicación y suscripción a los temas correspondientes.
-Este servicio permite recibir datos y enviar comandos a los nodos sensores y
-actuadores.
+bidireccional con los dispositivos IoT. Se implementó un cliente MQTT que se conecta
+a AWS IoT Core y gestiona la publicación y suscripción a los tópicos correspondientes.
 
 \textbf{Comunicación con frontend en tiempo real con WebSocket:} Es el componente
 encargado de gestionar la comunicación en tiempo real entre el servidor y el cliente.
@@ -386,9 +387,9 @@ archivos en carpetas de acuerdo a su funcionalidad. % Se definieron los modelos
 % de datos utilizando la librería Beanie y se implementaron los endpoints para
 % realizar las operaciones necesarias en la API.
 
-La siguiente tabla \ref{tab:endpoints} presenta un resumen de los principales
-endpoints de la API, junto con una breve descripción de la acción y el método
-HTTP utilizado.
+La tabla \ref{tab:endpoints} presenta un resumen de los principales endpoints
+de la API, junto con una breve descripción de la acción y el método HTTP
+utilizado.
 
 \begin{table}[H]
     \centering
@@ -544,18 +545,174 @@ async def init_db():
 \end{lstlisting}
 
 \subsection{Comunicación con el broker MQTT}
-La comunicación con el broker MQTT se realiza a través de la librería
-FastApi-MQTT, que permite publicar y suscribirse a temas de manera sencilla. Se
-implementaron métodos para recibir datos de los nodos sensores y actuadores, y
-para enviar comandos a los dispositivos. Además, se implementó un sistema de
-almacenamiento de datos que permite guardar los datos recibidos en la base de
-datos MongoDB.
+
+A continuación, se describe la implementación de la comunicación con el broker
+MQTT.
+
+% La comunicación con el broker MQTT se realiza a través de la SDK de AWS IoT
+% para Python. Se implementaron métodos para recibir datos de los nodos sensores
+% y actuadores, y para enviar comandos a los dispositivos. Además, se implementó
+% un sistema de almacenamiento de datos que permite guardar los datos recibidos
+% en la base de datos MongoDB.
+
+\subsubsection{Pasos en AWS IoT Core}
+
+A continuación, se describen los pasos realizados en AWS IoT Core para
+configurar la conexión con el broker MQTT.
+
+\begin{enumerate}
+    \item Se creó un objeto \textit{Thing} en AWS IoT Core, que representa un dispositivo
+          IoT. Este objeto se utiliza para gestionar la conexión y la comunicación con el
+          broker.
+    \item Se generaron certificados de seguridad y claves privadas para el objeto
+          \textit{Thing}, que permiten autenticar la conexión y cifrar los datos
+          transmitidos. Estos certificados son necesarios para establecer una conexión
+          segura con el broker MQTT.
+    \item Se definieron las políticas de acceso necesarias para el objeto \textit{Thing},
+          a fin de permitir publicar y suscribirse a los tópicos correspondientes.
+\end{enumerate}
+
+La figura \ref{fig:aws_iot_policies} muestra un ejemplo de cómo se definen las
+políticas de acceso en AWS IoT Core.
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=.99\textwidth]{./Images/18.png}
+    \caption{Ejemplo de políticas de acceso en AWS IoT Core.}
+    \label{fig:aws_iot_policies}
+\end{figure}
+
+\textbf{Políticas de acceso:} determinan los permisos del cliente para publicar,
+suscribirse y recibir mensajes en los tópicose. Se aplican a los certificados
+generados para el cliente y controlan el acceso a los recursos de AWS IoT Core.
+
+Definidas en formato JSON, estas políticas garantizan que solo los clientes
+autorizados puedan interactuar con los recursos y operar en los tópicos
+correspondientes. Además, pueden configurarse de manera específica para cada
+cliente, permitiendo un control granular sobre los permisos de acceso.
+
+\subsubsection{Implementación de MQTT en FastAPI}
+Una vez que se creó y se configuró el objeto \textit{Thing} en AWS IoT Core, se
+procedió a la implementación de la conexión del broker con FastAPI. Para ello,
+se utilizó la SDK de AWS IoT para Python, que proporciona una interfaz sencilla
+para conectarse al broker y gestionar la comunicación con los dispositivos IoT.
+
+Se implementó un cliente MQTT que se conecta al broker con los certificados
+generados previamente. Este cliente permite publicar y suscribirse a los
+tópicos correspondientes, lo que facilita la comunicación entre el servidor y
+los dispositivos IoT.
+
+% Una vez establecida la conexión entre el servidor IoT y AWS IoT Core, se
+% implementaron métodos para publicar y suscribirse a los tópicos
+% correspondientes. Estos métodos permiten enviar y recibir datos de los nodos
+% sensores y actuadores, así como almacenar los datos en la base de datos
+% MongoDB.
+
+En la aplicación FastAPI se definieron dos rutas claves para la chequear la
+comunicación con AWS IoT Core:
+
+\begin{enumerate}
+    \item Una ruta para verificar la conexión con el broker MQTT.
+    \item Una ruta para enviar mensajes a un tópico específico y comprobar la
+          comunicación entre el servidor y el broker.
+\end{enumerate}
+
+% El fragmento de código \ref{cod:mqtt} muestra la implementación de estas rutas
+% en FastAPI.
+
+% \begin{lstlisting}[label=cod:mqtt,caption=Métodos MQTT en FastAPI, language=PythonUTF8]
+%     # Clase para manejar la publicación de mensajes MQTT
+%     class PublishRequest(BaseModel):
+%         topic: str
+%         message: dict
+
+%     # Endpoint para publicar mensajes en un tópico MQTT
+%     @app.post("/mqtt/publish")
+%     def publish_message(request: PublishRequest):
+%         mqtt_client.publish(request.topic, request.message)
+%         return {"status": "Mensaje publicado", "topic": request.topic, "message": request.message}
+
+%     # Endpoint para comprobar la conexión con el broker MQTT
+%     @app.get("/mqtt/test")
+%     def test_mqtt_connection():
+%         try:
+%             mqtt_client.connect()
+%             return {"status": "Conexión exitosa"}
+%         except Exception as e:
+%             return {"status": "Error de conexión", "error": str(e)}
+% \end{lstlisting}
+
+\subsubsection{Comunicación con MQTT en FastAPI}
+
+Además de las rutas anteriores, en FastAPI se implementaron métodos para
+suscribirse a los tópicos, recibir mensajes de los nodos y publicar en los
+tópicos correspondientes.
+
+Al iniciar el servicio, el cliente MQTT se conecta al broker y se suscribe a
+los tópicos configurados. Los mensajes recibidos se procesan, almacenan en
+MongoDB y notifican al frontend vía WebSocket para actualizar la interfaz en
+tiempo real.
+
+El cliente MQTT, desarrollado como una clase, gestiona la conexión, publicación
+y suscripción a los tópicos, iniciándose junto con el servidor FastAPI para una
+comunicación eficiente.
+
+La figura \ref{fig:test_mqtt} muestra una prueba de conexión al broker MQTT con
+Postman.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=.99\textwidth]{./Images/19.png}
+    \caption{Pruebas en Postman. Test de conexión al broker MQTT.}
+    \label{fig:test_mqtt}
+\end{figure}
+
+La figura \ref{fig:test_mqtt_1} muestra una prueba de publicación de un mensaje
+en un tópico con Postman.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=.99\textwidth]{./Images/20.png}
+    \caption{Pruebas en Postman. Publicación de un mensaje en un tópico.}
+    \label{fig:test_mqtt_1}
+\end{figure}
+
+Por otro lado, la figura \ref{fig:cliente_mqtt} ilustra cómo la aplicación
+FastAPI se conecta al broker MQTT y se suscribe a los tópicos definidos. Se
+muestra la interacción del cliente MQTT con los mensajes recibidos desde los
+nodos sensores y actuadores, almacenándolos en la base de datos MongoDB.
+
+En la misma figura, también se observa un ejemplo donde la aplicación monitorea
+y registra un nuevo intervalo de envío de datos de un sensor, destacando la
+interacción entre el cliente MQTT y el servidor FastAPI.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=.99\textwidth]{./Images/21.png}
+    \caption{Cliente MQTT en FastAPI.}
+    \label{fig:cliente_mqtt}
+\end{figure}
+
+Para finalizar, la figura \ref{fig:mongodb} muestra los datos almacenados en la
+base de datos MongoDB, que refleja la información presentada en la Figura
+\ref{fig:cliente_mqtt}.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=.99\textwidth]{./Images/22.png}
+    \caption{Datos almacenados en MongoDB.}
+    \label{fig:mongodb}
+\end{figure}
+
+El código completo de la implementación de la conexión con el broker MQTT se
+encuentra en el Apéndice \ref{AppendixC}.
 
 \subsection{Implementación de WebSockets}
 La implementación de WebSockets se realizó utilizando la librería Websocket de
 FastAPI, que permitío enviar datos en tiempo real desde el servidor al cliente.
 Se implementaron métodos para establecer la conexión WebSocket y enviar datos
 al cliente cuando se reciben nuevos datos de los nodos sensores y actuadores.
+
+FALTA DESARROLLAR ESTA IMPLEMENTACIÓN
 
 %----------------------------------------------------------------------------------------
 %	SECTION 5
