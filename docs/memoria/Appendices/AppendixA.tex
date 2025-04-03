@@ -1,7 +1,162 @@
-% Appendix A
+\chapter{Resumen de endpoints de la API}
 
-\chapter{Appendix Title Here} % Main appendix title
+\label{AppendixA} 
 
-\label{AppendixA} % For referencing this appendix elsewhere, use \ref{AppendixA}
+Las siguientes tablas presentan un resumen de los endpoints implementados en la
+API, junto con una breve descripción de la acción y el método HTTP utilizado.
 
-Write your Appendix content here.
+\begin{table}[H]
+    \centering
+    \caption[Resumen de principales endpoints de la API]{Resumen de principales endpoints de la API}
+    \begin{tabular}{l l l}
+        % \begin{tabular}{p{1.3cm}p{5.7cm}p{4.9cm}}
+        \toprule
+        \textbf{Método} & \textbf{Endpoint}      & \textbf{Acción}              \\
+        \midrule
+        GET             & /api/                                 & ruta por defecto         \\
+        \midrule
+        POST            & /login                 & hacer login                  \\
+        GET             & /renew-token           & renovar token                \\
+        \midrule
+        GET             & /roles/                & obtener roles                \\
+        POST            & /roles/                & crear rol                    \\
+        GET             & /roles/\{id\}            & obtener un rol               \\
+        PUT             & /roles/\{id\}            & actualizar rol               \\
+        DELETE          & /roles/\{id\}            & eliminar rol                 \\
+        \midrule
+        GET             & /users/                & obtener usuarios             \\
+        POST            & /users/                & crear usuario                \\
+        PUT             & /users/                & actualizar usuario           \\
+        GET             & /users/\{id\}            & obtener un usuario           \\
+        DELETE          & /users/\{id\}            & eliminar usuario             \\
+        PATCH           & /users/                & actualizar \textbf{username} \\
+        PATCH           & /users/password        & actualizar \textbf{password} \\
+        GET             & /users/me              & obtener un usuario           \\
+        PATCH           & /users/change/password & actualizar 'username'        \\
+
+        \midrule
+        GET             & /countries/            & obtener países               \\
+        POST            & /countries/            & crear país                   \\
+        GET             & /countries/\{id\}       & obtener un país              \\
+        PUT             & /countries/\{id\}        & actualizar país              \\
+        DELETE          & /countries/\{id\}        & eliminar país                \\
+        \midrule
+        GET             & /provinces/            & obtener provincias           \\
+        POST            & /provinces/            & crear provincia              \\
+        GET             & /provinces/\{id\}        & obtener una provincia        \\
+        PUT             & /provinces/\{id\}        & actualizar provincia         \\
+        DELETE          & /provinces/\{id\}        & eliminar provincia           \\
+        \bottomrule
+        \hline
+    \end{tabular}
+    \label{tab:endpoints1}
+\end{table}
+
+\begin{table}[H]
+    \centering
+    \caption[Resumen de principales endpoints de la API]{Resumen de principales endpoints de la API}
+    \begin{tabular}{l l l}
+        % \begin{tabular}{p{1.3cm}p{5.7cm}p{4.9cm}}
+        \toprule
+        \textbf{Método} & \textbf{Endpoint}              & \textbf{Acción}              \\
+        \midrule
+        GET             & /cities/                       & obtener ciudades             \\
+        POST            & /cities/                       & crear ciudad                 \\
+        GET             & /cities/\{id\}                   & obtener una ciudad           \\
+        PUT             & /cities/\{id\}                   & actualizar ciudad            \\
+        DELETE          & /cities/\{id\}                   & eliminar ciudad              \\
+        \midrule
+        GET             & /company/                      & obtener empresas             \\
+        POST            & /company/                      & crear empresa                \\
+        GET             & /company/\{id\}                  & obtener una empresa          \\
+        PUT             & /company/\{id\}                  & actualizar empresa           \\
+        DELETE          & /company/\{id\}                  & eliminar empresa             \\
+        POST            & /company/uploadLogo            & subir logo empresa           \\
+        \midrule
+        GET             & /environments/types/           & obtener tipos de ambientes   \\
+        POST            & /environments/types/           & crear tipo de ambiente       \\
+        GET             & /environments/types/\{id\}       & obtener un tipo de ambiente  \\
+        PUT             & /environments/types/\{id\}       & actualizar tipo de ambiente  \\
+        DELETE          & /environments/types/\{id\}       & eliminar tipo de ambiente    \\
+        \midrule
+        GET             & /environments/                 & obtener ambientes            \\
+        POST            & /environments/                 & crear ambiente               \\
+        GET             & /environments/\{id\}             & obtener un ambiente          \\
+        PUT             & /environments/\{id\}             & actualizar ambiente          \\
+        DELETE          & /environments/\{id\}             & eliminar ambiente            \\
+        \midrule
+        GET             & /actuators/                    & obtener actuadores           \\
+        POST            & /actuators/                    & crear actuador               \\
+        GET             & /actuators/\{id\}                & obtener un actuador          \\
+        PUT             & /actuators/\{id\}                & actualizar actuador          \\
+        DELETE          & /actuators/\{id\}                & eliminar actuador            \\
+        \midrule
+        GET             & /actuators/log/                & obtener logs de actuadores   \\
+        POST            & /actuators/log/                & crear log de actuador        \\
+        \midrule
+        GET             & /actuators/data/               & obtener datos histórios      \\
+        POST            & /actuators/data/               & crear dato histório          \\
+        GET             & /actuators/data/\{id\}           & obtener un dato histório     \\
+        \midrule
+        GET             & /nutrients/types/              & obtener tipos de nutrientes  \\
+        POST            & /nutrients/types/              & crear tipo de nutriente      \\
+        GET             & /nutrients/types/\{id\}          & obtener un tipo de nutriente \\
+        PUT             & /nutrients/types/\{id\}          & actualizar tipo de nutriente \\
+        DELETE          & /nutrients/types/\{id\}          & eliminar tipo de nutriente   \\
+        \midrule
+        GET             & /sensors/consumption/          & obtener sensores             \\
+        POST            & /sensors/consumption/          & crear sensor                 \\
+        GET             & /sensors/consumption/\{id\}      & obtener un sensor            \\
+        PUT             & /sensors/consumption/\{id\}      & actualizar sensor            \\
+        DELETE          & /sensors/consumption/\{id\}      & eliminar sensor              \\
+        \midrule
+        GET             & /sensors/consumption/log/      & obtener logs de sensor       \\
+        POST            & /sensors/consumption/log/      & crear log de sensor          \\
+        \midrule
+        GET             & /sensors/consumption/data/     & obtener datos histórios      \\
+        POST            & /sensors/consumption/data/     & crear dato histório          \\
+        GET             & /sensors/consumption/data/\{id\} & obtener un dato histório     \\
+        \bottomrule
+        \hline
+    \end{tabular}
+    \label{tab:endpoints2}
+\end{table}
+
+\begin{table}[H]
+    \centering
+    \caption[Resumen de principales endpoints de la API]{Resumen de principales endpoints de la API}
+    \begin{tabular}{l l l}
+        % \begin{tabular}{p{1.3cm}p{5.7cm}p{4.9cm}}
+        \toprule
+        \textbf{Método} & \textbf{Endpoint}                     & \textbf{Acción}          \\
+        \midrule
+        GET             & /sensors/environmental/               & obtener sensores         \\
+        POST            & /sensors/environmental/               & crear sensor ambiental   \\
+        GET             & /sensors/environmental/\{id\}           & obtener un sensor        \\
+        PUT             & /sensors/environmental/\{id\}           & actualizar sensor        \\
+        DELETE          & /sensors/environmental/\{id\}           & eliminar sensor          \\
+        \midrule
+        GET             & /sensors/environmental/log/           & obtener logs de sensor   \\
+        POST            & /sensors/environmental/log/           & crear log de sensor      \\
+        \midrule
+        GET             & /sensors/environmental/data/          & obtener datos histórios  \\
+        POST            & /sensors/environmental/data/          & crear dato histório      \\
+        GET             & /sensors/environmental/data/\{id\}      & obtener un dato histório \\
+        \midrule
+        GET             & /sensors/nutrients/solution/          & obtener sensores         \\
+        POST            & /sensors/nutrients/solution/          & crear sensor             \\
+        GET             & /sensors/nutrients/solution/\{id\}      & obtener un sensor        \\
+        PUT             & /sensors/nutrients/solution/\{id\}      & actualizar sensor        \\
+        DELETE          & /sensors/nutrients/solution/\{id\}      & eliminar sensor          \\
+        \midrule
+        GET             & /sensors/nutrients/solution/log/      & obtener logs de sensor   \\
+        POST            & /sensors/nutrients/solution/log/      & crear log de sensor      \\
+        \midrule
+        GET             & /sensors/nutrients/solution/data/     & obtener datos histórios  \\
+        POST            & /sensors/nutrients/solution/data/     & crear dato histório      \\
+        GET             & /sensors/nutrients/solution/data/\{id\} & obtener un dato histório \\
+        \bottomrule
+        \hline
+    \end{tabular}
+    \label{tab:endpoints3}
+\end{table}

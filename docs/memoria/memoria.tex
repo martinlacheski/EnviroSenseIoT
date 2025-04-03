@@ -53,6 +53,22 @@
   \def\textunderscore{\_} % Manejo del subrayado en marcadores
 }
 
+% Configuración de estilo para el código
+\usepackage{listings}
+\usepackage{xcolor}
+\lstdefinestyle{mystyle}{
+    language=Python,
+    basicstyle=\ttfamily\small,
+    commentstyle=\color{green},
+    stringstyle=\color{red},
+    keywordstyle=\color{blue},
+    showstringspaces=false,
+    literate={á}{{\'a}}1 {é}{{\'e}}1 {í}{{\'i}}1 {ó}{{\'o}}1 {ú}{{\'u}}1
+             {Á}{{\'A}}1 {É}{{\'E}}1 {Í}{{\'I}}1 {Ó}{{\'O}}1 {Ú}{{\'U}}1
+             {ñ}{{\~n}}1 {Ñ}{{\~N}}1,
+    escapeinside=||
+}
+
 
 % Definir comandos requeridos por la clase
 \newcommand{\degreename}{Maestría en Ciencias} % Cambia según tu título
@@ -127,7 +143,7 @@
 % Incluir capítulos desde archivos separados
 \include{Chapters/Chapter1}
 \include{Chapters/Chapter2}
-% \include{Chapters/Chapter3}
+\include{Chapters/Chapter3}
 % \include{Chapters/Chapter4}
 % \include{Chapters/Chapter5}
 
@@ -138,7 +154,8 @@
 \appendix
 
 % Incluir apéndices desde archivos separados si es necesario
-%\include{Appendices/AppendixA}
+\include{Appendices/AppendixA}
+\include{Appendices/AppendixB}
 
 %----------------------------------------------------------------------------------------
 % Bibliografía

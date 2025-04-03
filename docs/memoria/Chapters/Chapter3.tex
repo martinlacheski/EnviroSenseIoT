@@ -1,94 +1,583 @@
-\chapter{Diseño e implementación} % Main chapter title
-
-\label{Chapter3} % Change X to a consecutive number; for referencing this chapter elsewhere, use \ref{ChapterX}
-
-Todos los capítulos deben comenzar con un breve párrafo introductorio que indique cuál es el contenido que se encontrará al leerlo.  La redacción sobre el contenido de la memoria debe hacerse en presente y todo lo referido al proyecto en pasado, siempre de modo impersonal.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% parámetros para configurar el formato del código en los entornos lstlisting
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\lstset{ %
+    backgroundcolor=\color{white},   % choose the background color; you must add \usepackage{color} or \usepackage{xcolor}
+    basicstyle=\footnotesize,        % the size of the fonts that are used for the code
+    breakatwhitespace=false,         % sets if automatic breaks should only happen at whitespace
+    breaklines=true,                 % sets automatic line breaking
+    captionpos=b,                    % sets the caption-position to bottom
+    commentstyle=\color{mygreen},    % comment style
+    deletekeywords={...},            % if you want to delete keywords from the given language
+    %escapeinside={\%*}{*)},          % if you want to add LaTeX within your code
+    %extendedchars=true,              % lets you use non-ASCII characters; for 8-bits encodings only, does not work with UTF-8
+    %frame=single,	                % adds a frame around the code
+    keepspaces=true, keywordstyle=\color{blue}, language=[ANSI]C, % keeps spaces in text, useful for keeping indentation of code (possibly needs columns=flexible)% keyword style% the language of the code
+    %otherkeywords={*,...},           % if you want to add more keywords to the set
+    numbers=left, numbersep=5pt, numberstyle=\tiny\color{mygray},
+    rulecolor=\color{black}, showspaces=false, showstringspaces=false,
+    showtabs=false, stepnumber=1, stringstyle=\color{mymauve}, tabsize=2,
+    title=\lstname, morecomment=[s]{/*}{*/} }% where to put the line-numbers; possible values are (none, left, right)% how far the line-numbers are from the code% the style that is used for the line-numbers% if not set, the frame-color may be changed on line-breaks within not-black text (e.g. comments (green here))% show spaces everywhere adding particular underscores; it overrides 'showstringspaces'% underline spaces within strings only% show tabs within strings adding particular underscores% the step between two line-numbers. If it's 1, each line will be numbered% string literal style% sets default tabsize to 2 spaces% show the filename of files included with \lstinputlisting; also try caption instead of title
 
 \definecolor{mygreen}{rgb}{0,0.6,0}
 \definecolor{mygray}{rgb}{0.5,0.5,0.5}
 \definecolor{mymauve}{rgb}{0.58,0,0.82}
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% parámetros para configurar el formato del código en los entornos lstlisting
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\lstset{ %
-  backgroundcolor=\color{white},   % choose the background color; you must add \usepackage{color} or \usepackage{xcolor}
-  basicstyle=\footnotesize,        % the size of the fonts that are used for the code
-  breakatwhitespace=false,         % sets if automatic breaks should only happen at whitespace
-  breaklines=true,                 % sets automatic line breaking
-  captionpos=b,                    % sets the caption-position to bottom
-  commentstyle=\color{mygreen},    % comment style
-  deletekeywords={...},            % if you want to delete keywords from the given language
-  %escapeinside={\%*}{*)},          % if you want to add LaTeX within your code
-  %extendedchars=true,              % lets you use non-ASCII characters; for 8-bits encodings only, does not work with UTF-8
-  %frame=single,	                % adds a frame around the code
-  keepspaces=true,                 % keeps spaces in text, useful for keeping indentation of code (possibly needs columns=flexible)
-  keywordstyle=\color{blue},       % keyword style
-  language=[ANSI]C,                % the language of the code
-  %otherkeywords={*,...},           % if you want to add more keywords to the set
-  numbers=left,                    % where to put the line-numbers; possible values are (none, left, right)
-  numbersep=5pt,                   % how far the line-numbers are from the code
-  numberstyle=\tiny\color{mygray}, % the style that is used for the line-numbers
-  rulecolor=\color{black},         % if not set, the frame-color may be changed on line-breaks within not-black text (e.g. comments (green here))
-  showspaces=false,                % show spaces everywhere adding particular underscores; it overrides 'showstringspaces'
-  showstringspaces=false,          % underline spaces within strings only
-  showtabs=false,                  % show tabs within strings adding particular underscores
-  stepnumber=1,                    % the step between two line-numbers. If it's 1, each line will be numbered
-  stringstyle=\color{mymauve},     % string literal style
-  tabsize=2,	                   % sets default tabsize to 2 spaces
-  title=\lstname,                  % show the filename of files included with \lstinputlisting; also try caption instead of title
-  morecomment=[s]{/*}{*/}
-}
+\chapter{Diseño e implementación} % Main chapter title
 
+\label{Chapter3} % Change X to a consecutive number; for referencing this chapter elsewhere, use \ref{ChapterX}
+
+En este capítulo se describe el diseño y la implementación del sistema de
+monitoreo y control de invernaderos. Se detallan los componentes principales
+del sistema, las decisiones de diseño tomadas, y los pasos seguidos para su
+implementación.
 
 %----------------------------------------------------------------------------------------
 %	SECTION 1
 %----------------------------------------------------------------------------------------
-\section{Análisis del software}
- 
-La idea de esta sección es resaltar los problemas encontrados, los criterios utilizados y la justificación de las decisiones que se hayan tomado.
+\section{Arquitectura del sistema}
 
-Se puede agregar código o pseudocódigo dentro de un entorno lstlisting con el siguiente código:
+La figura \ref{fig:arquitectura} ilustra la arquitectura general del sistema y
+la interacción entre los diferentes componentes.
 
-\begin{verbatim}
-\begin{lstlisting}[caption= "un epígrafe descriptivo"]
-	las líneas de código irían aquí...
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=.99\textwidth]{./Images/14.png}
+    \caption{Arquitectura de la solución propuesta.}
+    \label{fig:arquitectura}
+\end{figure}
+
+La arquitectura planteada para el desarrollo del trabajo sigue el modelo de
+tres capas típico de un sistema IoT: percepción, red y aplicación.
+
+\begin{itemize}
+    \item Capa de percepción: formada por nodos sensores y actuadores que recopilan datos
+          del entorno y ejecutan acciones de acuerdo con la configuración establecida.
+    \item Capa de red: encargada de gestionar la comunicación entre los dispositivos IoT
+          y el backend. Los sensores y actuadores transmiten datos a través de Wi-Fi, los
+          cuales son gestionados por un broker MQTT.
+    \item Capa de aplicación: plataforma en la nube responsable del procesamiento,
+          almacenamiento y visualización de datos. Facilita la interacción con los
+          dispositivos, la gestión de la información y la presentación de datos mediante
+          una interfaz accesible para el usuario.
+\end{itemize}
+
+\subsection{Capa de percepción}
+
+La capa de percepción está constituida por los nodos sensores y actuadores, que
+se encargan de recopilar datos del entorno y ejecutar acciones específicas en
+función de los parámetros configurados.
+
+Cada nodo sensor incluye un microcontrolador ESP-WROOM-32, el cual se conecta a
+diversos sensores que miden parámetros ambientales como temperatura ambiente,
+humedad relativa, presión atmosférica, luminosidad, concentración de $CO_2$,
+pH, conductividad eléctrica, temperatura de la solución nutritiva, nivel de
+líquidos, consumo eléctrico, entre otros. Los nodos actuadores, por su parte,
+cuentan con relés para controlar dispositivos como ventiladores, iluminación y
+sistemas de recirculación de nutrientes.
+
+Los nodos están conectados a una red Wi-Fi local, lo que les permite establecer
+comunicación con otros dispositivos en la red y transmitir los datos de los
+sensores hacia el servidor IoT. La transmisión de datos se realiza con el
+protocolo MQTT.
+
+\subsection{Capa de red}
+
+La capa de red está compuesta por la infraestructura que gestiona la
+comunicación entre los nodos sensores y actuadores y la plataforma de backend.
+Los nodos sensores y actuadores se conectan a la red Wi-Fi local, lo que les
+permite acceder a internet y a la infraestructura de la nube. Una vez
+conectados, los dispositivos transmiten los datos a través del protocolo MQTT.
+
+La comunicación entre los nodos y el broker MQTT se asegura mediante el uso de
+certificados de seguridad, los cuales garantizan la autenticación de los
+dispositivos y el cifrado de los datos.
+
+El broker MQTT utilizado en este trabajo es AWS IoT Core, un servicio
+completamente gestionado que permite establecer una conexión segura y escalable
+entre los dispositivos IoT y la nube. Este broker actúa como intermediario para
+la transmisión de datos entre los nodos y la capa de aplicación.
+
+\subsection{Capa de aplicación}
+
+La capa de aplicación es responsable del procesamiento, almacenamiento y
+visualización de los datos recopilados por los nodos. Para esta capa, se
+implementó el servidor IoT en la nube utilizando el servicio \textit{AWS EC2},
+que permite ejecutar aplicaciones y servicios en instancias virtuales.
+
+El procesamiento y la gestión de datos se realiza a través de un backend
+desarrollado con FastAPI, mientras que la base de datos MongoDB se utiliza para
+el almacenamiento de la información. Además, se implementó una interfaz gráfica
+de usuario en React para la visualización y gestión de los datos. Todos estos
+servicios fueron desplegados a través de contenedores Docker.
+
+% \subsection{Capa de percepción}
+
+% Esta capa está compuesta por los nodos sensores y actuadores. Cada nodo sensor
+% está compuesto por un microcontrolador ESP-WROOM-32 y diversos sensores que
+% permiten medir parámetros ambientales, como temperatura, humedad, luminosidad,
+% concentración de $CO_2$, pH, conductividad eléctrica, temperatura de la
+% solución nutritiva, nivel, consumo eléctrico, entre otros. Además, los nodos
+% actuadores están equipados con relés que permiten controlar dispositivos como
+% ventiladores, iluminación y recirculación de nutrientes.
+
+% Estos nodos se conectan a una red Wi-Fi y se comunican a través de un broker
+% MQTT con el servidor IoT. La comunicación de los nodos con el broker MQTT se
+% realiza de manera segura, se utilizan certificados para autenticar la conexión
+% y cifrar los datos transmitidos.
+
+% \subsection{Capa de Red}
+
+% Esta capa está compuesta por un broker MQTT que actúa como intermediario entre
+% los nodos sensores y actuadores y el servidor IoT. El broker MQTT utilizado en
+% el desarrollo del trabajo fue AWS IoT Core, que es un servicio totalmente
+% gestionado que permite la conexión de dispositivos IoT a la nube. Para cada
+% nodo y para el servidor backend, se generaron certificados de seguridad y
+% claves privadas, que permiten la autenticación y el cifrado de la información
+% transmitida.
+
+% \subsection{Capa de aplicación}
+% El servidor IoT es la plataforma en la nube responsable del procesamiento,
+% almacenamiento y visualización de los datos recopilados por los nodos. La
+% solución utilizada en el trabajo fue AWS EC2, que es un servicio de computación
+% en la nube que permite ejecutar aplicaciones y servicios en instancias
+% virtuales. Los servicios necesarios (FastAPI, MongoDB y React) se implementaron
+% con Docker, lo que permite desplegar y gestionar aplicaciones de manera
+% eficiente y escalable.
+
+%----------------------------------------------------------------------------------------
+%	SECTION 2
+%----------------------------------------------------------------------------------------
+\section{Modelo de datos}
+
+En esta sección se presenta el modelo de datos implementado en el sistema.
+
+\subsection{Pruebas iniciales de sensores}
+
+Para diseñar el modelo adecuado, se llevó a cabo una prueba inicial con los
+sensores y se registraron los datos generados por cada uno de ellos. La tabla
+\ref{tab:sensores y librerias} muestra los datos obtenidos de cada sensor, tal
+como lo devuelve la librería utilizada para su configuración y lectura.
+
+\begin{table}[h]
+    \centering
+    \caption[Principales sensores y librerias utilizadas]{Principales sensores y librerias utilizadas}
+    \begin{tabular}{p{3.2cm}p{9.6cm}}
+        \toprule
+        \textbf{Componente}               & \textbf{Datos}                                                   \\
+        \midrule
+        \multirow{1}{*}{Sensor BME280}    & La librería utilizada \cite{BME280_MicroPython_Driver} devuelve
+        los valores de temperatura ambiente, humedad relativa y presión atmosférica como Float.              \\
+        \multirow{1}{*}{Sensor BH1750}    & La librería utilizada \cite{BH1750_MicroPython_Driver} devuelve
+        el valor de lux como Float.                                                                          \\
+        \multirow{1}{*}{Sensor MH-Z19C}   & La librería utilizada \cite{MHZ19_MicroPython_Driver} devuelve
+        el valor de ppm de $CO_2$ como Int.                                                                  \\
+        \multirow{1}{*}{Sensor PH-4502}   & La librería utilizada \cite{PH_Sensor_Driver} devuelve
+        el valor de TDS como Float.                                                                          \\
+        \multirow{1}{*}{Sensor de CE}     & La librería utilizada \cite{EC_Sensor_Driver} devuelve
+        el valor de TDS como Float.                                                                          \\
+        \multirow{1}{*}{Sensor de TDS}    & La librería utilizada \cite{TDS_Sensor_Driver} devuelve
+        el valor de TDS como Float.                                                                          \\
+        \multirow{1}{*}{Sensor DS18B20}   & La librería utilizada \cite{DS18B20_MicroPython_Driver} devuelve
+        el valor de la temperatura como Float.                                                               \\
+        \multirow{1}{*}{Sensor HC-SR04}   & La librería utilizada \cite{HCSR04_Sensor_Driver} devuelve
+        el valor de distancia en centímetros como Int.                                                       \\
+        \multirow{1}{*}{Sensor PZEM-004T} & La librería utilizada \cite{PZEM004T_Sensor_Driver} devuelve
+        los valores de voltaje, corriente, potencia, cálculo de potencia y factor de potencia como Float.    \\
+        % \multirow{1}{*}{Módulo Relay}     & Protocolo de comunicación entre cliente y servidor.              \\
+        \bottomrule
+        \hline
+    \end{tabular}
+    \label{tab:sensores y librerias}
+\end{table}
+
+\subsection{Diseño del modelo de datos}
+
+El diseño del modelo de datos se desarrolló de acuerdo a los tipos de datos
+proporcionados por los sensores, así como los requerimientos técnicos
+establecidos para el sistema.
+
+La estructura se organizó en colecciones dentro de MongoDB, donde cada
+colección representa un tipo de dato específico. Cada colección contiene
+documentos que almacenan las lecturas de los sensores y actuadores, y también
+incluye colecciones relacionadas con usuarios, ambientes, tipos de ambientes,
+entre otros. Las colecciones se vinculan mediante identificadores únicos, lo
+que facilita la conexión entre las diferentes colecciones.
+
+La figura \ref{fig:modelo de datos} muestra el modelo de datos implementado en
+el sistema.
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=.99\textwidth]{./Images/15.png}
+    \caption{Modelo de datos implementado.}
+    \label{fig:modelo de datos}
+\end{figure}
+
+%----------------------------------------------------------------------------------------
+%	SECTION 3
+%----------------------------------------------------------------------------------------
+\section{Servidor IoT}
+
+En esta sección se presenta la arquitectura del sistema y se detallan las
+tecnologías utilizadas y la arquitectura del servidor.
+
+\subsection{Tecnologías utilizadas}
+
+\subsubsection{Backend}
+
+Para el desarrollo del backend se optó por utilizar el framework FastAPI basado
+en Python, que permite crear APIs RESTful de manera rápida y eficiente. La
+comunicación entre el frontend y el backend se realizó a través de la API REST
+expuesta con HTTP con el formato JSON para el intercambio de datos.
+
+Para el envío de los datos en tiempo real desde el backend al frontend, se
+utilizó la librería Websocket \cite{FastAPIWebSockets} de FastAPI, que permite
+establecer una conexión bidireccional entre el servidor y el cliente.
+
+La comunicación entre el backend y el broker MQTT se realizó a través de la
+librería FastApi-MQTT \cite{FastApiMQTT}, que facilita la integración de
+FastAPI con el protocolo MQTT. Esta librería permite publicar y suscribirse a
+temas de manera sencilla, lo que facilita la comunicación entre el backend y
+los nodos sensores y actuadores.
+
+\subsubsection{Base de datos}
+
+Como se mencionó anteriormente, se utilizó MongoDB como base de datos para
+almacenar los datos generados por los nodos sensores y actuadores, así como la
+información relacionada con los requerimientos del sistema.
+
+La comunicación entre el backend y la base de datos se realizó a través de la
+librería Motor \cite{MotorMongoDB}, que proporciona una interfaz asíncrona para
+interactuar con MongoDB.
+
+Además se utilizó el ODM (del inglés, \textit{Object Document Mapper}), a
+través de la librería Beanie \cite{BeaniODM}, que permite definir modelos y
+realizar consultas de manera sencilla.
+
+\subsubsection{Frontend}
+
+El frontend se desarrolló mediante la librería React de Facebook. Para el
+diseño de la interfaz, se utilizó la librería Bootstrap para React
+\cite{ReactBootstrap} lo que permitió crear una aplicación web responsiva y
+fácil de usar.
+
+La comunicación entre el frontend y el backend se realizó a través de los
+endpoints de la API REST. Para la visualización de los datos en tiempo real, se
+utilizó la librería Socket.IO \cite{SocketIO}, que permite establecer una
+conexión WebSocket entre el frontend y el backend.
+
+\subsubsection{Despliegue}
+
+Por último, para el despliegue del sistema se utilizó Docker, que permite crear
+contenedores para cada uno de los componentes del sistema. Esto facilita la
+gestión y el despliegue de la aplicación, ya que cada componente se ejecuta en
+su propio contenedor, lo que permite una mayor flexibilidad y escalabilidad.
+
+% Se utilizaron los siguientes contenedores:
+% \begin{itemize}
+%     \item Contenedor del servidor Backend.
+%     \item Contenedor de la base de datos MongoDB.
+%     \item Contenedor del frontend desarrollado en React.
+% \end{itemize}
+
+\subsection{Arquitectura del servidor}
+
+La arquitectura se diseñó para ser escalable, flexible y fácil de mantener.
+Está compuesta de los siguientes componentes principales:
+
+\begin{itemize}
+    \item Backend.
+          \begin{itemize}
+              \item API REST.
+              \item Autenticación y autorización.
+              \item Integración con la base de datos.
+              \item Conexión con el broker MQTT.
+              \item Comunicación con frontend en tiempo real con WebSocket.
+          \end{itemize}
+    \item Capa de datos.
+    \item Frontend.
+          \begin{itemize}
+              \item Interfaz de usuario.
+              \item Comunicación con backend en tiempo real con WebSocket.
+          \end{itemize}
+\end{itemize}
+
+La siguiente figura \ref{fig:arquitectura servidor} muestra la arquitectura del
+del servidor del sistema IoT.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=.99\textwidth]{./Images/16.png}
+    \caption{Arquitectura del servidor del sistema IoT.}
+    \label{fig:arquitectura servidor}
+\end{figure}
+
+A continuación, se describe brevemente cada uno de estos componentes:
+
+\subsubsection{Backend}
+
+% renglon en negrita que diga API REST
+
+\textbf{API REST:} Es el servicio principal que gestiona las peticiones del frontend. Permite la
+creación, lectura, actualización y eliminación de datos relacionados con los
+sensores, actuadores, ambientes y usuarios, entre otros.
+
+La API REST posee los endpoints necesarios para realizar las operaciones de
+lectura de datos históricos y configuración de los nodos sensores y actuadores.
+
+Para implementar el modelo de datos representado en la figura \ref{fig:modelo
+    de datos}, se utilizó la librería Beanie, que permite definir modelos de datos
+de manera declarativa y realizar consultas de forma sencilla.
+
+\textbf{Autenticación y autorización:} Es el componente encargado de gestionar
+la autenticación y autorización de los usuarios. Se implementó un sistema de
+autenticación basado en tokens JWT, que permite a los usuarios acceder a la
+API de manera segura. Se estableció una duración para los tokens de acceso y de
+refresco, lo que permitió que los usuarios mantengan su sesión activa sin
+necesidad de autenticarse nuevamente con sus credenciales.
+
+\textbf{Integración con la base de datos:} Es la integración de FastAPI con MongoDB
+para persistir la información. Se utilizó la biblioteca Motor para la conexión
+asíncrona con la base de datos y realizar consultas. Beanie ODM proporciona una capa
+de abstracción sobre Motor, lo que facilita la interacción con la base de datos y
+permite definir modelos de datos de manera declarativa.
+
+\textbf{Conexión con el broker MQTT:} Es el componente encargado de la comunicación
+bidireccional con los
+dispositivos IoT. Se implementó un cliente MQTT que se conecta al broker AWS
+IoT Core y gestiona la publicación y suscripción a los temas correspondientes.
+Este servicio permite recibir datos y enviar comandos a los nodos sensores y
+actuadores.
+
+\textbf{Comunicación con frontend en tiempo real con WebSocket:} Es el componente
+encargado de gestionar la comunicación en tiempo real entre el servidor y el cliente.
+Se implementó la librería WebSocket en el backend que permite a los clientes conectarse
+y recibir actualizaciones en tiempo real sobre los datos recopilados por los nodos
+
+\subsubsection{Capa de datos}
+
+Es el componente encargado de persistir la información en la base de datos
+MongoDB. Se implementó un esquema de datos que permite almacenar los datos
+recopilados por los nodos sensores y actuadores, así como la información
+relacionada con los usuarios, ambientes y tipos de ambientes, entre otros. Los
+datos se almacenan en colecciones específicas, donde cada colección representa
+un tipo de dato.
+
+\subsubsection{Frontend}
+
+Es la interfaz de usuario desarrollada en React. Permite a los usuarios
+interactuar con el sistema, visualizar los datos en tiempo real y gestionar la
+configuración de los nodos sensores y actuadores. Se implementó una interfaz
+responsiva que se adapta a diferentes dispositivos y tamaños de pantalla.
+
+%----------------------------------------------------------------------------------------
+%	SECTION 4
+%----------------------------------------------------------------------------------------
+\section{Desarrollo del backend}
+
+En esta sección se detallan los aspectos clave en el diseño y desarrollo del
+servidor backend, así como la lógica de negocio implementada.
+
+\subsection{Diseño de la API}
+
+El diseño se estructuró en base a las necesidades del sistema y los
+requerimientos funcionales y no funcionales establecidos. Se organizaron los
+archivos en carpetas de acuerdo a su funcionalidad. % Se definieron los modelos
+% de datos utilizando la librería Beanie y se implementaron los endpoints para
+% realizar las operaciones necesarias en la API.
+
+La siguiente tabla \ref{tab:endpoints} presenta un resumen de los principales
+endpoints de la API, junto con una breve descripción de la acción y el método
+HTTP utilizado.
+
+\begin{table}[H]
+    \centering
+    \caption[Resumen de principales endpoints de la API]{Resumen de principales endpoints de la API}
+    \begin{tabular}{l l l}
+        % \begin{tabular}{p{1.3cm}p{5.7cm}p{4.9cm}}
+        \toprule
+        \textbf{Método} & \textbf{Endpoint}                  & \textbf{Acción}        \\
+        \midrule
+        POST            & /login                             & hacer login            \\
+        GET             & /renew-token                       & renovar token          \\
+        \midrule
+        GET             & /users/                            & obtener usuarios       \\
+        POST            & /users/                            & crear usuario          \\
+        PUT             & /users/                            & actualizar usuario     \\
+        GET             & /users/\{id\}                      & obtener un usuario     \\
+        DELETE          & /users/\{id\}                      & eliminar usuario       \\
+        \midrule
+        GET             & /environments/                     & obtener ambientes      \\
+        POST            & /environments/                     & crear ambiente         \\
+        GET             & /environments/\{id\}               & obtener un ambiente    \\
+        PUT             & /environments/\{id\}               & actualizar ambiente    \\
+        DELETE          & /environments/\{id\}               & eliminar ambiente      \\
+        \midrule
+        GET             & /actuators/                        & obtener actuadores     \\
+        POST            & /actuators/                        & crear actuador         \\
+        GET             & /actuators/\{id\}                  & obtener un actuador    \\
+        PUT             & /actuators/\{id\}                  & actualizar actuador    \\
+        DELETE          & /actuators/\{id\}                  & eliminar actuador      \\
+        \midrule
+        GET             & /sensors/environmental/            & obtener sensores       \\
+        POST            & /sensors/environmental/            & crear sensor ambiental \\
+        GET             & /sensors/environmental/\{id\}      & obtener un sensor      \\
+        PUT             & /sensors/environmental/\{id\}      & actualizar sensor      \\
+        DELETE          & /sensors/environmental/\{id\}      & eliminar sensor        \\
+        \midrule
+        GET             & /sensors/nutrients/solution/       & obtener sensores       \\
+        POST            & /sensors/nutrients/solution/       & crear sensor           \\
+        GET             & /sensors/nutrients/solution/\{id\} & obtener un sensor      \\
+        PUT             & /sensors/nutrients/solution/\{id\} & actualizar sensor      \\
+        DELETE          & /sensors/nutrients/solution/\{id\} & eliminar sensor        \\
+        \midrule
+        GET             & /sensors/consumption/              & obtener sensores       \\
+        POST            & /sensors/consumption/              & crear sensor           \\
+        GET             & /sensors/consumption/\{id\}        & obtener un sensor      \\
+        PUT             & /sensors/consumption/\{id\}        & actualizar sensor      \\
+        DELETE          & /sensors/consumption/\{id\}        & eliminar sensor        \\
+        \midrule
+        GET             & /actuators/data/                   & datos históricos       \\
+        GET             & /sensors/environmental/data/       & datos históricos       \\
+        GET             & /sensors/consumption/data/         & datos históricos       \\
+        GET             & /sensors/nutrients/solution/data/  & datos históricos       \\
+        \bottomrule
+        \hline
+    \end{tabular}
+    \label{tab:endpoints}
+\end{table}
+
+El listado completo de endpoints de la API se puede consultar en el apéndice
+\ref{AppendixA}.
+
+\subsection{Autenticación y autorización}
+
+Se implementó un sistema de autenticación basado en JWT, que permite a los
+usuarios acceder a la API de manera segura. La autenticación se realiza
+mediante el envío de las credenciales del usuario en el cuerpo de la solicitud,
+y el servidor responde con un token JWT que se utiliza para autenticar las
+solicitudes posteriores.
+
+El token JWT contiene la información del usuario, este token se envía en el
+encabezado de las solicitudes a la API. El servidor verifica la validez del
+token y permite o deniega el acceso a los recursos solicitados. El token se
+diseño para que tuviera vencimiento, por lo que se implementó un sistema de
+renovación que permite a los usuarios mantener su sesión activa sin necesidad
+de autenticarse nuevamente con sus credenciales.
+
+El código de la implementación de la autenticación y autorización se puede
+consultar en el apéndice \ref{AppendixB}.
+
+La figura \ref{fig:esquema autenticacion} muestra el esquema de autenticación,
+autorización y renovación de tokens implementado en el sistema.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=.99\textwidth]{./Images/17.png}
+    \caption{Esquema de autenticación y autorización.}
+    \label{fig:esquema autenticacion}
+\end{figure}
+
+\subsection{Persistencia de datos}
+En FastAPI, cada modelo representa una colección en la base de datos e incluye
+los campos necesarios para almacenar la información requerida. Para su
+definición, se utilizó Beanie, que además permite establecer relaciones entre
+modelos, facilitando la creación de un esquema de datos estructurado y
+coherente.
+
+EL código \ref{cod:models} muestra un ejemplo de cómo se definen los modelos
+con Beanie y se ejemplifica una relación entre los modelos.
+
+\begin{lstlisting}[label=cod:models,caption=Ejemplo de definición de modelos con Beanie, language=Python]
+from beanie import Document, Link, PydanticObjectId
+from typing import Optional
+from models.environment import Environment
+
+class EnvironmentalSensor(Document):
+    id: Optional[PydanticObjectId] = None 
+    environment: Link[Environment]
+    description: str
+    sensor_code: str
+    temperature_alert_min: float
+    temperature_alert_max: float
+    humidity_alert_min: float
+    humidity_alert_max: float
+    atmospheric_pressure_alert_min: float
+    atmospheric_pressure_alert_max: float
+    co2_alert_min: float
+    co2_alert_max: float
+    minutes_to_report: int
+    enabled: bool
+    
+    class Settings:
+        collection_name = "environmental_sensors"
 \end{lstlisting}
-\end{verbatim}
 
-A modo de ejemplo:
+Como se mencionó anteriormente, los datos se almacenan en MongoDB. La conexión
+a la base de datos se estableció con Motor, un cliente asíncrono para MongoDB,
+y Beanie, que facilitó la inicialización de modelos y la ejecución de
+consultas. La cadena de conexión consta de una URL que incluye el nombre de
+usuario, la contraseña y la dirección del servidor.
+% Como se mencionó anteriormente, los datos se almacenan en la base de datos
+% MongoDB. La conexión a la base de datos MongoDB se realiza utilizando la
+% librería Motor, que es un cliente asíncrono para MongoDB. Además, se utiliza la
+% librería Beanie para inicializar los modelos y realizar consultas de manera
+% sencilla. La conexión se establece mediante una URL que incluye el nombre de
+% usuario, la contraseña y la dirección del servidor MongoDB.
 
-\begin{lstlisting}[label=cod:vControl,caption=Pseudocódigo del lazo principal de control.]  % Start your code-block
+El código \ref{cod:mongo_connection} muestra un ejemplo de cómo establecer la
+conexión e inicializar los modelos con Beanie.
 
-#define MAX_SENSOR_NUMBER 3
-#define MAX_ALARM_NUMBER  6
-#define MAX_ACTUATOR_NUMBER 6
-
-uint32_t sensorValue[MAX_SENSOR_NUMBER];		
-FunctionalState alarmControl[MAX_ALARM_NUMBER];	//ENABLE or DISABLE
-state_t alarmState[MAX_ALARM_NUMBER];						//ON or OFF
-state_t actuatorState[MAX_ACTUATOR_NUMBER];			//ON or OFF
-
-void vControl() {
-
-	initGlobalVariables();
-	
-	period = 500 ms;
-		
-	while(1) {
-
-		ticks = xTaskGetTickCount();
-		
-		updateSensors();
-		
-		updateAlarms();
-		
-		controlActuators();
-		
-		vTaskDelayUntil(&ticks, period);
-	}
-}
+\begin{lstlisting}[label=cod:mongo_connection,caption=Ejemplo de conexión a MongoDB, language=Python]
+async def init_db():
+    client = AsyncIOMotorClient("mongodb://USER:PASSWORD@URL:PORT/?authSource=admin")
+    db = client.get_database("envirosense")
+    await init_beanie(database=db, document_models=[
+        User, Role, Country, Province, City, Company, EnvironmentType, 
+        Environment, NutrientType, ConsumptionSensor, 
+        ConsumptionSensorData, ConsumptionSensorLog, 
+        EnvironmentalSensor, EnvironmentalSensorData, 
+        EnvironmentalSensorLog, NutrientSolutionSensor, 
+        NutrientSolutionSensorData, NutrientSolutionSensorLog, 
+        Actuator, ActuatorData, ActuatorLog
+])
 \end{lstlisting}
 
+\subsection{Comunicación con el broker MQTT}
+La comunicación con el broker MQTT se realiza a través de la librería
+FastApi-MQTT, que permite publicar y suscribirse a temas de manera sencilla. Se
+implementaron métodos para recibir datos de los nodos sensores y actuadores, y
+para enviar comandos a los dispositivos. Además, se implementó un sistema de
+almacenamiento de datos que permite guardar los datos recibidos en la base de
+datos MongoDB.
 
+\subsection{Implementación de WebSockets}
+La implementación de WebSockets se realizó utilizando la librería Websocket de
+FastAPI, que permitío enviar datos en tiempo real desde el servidor al cliente.
+Se implementaron métodos para establecer la conexión WebSocket y enviar datos
+al cliente cuando se reciben nuevos datos de los nodos sensores y actuadores.
 
+%----------------------------------------------------------------------------------------
+%	SECTION 5
+%----------------------------------------------------------------------------------------
+\section{Desarrollo del frontend}
+
+En esta sección se describe el diseño y desarrollo de la interfaz de usuario,
+enfocada en la visualización de datos en tiempo real y la gestión de
+dispositivos.
+
+%----------------------------------------------------------------------------------------
+%	SECTION 6
+%----------------------------------------------------------------------------------------
+\section{Desarrollo de nodos sensores y actuadores}
+
+Explicación del desarrollo del firmware para los nodos sensores y actuadores
+basados en el microcontrolador ESP32.
+
+%----------------------------------------------------------------------------------------
+%	SECTION 7
+%----------------------------------------------------------------------------------------
+\section{Despliegue del sistema}
+
+Esta sección describe el proceso de implementación y configuración del sistema
+en el entorno de prueba.

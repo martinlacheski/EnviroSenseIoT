@@ -14,3 +14,10 @@
 \contentsline {figure}{\numberline {2.10}{\ignorespaces Sensor HC-SR04.}}{11}{figure.caption.18}%
 \contentsline {figure}{\numberline {2.11}{\ignorespaces Sensor de medición de consumo eléctrico.}}{11}{figure.caption.19}%
 \contentsline {figure}{\numberline {2.12}{\ignorespaces Relay de 2 Canales 5 V 10 A}}{11}{figure.caption.20}%
+\addvspace {10\p@ }
+\contentsline {figure}{\numberline {3.1}{\ignorespaces Arquitectura de la solución propuesta.}}{15}{figure.caption.21}%
+\contentsline {figure}{\numberline {3.2}{\ignorespaces Modelo de datos implementado.}}{18}{figure.caption.23}%
+\contentsline {figure}{\numberline {3.3}{\ignorespaces Arquitectura del servidor del sistema IoT.}}{20}{figure.caption.28}%
+\contentsline {figure}{\numberline {3.4}{\ignorespaces Esquema de autenticación y autorización.}}{23}{figure.caption.33}%
+\addvspace {10\p@ }
+\addvspace {10\p@ }
