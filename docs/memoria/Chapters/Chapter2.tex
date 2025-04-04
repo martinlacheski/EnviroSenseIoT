@@ -43,9 +43,9 @@ infraestructura y ad-hoc.
 
 \begin{itemize}
 	\item Modo infraestructura: los dispositivos se conectan a una red inalámbrica a
-	      través de un router o AP (del inglés, \textit{Access Point}) inalámbrico, como en las WLAN.
-	      Los AP se conectan a la infraestructura de la red mediante el sistema de
-	      distribución conectado por cable o de manera inalámbrica.
+	      través de un router o AP (del inglés, \textit{Access Point}) inalámbrico, como
+	      en las WLAN. Los AP se conectan a la infraestructura de la red mediante el
+	      sistema de distribución conectado por cable o de manera inalámbrica.
 	\item Modo ad-hoc: los dispositivos se conectan directamente entre sí sin necesidad
 	      de un punto de acceso.
 \end{itemize}
@@ -154,12 +154,13 @@ el desarrollo del trabajo. % La tabla \ref{tab:hardware} presenta los principale
 \subsection{Microcontrolador}\label{sec:microcontrolador}
 
 El microcontrolador ESP-WROOM-32 (figura \ref{fig:ESP32}), es un chip de tipo
-SoC (del inglés, \textit{System on Chip}) de bajo costo y bajo consumo de energía que
-integra Wi-Fi, Bluetooth y Bluetooth LE en un solo paquete. El ESP-WROOM-32
-\cite{EspressifESP32WROOM} es un microcontrolador de 32 bits con una
-arquitectura Xtensa LX6 de doble núcleo, lo que le permite ejecutar dos hilos
-de ejecución simultáneos. Además, cuenta con una amplia gama de periféricos,
-como UART, I2C, SPI y ADC, que lo hace ideal para aplicaciones de IoT.
+SoC (del inglés, \textit{System on Chip}) de bajo costo y bajo consumo de
+energía que integra Wi-Fi, Bluetooth y Bluetooth LE en un solo paquete. El
+ESP-WROOM-32 \cite{EspressifESP32WROOM} es un microcontrolador de 32 bits con
+una arquitectura Xtensa LX6 de doble núcleo, lo que le permite ejecutar dos
+hilos de ejecución simultáneos. Además, cuenta con una amplia gama de
+periféricos, como UART, I2C, SPI y ADC, que lo hace ideal para aplicaciones de
+IoT.
 
 \begin{figure}[H]
 	\centering
@@ -172,8 +173,8 @@ como UART, I2C, SPI y ADC, que lo hace ideal para aplicaciones de IoT.
 
 El BME280 (figura \ref{fig:BME280}) es un sensor digital de alta precisión para
 la medición de temperatura ambiente, humedad relativa y presión atmosférica. Se
-comunica a través de las interfaces I2C y SPI y ofrece una precisión de ±1°C
-para la temperatura ambiente, ±3\code{\%} para la humedad relativa y ±1 hPa
+comunica a través de las interfaces I2C y SPI y ofrece una precisión de ±1 °C
+para la temperatura ambiente, ±3 \code{\%} para la humedad relativa y ±1 hPa
 para la presión atmosférica \cite{BoschBME280}.
 
 \begin{figure}[H]
@@ -200,9 +201,9 @@ una precisión de 1 lux \cite{ROHM_BH1750}.
 \subsection{Sensor de dióxido de carbono}
 
 El sensor MH-Z19C (figura \ref{fig:MHZ19C}) es un detector de $CO_2$ por NDIR
-(del inglés, \textit{Non Dispersive Infrared Detector}). Se comunica a través de la
-interfaz UART y es capaz de medir la concentración de $CO_2$ en un rango de 0 a
-5000 ppm con una precisión de 50 ppm \cite{WINSEN_MHZ19C}.
+(del inglés, \textit{Non Dispersive Infrared Detector}). Se comunica a través
+de la interfaz UART y es capaz de medir la concentración de $CO_2$ en un rango
+de 0 a 5000 ppm con una precisión de 50 ppm \cite{WINSEN_MHZ19C}.
 
 \begin{figure}[H]
 	\centering
@@ -242,7 +243,7 @@ conductividad en un rango de 0 a 20 mS/cm \cite{EC-Sensor}.
 \subsection{Sensor de sólidos disueltos totales}
 
 El sensor TDS (figura \ref{fig:TDS}) mide la cantidad de sales, minerales y
-metales que se encuentran disueltos en el líquido \cite{TDS-description}. Se
+metales que se encuentran disueltos en la solución \cite{TDS-description}. Se
 comunica a través de la interfaz analógica y es capaz de medir la concentración
 de TDS en un rango de 0 a 1000 ppm \cite{TDS-Sensor}.
 
@@ -256,9 +257,9 @@ de TDS en un rango de 0 a 1000 ppm \cite{TDS-Sensor}.
 \subsection{Sensor de temperatura digital sumergible}
 
 El DS18B20 (figura \ref{fig:DS18B20}) es un sensor digital de temperatura
-sumergible en líquidos. Se comunica a través de la interfaz \textit{OneWire} y puede
-medir la temperatura en un rango de -55 °C a 125 °C con una precisión de ±0.5
-°C \cite{DS18B20}.
+sumergible. Se comunica a través de la interfaz \textit{OneWire} y puede medir
+la temperatura en un rango de -55 °C a 125 °C con una precisión de ±0.5 °C
+\cite{DS18B20}.
 
 \begin{figure}[H]
 	\centering
@@ -323,8 +324,8 @@ programación de los microcontroladores ESP32.
 MicroPython es una implementación optimizada de Python 3 para
 microcontroladores y sistemas embebidos. Está diseñado para ejecutarse en
 dispositivos con recursos limitados, como el ESP32, y proporciona una forma
-sencilla de programar microcontroladores utilizando un lenguaje de alto nivel
-como Python \cite{MicroPython}.
+sencilla de programar microcontroladores con un lenguaje de alto nivel como
+Python \cite{MicroPython}.
 
 Su facilidad de uso, la amplia disponibilidad de bibliotecas y la reducción del
 tiempo de desarrollo lo convierten en una opción eficiente. Además, al ser un
@@ -352,12 +353,13 @@ proporcionar una API autodocumentada y con validación de tipos integrada
 
 \subsection{MongoDB}
 
-MongoDB es una base de datos NoSQL (del inglés, \textit{Not Only SQL}) de código abierto y
-orientada a documentos que proporciona una forma flexible y escalable de
-almacenar y recuperar datos. Utiliza un modelo de datos basado en documentos
-que almacena datos en un formato similar a JSON (del inglés, \textit{JavaScript Object Notation}) llamado BSON (del inglés, \textit{Binary JSON}) que permite almacenar datos
-de forma anidada y sin esquema fijo, lo que facilita la manipulación y consulta
-de datos no estructurados \cite{MongoDB}.
+MongoDB es una base de datos NoSQL (del inglés, \textit{Not Only SQL}) de
+código abierto y orientada a documentos que proporciona una forma flexible y
+escalable de almacenar y recuperar datos. Utiliza un modelo de datos basado en
+documentos que almacena datos en un formato similar a JSON (del inglés,
+\textit{JavaScript Object Notation}) llamado BSON (del inglés, \textit{Binary
+	JSON}) que permite almacenar datos de forma anidada y sin esquema fijo, lo que
+facilita la manipulación y consulta de datos no estructurados \cite{MongoDB}.
 
 %----------------------------------------------------------------------------------------
 %	SECTION 5 - Desarrollo Frontend
@@ -370,11 +372,11 @@ desarrollo del frontend.
 
 \subsection{React}
 
-React es una biblioteca de JavaScript de código abierto para construir
-interfaces de usuario interactivas y reutilizables. Desarrollada por Facebook,
-React permite crear componentes de interfaz de usuario que se actualizan de
-forma eficiente cuando cambian los datos, lo que facilita la creación de
-aplicaciones web rápidas y dinámicas \cite{React}.
+React es una librería de JavaScript de código abierto para construir interfaces
+de usuario interactivas y reutilizables. Desarrollada por Facebook, React
+permite crear componentes de interfaz de usuario que se actualizan de forma
+eficiente cuando cambian los datos, lo que facilita la creación de aplicaciones
+web rápidas y dinámicas \cite{React}.
 
 %----------------------------------------------------------------------------------------
 %	SECTION 6 - Infraestructura y despliegue
@@ -390,7 +392,7 @@ Docker es una plataforma de código abierto que permite a los desarrolladores y
 a los equipos de operaciones construir, empaquetar y desplegar aplicaciones en
 contenedores. Los contenedores son unidades de software ligeros y portátiles
 que incluyen todo lo necesario para ejecutar una aplicación, incluidas las
-bibliotecas, las dependencias y el código \cite{Docker}.
+librerías, las dependencias y el código \cite{Docker}.
 
 Docker facilita la creación de entornos de desarrollo y despliegue consistentes
 y reproducibles, lo que garantiza que las aplicaciones se ejecuten de la misma
@@ -398,20 +400,21 @@ manera en cualquier entorno.
 
 \subsection{AWS IoT Core}
 
-AWS IoT Core es un servicio de AWS (del inglés, \textit{Amazon Web Services}) que permite a
-los dispositivos conectarse de forma segura a la nube y comunicarse entre sí a
-través de protocolos de comunicación estándar como MQTT y HTTP. Proporciona una
-infraestructura escalable y segura para la gestión de dispositivos, la
-recopilación de datos y la integración con otros servicios de AWS
-\cite{AWS_IoT}. Utiliza TLS para cifrar la comunicación entre los dispositivos
-y la nube, garantizando la confidencialidad y la integridad de los datos.
+AWS IoT Core es un servicio de AWS (del inglés, \textit{Amazon Web Services})
+que permite a los dispositivos conectarse de forma segura a la nube y
+comunicarse entre sí a través de protocolos de comunicación estándar como MQTT
+y HTTP. Proporciona una infraestructura escalable y segura para la gestión de
+dispositivos, la recopilación de datos y la integración con otros servicios de
+AWS \cite{AWS_IoT}. Utiliza TLS para cifrar la comunicación entre los
+dispositivos y la nube, para garantizar la confidencialidad y la integridad de
+los datos.
 
 \subsection{AWS EC2}
 
-Amazon EC2 (del inglés, \textit{Elastic Compute Cloud}) es un servicio de AWS que
-proporciona capacidad informática escalable en la nube. Permite a los usuarios
-lanzar instancias virtuales en la nube con diferentes configuraciones de CPU,
-memoria, almacenamiento y red, lo que facilita la implementación de
+Amazon EC2 (del inglés, \textit{Elastic Compute Cloud}) es un servicio de AWS
+que proporciona capacidad informática escalable en la nube. Permite a los
+usuarios lanzar instancias virtuales en la nube con diferentes configuraciones
+de CPU, memoria, almacenamiento y red, lo que facilita la implementación de
 aplicaciones escalables y de alta disponibilidad \cite{AWS_EC2}.
 
 %----------------------------------------------------------------------------------------
@@ -426,11 +429,11 @@ desarrollo del sistema.
 \subsection{Visual Studio Code}
 
 Visual Studio Code, comúnmente abreviado como VS Code, es un entorno de
-desarrollo integrado (IDE, del inglés, \textit{Integrated Development Environment}) de
-código abierto, altamente extensible y multiplataforma compatible con Windows,
-macOS y Linux \cite{VSCode}.
+desarrollo integrado (IDE, del inglés, \textit{Integrated Development
+	Environment}) de código abierto, altamente extensible y multiplataforma
+compatible con Windows, macOS y Linux \cite{VSCode}.
 
-VS Code es un editor de código ligero y rápido con soporte para cientos de
+VS Code es un editor de código ligero y rápido con soporte para muchos % cientos de
 lenguajes de programación y extensiones que permiten personalizar y mejorar la
 funcionalidad del editor. Además, cuenta con herramientas de depuración
 integradas, control de versiones y terminal integrada.

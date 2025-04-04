@@ -153,3 +153,59 @@ literate={á}{{\'a}}1 {é}{{\'e}}1 {í}{{\'i}}1 {ó}{{\'o}}1 {ú}{{\'u}}1
             self.client.unsubscribe(topic)
             print(f"Desuscripto de {topic}")    
         \end{lstlisting}
+
+El código \ref{cod:integracion_fastapi} muestra la integración del cliente MQTT
+con la aplicación en FastAPI. Se define un cliente MQTT y se suscribe a los
+tópicos de publicación de datos de sensores y actuadores y tópicos de envío de
+parámetros a sensores y actuadores. Además, se definen los endpoints para
+probar la conexión MQTT y publicar mensajes desde la aplicación FastAPI.
+
+\begin{lstlisting}[label=cod:integracion_fastapi,caption=Cliente MQTT en FastAPI, language=PythonUTF8]
+
+# Fragmento de código para la integración del cliente MQTT con FastAPI
+
+# Inicializar cliente MQTT
+mqtt_client = AWSMQTTClient()
+
+@app.on_event("startup")
+async def startup():
+    await init_db()
+    mqtt_client.connect()
+         
+    # Suscripción a tópicos de publicación de sensores y actuadores
+    mqtt_client.subscribe("environmental/sensor/pub", process_sensor_message_pub)
+    mqtt_client.subscribe("nutrient_solution/sensor/pub", process_sensor_message_pub)
+    mqtt_client.subscribe("consumption/sensor/pub", process_sensor_message_pub)
+    mqtt_client.subscribe("actuators/pub", process_sensor_message_pub)
+
+    # Suscripción a tópicos de envío de parámetros a sensores y actuadores
+    mqtt_client.subscribe("environmental/sensor/sub", process_sensor_message_sub)
+    mqtt_client.subscribe("nutrient_solution/sensor/sub", process_sensor_message_sub)
+    mqtt_client.subscribe("consumption/sensor/sub", process_sensor_message_sub)
+    mqtt_client.subscribe("actuators/sub", process_sensor_message_sub)
+
+@app.on_event("shutdown")
+async def shutdown():
+    mqtt_client.disconnect()
+
+# Clase para manejar la publicación de mensajes MQTT
+class PublishRequest(BaseModel):
+    topic: str
+    message: dict
+    
+# Endpoint para publicar mensajes MQTT
+@app.post("/mqtt/publish")
+def publish_message(request: PublishRequest):
+    mqtt_client.publish(request.topic, request.message)
+    return {"status": "Mensaje publicado", "topic": request.topic, "message": request.message}
+    
+# Endpoint para probar la conexión MQTT
+@app.get("/mqtt/test")
+def test_mqtt_connection():
+    try:
+        mqtt_client.connect()
+        return {"status": "Conexión exitosa"}
+    except Exception as e:
+        return {"status": "Error de conexión", "error": str(e)}
+\end{lstlisting}
+
