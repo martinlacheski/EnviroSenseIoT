@@ -49,7 +49,7 @@ def process_sensor_message_sub(topic, payload):
 
 class AWSMQTTClient:
     def __init__(self):
-        CERTS_DIR = os.getenv("CERTS_DIR", "mqtt/certificates")
+        CERTS_DIR = os.getenv("CERTS_DIR", "certificates")
         self.ROOT_CRT = os.path.join(CERTS_DIR, "root.crt")
         self.CLIENT_CRT = os.path.join(CERTS_DIR, "client.crt")
         self.CLIENT_KEY = os.path.join(CERTS_DIR, "client.key")
