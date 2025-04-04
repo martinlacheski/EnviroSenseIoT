@@ -11,3 +11,4 @@ __pycache__/
 backend/mqtt/certificates/client.crt
 backend/mqtt/certificates/client.key
 backend/mqtt/certificates/root.crt
+/backend/mqtt/certificates
