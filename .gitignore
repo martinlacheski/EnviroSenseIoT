@@ -3,6 +3,8 @@
 __pycache__/
 .venv/
 /backend/static/
+/backend/mqtt/certificates/*.crt
+/backend/mqtt/certificates/*.key
 *.log
 *.pot
 *.pyc
