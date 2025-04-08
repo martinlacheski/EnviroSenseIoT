@@ -1,6 +1,6 @@
 import asyncio
 import os
-from fastapi import FastAPI
+from fastapi import FastAPI, Depends
 from fastapi.staticfiles import StaticFiles
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
@@ -122,13 +122,13 @@ class PublishRequest(BaseModel):
 
 # Endpoint para publicar mensajes MQTT
 @app.post("/mqtt/publish")
-def publish_message(request: PublishRequest):
+def publish_message(request: PublishRequest, user: dict = Depends(current_user)):
     mqtt_client.publish(request.topic, request.message)
     return {"status": "Mensaje publicado", "topic": request.topic, "message": request.message}
 
 # Endpoint para probar la conexión MQTT
 @app.get("/mqtt/test")
-def test_mqtt_connection():
+def test_mqtt_connection(user: dict = Depends(current_user)):
     try:
         mqtt_client.connect()
         return {"status": "Conexión exitosa"}

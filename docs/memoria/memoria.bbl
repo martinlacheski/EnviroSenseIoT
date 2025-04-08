@@ -244,8 +244,8 @@
          familyi={G\bibinitperiod},
       }}%
     }
-    \strng{namehash}{G4}
-    \strng{fullhash}{G4}
+    \strng{namehash}{G3}
+    \strng{fullhash}{G3}
     \field{labelnamesource}{author}
     \verb{url}
     \verb https://www.growcast.io/
@@ -916,8 +916,8 @@
          familyi={P\bibinitperiod},
       }}%
     }
-    \strng{namehash}{P2}
-    \strng{fullhash}{P2}
+    \strng{namehash}{P1}
+    \strng{fullhash}{P1}
     \field{labelnamesource}{author}
     \field{labeltitlesource}{title}
     \field{title}{Postman API Platform}
@@ -969,228 +969,35 @@
     \field{urlyear}{2025}
   \endentry
 
-  \entry{BME280_MicroPython_Driver}{online}{}
-    \name{author}{1}{}{%
-      {{hash=HR}{%
-         family={Hammelrath},
-         familyi={H\bibinitperiod},
-         given={Robert},
-         giveni={R\bibinitperiod},
-      }}%
-    }
-    \list{publisher}{1}{%
-      {GitHub}%
-    }
-    \strng{namehash}{HR1}
-    \strng{fullhash}{HR1}
-    \field{labelnamesource}{author}
+  \entry{BeaniODM}{online}{}
     \field{labeltitlesource}{title}
-    \field{title}{MicroPython Driver for BME280 Sensor}
+    \field{title}{Beanie: Asynchronous Python ODM for MongoDB}
     \verb{url}
-    \verb https://github.com/robert-hh/BME280
+    \verb https://beanie-odm.dev/
     \endverb
-    \field{urlday}{10}
-    \field{urlmonth}{12}
-    \field{urlyear}{2024}
+    \field{urlday}{01}
+    \field{urlmonth}{04}
+    \field{urlyear}{2025}
   \endentry
 
-  \entry{BH1750_MicroPython_Driver}{online}{}
+  \entry{MotorMongoDB}{online}{}
     \name{author}{1}{}{%
-      {{hash=P}{%
-         family={PinkInk},
-         familyi={P\bibinitperiod},
+      {{hash=MI}{%
+         family={MongoDB},
+         familyi={M\bibinitperiod},
+         given={Inc.},
+         giveni={I\bibinitperiod},
       }}%
     }
-    \list{publisher}{1}{%
-      {GitHub}%
-    }
-    \strng{namehash}{P1}
-    \strng{fullhash}{P1}
+    \strng{namehash}{MI1}
+    \strng{fullhash}{MI1}
     \field{labelnamesource}{author}
     \field{labeltitlesource}{title}
-    \field{title}{BH1750 Light Sensor Library for MicroPython}
+    \field{title}{Motor: Asynchronous Python driver for MongoDB}
     \verb{url}
-    \verb https://github.com/PinkInk/upylib/tree/master/bh1750
+    \verb https://motor.readthedocs.io/en/stable/index.html
     \endverb
-    \field{urlday}{10}
-    \field{urlmonth}{12}
-    \field{urlyear}{2024}
-  \endentry
-
-  \entry{MHZ19_MicroPython_Driver}{online}{}
-    \name{author}{1}{}{%
-      {{hash=o}{%
-         family={overflo23},
-         familyi={o\bibinitperiod},
-      }}%
-    }
-    \list{publisher}{1}{%
-      {GitHub}%
-    }
-    \strng{namehash}{o1}
-    \strng{fullhash}{o1}
-    \field{labelnamesource}{author}
-    \field{labeltitlesource}{title}
-    \field{title}{MH-Z19 $CO_2$ Sensor Library for MicroPython}
-    \verb{url}
-    \verb https://github.com/overflo23/MH-Z19_MicroPython
-    \endverb
-    \field{urlday}{10}
-    \field{urlmonth}{12}
-    \field{urlyear}{2024}
-  \endentry
-
-  \entry{PH_Sensor_Driver}{online}{}
-    \name{author}{1}{}{%
-      {{hash=v}{%
-         family={vezorgoat},
-         familyi={v\bibinitperiod},
-      }}%
-    }
-    \list{publisher}{1}{%
-      {GitHub}%
-    }
-    \strng{namehash}{v1}
-    \strng{fullhash}{v1}
-    \field{labelnamesource}{author}
-    \field{labeltitlesource}{title}
-    \field{title}{TDS Sensor Library for MicroPython}
-    \verb{url}
-    \verb https://github.com/vezorgoat/-Raspberry-Pi-TDS-Sensor
-    \endverb
-    \field{urlday}{10}
-    \field{urlmonth}{12}
-    \field{urlyear}{2024}
-  \endentry
-
-  \entry{EC_Sensor_Driver}{online}{}
-    \name{author}{1}{}{%
-      {{hash=G}{%
-         family={GreenPonik},
-         familyi={G\bibinitperiod},
-      }}%
-    }
-    \list{publisher}{1}{%
-      {GitHub}%
-    }
-    \strng{namehash}{G3}
-    \strng{fullhash}{G3}
-    \field{labelnamesource}{author}
-    \field{labeltitlesource}{title}
-    \field{title}{EC Sensor Library for MicroPython}
-    \verb{url}
-    \verb https://github.com/GreenPonik/GreenPonik_EC_Python
-    \endverb
-    \field{urlday}{10}
-    \field{urlmonth}{12}
-    \field{urlyear}{2024}
-  \endentry
-
-  \entry{TDS_Sensor_Driver}{online}{}
-    \name{author}{1}{}{%
-      {{hash=v}{%
-         family={vezorgoat},
-         familyi={v\bibinitperiod},
-      }}%
-    }
-    \list{publisher}{1}{%
-      {GitHub}%
-    }
-    \strng{namehash}{v1}
-    \strng{fullhash}{v1}
-    \field{labelnamesource}{author}
-    \field{labeltitlesource}{title}
-    \field{title}{TDS Sensor Library for MicroPython}
-    \verb{url}
-    \verb https://github.com/vezorgoat/-Raspberry-Pi-TDS-Sensor
-    \endverb
-    \field{urlday}{10}
-    \field{urlmonth}{12}
-    \field{urlyear}{2024}
-  \endentry
-
-  \entry{DS18B20_MicroPython_Driver}{online}{}
-    \name{author}{1}{}{%
-      {{hash=HR}{%
-         family={Hammelrath},
-         familyi={H\bibinitperiod},
-         given={Robert},
-         giveni={R\bibinitperiod},
-      }}%
-    }
-    \list{publisher}{1}{%
-      {GitHub}%
-    }
-    \strng{namehash}{HR1}
-    \strng{fullhash}{HR1}
-    \field{labelnamesource}{author}
-    \field{labeltitlesource}{title}
-    \field{title}{MicroPython DS18B20 OneWire Library}
-    \verb{url}
-    \verb https://github.com/robert-hh/Onewire_DS18X20
-    \endverb
-    \field{urlday}{10}
-    \field{urlmonth}{12}
-    \field{urlyear}{2024}
-  \endentry
-
-  \entry{HCSR04_Sensor_Driver}{online}{}
-    \name{author}{1}{}{%
-      {{hash=CRS}{%
-         family={C.},
-         familyi={C\bibinitperiod},
-         given={Roberto\bibnamedelima Sánchez},
-         giveni={R\bibinitperiod\bibinitdelim S\bibinitperiod},
-      }}%
-    }
-    \list{publisher}{1}{%
-      {GitHub}%
-    }
-    \strng{namehash}{CRS1}
-    \strng{fullhash}{CRS1}
-    \field{labelnamesource}{author}
-    \field{labeltitlesource}{title}
-    \field{title}{MicroPython Library for HC-SR04 Ultrasonic Sensor}
-    \verb{url}
-    \verb https://github.com/rsc1975/micropython-hcsr04r
-    \endverb
-    \field{urlday}{10}
-    \field{urlmonth}{12}
-    \field{urlyear}{2024}
-  \endentry
-
-  \entry{PZEM004T_Sensor_Driver}{online}{}
-    \name{author}{1}{}{%
-      {{hash=RJ}{%
-         family={Rodeschini},
-         familyi={R\bibinitperiod},
-         given={Jacopo},
-         giveni={J\bibinitperiod},
-      }}%
-    }
-    \list{publisher}{1}{%
-      {GitHub}%
-    }
-    \strng{namehash}{RJ1}
-    \strng{fullhash}{RJ1}
-    \field{labelnamesource}{author}
-    \field{labeltitlesource}{title}
-    \field{title}{PZEM-004T Library for MicroPython}
-    \verb{url}
-    \verb https://github.com/jacopoRodeschini/PZEM-004T
-    \endverb
-    \field{urlday}{10}
-    \field{urlmonth}{12}
-    \field{urlyear}{2024}
-  \endentry
-
-  \entry{FastAPIWebSockets}{online}{}
-    \field{labeltitlesource}{title}
-    \field{title}{FastAPI WebSockets Reference}
-    \verb{url}
-    \verb https://fastapi.tiangolo.com/reference/websockets/
-    \endverb
-    \field{urlday}{02}
+    \field{urlday}{01}
     \field{urlmonth}{04}
     \field{urlyear}{2025}
   \endentry
@@ -1218,44 +1025,11 @@
     \field{urlyear}{2025}
   \endentry
 
-  \entry{MotorMongoDB}{online}{}
-    \name{author}{1}{}{%
-      {{hash=MI}{%
-         family={MongoDB},
-         familyi={M\bibinitperiod},
-         given={Inc.},
-         giveni={I\bibinitperiod},
-      }}%
-    }
-    \strng{namehash}{MI1}
-    \strng{fullhash}{MI1}
-    \field{labelnamesource}{author}
+  \entry{FastAPIWebSockets}{online}{}
     \field{labeltitlesource}{title}
-    \field{title}{Motor: Asynchronous Python driver for MongoDB}
+    \field{title}{FastAPI WebSockets Reference}
     \verb{url}
-    \verb https://motor.readthedocs.io/en/stable/index.html
-    \endverb
-    \field{urlday}{01}
-    \field{urlmonth}{04}
-    \field{urlyear}{2025}
-  \endentry
-
-  \entry{BeaniODM}{online}{}
-    \field{labeltitlesource}{title}
-    \field{title}{Beanie: Asynchronous Python ODM for MongoDB}
-    \verb{url}
-    \verb https://beanie-odm.dev/
-    \endverb
-    \field{urlday}{01}
-    \field{urlmonth}{04}
-    \field{urlyear}{2025}
-  \endentry
-
-  \entry{ReactBootstrap}{online}{}
-    \field{labeltitlesource}{title}
-    \field{title}{React-Bootstrap: Bootstrap components built with React}
-    \verb{url}
-    \verb https://react-bootstrap.netlify.app/
+    \verb https://fastapi.tiangolo.com/reference/websockets/
     \endverb
     \field{urlday}{02}
     \field{urlmonth}{04}

@@ -72,16 +72,16 @@ modelo de publicación/suscripción, donde:
 	      una estructura jerárquica de tópicos.
 \end{itemize}
 
-La figura \ref{fig:MqttProtocol} muestra la arquitectura del protocolo MQTT.
+% La figura \ref{fig:MqttProtocol} muestra la arquitectura del protocolo MQTT.
 
-\begin{figure}[H]
-	\centering
-	\includegraphics[width=.99\textwidth]{./Images/2.png}
-	\caption{Arquitectura del protocolo MQTT.}
-	\label{fig:MqttProtocol}
-\end{figure}
+% \begin{figure}[H]
+% 	\centering
+% 	\includegraphics[width=.99\textwidth]{./Images/2.png}
+% 	\caption{Arquitectura del protocolo MQTT.}
+% 	\label{fig:MqttProtocol}
+% \end{figure}
 
-\subsection{TLS}
+% \subsection{TLS}
 
 TLS es un protocolo de seguridad criptográfica diseñado para garantizar la
 privacidad y la integridad de los datos en comunicaciones sobre redes, como
@@ -165,9 +165,12 @@ IoT.
 \begin{figure}[H]
 	\centering
 	\includegraphics[height=.15\textwidth]{./Images/3.png}
-	\caption{Microcontrolador ESP-WROOM-32.}
+	\caption{Microcontrolador ESP-WROOM-32\protect\footnotemark.}
 	\label{fig:ESP32}
 \end{figure}
+
+\footnotetext{Imagen tomada de \href{https://www.hobbytronica.com.ar/MLA-916790826-nodemcu-esp32-wifi-bluetooth-42-iot-wroom-esp32s-arduino-_JM}
+{Nodemcu Esp32 Wifi HobbyTronica.}}
 
 \subsection{Sensor de temperatura ambiente, humedad relativa y presión atmosférica}
 
@@ -180,9 +183,12 @@ para la presión atmosférica \cite{BoschBME280}.
 \begin{figure}[H]
 	\centering
 	\includegraphics[height=.15\textwidth]{./Images/4.png}
-	\caption{Sensor BME280.}
+	\caption{Sensor BME280\protect\footnotemark.}
 	\label{fig:BME280}
 \end{figure}
+
+\footnotetext{Imagen tomada de \href{https://naylampmechatronics.com/sensores-posicion-inerciales-gps/357-sensor-bme280-presion-temperatura-y-humedad.html}
+{Sensor BME280 Naylamp Mechatronics.}}
 
 \subsection{Sensor de luz digital}\label{sec:BH1750}
 
@@ -194,9 +200,12 @@ una precisión de 1 lux \cite{ROHM_BH1750}.
 \begin{figure}[H]
 	\centering
 	\includegraphics[height=.15\textwidth]{./Images/5.png}
-	\caption{Sensor BH1750.}
+	\caption{Sensor BH1750\protect\footnotemark.}
 	\label{fig:BH1750}
 \end{figure}
+
+\footnotetext{Imagen tomada de \href{https://www.hobbytronica.com.ar/MLA-905448482-modulo-sensor-de-luz-digital-ambiente-bh1750-gy-302-arduino-_JM}
+{Sensor BH1750 HobbyTronica.}}
 
 \subsection{Sensor de dióxido de carbono}
 
@@ -208,9 +217,12 @@ de 0 a 5000 ppm con una precisión de 50 ppm \cite{WINSEN_MHZ19C}.
 \begin{figure}[H]
 	\centering
 	\includegraphics[height=.15\textwidth]{./Images/6.png}
-	\caption{Sensor MHZ19C.}
+	\caption{Sensor MHZ19C\protect\footnotemark.}
 	\label{fig:MHZ19C}
 \end{figure}
+
+\footnotetext{Imagen tomada de \href{https://qiita-image-store.s3.ap-northeast-1.amazonaws.com/0/130771/54be6203-1014-ba5e-3a6f-86e3a403c472.png}
+{MH-Z19C PartsCabi.net.}}
 
 \subsection{Sensor de detección de pH}
 
@@ -221,14 +233,17 @@ analógica y es capaz de medir el pH en un rango de 0 a 14 \cite{PH-4502C}.
 \begin{figure}[H]
 	\centering
 	\includegraphics[height=.15\textwidth]{./Images/7.png}
-	\caption{Sensor PH-4502C.}
+	\caption{Sensor PH-4502C\protect\footnotemark.}
 	\label{fig:PH4502C}
 \end{figure}
+
+\footnotetext{Imagen tomada de \href{https://http2.mlstatic.com/D_NQ_NP_755250-MLM42784110936_072020-O.webp}
+{Sensor PH-4502C Mercado Libre Static.}}
 
 \subsection{Sensor de conductividad eléctrica}
 
 El sensor de CE (figura \ref{fig:CE}) mide la capacidad de una solución para
-conducir electricidad, lo cual depende de la presencia de iones. A mayor
+conducir electricidad, lo que depende de la presencia de iones. A mayor
 concentración de iones, mayor es la conductividad \cite{MTConductivitySensor}.
 Este sensor se comunica a través de una interfaz analógica y puede medir la
 conductividad en un rango de 0 a 20 mS/cm \cite{EC-Sensor}.
@@ -236,9 +251,12 @@ conductividad en un rango de 0 a 20 mS/cm \cite{EC-Sensor}.
 \begin{figure}[H]
 	\centering
 	\includegraphics[height=.15\textwidth]{./Images/8.png}
-	\caption{Sensor CE.}
+	\caption{Sensor CE\protect\footnotemark.}
 	\label{fig:CE}
 \end{figure}
+
+\footnotetext{Imagen tomada de \href{https://m.media-amazon.com/images/I/51dAS-cD01L._AC_SL1000_.jpg}
+{Sensor CE Amazon.}}
 
 \subsection{Sensor de sólidos disueltos totales}
 
@@ -250,9 +268,12 @@ de TDS en un rango de 0 a 1000 ppm \cite{TDS-Sensor}.
 \begin{figure}[H]
 	\centering
 	\includegraphics[height=.15\textwidth]{./Images/9.png}
-	\caption{Sensor TDS.}
+	\caption{Sensor TDS\protect\footnotemark.}
 	\label{fig:TDS}
 \end{figure}
+
+\footnotetext{Imagen tomada de \href{https://es.aliexpress.com/i/1005003343459012.html?gatewayAdapt=glo2esp}
+{Sensor TDS Aliexpress.}}
 
 \subsection{Sensor de temperatura digital sumergible}
 
@@ -264,9 +285,12 @@ la temperatura en un rango de -55 °C a 125 °C con una precisión de ±0.5 °C
 \begin{figure}[H]
 	\centering
 	\includegraphics[height=.15\textwidth]{./Images/10.png}
-	\caption{Sensor de temperatura DS18B20.}
+	\caption{Sensor de temperatura DS18B20\protect\footnotemark.}
 	\label{fig:DS18B20}
 \end{figure}
+
+\footnotetext{Imagen tomada de \href{https://articulo.mercadolibre.com.ar/MLA-1904241050-sensor-de-temperatura-ds18b20-sumergible-con-cable-de-2-m-_JM}
+{Sensor DS18B20 Mercado Libre.}}
 
 \subsection{Sensor ultrasónico}
 
@@ -277,9 +301,12 @@ interfaz GPIO \cite{HC-SR04}.
 \begin{figure}[H]
 	\centering
 	\includegraphics[height=.15\textwidth]{./Images/11.png}
-	\caption{Sensor HC-SR04.}
+	\caption{Sensor HC-SR04\protect\footnotemark.}
 	\label{fig:HC-SR04}
 \end{figure}
+
+\footnotetext{Imagen tomada de \href{https://es.aliexpress.com/item/1005007542287447.html}
+{Sensor HC-SR04 Aliexpress.}}
 
 \subsection{Sensor de medición de consumo eléctrico}
 
@@ -292,9 +319,12 @@ potencia en un rango de 0 a 22 kW \cite{PZEM-004T}.
 \begin{figure}[H]
 	\centering
 	\includegraphics[height=.15\textwidth]{./Images/12.png}
-	\caption{Sensor de medición de consumo eléctrico.}
+	\caption{Sensor de medición de consumo eléctrico\protect\footnotemark.}
 	\label{fig:PZEM-004T}
 \end{figure}
+
+\footnotetext{Imagen adaptada de \href{https://articulo.mercadolibre.com.ar/MLA-908885966-modulo-monitoreo-energia-monofasico-pzem-004t-elegir-_JM}
+{Sensor PZEM-004T Mercado Libre.}}
 
 \subsection{Módulo Relay}
 
@@ -306,9 +336,12 @@ controlar dispositivos de hasta 10 A y 250 VAC \cite{Relay}.
 \begin{figure}[H]
 	\centering
 	\includegraphics[height=.15\textwidth]{./Images/13.png}
-	\caption{Relay de 2 Canales 5 V 10 A}
+	\caption{Relay de 2 Canales 5 V 10 A\protect\footnotemark.}
 	\label{fig:Relay}
 \end{figure}
+
+\footnotetext{Imagen tomada de \href{https://www.amazon.com.mx/MV-ELECTRONICA-RELEVADOR-Canales-LOWLEVEL/dp/B07PR7XHWT}
+{Relay de 2 Canales Amazon.}}
 
 %----------------------------------------------------------------------------------------
 %	SECTION 3 - Componentes de software
@@ -337,7 +370,7 @@ depuración, facilitando la identificación y corrección de errores en el códi
 %	SECTION 4 - Desarrollo Backend y API
 %----------------------------------------------------------------------------------------
 
-\section{Desarrollo Backend y API}
+\section{Desarrollo backend y API}
 
 En esta sección se presentan las herramientas de software utilizadas en el
 desarrollo del backend y la API REST.
@@ -365,14 +398,14 @@ facilita la manipulación y consulta de datos no estructurados \cite{MongoDB}.
 %	SECTION 5 - Desarrollo Frontend
 %----------------------------------------------------------------------------------------
 
-\section{Desarrollo Frontend}
+\section{Desarrollo frontend}
 
 En esta sección se presentan las herramientas de software utilizadas en el
 desarrollo del frontend.
 
 \subsection{React}
 
-React es una librería de JavaScript de código abierto para construir interfaces
+React es una biblioteca de JavaScript de código abierto para construir interfaces
 de usuario interactivas y reutilizables. Desarrollada por Facebook, React
 permite crear componentes de interfaz de usuario que se actualizan de forma
 eficiente cuando cambian los datos, lo que facilita la creación de aplicaciones
@@ -392,7 +425,7 @@ Docker es una plataforma de código abierto que permite a los desarrolladores y
 a los equipos de operaciones construir, empaquetar y desplegar aplicaciones en
 contenedores. Los contenedores son unidades de software ligeros y portátiles
 que incluyen todo lo necesario para ejecutar una aplicación, incluidas las
-librerías, las dependencias y el código \cite{Docker}.
+bibliotecas, las dependencias y el código \cite{Docker}.
 
 Docker facilita la creación de entornos de desarrollo y despliegue consistentes
 y reproducibles, lo que garantiza que las aplicaciones se ejecuten de la misma
@@ -433,10 +466,10 @@ desarrollo integrado (IDE, del inglés, \textit{Integrated Development
 	Environment}) de código abierto, altamente extensible y multiplataforma
 compatible con Windows, macOS y Linux \cite{VSCode}.
 
-VS Code es un editor de código ligero y rápido con soporte para muchos % cientos de
+VS Code es un editor de código ligero y rápido con soporte para muchos
 lenguajes de programación y extensiones que permiten personalizar y mejorar la
 funcionalidad del editor. Además, cuenta con herramientas de depuración
-integradas, control de versiones y terminal integrada.
+integradas, control de versiones y terminal integrada.% cientos de
 
 \subsection{Postman}
 
@@ -454,9 +487,9 @@ desarrollo de APIs \cite{Postman}.
 % proyecto, realizar seguimiento de los cambios, revertir a versiones anteriores
 % y colaborar en el desarrollo de software \cite{Git}.
 
-\subsection{Github}
+\subsection{GitHub}
 
-Github es una plataforma de alojamiento de repositorios Git \cite{Git} que
+GitHub es una plataforma de alojamiento de repositorios Git \cite{Git} que
 permite a los desarrolladores colaborar en proyectos de software de forma
 distribuida. Proporciona herramientas para gestionar el código fuente, realizar
 seguimiento de los cambios, revisar el código, realizar integración continua y

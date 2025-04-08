@@ -2,28 +2,30 @@
 \addvspace {10\p@ }
 \contentsline {figure}{\numberline {1.1}{\ignorespaces Diagrama en bloques del sistema.}}{4}{figure.caption.8}%
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {2.1}{\ignorespaces Arquitectura del protocolo MQTT.}}{8}{figure.caption.9}%
-\contentsline {figure}{\numberline {2.2}{\ignorespaces Microcontrolador ESP-WROOM-32.}}{9}{figure.caption.10}%
-\contentsline {figure}{\numberline {2.3}{\ignorespaces Sensor BME280.}}{9}{figure.caption.11}%
-\contentsline {figure}{\numberline {2.4}{\ignorespaces Sensor BH1750.}}{9}{figure.caption.12}%
-\contentsline {figure}{\numberline {2.5}{\ignorespaces Sensor MHZ19C.}}{9}{figure.caption.13}%
-\contentsline {figure}{\numberline {2.6}{\ignorespaces Sensor PH-4502C.}}{10}{figure.caption.14}%
-\contentsline {figure}{\numberline {2.7}{\ignorespaces Sensor CE.}}{10}{figure.caption.15}%
-\contentsline {figure}{\numberline {2.8}{\ignorespaces Sensor TDS.}}{10}{figure.caption.16}%
-\contentsline {figure}{\numberline {2.9}{\ignorespaces Sensor de temperatura DS18B20.}}{11}{figure.caption.17}%
-\contentsline {figure}{\numberline {2.10}{\ignorespaces Sensor HC-SR04.}}{11}{figure.caption.18}%
-\contentsline {figure}{\numberline {2.11}{\ignorespaces Sensor de medición de consumo eléctrico.}}{11}{figure.caption.19}%
-\contentsline {figure}{\numberline {2.12}{\ignorespaces Relay de 2 Canales 5 V 10 A}}{11}{figure.caption.20}%
+\contentsline {figure}{\numberline {2.1}{\ignorespaces Microcontrolador ESP-WROOM-32\footnotemark .}}{8}{figure.caption.9}%
+\contentsline {figure}{\numberline {2.2}{\ignorespaces Sensor BME280\footnotemark .}}{9}{figure.caption.10}%
+\contentsline {figure}{\numberline {2.3}{\ignorespaces Sensor BH1750\footnotemark .}}{9}{figure.caption.11}%
+\contentsline {figure}{\numberline {2.4}{\ignorespaces Sensor MHZ19C\footnotemark .}}{9}{figure.caption.12}%
+\contentsline {figure}{\numberline {2.5}{\ignorespaces Sensor PH-4502C\footnotemark .}}{10}{figure.caption.13}%
+\contentsline {figure}{\numberline {2.6}{\ignorespaces Sensor CE\footnotemark .}}{10}{figure.caption.14}%
+\contentsline {figure}{\numberline {2.7}{\ignorespaces Sensor TDS\footnotemark .}}{10}{figure.caption.15}%
+\contentsline {figure}{\numberline {2.8}{\ignorespaces Sensor de temperatura DS18B20\footnotemark .}}{11}{figure.caption.16}%
+\contentsline {figure}{\numberline {2.9}{\ignorespaces Sensor HC-SR04\footnotemark .}}{11}{figure.caption.17}%
+\contentsline {figure}{\numberline {2.10}{\ignorespaces Sensor de medición de consumo eléctrico\footnotemark .}}{11}{figure.caption.18}%
+\contentsline {figure}{\numberline {2.11}{\ignorespaces Relay de 2 Canales 5 V 10 A\footnotemark .}}{12}{figure.caption.19}%
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {3.1}{\ignorespaces Arquitectura de la solución propuesta.}}{15}{figure.caption.21}%
-\contentsline {figure}{\numberline {3.2}{\ignorespaces Modelo de datos implementado.}}{18}{figure.caption.23}%
-\contentsline {figure}{\numberline {3.3}{\ignorespaces Arquitectura del servidor del sistema IoT.}}{20}{figure.caption.28}%
-\contentsline {figure}{\numberline {3.4}{\ignorespaces Esquema de autenticación y autorización.}}{23}{figure.caption.33}%
-\contentsline {figure}{\numberline {3.5}{\ignorespaces Ejemplo de políticas de acceso en AWS IoT Core.}}{25}{figure.caption.35}%
-\contentsline {figure}{\numberline {3.6}{\ignorespaces Pruebas en Postman. Test de conexión al broker MQTT.}}{26}{figure.caption.38}%
-\contentsline {figure}{\numberline {3.7}{\ignorespaces Pruebas en Postman. Publicación de un mensaje en un tópico.}}{27}{figure.caption.39}%
-\contentsline {figure}{\numberline {3.8}{\ignorespaces Cliente MQTT en FastAPI.}}{27}{figure.caption.40}%
-\contentsline {figure}{\numberline {3.9}{\ignorespaces Datos almacenados en MongoDB.}}{28}{figure.caption.41}%
+\contentsline {figure}{\numberline {3.1}{\ignorespaces Arquitectura de la solución propuesta.}}{15}{figure.caption.20}%
+\contentsline {figure}{\numberline {3.2}{\ignorespaces Modelo de datos implementado.}}{17}{figure.caption.21}%
+\contentsline {figure}{\numberline {3.3}{\ignorespaces Arquitectura del servidor del sistema IoT.}}{18}{figure.caption.22}%
+\contentsline {figure}{\numberline {3.4}{\ignorespaces Esquema de autenticación y autorización.}}{20}{figure.caption.24}%
+\contentsline {figure}{\numberline {3.5}{\ignorespaces Diagrama de clases de los modelos implementados.}}{21}{figure.caption.25}%
+\contentsline {figure}{\numberline {3.6}{\ignorespaces Pasos para la conexión de FastAPI y MongoDB.}}{21}{figure.caption.26}%
+\contentsline {figure}{\numberline {3.7}{\ignorespaces Pasos para verificar la conexión con el broker MQTT.}}{23}{figure.caption.29}%
+\contentsline {figure}{\numberline {3.8}{\ignorespaces Pasos para publicar un mensaje en un tópico específico.}}{23}{figure.caption.30}%
+\contentsline {figure}{\numberline {3.9}{\ignorespaces Pasos para la conexión del cliente MQTT.}}{24}{figure.caption.32}%
+\addvspace {10\p@ }
+\contentsline {figure}{\numberline {A.1}{\ignorespaces Modelo de datos implementado en el trabajo.}}{26}{figure.caption.33}%
+\addvspace {10\p@ }
 \addvspace {10\p@ }
 \addvspace {10\p@ }
 \addvspace {10\p@ }
