@@ -11,6 +11,7 @@ A level-1 auxiliary file: Appendices/AppendixB.aux
 A level-1 auxiliary file: Appendices/AppendixC.aux
 A level-1 auxiliary file: Appendices/AppendixD.aux
 A level-1 auxiliary file: Appendices/AppendixE.aux
+A level-1 auxiliary file: Appendices/AppendixF.aux
 Reallocated glb_str_ptr (elt_size=4) to 20 items from 10.
 Reallocated global_strs (elt_size=200001) to 20 items from 10.
 Reallocated glb_str_end (elt_size=4) to 20 items from 10.
@@ -34,7 +35,7 @@ Reallocated wiz_functions (elt_size=4) to 9000 items from 6000.
 Reallocated singl_function (elt_size=4) to 100 items from 50.
 You've used 47 entries,
             6399 wiz_defined-function locations,
-            1459 strings with 15644 characters,
+            1460 strings with 15668 characters,
 and the built_in function-call counts, 260149 in all, are:
 = -- 13935
 > -- 15078

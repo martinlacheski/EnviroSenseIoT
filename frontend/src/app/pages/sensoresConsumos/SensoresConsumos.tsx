@@ -87,7 +87,6 @@ export const SensoresConsumos = () => {
       sensor_code: row.sensor_code,
       min_voltage_alert: row.min_voltage_alert,
       max_voltage_alert: row.max_voltage_alert,
-      solution_level_alert: row.solution_level_alert,
       nutrient_1_enabled: row.nutrient_1_enabled,
       nutrient_1_type: row.nutrient_1_type.id,
       nutrient_1_alert: row.nutrient_1_alert,
@@ -169,11 +168,6 @@ export const SensoresConsumos = () => {
       name: "VOLTAJE MÍN / MÁX",
       selector: (row: DataRow) =>
         `${row.min_voltage_alert}V / ${row.max_voltage_alert}V`,
-      center: true,
-    },
-    {
-      name: "ALERTA NIVEL SOLUCIÓN",
-      selector: (row: DataRow) => row.solution_level_alert,
       center: true,
     },
     {
@@ -268,9 +262,6 @@ export const SensoresConsumos = () => {
             ),
             max_voltage_alert: Yup.number().required(
               "El voltaje máximo es requerido"
-            ),
-            solution_level_alert: Yup.number().required(
-              "El nivel de solución es requerido"
             ),
             nutrient_1_enabled: Yup.boolean().required(
               "El estado del nutriente 1 es requerido"
@@ -409,24 +400,12 @@ export const SensoresConsumos = () => {
                       !!errors.max_voltage_alert && touched.max_voltage_alert
                     }
                   />
-
-                  <CustomInput.Number
-                    isRequired
-                    label="Alerta nivel solución"
-                    name="solution_level_alert"
-                    type="text"
-                    placeholder="Alerta nivel solución"
-                    isInvalid={
-                      !!errors.solution_level_alert &&
-                      touched.solution_level_alert
-                    }
-                  />
                 </Row>
                 <Row xs={1} lg={4} className="g-2 mt-3">
                   {initialHelpers.map(({ enabled, type, alert }, index) => (
                     <Fragment key={index}>
                       <span>
-                        <strong>{enabled}</strong>
+                        <strong>Canal {index + 1}</strong>
                       </span>
                       <CustomInput.Select
                         name={enabled}

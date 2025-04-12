@@ -12,8 +12,6 @@ interface SensorConsumo {
 
     min_voltage_alert: number;
     max_voltage_alert: number;
-    solution_level_alert: number;
-
     nutrient_1_enabled: boolean;
     nutrient_1_alert: number;
     nutrient_2_enabled: boolean;
@@ -58,7 +56,6 @@ export const initialForm: SensorConsumoForm = {
     sensor_code: '',
     min_voltage_alert: 0,
     max_voltage_alert: 0,
-    solution_level_alert: 0,
     nutrient_1_enabled: false,
     nutrient_1_type: '',
     nutrient_1_alert: 0,

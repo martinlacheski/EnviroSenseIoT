@@ -62,12 +62,17 @@
 \contentsline {subsubsection}{Implementación de MQTT en FastAPI}{22}{section*.28}%
 \contentsline {subsubsection}{Comunicación con MQTT en FastAPI}{23}{section*.31}%
 \contentsline {subsection}{\numberline {3.4.5}Implementación de WebSockets}{24}{subsection.3.4.5}%
-\contentsline {section}{\numberline {3.5}Desarrollo del frontend}{24}{section.3.5}%
-\contentsline {section}{\numberline {3.6}Desarrollo de nodos sensores y actuadores}{24}{section.3.6}%
-\contentsline {section}{\numberline {3.7}Despliegue del sistema}{24}{section.3.7}%
-\contentsline {chapter}{\numberline {A}Modelo de datos implementado en el trabajo}{25}{appendix.Alph1}%
-\contentsline {chapter}{\numberline {B}Resumen de endpoints de la API}{27}{appendix.Alph2}%
-\contentsline {chapter}{\numberline {C}Autenticación con JWT}{31}{appendix.Alph3}%
-\contentsline {chapter}{\numberline {D}Conexión de la aplicación FastAPI con la base de datos MongoDB}{33}{appendix.Alph4}%
-\contentsline {chapter}{\numberline {E}Conexión al broker MQTT con FastAPI y AWS IoT SDK para Python}{35}{appendix.Alph5}%
-\contentsline {chapter}{Bibliografía}{39}{appendix*.38}%
+\contentsline {section}{\numberline {3.5}Desarrollo del frontend}{25}{section.3.5}%
+\contentsline {section}{\numberline {3.6}Desarrollo de nodos sensores y actuadores}{25}{section.3.6}%
+\contentsline {section}{\numberline {3.7}Despliegue del sistema}{25}{section.3.7}%
+\contentsline {chapter}{\numberline {A}Modelo de datos implementado en el trabajo}{27}{appendix.Alph1}%
+\contentsline {chapter}{\numberline {B}Resumen de endpoints de la API}{29}{appendix.Alph2}%
+\contentsline {chapter}{\numberline {C}Autenticación con JWT}{33}{appendix.Alph3}%
+\contentsline {chapter}{\numberline {D}Conexión de la aplicación FastAPI con la base de datos MongoDB}{35}{appendix.Alph4}%
+\contentsline {chapter}{\numberline {E}Conexión al broker MQTT con FastAPI y AWS IoT SDK para Python}{37}{appendix.Alph5}%
+\contentsline {chapter}{\numberline {F}Conexión por WebSocket en FastAPI}{43}{appendix.Alph6}%
+\contentsline {section}{\numberline {F.1}Introducción}{43}{section.Alph6.1}%
+\contentsline {section}{\numberline {F.2}Autorización para WebSocket}{43}{section.Alph6.2}%
+\contentsline {section}{\numberline {F.3}Gestión de conexiones WebSocket}{44}{section.Alph6.3}%
+\contentsline {section}{\numberline {F.4}Integración con FastAPI}{45}{section.Alph6.4}%
+\contentsline {chapter}{Bibliografía}{47}{appendix*.39}%

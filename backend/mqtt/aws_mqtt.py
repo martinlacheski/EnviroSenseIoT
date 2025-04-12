@@ -1,7 +1,9 @@
 import asyncio
 import json
 import os
+# Importamos el cliente MQTT de AWS
 from AWSIoTPythonSDK.MQTTLib import AWSIoTMQTTClient
+# Importamos los modelos de datos
 from models.actuator import Actuator
 from models.actuator_data import ActuatorData
 from models.sensor_consumption import ConsumptionSensor
@@ -10,7 +12,11 @@ from models.sensor_environmental import EnvironmentalSensor
 from models.sensor_environmental_data import EnvironmentalSensorData
 from models.sensor_nutrient_solution import NutrientSolutionSensor
 from models.sensor_nutrient_solution_data import NutrientSolutionSensorData
+# Importamos la configuración de AWS
 from mqtt.aws_config import AWS_ENDPOINT, MQTT_CLIENT_ID
+# Importamos el cliente WebSocket
+from utils.websocket import websocket_manager
+import datetime
 
 TOPIC_PUB_MODEL_MAP = {
     "environmental/sensor/pub": EnvironmentalSensorData,
@@ -71,6 +77,27 @@ async def process_sensor_message_pub(topic, payload):
         if model_class:
             print(f"📩 Procesando mensaje de {topic}")
             await insert_sensor_data(payload, model_class)
+            
+            # Determinar el tipo de sensor para WebSocket
+            sensor_type = None
+            if "environmental/sensor/pub" in topic:
+                sensor_type = "environmental"
+            elif "nutrient/solution/sensor/pub" in topic:
+                sensor_type = "nutrient_solution"
+            elif "consumption/sensor/pub" in topic:
+                sensor_type = "consumption"
+            elif "actuators/pub" in topic:
+                sensor_type = "actuators"
+            
+            # Verificar si el tipo de sensor es válido
+            if sensor_type:
+                # Actualizar cache y enviar a WebSocket
+                websocket_manager.update_cache(sensor_type, payload)
+                await websocket_manager.broadcast({
+                    "type": sensor_type,
+                    "data": payload,
+                    "timestamp": datetime.datetime.now().isoformat()
+                })
         else:
             print(f"⚠️ Tópico no reconocido: {topic}")
     except Exception as e:

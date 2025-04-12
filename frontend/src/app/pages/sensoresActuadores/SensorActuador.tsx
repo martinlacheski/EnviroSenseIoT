@@ -138,66 +138,82 @@ export const SensorActuador = () => {
                       <tr key="1">
                         <td>Canal 1</td>
                         <td>
-                          <ActiveBadge active={actuador.channel_1_enabled} />
+                          <ActiveBadge active={actuador.relay_water_enabled} />
                         </td>
-                        <td>{actuador.channel_1_name}</td>
-                        <td>{actuador.channel_1_time}</td>
+                        <td>Relay de bomba de agua</td>
+                        <td>{actuador.relay_water_time}</td>
                       </tr>
                       <tr key="2">
                         <td>Canal 2</td>
                         <td>
-                          <ActiveBadge active={actuador.channel_2_enabled} />
+                          <ActiveBadge active={actuador.relay_aerator_enabled} />
                         </td>
-                        <td>{actuador.channel_2_name}</td>
-                        <td>{actuador.channel_2_time}</td>
+                        <td>Relay de aireador</td>
+                        <td>{actuador.relay_aerator_time}</td>
                       </tr>
                       <tr key="3">
                         <td>Canal 3</td>
                         <td>
-                          <ActiveBadge active={actuador.channel_3_enabled} />
+                          <ActiveBadge active={actuador.relay_vent_enabled} />
                         </td>
-                        <td>{actuador.channel_3_name}</td>
-                        <td>{actuador.channel_3_time}</td>
+                        <td>Relay de ventilación</td>
+                        <td>{actuador.relay_vent_time}</td>
                       </tr>
                       <tr key="4">
                         <td>Canal 4</td>
                         <td>
-                          <ActiveBadge active={actuador.channel_4_enabled} />
+                          <ActiveBadge active={actuador.relay_light_enabled} />
                         </td>
-                        <td>{actuador.channel_4_name}</td>
-                        <td>{actuador.channel_4_time}</td>
+                        <td>Relay de iluminación</td>
+                        <td>{actuador.relay_light_time}</td>
                       </tr>
                       <tr key="5">
                         <td>Canal 5</td>
                         <td>
-                          <ActiveBadge active={actuador.channel_5_enabled} />
+                          <ActiveBadge active={actuador.relay_ph_plus_enabled} />
                         </td>
-                        <td>{actuador.channel_5_name}</td>
-                        <td>{actuador.channel_5_time}</td>
+                        <td>Relay de pH +</td>
+                        <td>{actuador.relay_ph_plus_time}</td>
                       </tr>
                       <tr key="6">
                         <td>Canal 6</td>
                         <td>
-                          <ActiveBadge active={actuador.channel_6_enabled} />
+                          <ActiveBadge active={actuador.relay_ph_minus_enabled} />
                         </td>
-                        <td>{actuador.channel_6_name}</td>
-                        <td>{actuador.channel_6_time}</td>
+                        <td>Relay de pH -</td>
+                        <td>{actuador.relay_ph_minus_time}</td>
                       </tr>
                       <tr key="7">
                         <td>Canal 7</td>
                         <td>
-                          <ActiveBadge active={actuador.channel_7_enabled} />
+                          <ActiveBadge active={actuador.relay_nutri_1_enabled} />
                         </td>
-                        <td>{actuador.channel_7_name}</td>
-                        <td>{actuador.channel_7_time}</td>
+                        <td>Relay nutriente 1</td>
+                        <td>{actuador.relay_nutri_1_time}</td>
                       </tr>
                       <tr key="8">
                         <td>Canal 8</td>
                         <td>
-                          <ActiveBadge active={actuador.channel_8_enabled} />
+                          <ActiveBadge active={actuador.relay_nutri_2_enabled} />
                         </td>
-                        <td>{actuador.channel_8_name}</td>
-                        <td>{actuador.channel_8_time}</td>
+                        <td>Relay nutriente 2</td>
+                        <td>{actuador.relay_nutri_2_time}</td>
+                      </tr>
+                      <tr key="9">
+                        <td>Canal 9</td>
+                        <td>
+                          <ActiveBadge active={actuador.relay_nutri_3_enabled} />
+                        </td>
+                        <td>Relay nutriente 3</td>
+                        <td>{actuador.relay_nutri_3_time}</td>
+                      </tr>
+                      <tr key="10">
+                        <td>Canal 10</td>
+                        <td>
+                          <ActiveBadge active={actuador.relay_nutri_4_enabled} />
+                        </td>
+                        <td>Relay nutriente 4</td>
+                        <td>{actuador.relay_nutri_4_time}</td>
                       </tr>
                     </tbody>
                   </Table>

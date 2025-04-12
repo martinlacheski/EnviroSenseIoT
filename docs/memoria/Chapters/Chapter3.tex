@@ -638,7 +638,7 @@ los modelos implementados en el sistema y los métodos HTTP de la colección
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=.90\textwidth]{./Images/18.png}
+    \includegraphics[width=.95\textwidth]{./Images/18.png}
     \caption{Diagrama de clases de los modelos implementados.}
     \label{fig:diagrama de clases}
 \end{figure}
@@ -756,8 +756,8 @@ correspondientes. Además, pueden configurarse de manera específica para cada
 \textit{Thing}, lo que permite ejercer un control granular sobre los permisos
 de acceso.
 
-En el Apéndice \ref{AppendixE} se puede visualizar un ejemplo de política de acceso
-definida para el objeto \textit{Thing}.
+En el Apéndice \ref{AppendixE} se puede visualizar un ejemplo de política de
+acceso definida para el objeto \textit{Thing}.
 
 \subsubsection{Implementación de MQTT en FastAPI}
 Una vez que se creó y se configuró el objeto \textit{Thing} en AWS IoT Core, se
@@ -786,7 +786,7 @@ comunicación con AWS IoT Core:
 \end{enumerate}
 
 La figura \ref{fig:test_mqtt} muestra los pasos realizados para verificar la
-conexión con el broker MQTT. 
+conexión con el broker MQTT.
 
 \begin{figure}[H]
     \centering
@@ -848,7 +848,7 @@ FastAPI se conecta al broker MQTT y se suscribe a los tópicos solicitados.
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=.60\textwidth]{./Images/22.png}
+    \includegraphics[width=.75\textwidth]{./Images/22.png}
     \caption{Pasos para la conexión del cliente MQTT.}
     \label{fig:cliente_mqtt}
 \end{figure}
@@ -871,8 +871,91 @@ encuentra en el Apéndice \ref{AppendixE}.
 
 % La implementación de WebSockets se realizó utilizando la librería Websocket de
 % FastAPI, que permitío enviar datos en tiempo real desde el servidor al cliente.
-% Se implementaron métodos para establecer la conexión WebSocket y enviar datos
-% al cliente cuando se reciben nuevos datos de los nodos sensores y actuadores.
+% Se implementaron métodos para autorizar la conexión y gestionar la suscripción
+% a los eventos de actualización de datos. El servidor establece la conexión
+% WebSocket y envia datos al cliente cuando se reciben nuevos datos de los nodos
+% sensores y actuadores.
+
+% El cliente WebSocket se conecta al servidor y se suscribe al evento de
+% actualización de datos. Cuando se reciben nuevos datos, el servidor envía un
+% mensaje al cliente a través de la conexión WebSocket, lo que permite actualizar
+% la interfaz en tiempo real.
+
+% La implementación de la comunicación en tiempo real se realizó mediante
+% WebSockets, a través del módulo \texttt{websockets} de FastAPI. Se definió una
+% ruta específica para la conexión WebSocket, que permite a los clientes
+% conectarse para recibir datos actualizados de sensores y actuadores. La
+% conexión permanece activa mientras se intercambian datos, y se cierra
+% automáticamente en caso de error o si el usuario no está autorizado.
+
+% Para establecer la conexión, el cliente debe tener un token activo, que se
+% envía a través del encabezado \texttt{Authorization} o como \texttt{Query
+%     Params}. Si la autenticación es exitosa, el servidor acepta la conexión y añade
+% al cliente a la lista de conexiones activas gestionada por la clase
+% \texttt{WebSocketManager}.
+
+% Dicha clase, es responsable de mantener el listado de clientes conectados,
+% gestionar la suscripción a eventos y enviar los datos en tiempo real. También
+% mantiene un caché con los últimos valores por tipo de sensor para optimizar la
+% entrega de información.
+
+% Cuando se reciben nuevos datos desde los nodos sensores o actuadores, el
+% servidor actualiza el caché y transmite los datos a todos los clientes
+% conectados. Esto permite actualizar la interfaz del usuario en tiempo real, y
+% asegurar una experiencia fluida y continua.
+
+% El código desarrollado para la implementación de WebSockets en FastAPI se
+% encuentra en el apéndice \ref{AppendixF}.
+
+% La figura \ref{fig:websocket} muestra los pasos realizados para establecer la
+% conexión WebSocket entre el servidor y el cliente.
+
+% La comunicación en tiempo real se implementó mediante el módulo
+% \texttt{websockets} de FastAPI. Se definió una ruta específica para que los
+% clientes se conecten y reciban datos actualizados de sensores y actuadores. La
+% conexión se mantiene activa mientras haya intercambio de datos y se cierra
+% automáticamente ante errores o falta de autorización.
+
+% El cliente debe contar con un token válido, enviado a través del encabezado
+% \texttt{Authorization} o como \texttt{Query Params}. Si la autenticación es
+% exitosa, el servidor acepta la conexión y registra al cliente en la lista de
+% conexiones activas administrada por la clase \texttt{WebSocketManager}.
+
+% Esta clase gestiona los clientes conectados, las suscripciones a eventos y el
+% envío de datos en tiempo real. También mantiene un caché con los últimos
+% valores por tipo de sensor para optimizar el rendimiento. Cuando se reciben
+% nuevos datos desde sensores o actuadores, el servidor actualiza el caché y los
+% transmite a todos los clientes conectados, permitiendo una actualización fluida
+% de la interfaz del usuario.
+
+% El código correspondiente se encuentra en el apéndice \ref{AppendixF}, y la
+% figura \ref{fig:websocket} ilustra el proceso de conexión WebSocket entre
+% cliente y servidor.
+
+La comunicación en tiempo real se implementó mediante el módulo
+\texttt{websockets} de FastAPI, con una ruta específica para que los clientes
+se conecten y reciban datos actualizados de sensores y actuadores. La conexión
+permanece activa mientras sea válida, y se cierra en caso de error o falta de
+autorización.
+
+El cliente debe enviar un token válido por \texttt{Authorization} o
+\texttt{Query Params}. Si es válido, el servidor acepta la conexión y la
+gestiona a través de la clase \texttt{WebSocketManager}.
+
+Esta clase administra las conexiones activas, clientes y el envío de datos en
+tiempo real. Además, mantiene un caché con los últimos valores por tipo de
+sensor para optimizar el rendimiento. Al recibir nuevos datos, el servidor
+actualiza el caché y los transmite a todos los clientes conectados.
+
+El código de la implementación se encuentra en el apéndice \ref{AppendixF}, y
+la figura \ref{fig:websocket} ilustra el proceso de conexión.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=.90\textwidth]{./Images/23.png}
+    \caption{Pasos para establecer la conexión WebSocket.}
+    \label{fig:websocket}
+\end{figure}
 
 %----------------------------------------------------------------------------------------
 %	SECTION 5

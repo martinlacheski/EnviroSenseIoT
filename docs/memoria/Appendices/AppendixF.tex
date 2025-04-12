@@ -1,0 +1,202 @@
+\chapter{Conexión por WebSocket en FastAPI}
+\label{AppendixF}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% parámetros para configurar el formato del código en los entornos lstlisting
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\lstset{ %
+    backgroundcolor=\color{white},   % choose the background color; you must add \usepackage{color} or \usepackage{xcolor}
+    basicstyle=\footnotesize,        % the size of the fonts that are used for the code
+    breakatwhitespace=false,         % sets if automatic breaks should only happen at whitespace
+    breaklines=true,                 % sets automatic line breaking
+    captionpos=b,                    % sets the caption-position to bottom
+    commentstyle=\color{mygreen},    % comment style
+    deletekeywords={...},            % if you want to delete keywords from the given language
+    %escapeinside={\%*}{*)},          % if you want to add LaTeX within your code
+    %extendedchars=true,              % lets you use non-ASCII characters; for 8-bits encodings only, does not work with UTF-8
+    %frame=single,	                % adds a frame around the code
+    keepspaces=true, keywordstyle=\color{blue}, language=[ANSI]C, % keeps spaces in text, useful for keeping indentation of code (possibly needs columns=flexible)% keyword style% the language of the code
+    %otherkeywords={*,...},           % if you want to add more keywords to the set
+    numbers=left, numbersep=5pt, numberstyle=\tiny\color{mygray},
+    rulecolor=\color{black}, showspaces=false, showstringspaces=false,
+    showtabs=false, stepnumber=1, stringstyle=\color{mymauve}, tabsize=2,
+    title=\lstname, morecomment=[s]{/*}{*/} }% where to put the line-numbers; possible values are (none, left, right)% how far the line-numbers are from the code% the style that is used for the line-numbers% if not set, the frame-color may be changed on line-breaks within not-black text (e.g. comments (green here))% show spaces everywhere adding particular underscores; it overrides 'showstringspaces'% underline spaces within strings only% show tabs within strings adding particular underscores% the step between two line-numbers. If it's 1, each line will be numbered% string literal style% sets default tabsize to 2 spaces% show the filename of files included with \lstinputlisting; also try caption instead of title
+
+\lstdefinelanguage{PythonUTF8}[]{Python}{
+literate={á}{{\'a}}1 {é}{{\'e}}1 {í}{{\'i}}1 {ó}{{\'o}}1 {ú}{{\'u}}1
+{Á}{{\'A}}1 {É}{{\'E}}1 {Í}{{\'I}}1 {Ó}{{\'O}}1 {Ú}{{\'U}}1
+{ñ}{{\~n}}1 {Ñ}{{\~N}}1
+}
+
+\definecolor{mygreen}{rgb}{0,0.6,0}
+\definecolor{mygray}{rgb}{0.5,0.5,0.5}
+\definecolor{mymauve}{rgb}{0.58,0,0.82}
+
+\section{Introducción}
+
+Para establecer una conexión WebSocket se emplea el módulo \texttt{websockets}
+de FastAPI, el cual permite crear un servidor que gestiona conexiones en tiempo
+real con múltiples clientes. En este caso, el cliente WebSocket se conecta a la
+ruta \texttt{/ws/sensor-data} para recibir información de sensores y
+actuadores. La conexión permanece activa mientras se intercambian datos, y se
+cierra automáticamente si ocurre un error o si el usuario no está autorizado.%``/ws/sensor-data'' 
+
+\section{Autorización para WebSocket}
+
+El código \ref{cod:web_socket_autorization} muestra la función encargada de
+gestionar la autenticación del usuario a través del WebSocket. El token de
+acceso puede enviarse en el encabezado \texttt{Authorization} o como
+\texttt{Query Params}. Si el token es válido, se autentica al usuario; en caso
+contrario, se cierra la conexión.
+
+\begin{lstlisting}[label=cod:web_socket_autorization,caption=Autorización para WebSocket. , language=PythonUTF8]
+from fastapi import WebSocket, status
+from utils.authentication import auth_user, current_user
+    
+async def websocket_current_user(websocket: WebSocket):
+    try:
+        # Obtener el token del header o query parameter
+        token = websocket.headers.get("authorization") or websocket.query_params.get("token")
+        if not token:
+            await websocket.close(code=status.WS_1008_POLICY_VIOLATION)
+            return None
+                
+        # Limpiar el token (eliminar 'Bearer ' si existe)
+        if token.startswith("Bearer "):
+            token = token[7:]
+                
+        user = await auth_user(token)
+        return await current_user(user)
+           
+    except Exception as e:
+        print(f"Error en la autenticación del WebSocket: {e}")
+        await websocket.send_text( f"Error en la autenticación del WebSocket: {str(e)}")
+        await websocket.close(code=status.WS_1008_POLICY_VIOLATION)
+        return None
+\end{lstlisting}
+
+\section{Gestión de conexiones WebSocket}
+
+En el código \ref{cod:web_socket} se presenta la clase
+\texttt{WebSocketManager}, encargada de gestionar las conexiones WebSocket.
+Esta clase sigue el patrón Singleton y mantiene una lista de conexiones
+activas, además de un caché con los últimos datos enviados por tipo de sensor.
+También gestiona la conexión y desconexión de los clientes, el envío de datos
+en tiempo real, y la actualización del caché con cada nuevo mensaje recibido.
+
+\begin{lstlisting}[label=cod:web_socket,caption=Definición de clase WebSocket. , language=PythonUTF8]
+import datetime
+from typing import List, Dict, Optional
+from fastapi import WebSocket 
+    
+class WebSocketManager:
+    _instance: Optional['WebSocketManager'] = None
+        
+    # Método de clase para obtener la instancia única (Singleton)
+    def __new__(cls):
+        if cls._instance is None:
+            cls._instance = super().__new__(cls)
+            cls._instance.active_connections: List[Dict] = []
+            cls._instance.sensor_data_cache: Dict[str, dict] = {
+                "environmental": {},
+                "nutrient_solution": {},
+                "consumption": {},
+                "actuators": {}
+            }
+        return cls._instance
+        
+    # Método para manejar la conexión de un nuevo cliente WebSocket
+    async def connect(self, websocket: WebSocket, user: dict):
+        self.active_connections.append({
+            "websocket": websocket,
+            "user": user
+        })
+        # Enviar datos almacenados al nuevo cliente
+        for sensor_type, data in self.sensor_data_cache.items():
+            if data:
+                await websocket.send_json({
+                    "type": sensor_type,
+                    "data": data["data"],
+                    "timestamp": data["timestamp"]
+                })
+        
+    # Método para manejar la desconexión de un cliente WebSocket
+    def disconnect(self, websocket: WebSocket):
+        self.active_connections = [
+            conn for conn in self.active_connections 
+            if conn["websocket"] != websocket
+        ]
+        
+    # Método para enviar un mensaje a un cliente WebSocket específico
+    async def broadcast(self, message: dict):
+        for connection in self.active_connections[:]:
+            try:
+                await connection["websocket"].send_json(message)
+            except Exception as e:
+                print(f"Error broadcasting to WebSocket: {e}")
+                self.disconnect(connection)
+        
+    # Método para enviar un mensaje a todos los clientes WebSocket
+    def update_cache(self, sensor_type: str, data: dict):
+        self.sensor_data_cache[sensor_type] = {
+            "data": data,
+            "timestamp": datetime.datetime.now().isoformat()
+        }
+        
+    # Método para obtener datos almacenados en caché
+    def get_cached_data(self, sensor_type: str) -> dict:
+        return self.sensor_data_cache.get(sensor_type, {})
+        
+    # Método para obtener la cantidad de clientes conectados
+    @property
+    def connected_clients(self) -> int:
+        return len(self.active_connections)
+    
+# Instancia del WebSocketManager
+websocket_manager = WebSocketManager()
+\end{lstlisting}
+
+\section{Integración con FastAPI}
+
+Finalmente, el fragmento \ref{cod:integracion_fastapi} muestra cómo se integra
+WebSocket en FastAPI. Cuando un cliente intenta conectarse a
+\texttt{/ws/sensor-data}, se autentica al usuario, se acepta la conexión y se
+agrega al gestor. La conexión se mantiene abierta mientras no se produzca un
+error o una desconexión por parte del cliente. En ambos casos, el gestor
+elimina al cliente de la lista de conexiones activas.
+
+\begin{lstlisting}[label=cod:integracion_fastapi,caption=Cliente WebSocket en FastAPI., language=PythonUTF8]
+
+# Fragmento de código para la integración del cliente MQTT con FastAPI
+
+# Importamos el cliente WebSocket
+from utils.websocket import websocket_manager
+# Importamos el cliente WebSocket para autenticación
+from utils.websocket_auth import websocket_current_user
+
+# WebSocket para recibir datos de sensores y actuadores
+@app.websocket("/ws/sensor-data")
+async def websocket_endpoint(websocket: WebSocket):
+    # Aceptar la conexión WebSocket
+    await websocket.accept()
+    # Obtener el usuario actual
+    user = await websocket_current_user(websocket)
+    # Verificar si el usuario está autenticado
+    if not user:
+        # Cerrar la conexión si no está autenticado
+        return
+    
+    # Conectar el WebSocket al gestor
+    await websocket_manager.connect(websocket, user)
+    
+    # Mantener la conexión abierta
+    try:
+        while True:
+            await websocket.receive_text()
+    except WebSocketDisconnect:
+        websocket_manager.disconnect(websocket)
+    except Exception as e:
+        print(f"Error en WebSocket: {e}")
+        websocket_manager.disconnect(websocket)
+\end{lstlisting}
+

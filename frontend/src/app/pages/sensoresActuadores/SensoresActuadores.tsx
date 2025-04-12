@@ -77,30 +77,26 @@ export const SensoresActuadores = () => {
       environment: row.environment.id,
       description: row.description,
       actuator_code: row.actuator_code,
-      channel_1_enabled: row.channel_1_enabled,
-      channel_1_name: row.channel_1_name,
-      channel_1_time: row.channel_1_time,
-      channel_2_enabled: row.channel_2_enabled,
-      channel_2_name: row.channel_2_name,
-      channel_2_time: row.channel_2_time,
-      channel_3_enabled: row.channel_3_enabled,
-      channel_3_name: row.channel_3_name,
-      channel_3_time: row.channel_3_time,
-      channel_4_enabled: row.channel_4_enabled,
-      channel_4_name: row.channel_4_name,
-      channel_4_time: row.channel_4_time,
-      channel_5_enabled: row.channel_5_enabled,
-      channel_5_name: row.channel_5_name,
-      channel_5_time: row.channel_5_time,
-      channel_6_enabled: row.channel_6_enabled,
-      channel_6_name: row.channel_6_name,
-      channel_6_time: row.channel_6_time,
-      channel_7_enabled: row.channel_7_enabled,
-      channel_7_name: row.channel_7_name,
-      channel_7_time: row.channel_7_time,
-      channel_8_enabled: row.channel_8_enabled,
-      channel_8_name: row.channel_8_name,
-      channel_8_time: row.channel_8_time,
+      relay_water_enabled: row.relay_water_enabled,
+      relay_water_time: row.relay_water_time,
+      relay_aerator_enabled: row.relay_aerator_enabled,
+      relay_aerator_time: row.relay_aerator_time,
+      relay_vent_enabled: row.relay_vent_enabled,
+      relay_vent_time: row.relay_vent_time,
+      relay_light_enabled: row.relay_light_enabled,
+      relay_light_time: row.relay_light_time,
+      relay_ph_plus_enabled: row.relay_ph_plus_enabled,
+      relay_ph_plus_time: row.relay_ph_plus_time,
+      relay_ph_minus_enabled: row.relay_ph_minus_enabled,
+      relay_ph_minus_time: row.relay_ph_minus_time,
+      relay_nutri_1_enabled: row.relay_nutri_1_enabled,
+      relay_nutri_1_time: row.relay_nutri_1_time,
+      relay_nutri_2_enabled: row.relay_nutri_2_enabled,
+      relay_nutri_2_time: row.relay_nutri_2_time,
+      relay_nutri_3_enabled: row.relay_nutri_3_enabled,
+      relay_nutri_3_time: row.relay_nutri_3_time,
+      relay_nutri_4_enabled: row.relay_nutri_4_enabled,
+      relay_nutri_4_time: row.relay_nutri_4_time,
       seconds_to_report: row.seconds_to_report,
       enabled: row.enabled,
     });
@@ -247,30 +243,26 @@ export const SensoresActuadores = () => {
             environment: Yup.string().required("El ambiente es requerido"),
             description: Yup.string().required("La descripción es requerida"),
             actuator_code: Yup.string().required("El código es requerido"),
-            channel_1_enabled: Yup.boolean().required("El estado es requerido"),
-            channel_1_name: Yup.string().required("El nombre es requerido"),
-            channel_1_time: Yup.number().required("El tiempo es requerido"),
-            channel_2_enabled: Yup.boolean().required("El estado es requerido"),
-            channel_2_name: Yup.string().required("El nombre es requerido"),
-            channel_2_time: Yup.number().required("El tiempo es requerido"),
-            channel_3_enabled: Yup.boolean().required("El estado es requerido"),
-            channel_3_name: Yup.string().required("El nombre es requerido"),
-            channel_3_time: Yup.number().required("El tiempo es requerido"),
-            channel_4_enabled: Yup.boolean().required("El estado es requerido"),
-            channel_4_name: Yup.string().required("El nombre es requerido"),
-            channel_4_time: Yup.number().required("El tiempo es requerido"),
-            channel_5_enabled: Yup.boolean().required("El estado es requerido"),
-            channel_5_name: Yup.string().required("El nombre es requerido"),
-            channel_5_time: Yup.number().required("El tiempo es requerido"),
-            channel_6_enabled: Yup.boolean().required("El estado es requerido"),
-            channel_6_name: Yup.string().required("El nombre es requerido"),
-            channel_6_time: Yup.number().required("El tiempo es requerido"),
-            channel_7_enabled: Yup.boolean().required("El estado es requerido"),
-            channel_7_name: Yup.string().required("El nombre es requerido"),
-            channel_7_time: Yup.number().required("El tiempo es requerido"),
-            channel_8_enabled: Yup.boolean().required("El estado es requerido"),
-            channel_8_name: Yup.string().required("El nombre es requerido"),
-            channel_8_time: Yup.number().required("El tiempo es requerido"),
+            relay_water_enabled: Yup.boolean().required("El estado es requerido"),
+            relay_water_time: Yup.number().required("El tiempo es requerido"),
+            relay_aerator_enabled: Yup.boolean().required("El estado es requerido"),
+            relay_aerator_time: Yup.number().required("El tiempo es requerido"),
+            relay_vent_enabled: Yup.boolean().required("El estado es requerido"),
+            relay_vent_time: Yup.number().required("El tiempo es requerido"),
+            relay_light_enabled: Yup.boolean().required("El estado es requerido"),
+            relay_light_time: Yup.number().required("El tiempo es requerido"),
+            relay_ph_plus_enabled: Yup.boolean().required("El estado es requerido"),
+            relay_ph_plus_time: Yup.number().required("El tiempo es requerido"),
+            relay_ph_minus_enabled: Yup.boolean().required("El estado es requerido"),
+            relay_ph_minus_time: Yup.number().required("El tiempo es requerido"),
+            relay_nutri_1_enabled: Yup.boolean().required("El estado es requerido"),
+            relay_nutri_1_time: Yup.number().required("El tiempo es requerido"),
+            relay_nutri_2_enabled: Yup.boolean().required("El estado es requerido"),
+            relay_nutri_2_time: Yup.number().required("El tiempo es requerido"),
+            relay_nutri_3_enabled: Yup.boolean().required("El estado es requerido"),
+            relay_nutri_3_time: Yup.number().required("El tiempo es requerido"),
+            relay_nutri_4_enabled: Yup.boolean().required("El estado es requerido"),
+            relay_nutri_4_time: Yup.number().required("El tiempo es requerido"),
           })}
         >
           {({ errors, touched }) => (
@@ -332,11 +324,11 @@ export const SensoresActuadores = () => {
                     isInvalid={!!errors.description && touched.description}
                   />
                 </Row>
-                <Row xs={1} lg={4} className="g-2 mt-3">
+                <Row xs={1} lg={3} className="g-2 mt-3">
                   {initialHelpers.map(({ enabled, name, time }, index) => (
                     <Fragment key={index}>
                       <span>
-                        <strong>{enabled}</strong>
+                        <strong>{name}</strong>
                       </span>
                       <CustomInput.Select
                         name={enabled}
@@ -347,15 +339,6 @@ export const SensoresActuadores = () => {
                         <option value="true">Activo</option>
                         <option value="false">Inactivo</option>
                       </CustomInput.Select>
-
-                      <CustomInput.Text
-                        isRequired
-                        name={name}
-                        dasdas
-                        type="text"
-                        placeholder={`Nombre del canal`}
-                        isInvalid={!!errors[name] && touched[name]}
-                      />
 
                       <CustomInput.Number
                         isRequired

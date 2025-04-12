@@ -11,10 +11,14 @@ class NutrientSolutionSensor(Document):
     environment: Link[Environment]
     description: str
     sensor_code: str
-    temperature_alert: float
-    tds_alert: float
-    ph_alert: float
-    ce_alert: float
+    temperature_alert_min: float
+    temperature_alert_max: float
+    tds_alert_min: float
+    tds_alert_max: float
+    ph_alert_min: float
+    ph_alert_max: float
+    ce_alert_min: float
+    ce_alert_max: float
     seconds_to_report: int
     enabled: bool
         

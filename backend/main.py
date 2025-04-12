@@ -1,6 +1,5 @@
-import asyncio
 import os
-from fastapi import FastAPI, Depends
+from fastapi import FastAPI, Depends, WebSocket, WebSocketDisconnect
 from fastapi.staticfiles import StaticFiles
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
@@ -13,6 +12,11 @@ from utils.authentication import current_user
 
 # Importamos el cliente MQTT
 from mqtt.aws_mqtt import AWSMQTTClient, process_sensor_message_pub, process_sensor_message_sub
+
+# Importamos el cliente WebSocket
+from utils.websocket import websocket_manager
+# Importamos el cliente WebSocket para autenticación
+from utils.websocket_auth import websocket_current_user
 
 from routers import (
     login,
@@ -134,3 +138,38 @@ def test_mqtt_connection(user: dict = Depends(current_user)):
         return {"status": "Conexión exitosa"}
     except Exception as e:
         return {"status": "Error de conexión", "error": str(e)}
+
+# WebSocket para recibir datos de sensores y actuadores
+@app.websocket("/ws/sensor-data")
+async def websocket_endpoint(websocket: WebSocket):
+    # Aceptar la conexión WebSocket
+    await websocket.accept()
+    # Obtener el usuario actual
+    user = await websocket_current_user(websocket)
+    # Verificar si el usuario está autenticado
+    if not user:
+        # Cerrar la conexión si no está autenticado
+        return
+    
+    # Conectar el WebSocket al gestor
+    await websocket_manager.connect(websocket, user)
+    
+    # Mantener la conexión abierta
+    try:
+        while True:
+            await websocket.receive_text()
+    except WebSocketDisconnect:
+        websocket_manager.disconnect(websocket)
+    except Exception as e:
+        print(f"Error en WebSocket: {e}")
+        websocket_manager.disconnect(websocket)
+
+# # Endpoint para obtener los últimos datos de un tipo de sensor
+# @app.get("/api/sensor-data/{sensor_type}")
+# async def get_last_sensor_data(sensor_type: str, user: dict = Depends(current_user)):
+#     return websocket_manager.get_cached_data(sensor_type)
+
+# # Endpoint para obtener la cantidad de clientes WebSocket conectados
+# @app.get("/ws/connections")
+# async def get_websocket_connections(user: dict = Depends(current_user)):
+#     return {"connected_clients": websocket_manager.connected_clients}

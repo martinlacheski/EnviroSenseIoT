@@ -273,6 +273,9 @@ INPUT Appendices/AppendixD.aux
 INPUT ./Appendices/AppendixE.aux
 INPUT ./Appendices/AppendixE.aux
 INPUT Appendices/AppendixE.aux
+INPUT ./Appendices/AppendixF.aux
+INPUT ./Appendices/AppendixF.aux
+INPUT Appendices/AppendixF.aux
 OUTPUT memoria.aux
 INPUT /usr/share/texlive/texmf-dist/tex/latex/translations/translations-basic-dictionary-spanish.trsl
 INPUT /usr/share/texlive/texmf-dist/tex/latex/translations/translations-basic-dictionary-spanish.trsl
@@ -560,6 +563,11 @@ INPUT ./Images/22.png
 INPUT ./Images/22.png
 INPUT ./Images/22.png
 INPUT ./Images/22.png
+INPUT ./Images/23.png
+INPUT ./Images/23.png
+INPUT ./Images/23.png
+INPUT ./Images/23.png
+INPUT ./Images/23.png
 INPUT ./Appendices/AppendixA.tex
 INPUT ./Appendices/AppendixA.tex
 OUTPUT Appendices/AppendixA.aux
@@ -601,6 +609,12 @@ OUTPUT Appendices/AppendixE.aux
 INPUT ./Appendices/AppendixE.tex
 INPUT ./Appendices/AppendixE.tex
 INPUT Appendices/AppendixE.tex
+INPUT ./Appendices/AppendixF.tex
+INPUT ./Appendices/AppendixF.tex
+OUTPUT Appendices/AppendixF.aux
+INPUT ./Appendices/AppendixF.tex
+INPUT ./Appendices/AppendixF.tex
+INPUT Appendices/AppendixF.tex
 INPUT memoria.aux
 INPUT ./portada.aux
 INPUT ./portada.aux
@@ -629,6 +643,9 @@ INPUT Appendices/AppendixD.aux
 INPUT ./Appendices/AppendixE.aux
 INPUT ./Appendices/AppendixE.aux
 INPUT Appendices/AppendixE.aux
+INPUT ./Appendices/AppendixF.aux
+INPUT ./Appendices/AppendixF.aux
+INPUT Appendices/AppendixF.aux
 INPUT ./memoria.out
 INPUT ./memoria.out
 INPUT memoria.run.xml

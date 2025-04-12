@@ -124,24 +124,63 @@ export const SensorNutriente = () => {
                   <span>Información del sensor</span>
                 </Card.Header>
                 <Card.Body>
-                  <p>
-                    Alerta temperatura:{" "}
-                    <span className="fw-bold">
-                      {sensor.temperature_alert}°C
-                    </span>
-                  </p>
-                  <p>
-                    Alerta TDS:{" "}
-                    <span className="fw-bold">{sensor.tds_alert}</span>
-                  </p>
-                  <p>
-                    Alerta PH:{" "}
-                    <span className="fw-bold">{sensor.ph_alert}</span>
-                  </p>
-                  <p>
-                    Alerta CE:{" "}
-                    <span className="fw-bold">{sensor.ce_alert}</span>
-                  </p>
+                  <div className="row">
+                    {/* Temperatura */}
+                    <div className="col-12 col-lg-6">
+                      <p>
+                        Alerta temperatura mínima:{" "}
+                        <span className="fw-bold">{sensor.temperature_alert_min}°C</span>
+                      </p>
+                    </div>
+                    <div className="col-12 col-lg-6">
+                      <p>
+                        Alerta temperatura máxima:{" "}
+                        <span className="fw-bold">{sensor.temperature_alert_max}°C</span>
+                      </p>
+                    </div>
+
+                    {/* TDS */}
+                    <div className="col-12 col-lg-6">
+                      <p>
+                        Alerta TDS mínimo:{" "}
+                        <span className="fw-bold">{sensor.tds_alert_min} ppm</span>
+                      </p>
+                    </div>
+                    <div className="col-12 col-lg-6">
+                      <p>
+                        Alerta TDS máximo:{" "}
+                        <span className="fw-bold">{sensor.tds_alert_max} ppm</span>
+                      </p>
+                    </div>
+
+                    {/* PH */}
+                    <div className="col-12 col-lg-6">
+                      <p>
+                        Alerta pH mínimo:{" "}
+                        <span className="fw-bold">{sensor.ph_alert_min}</span>
+                      </p>
+                    </div>
+                    <div className="col-12 col-lg-6">
+                      <p>
+                        Alerta pH máximo:{" "}
+                        <span className="fw-bold">{sensor.ph_alert_max} </span>
+                      </p>
+                    </div>
+
+                    {/* CE */}
+                    <div className="col-12 col-lg-6">
+                      <p>
+                        Alerta CE mínima:{" "}
+                        <span className="fw-bold">{sensor.ce_alert_min} mS/cm</span>
+                      </p>
+                    </div>
+                    <div className="col-12 col-lg-6">
+                      <p>
+                        Alerta CE máxima:{" "}
+                        <span className="fw-bold">{sensor.ce_alert_max} mS/cm</span>
+                      </p>
+                    </div>
+                  </div>
                 </Card.Body>
               </Card>
             </div>

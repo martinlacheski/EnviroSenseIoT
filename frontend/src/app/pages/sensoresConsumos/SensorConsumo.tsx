@@ -122,7 +122,7 @@ export const SensorConsumo = () => {
               <Card className="h-100">
                 <Card.Header>
                   <i className="bi bi-info-circle me-2"></i>
-                  <span>Información del los canales</span>
+                  <span>Información de los canales</span>
                 </Card.Header>
                 <Card.Body className="p-0 small">
                   <Table striped hover responsive className="mb-0">

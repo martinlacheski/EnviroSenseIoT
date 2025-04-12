@@ -124,26 +124,63 @@ export const SensorAmbiental = () => {
                   <span>Información del sensor</span>
                 </Card.Header>
                 <Card.Body>
-                  <p>
-                    Alerta temperatura:{" "}
-                    <span className="fw-bold">
-                      {sensor.temperature_alert}°C
-                    </span>
-                  </p>
-                  <p>
-                    Alerta humedad:{" "}
-                    <span className="fw-bold">{sensor.humidity_alert}%</span>
-                  </p>
-                  <p>
-                    Alerta presión atmosférica:{" "}
-                    <span className="fw-bold">
-                      {sensor.atmospheric_pressure_alert} hPa
-                    </span>
-                  </p>
-                  <p>
-                    Alerta C02:{" "}
-                    <span className="fw-bold">{sensor.co2_alert} ppm</span>
-                  </p>
+                  <div className="row">
+                    {/* Temperatura */}
+                    <div className="col-12 col-lg-6">
+                      <p>
+                        Alerta temperatura mínima:{" "}
+                        <span className="fw-bold">{sensor.temperature_alert_min}°C</span>
+                      </p>
+                    </div>
+                    <div className="col-12 col-lg-6">
+                      <p>
+                        Alerta temperatura máxima:{" "}
+                        <span className="fw-bold">{sensor.temperature_alert_max}°C</span>
+                      </p>
+                    </div>
+
+                    {/* Humedad */}
+                    <div className="col-12 col-lg-6">
+                      <p>
+                        Alerta humedad mínima:{" "}
+                        <span className="fw-bold">{sensor.humidity_alert_min}%</span>
+                      </p>
+                    </div>
+                    <div className="col-12 col-lg-6">
+                      <p>
+                        Alerta humedad máxima:{" "}
+                        <span className="fw-bold">{sensor.humidity_alert_max}%</span>
+                      </p>
+                    </div>
+
+                    {/* Presión atmosférica */}
+                    <div className="col-12 col-lg-6">
+                      <p>
+                        Alerta presión atmosférica mínima:{" "}
+                        <span className="fw-bold">{sensor.atmospheric_pressure_alert_min} hPa</span>
+                      </p>
+                    </div>
+                    <div className="col-12 col-lg-6">
+                      <p>
+                        Alerta presión atmosférica máxima:{" "}
+                        <span className="fw-bold">{sensor.atmospheric_pressure_alert_max} hPa</span>
+                      </p>
+                    </div>
+
+                    {/* CO2 */}
+                    <div className="col-12 col-lg-6">
+                      <p>
+                        Alerta CO2 mínimo:{" "}
+                        <span className="fw-bold">{sensor.co2_alert_min} ppm</span>
+                      </p>
+                    </div>
+                    <div className="col-12 col-lg-6">
+                      <p>
+                        Alerta CO2 máximo:{" "}
+                        <span className="fw-bold">{sensor.co2_alert_max} ppm</span>
+                      </p>
+                    </div>
+                  </div>
                 </Card.Body>
               </Card>
             </div>

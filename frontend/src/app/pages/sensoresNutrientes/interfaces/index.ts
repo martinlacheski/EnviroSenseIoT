@@ -5,10 +5,14 @@ interface SensorNutriente {
     description: string;
     sensor_code: string;
 
-    temperature_alert: number;
-    tds_alert: number;
-    ph_alert: number;
-    ce_alert: number;
+    temperature_alert_min: number;
+    temperature_alert_max: number;
+    tds_alert_min: number;
+    tds_alert_max: number;
+    ph_alert_min: number;
+    ph_alert_max: number;
+    ce_alert_min: number;
+    ce_alert_max: number;
 
     seconds_to_report: number;
     enabled: boolean;
@@ -27,10 +31,14 @@ export const initialForm: SensorNutrienteForm = {
     environment: '',
     description: '',
     sensor_code: '',
-    temperature_alert: 0,
-    tds_alert: 0,
-    ph_alert: 0,
-    ce_alert: 0,
+    temperature_alert_min: 0,
+    temperature_alert_max: 0,
+    tds_alert_min: 0,
+    tds_alert_max: 0,
+    ph_alert_min: 0,
+    ph_alert_max: 0,
+    ce_alert_min: 0,
+    ce_alert_max: 0,
     seconds_to_report: 0,
     enabled: false,
 };

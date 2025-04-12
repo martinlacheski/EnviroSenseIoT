@@ -76,10 +76,14 @@ export const SensoresNutrientes = () => {
       environment: row.environment.id,
       description: row.description,
       sensor_code: row.sensor_code,
-      temperature_alert: row.temperature_alert,
-      tds_alert: row.tds_alert,
-      ph_alert: row.ph_alert,
-      ce_alert: row.ce_alert,
+      temperature_alert_min: row.temperature_alert_min,
+      temperature_alert_max: row.temperature_alert_max,
+      tds_alert_min: row.tds_alert_min,
+      tds_alert_max: row.tds_alert_max,
+      ph_alert_min: row.ph_alert_min,
+      ph_alert_max: row.ph_alert_max,
+      ce_alert_min: row.ce_alert_min,
+      ce_alert_max: row.ce_alert_max,
       seconds_to_report: row.seconds_to_report,
       enabled: row.enabled,
     });
@@ -145,24 +149,29 @@ export const SensoresNutrientes = () => {
       selector: (row: DataRow) => row.environment.name || "No identificado",
     },
     {
-      name: "TEMPERATURA",
-      selector: (row: DataRow) => row.temperature_alert + "°C",
+      name: "TEMPERATURA MAX",
+      selector: (row: DataRow) => row.temperature_alert_max + "°C",
       center: true,
     },
 
     {
-      name: "TDS",
-      selector: (row: DataRow) => row.tds_alert,
+      name: "TDS MIN",
+      selector: (row: DataRow) => row.tds_alert_min,
       center: true,
     },
     {
-      name: "PH",
-      selector: (row: DataRow) => row.ph_alert,
+      name: "PH MIN",
+      selector: (row: DataRow) => row.ph_alert_min,
       center: true,
     },
     {
-      name: "CE",
-      selector: (row: DataRow) => row.ce_alert,
+      name: "PH MAX",
+      selector: (row: DataRow) => row.ph_alert_max,
+      center: true,
+    },
+    {
+      name: "CE MIN",
+      selector: (row: DataRow) => row.ce_alert_min,
       center: true,
     },
     {
@@ -248,16 +257,26 @@ export const SensoresNutrientes = () => {
             environment: Yup.string().required("El ambiente es requerido"),
             description: Yup.string().required("La descripción es requerida"),
             sensor_code: Yup.string().required("El código es requerido"),
-            temperature_alert: Yup.number().required(
-              "La alerta de temperatura es requerida"
+            temperature_alert_min: Yup.number().required(
+              "La alerta de temperatura mínima es requerida"
             ),
-            tds_alert: Yup.number().required(
-              "La alerta de humedad es requerida"
+            temperature_alert_max: Yup.number().required(
+              "La alerta de temperatura máxima es requerida"
             ),
-            ph_alert: Yup.number().required(
-              "La alerta de presión atmosférica es requerida"
+            tds_alert_min: Yup.number().required(
+              "La alerta de TDS mínimo es requerido"
             ),
-            ce_alert: Yup.number().required("La alerta de CO2 es requerida"),
+            tds_alert_max: Yup.number().required(
+              "La alerta de TDS máximo es requerido"
+            ),
+            ph_alert_min: Yup.number().required(
+              "La alerta de pH mínimo es requerido"
+            ),
+            ph_alert_max: Yup.number().required(
+              "La alerta de pH máximo es requerido"
+            ),
+            ce_alert_min: Yup.number().required("La alerta de CO2 mínimo es requerido"),
+            ce_alert_max: Yup.number().required("La alerta de CO2 máximo es requerido"),
           })}
         >
           {({ errors, touched }) => (
@@ -323,40 +342,78 @@ export const SensoresNutrientes = () => {
                 <Row xs={1} lg={2} className="g-2">
                   <CustomInput.Number
                     isRequired
-                    label="Alerta de temperatura"
-                    name="temperature_alert"
+                    label="Alerta de temperatura mínima"
+                    name="temperature_alert_min"
                     type="text"
-                    placeholder="Alerta de temperatura"
+                    placeholder="Alerta de temperatura mínima"
                     isInvalid={
-                      !!errors.temperature_alert && touched.temperature_alert
+                      !!errors.temperature_alert_min && touched.temperature_alert_min
                     }
                   />
 
                   <CustomInput.Number
                     isRequired
-                    label="Alerta de TDS"
-                    name="tds_alert"
+                    label="Alerta de temperatura máxima"
+                    name="temperature_alert_max"
                     type="text"
-                    placeholder="Alerta de TDS"
-                    isInvalid={!!errors.tds_alert && touched.tds_alert}
+                    placeholder="Alerta de temperatura máxima"
+                    isInvalid={
+                      !!errors.temperature_alert_max && touched.temperature_alert_max
+                    }
                   />
 
                   <CustomInput.Number
                     isRequired
-                    label="Alerta de PH"
-                    name="ph_alert"
+                    label="Alerta de TDS mínimo"
+                    name="tds_alert_min"
                     type="text"
-                    placeholder="Alerta de PH"
-                    isInvalid={!!errors.ph_alert && touched.ph_alert}
+                    placeholder="Alerta de TDS mínimo"
+                    isInvalid={!!errors.tds_alert_min && touched.tds_alert_min}
                   />
 
                   <CustomInput.Number
                     isRequired
-                    label="Alerta de CE"
-                    name="ce_alert"
+                    label="Alerta de TDS máximo"
+                    name="tds_alert_max"
                     type="text"
-                    placeholder="Alerta de CE"
-                    isInvalid={!!errors.ce_alert && touched.ce_alert}
+                    placeholder="Alerta de TDS máximo"
+                    isInvalid={!!errors.tds_alert_max && touched.tds_alert_max}
+                  />
+
+                  <CustomInput.Number
+                    isRequired
+                    label="Alerta de PH mínimo"
+                    name="ph_alert_min"
+                    type="text"
+                    placeholder="Alerta de PH mínimo"
+                    isInvalid={!!errors.ph_alert_min && touched.ph_alert_min}
+                  />
+
+                  <CustomInput.Number
+                    isRequired
+                    label="Alerta de PH máximo"
+                    name="ph_alert_max"
+                    type="text"
+                    placeholder="Alerta de PH máximo"
+                    isInvalid={!!errors.ph_alert_max && touched.ph_alert_max}
+                  />
+
+                  <CustomInput.Number
+                    isRequired
+                    label="Alerta de CE mínimo"
+                    name="ce_alert_min"
+                    type="text"
+                    placeholder="Alerta de CE mínimo"
+                    isInvalid={!!errors.ce_alert_min && touched.ce_alert_min}
+                  />
+
+                  <CustomInput.Number
+                    isRequired
+                    label="Alerta de CE máximo"
+                    name="ce_alert_max"
+                    type="text"
+                    placeholder="Alerta de CE máximo"
+                    isInvalid={!!errors.ce_alert_max && touched.ce_alert_max}
                   />
                 </Row>
               </Modal.Body>

@@ -76,10 +76,14 @@ export const SensoresAmbientales = () => {
       environment: row.environment.id,
       description: row.description,
       sensor_code: row.sensor_code,
-      temperature_alert: row.temperature_alert,
-      humidity_alert: row.humidity_alert,
-      atmospheric_pressure_alert: row.atmospheric_pressure_alert,
-      co2_alert: row.co2_alert,
+      temperature_alert_min: row.temperature_alert_min,
+      temperature_alert_max: row.temperature_alert_max,
+      humidity_alert_min: row.humidity_alert_min,
+      humidity_alert_max: row.humidity_alert_max,
+      atmospheric_pressure_alert_min: row.atmospheric_pressure_alert_min,
+      atmospheric_pressure_alert_max: row.atmospheric_pressure_alert_max,
+      co2_alert_min: row.co2_alert_min,
+      co2_alert_max: row.co2_alert_max,
       seconds_to_report: row.seconds_to_report,
       enabled: row.enabled,
     });
@@ -144,27 +148,48 @@ export const SensoresAmbientales = () => {
       name: "AMBIENTE",
       selector: (row: DataRow) => row.environment.name || "No identificado",
     },
+    // {
+    //   name: "TEMPERATURA MIN",
+    //   selector: (row: DataRow) => row.temperature_alert_min + "°C",
+    //   center: true,
+    // },
+
     {
-      name: "TEMPERATURA",
-      selector: (row: DataRow) => row.temperature_alert + "°C",
+      name: "TEMPERATURA MAX",
+      selector: (row: DataRow) => row.temperature_alert_max + "°C",
       center: true,
     },
 
     {
-      name: "HUMEDAD",
-      selector: (row: DataRow) => row.humidity_alert + "%",
+      name: "HUMEDAD MIN",
+      selector: (row: DataRow) => row.humidity_alert_min + "%",
       center: true,
     },
-    {
-      name: "P.A.",
-      selector: (row: DataRow) => row.atmospheric_pressure_alert + "hPa",
-      center: true,
-    },
-    {
-      name: "CO2",
-      selector: (row: DataRow) => row.co2_alert + "ppm",
-      center: true,
-    },
+    // {
+    //   name: "HUMEDAD MAX",
+    //   selector: (row: DataRow) => row.humidity_alert_max + "%",
+    //   center: true,
+    // },
+    // {
+    //   name: "Pres. Atm. Mín.",
+    //   selector: (row: DataRow) => row.atmospheric_pressure_alert_min + "hPa",
+    //   center: true,
+    // },
+    // {
+    //   name: "Pres. Atm. Max.",
+    //   selector: (row: DataRow) => row.atmospheric_pressure_alert_max + "hPa",
+    //   center: true,
+    // },
+    // {
+    //   name: "CO2 MIN",
+    //   selector: (row: DataRow) => row.co2_alert_min + "ppm",
+    //   center: true,
+    // },
+    // {
+    //   name: "CO2 MAX",
+    //   selector: (row: DataRow) => row.co2_alert_max + "ppm",
+    //   center: true,
+    // },
     {
       name: "SEGUNDOS PARA REPORTAR",
       selector: (row: DataRow) => row.seconds_to_report,
@@ -248,16 +273,26 @@ export const SensoresAmbientales = () => {
             environment: Yup.string().required("El ambiente es requerido"),
             description: Yup.string().required("La descripción es requerida"),
             sensor_code: Yup.string().required("El código es requerido"),
-            temperature_alert: Yup.number().required(
-              "La alerta de temperatura es requerida"
+            temperature_alert_min: Yup.number().required(
+              "La alerta de temperatura mínima es requerida"
             ),
-            humidity_alert: Yup.number().required(
-              "La alerta de humedad es requerida"
+            temperature_alert_max: Yup.number().required(
+              "La alerta de temperatura máxima es requerida"
             ),
-            atmospheric_pressure_alert: Yup.number().required(
-              "La alerta de presión atmosférica es requerida"
+            humidity_alert_min: Yup.number().required(
+              "La alerta de humedad mínima es requerida"
             ),
-            co2_alert: Yup.number().required("La alerta de CO2 es requerida"),
+            humidity_alert_max: Yup.number().required(
+              "La alerta de humedad máxima es requerida"
+            ),
+            atmospheric_pressure_alert_min: Yup.number().required(
+              "La alerta de presión atmosférica mínima es requerida"
+            ),
+            atmospheric_pressure_alert_max: Yup.number().required(
+              "La alerta de presión atmosférica máxima es requerida"
+            ),
+            co2_alert_min: Yup.number().required("La alerta de CO2 mínima es requerida"),
+            co2_alert_max: Yup.number().required("La alerta de CO2 máxima es requerida"),
           })}
         >
           {({ errors, touched }) => (
@@ -323,45 +358,88 @@ export const SensoresAmbientales = () => {
                 <Row xs={1} lg={2} className="g-2">
                   <CustomInput.Number
                     isRequired
-                    label="Alerta de temperatura"
-                    name="temperature_alert"
+                    label="Alerta de temperatura mínima"
+                    name="temperature_alert_min"
                     type="text"
-                    placeholder="Alerta de temperatura"
+                    placeholder="Alerta de temperatura mínima"
                     isInvalid={
-                      !!errors.temperature_alert && touched.temperature_alert
+                      !!errors.temperature_alert_min && touched.temperature_alert_min
                     }
                   />
 
                   <CustomInput.Number
                     isRequired
-                    label="Alerta de humedad"
-                    name="humidity_alert"
+                    label="Alerta de temperatura máxima"
+                    name="temperature_alert_max"
                     type="text"
-                    placeholder="Alerta de humedad"
+                    placeholder="Alerta de temperatura máxima"
                     isInvalid={
-                      !!errors.humidity_alert && touched.humidity_alert
+                      !!errors.temperature_alert_max && touched.temperature_alert_max
                     }
                   />
 
                   <CustomInput.Number
                     isRequired
-                    label="Alerta de presión atmosférica"
-                    name="atmospheric_pressure_alert"
+                    label="Alerta de humedad mínima"
+                    name="humidity_alert_min"
                     type="text"
-                    placeholder="Alerta de presión atmosférica"
+                    placeholder="Alerta de humedad mínima"
                     isInvalid={
-                      !!errors.atmospheric_pressure_alert &&
-                      touched.atmospheric_pressure_alert
+                      !!errors.humidity_alert_min && touched.humidity_alert_min
                     }
                   />
 
                   <CustomInput.Number
                     isRequired
-                    label="Alerta de CO2"
-                    name="co2_alert"
+                    label="Alerta de humedad máxima"
+                    name="humidity_alert_max"
                     type="text"
-                    placeholder="Alerta de CO2"
-                    isInvalid={!!errors.co2_alert && touched.co2_alert}
+                    placeholder="Alerta de humedad máxima"
+                    isInvalid={
+                      !!errors.humidity_alert_max && touched.humidity_alert_max
+                    }
+                  />
+
+                  <CustomInput.Number
+                    isRequired
+                    label="Alerta de presión atmosférica mínima"
+                    name="atmospheric_pressure_alert_min"
+                    type="text"
+                    placeholder="Alerta de presión atmosférica mínima"
+                    isInvalid={
+                      !!errors.atmospheric_pressure_alert_min &&
+                      touched.atmospheric_pressure_alert_min
+                    }
+                  />
+
+                  <CustomInput.Number
+                    isRequired
+                    label="Alerta de presión atmosférica máxima"
+                    name="atmospheric_pressure_alert_max"
+                    type="text"
+                    placeholder="Alerta de presión atmosférica máxima"
+                    isInvalid={
+                      !!errors.atmospheric_pressure_alert_max &&
+                      touched.atmospheric_pressure_alert_max
+                    }
+                  />
+
+                  <CustomInput.Number
+                    isRequired
+                    label="Alerta de CO2 mínima"
+                    name="co2_alert_min"
+                    type="text"
+                    placeholder="Alerta de CO2 mínima"
+                    isInvalid={!!errors.co2_alert_min && touched.co2_alert_min}
+                  />
+
+                  <CustomInput.Number
+                    isRequired
+                    label="Alerta de CO2 máxima"
+                    name="co2_alert_max"
+                    type="text"
+                    placeholder="Alerta de CO2 máxima"
+                    isInvalid={!!errors.co2_alert_max && touched.co2_alert_max}
                   />
                 </Row>
               </Modal.Body>
