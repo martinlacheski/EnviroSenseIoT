@@ -13,7 +13,6 @@ class ConsumptionSensor(Document):
     sensor_code: str
     min_voltage_alert: float
     max_voltage_alert: float
-    solution_level_alert: int
     nutrient_1_enabled: bool
     nutrient_1_type: Link[NutrientType]
     nutrient_1_alert: int
@@ -32,7 +31,7 @@ class ConsumptionSensor(Document):
     nutrient_6_enabled: bool
     nutrient_6_type: Link[NutrientType]
     nutrient_6_alert: int
-    minutes_to_report: int
+    seconds_to_report: int
     enabled: bool
     
     class Settings:

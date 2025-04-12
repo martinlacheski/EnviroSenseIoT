@@ -10,7 +10,7 @@ interface SensorNutriente {
     ph_alert: number;
     ce_alert: number;
 
-    minutes_to_report: number;
+    seconds_to_report: number;
     enabled: boolean;
 }
 
@@ -31,6 +31,6 @@ export const initialForm: SensorNutrienteForm = {
     tds_alert: 0,
     ph_alert: 0,
     ce_alert: 0,
-    minutes_to_report: 0,
+    seconds_to_report: 0,
     enabled: false,
 };

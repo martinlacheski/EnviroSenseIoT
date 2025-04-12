@@ -27,7 +27,7 @@ interface SensorConsumo {
     nutrient_6_enabled: boolean;
     nutrient_6_alert: number;
 
-    minutes_to_report: number;
+    seconds_to_report: number;
     enabled: boolean;
 }
 
@@ -79,7 +79,7 @@ export const initialForm: SensorConsumoForm = {
     nutrient_6_alert: 0,
 
 
-    minutes_to_report: 0,
+    seconds_to_report: 0,
     enabled: false,
 };
 

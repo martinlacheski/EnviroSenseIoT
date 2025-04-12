@@ -10,7 +10,7 @@ interface SensorAmbiental {
     atmospheric_pressure_alert: number;
     co2_alert: number;
 
-    minutes_to_report: number;
+    seconds_to_report: number;
     enabled: boolean;
 }
 
@@ -31,6 +31,6 @@ export const initialForm: SensorAmbientalForm = {
     humidity_alert: 0,
     atmospheric_pressure_alert: 0,
     co2_alert: 0,
-    minutes_to_report: 0,
+    seconds_to_report: 0,
     enabled: false,
 };

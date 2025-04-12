@@ -101,7 +101,7 @@ export const SensoresActuadores = () => {
       channel_8_enabled: row.channel_8_enabled,
       channel_8_name: row.channel_8_name,
       channel_8_time: row.channel_8_time,
-      minutes_to_report: row.minutes_to_report,
+      seconds_to_report: row.seconds_to_report,
       enabled: row.enabled,
     });
     setIsModalOpen(true);
@@ -165,8 +165,8 @@ export const SensoresActuadores = () => {
       selector: (row: DataRow) => row.environment.name,
     },
     {
-      name: "MINUTOS PARA REPORTAR",
-      selector: (row: DataRow) => row.minutes_to_report,
+      name: "SEGUNDOS PARA REPORTAR",
+      selector: (row: DataRow) => row.seconds_to_report,
       center: true,
     },
     {
@@ -241,8 +241,8 @@ export const SensoresActuadores = () => {
           }}
           validationSchema={Yup.object({
             enabled: Yup.boolean().required("El estado es requerido"),
-            minutes_to_report: Yup.number().required(
-              "Los minutos para reportar son requeridos"
+            seconds_to_report: Yup.number().required(
+              "Los segundos para reportar son requeridos"
             ),
             environment: Yup.string().required("El ambiente es requerido"),
             description: Yup.string().required("La descripción es requerida"),
@@ -302,12 +302,12 @@ export const SensoresActuadores = () => {
 
                   <CustomInput.Number
                     isRequired
-                    label="Minutos para reportar"
-                    name="minutes_to_report"
+                    label="Segundos para reportar"
+                    name="seconds_to_report"
                     type="text"
-                    placeholder="Minutos para reportar"
+                    placeholder="Segundos para reportar"
                     isInvalid={
-                      !!errors.minutes_to_report && touched.minutes_to_report
+                      !!errors.seconds_to_report && touched.seconds_to_report
                     }
                   />
 

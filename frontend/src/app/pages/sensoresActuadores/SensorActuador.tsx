@@ -63,7 +63,7 @@ export const SensorActuador = () => {
                   </Card.Title>
                   <p className="text-muted mb-0">{actuador.description}</p>
                   <p className="text-muted mb-0 fw-bold small">
-                    Minutos para reportar: {actuador.minutes_to_report}
+                    Segundos para reportar: {actuador.seconds_to_report}
                   </p>
                   <div className="my-3">
                     <p className="fw-bold mb-1 fst-italic">Ambiente</p>

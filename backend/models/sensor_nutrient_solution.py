@@ -1,5 +1,5 @@
+from wsgiref.validate import validator
 from beanie import Document, Link, PydanticObjectId
-from pydantic import BaseModel
 from typing import Optional
 
 from models.environment import Environment
@@ -15,8 +15,8 @@ class NutrientSolutionSensor(Document):
     tds_alert: float
     ph_alert: float
     ce_alert: float
-    minutes_to_report: int
+    seconds_to_report: int
     enabled: bool
-    
+        
     class Settings:
         collection_name = "nutrient_solution_sensors"

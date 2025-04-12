@@ -28,7 +28,7 @@ interface SensorActuador {
     channel_8_enabled: boolean;
     channel_8_name: string;
     channel_8_time: number;
-    minutes_to_report: number;
+    seconds_to_report: number;
     enabled: boolean;
 }
 
@@ -69,7 +69,7 @@ export const initialForm: SensorActuadorForm = {
     channel_8_enabled: false,
     channel_8_name: '',
     channel_8_time: 0,
-    minutes_to_report: 0,
+    seconds_to_report: 0,
     enabled: false,
 };
 

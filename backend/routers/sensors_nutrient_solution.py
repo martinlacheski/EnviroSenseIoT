@@ -60,7 +60,7 @@ async def create_nutrient_solution_sensor(sensor: NutrientSolutionSensor, user: 
         tds_alert=sensor.tds_alert,
         ph_alert=sensor.ph_alert,
         ce_alert=sensor.ce_alert,
-        minutes_to_report=sensor.minutes_to_report,
+        seconds_to_report=sensor.seconds_to_report,
         enabled=sensor.enabled,
         user=user,
         operation="create"
@@ -110,7 +110,7 @@ async def update_nutrient_solution_sensor(sensor: NutrientSolutionSensor, user: 
         tds_alert=sensor.tds_alert,
         ph_alert=sensor.ph_alert,
         ce_alert=sensor.ce_alert,
-        minutes_to_report=sensor.minutes_to_report,
+        seconds_to_report=sensor.seconds_to_report,
         enabled=sensor.enabled,
         user=user,
         operation="update"
@@ -137,7 +137,7 @@ async def delete_nutrient_solution_sensor(id: PydanticObjectId, user: User = Dep
         tds_alert=sensor.tds_alert,
         ph_alert=sensor.ph_alert,
         ce_alert=sensor.ce_alert,
-        minutes_to_report=sensor.minutes_to_report,
+        seconds_to_report=sensor.seconds_to_report,
         enabled=sensor.enabled,
         user=user,
         operation="delete"

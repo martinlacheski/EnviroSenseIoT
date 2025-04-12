@@ -80,7 +80,7 @@ export const SensoresAmbientales = () => {
       humidity_alert: row.humidity_alert,
       atmospheric_pressure_alert: row.atmospheric_pressure_alert,
       co2_alert: row.co2_alert,
-      minutes_to_report: row.minutes_to_report,
+      seconds_to_report: row.seconds_to_report,
       enabled: row.enabled,
     });
     setIsModalOpen(true);
@@ -166,8 +166,8 @@ export const SensoresAmbientales = () => {
       center: true,
     },
     {
-      name: "MINUTOS PARA REPORTAR",
-      selector: (row: DataRow) => row.minutes_to_report,
+      name: "SEGUNDOS PARA REPORTAR",
+      selector: (row: DataRow) => row.seconds_to_report,
       center: true,
     },
     {
@@ -242,8 +242,8 @@ export const SensoresAmbientales = () => {
           }}
           validationSchema={Yup.object({
             enabled: Yup.boolean().required("El estado es requerido"),
-            minutes_to_report: Yup.number().required(
-              "Los minutos para reportar son requeridos"
+            seconds_to_report: Yup.number().required(
+              "Los segundos para reportar son requeridos"
             ),
             environment: Yup.string().required("El ambiente es requerido"),
             description: Yup.string().required("La descripción es requerida"),
@@ -289,12 +289,12 @@ export const SensoresAmbientales = () => {
 
                   <CustomInput.Number
                     isRequired
-                    label="Minutos para reportar"
-                    name="minutes_to_report"
+                    label="Segundos para reportar"
+                    name="seconds_to_report"
                     type="text"
-                    placeholder="Minutos para reportar"
+                    placeholder="Segundos para reportar"
                     isInvalid={
-                      !!errors.minutes_to_report && touched.minutes_to_report
+                      !!errors.seconds_to_report && touched.seconds_to_report
                     }
                   />
 

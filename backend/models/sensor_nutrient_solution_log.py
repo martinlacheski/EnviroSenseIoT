@@ -17,7 +17,7 @@ class NutrientSolutionSensorLog(Document):
     tds_alert: float
     ph_alert: float
     ce_alert: float
-    minutes_to_report: int
+    seconds_to_report: int
     enabled: bool
     user: Link[User]
     operation: str

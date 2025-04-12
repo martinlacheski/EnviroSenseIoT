@@ -14,7 +14,7 @@ class EnvironmentalSensor(Document):
     humidity_alert: float
     atmospheric_pressure_alert: float
     co2_alert: float
-    minutes_to_report: int
+    seconds_to_report: int
     enabled: bool
 
     class Settings:

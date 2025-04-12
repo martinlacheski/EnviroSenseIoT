@@ -12,31 +12,27 @@ class ActuatorLog(Document):
     environment: Link[Environment]
     description: str
     actuator_code: str
-    channel_1_enabled: bool
-    channel_1_name: Optional[str]
-    channel_1_time: Optional[int]
-    channel_2_enabled: bool
-    channel_2_name: Optional[str]
-    channel_2_time: Optional[int]
-    channel_3_enabled: bool
-    channel_3_name: Optional[str]
-    channel_3_time: Optional[int]
-    channel_4_enabled: bool
-    channel_4_name: Optional[str]
-    channel_4_time: Optional[int]
-    channel_5_enabled: bool
-    channel_5_name: Optional[str]
-    channel_5_time: Optional[int]
-    channel_6_enabled: bool
-    channel_6_name: Optional[str]
-    channel_6_time: Optional[int]
-    channel_7_enabled: bool
-    channel_7_name: Optional[str]
-    channel_7_time: Optional[int]
-    channel_8_enabled: bool
-    channel_8_name: Optional[str]
-    channel_8_time: Optional[int]
-    minutes_to_report: int
+    relay_water_enabled: bool
+    relay_water_time: Optional[int]
+    relay_aerator_enabled: bool
+    relay_aerator_time: Optional[int]
+    relay_vent_enabled: bool
+    relay_vent_time: Optional[int]
+    relay_light_enabled: bool
+    relay_light_time: Optional[int]
+    relay_ph_plus_enabled: bool
+    relay_ph_plus_time: Optional[int]
+    relay_ph_minus_enabled: bool
+    relay_ph_minus_time: Optional[int]
+    relay_nutri_1_enabled: bool
+    relay_nutri_1_time: Optional[int]
+    relay_nutri_2_enabled: bool
+    relay_nutri_2_time: Optional[int]
+    relay_nutri_3_enabled: bool
+    relay_nutri_3_time: Optional[int]
+    relay_nutri_4_enabled: bool
+    relay_nutri_4_time: Optional[int]
+    seconds_to_report: int
     enabled: bool
     user: Link[User]
     operation: str

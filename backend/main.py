@@ -51,13 +51,13 @@ async def startup():
          
     # Suscripción a tópicos de publicación de sensores y actuadores
     mqtt_client.subscribe("environmental/sensor/pub", process_sensor_message_pub)
-    mqtt_client.subscribe("nutrient_solution/sensor/pub", process_sensor_message_pub)
+    mqtt_client.subscribe("nutrient/solution/sensor/pub", process_sensor_message_pub)
     mqtt_client.subscribe("consumption/sensor/pub", process_sensor_message_pub)
     mqtt_client.subscribe("actuators/pub", process_sensor_message_pub)
 
     # Suscripción a tópicos de envío de parámetros a sensores y actuadores
     mqtt_client.subscribe("environmental/sensor/sub", process_sensor_message_sub)
-    mqtt_client.subscribe("nutrient_solution/sensor/sub", process_sensor_message_sub)
+    mqtt_client.subscribe("nutrient/solution/sensor/sub", process_sensor_message_sub)
     mqtt_client.subscribe("consumption/sensor/sub", process_sensor_message_sub)
     mqtt_client.subscribe("actuators/sub", process_sensor_message_sub)
 
