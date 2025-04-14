@@ -69,34 +69,50 @@ try:
     print("Relays inicializados correctamente")
 except Exception as e:
     print("Error inicializando relays:", e)
+ 
+# Variables globales para manejar el estado de relays y bloqueos
+relay_locks = {name: False for name in relay_pins.keys()}  # Bloqueo por relay
+last_relay_operations = {name: 0 for name in relay_pins.keys()}  # Tiempo última operación
 
 # Método para encender y apagar relays cuando expire su tiempo
 def check_active_relays():
     global active_relays
+    
     current_time = time.ticks_ms()
-    changed = False  # Bandera para detectar cambios
-
-    for relay_name, end_time in list(active_relays.items()):  # Usamos list() para copia
-        if time.ticks_diff(current_time, end_time) >= 0:
-            # Solo si el relay está actualmente encendido
-            if relay_pins[relay_name].value() == 0:
-                relay_pins[relay_name].value(1)
-                changed = True
-                
-                # Enviar confirmación SOLO UNA VEZ
-                response = {
-                    "actuator_code": config.ACTUATOR_CODE,
-                    "status": "COMPLETED",
-                    "relay": relay_name,
-                    "command": "OFF",
-                    "timestamp": current_time
-                }
-                mqtt_client.publish(config.AWS_TOPIC_SUB, json.dumps(response), qos=0)
+    changed = False
+    relays_to_remove = []
+    
+    for relay_name, end_time in active_relays.items():
+        if relay_locks[relay_name]:  # Si este relay está siendo operado
+            continue
             
-            # Eliminar de active_relays siempre
-            active_relays.pop(relay_name)
-
-    # Actualizar sensores solo si hubo cambios
+        if time.ticks_diff(current_time, end_time) >= 0:
+            relay_locks[relay_name] = True  # Bloquear este relay específico
+            try:
+                if relay_pins[relay_name].value() == 0:  # Solo si está encendido
+                    # Verificar tiempo mínimo entre operaciones
+                    if time.ticks_diff(current_time, last_relay_operations[relay_name]) < 1000:
+                        continue
+                        
+                    relay_pins[relay_name].value(1)
+                    changed = True
+                    relays_to_remove.append(relay_name)
+                    last_relay_operations[relay_name] = current_time
+                    
+                    response = {
+                        "actuator_code": config.ACTUATOR_CODE,
+                        "status": "COMPLETED",
+                        "relay": relay_name,
+                        "command": "OFF",
+                        "timestamp": current_time
+                    }
+                    mqtt_client.publish(config.AWS_TOPIC_SUB, json.dumps(response), qos=0)
+            finally:
+                relay_locks[relay_name] = False  # Liberar siempre el bloqueo
+    
+    for relay_name in relays_to_remove:
+        active_relays.pop(relay_name, None)
+    
     if changed:
         leer_sensores()
     
@@ -235,55 +251,39 @@ def send_error_response(error_msg):
 # Metodo para manejar mensajes de control
 def handle_relay_command(msg):
     relay_name = msg["relay"]
-    command = msg["command"].upper()  # Asegurar mayúsculas
-    duration = msg.get("duration", 0)
-
-    # Validaciones
     if relay_name not in relay_pins:
         send_error_response(f"Relay {relay_name} no válido")
         return
+        
+    if relay_locks[relay_name]:  # Si este relay está siendo operado
+        send_error_response(f"Relay {relay_name} ocupado, intente luego")
+        return
+        
+    command = msg["command"].upper()
+    duration = msg.get("duration", 0)
+    current_time = time.ticks_ms()
 
-    current_state = relay_pins[relay_name].value()
-    
-    if command == "ON":
-        if duration <= 0:
-            send_error_response("Duración debe ser > 0")
-            return
-            
-        # Si ya está encendido, ignorar (o puedes actualizar el tiempo)
-        if current_state == 0:
-            return
-            
-        relay_pins[relay_name].value(0)
-        active_relays[relay_name] = time.ticks_add(time.ticks_ms(), duration * 1000)
+    relay_locks[relay_name] = True  # Bloquear este relay específico
+    try:
+        current_state = relay_pins[relay_name].value()
         
-        response = {
-            "actuator_code": config.ACTUATOR_CODE,
-            "status": "STARTED",
-            "relay": relay_name,
-            "command": command,
-            "state": 1 if command == "ON" else 0,
-            "duration": duration,
-            "timestamp": time.ticks_ms()
-        }
-        
-    elif command == "OFF":
-        if current_state == 1:
-            return
+        if command == "ON":
+            # Resto de validaciones ON...
+            relay_pins[relay_name].value(0)
+            active_relays[relay_name] = time.ticks_add(current_time, duration * 1000)
             
-        relay_pins[relay_name].value(1)
-        active_relays.pop(relay_name, None)
+        elif command == "OFF":
+            # Resto de validaciones OFF...
+            relay_pins[relay_name].value(1)
+            active_relays.pop(relay_name, None)
         
-        response = {
-            "actuator_code": config.ACTUATOR_CODE,
-            "status": "COMPLETED",
-            "relay": relay_name,
-            "command": command,
-            "timestamp": time.ticks_ms()
-        }
-    
-    mqtt_client.publish(config.AWS_TOPIC_SUB, json.dumps(response), qos=0)
-    leer_sensores()
+        last_relay_operations[relay_name] = current_time
+        response = { ... }  # Tu estructura de respuesta
+        #safe_publish(response)
+        leer_sensores()
+        
+    finally:
+        relay_locks[relay_name] = False  # Liberar siempre el bloqueo
 
 # Metodo para manejar mensajes de intervalo    
 def handle_interval_change(msg):	

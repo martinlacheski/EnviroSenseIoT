@@ -1,7 +1,10 @@
-from typing import List
+from datetime import datetime
+from math import ceil
+from typing import Optional, Union
 from beanie import PydanticObjectId
-from fastapi import APIRouter, Depends, HTTPException, status
-from bson import ObjectId
+from fastapi import APIRouter, Depends, HTTPException, status, Query
+from models.actuator import Actuator
+from pydantic import BaseModel
 
 # Importamos Modelo y Esquema de la Entidad
 from models.user import User
@@ -9,6 +12,7 @@ from models.actuator_data import ActuatorData
 
 # Importamos metodo de autenticación JWT
 from utils.authentication import current_user
+from utils.pagination import AGGREGATION_OPTIONS, DEFAULT_AGGREGATION, PaginatedResponse, determine_aggregation
 
 # Definimos el prefijo y una respuesta si no existe.
 router = APIRouter(
@@ -19,9 +23,308 @@ router = APIRouter(
 
 
 # Ruta para obtener todos los datos de los actuadores
-@router.get("/", response_model=List[ActuatorData])
-async def get_actuator_data(user: User = Depends(current_user)):
-    return await ActuatorData.find().to_list()
+# @router.get("/", response_model=List[ActuatorData])
+# async def get_actuator_data(user: User = Depends(current_user)):
+#     return await ActuatorData.find().to_list()
+
+class AggregatedActuatorData(BaseModel):
+    datetime: datetime
+    relay_water_count: int
+    relay_water_time: int
+    relay_light_count: int
+    relay_light_time: int
+    relay_aerator_count: int
+    relay_aerator_time: int
+    relay_vent_count: int
+    relay_vent_time: int
+    relay_ph_plus_count: int
+    relay_ph_plus_time: int
+    relay_ph_minus_count: int
+    relay_ph_minus_time: int
+    relay_nutri_1_count: int
+    relay_nutri_1_time: int
+    relay_nutri_2_count: int
+    relay_nutri_2_time: int
+    relay_nutri_3_count: int
+    relay_nutri_3_time: int
+    relay_nutri_4_count: int
+    relay_nutri_4_time: int
+    samples: int
+
+# Ruta para obtener todos los datos de los actuadores
+# @router.get("/", response_model=PaginatedResponse[Union[ActuatorData, AggregatedActuatorData]])
+# async def get_actuator_data(
+#     actuator_code: Optional[str] = Query(None),
+#     start_date: Optional[datetime] = Query(None),
+#     end_date: Optional[datetime] = Query(None),
+#     aggregation: Optional[str] = Query(None, description="Aggregation: 1m, 5m, 15m, 30m, 1h, 2h"),
+#     page: int = Query(1, ge=1),
+#     limit: int = Query(100, ge=1, le=1000),
+#     user: User = Depends(current_user)
+# ):
+#     query = {}
+#     if actuator_code:
+#         query["actuator_code"] = actuator_code
+#     if start_date or end_date:
+#         query["datetime"] = {}
+#         if start_date:
+#             query["datetime"]["$gte"] = start_date
+#         if end_date:
+#             query["datetime"]["$lte"] = end_date
+
+#     if aggregation:
+#         # Obtener los tiempos de activación del actuator
+#         actuator = await Actuator.find_one({"actuator_code": actuator_code})
+#         if not actuator:
+#             raise HTTPException(status_code=404, detail="Actuator not found")
+
+#         unit, bin_size = AGGREGATION_OPTIONS.get(aggregation, DEFAULT_AGGREGATION)
+
+#         pipeline = []
+#         if query:
+#             pipeline.append({"$match": query})
+
+#         pipeline.append({
+#             "$group": {
+#                 "_id": {
+#                     "$dateTrunc": {
+#                         "date": "$datetime",
+#                         "unit": unit,
+#                         "binSize": bin_size
+#                     }
+#                 },
+#                 "relay_water_count": {"$sum": {"$cond": ["$relay_water", 1, 0]}},
+#                 "relay_light_count": {"$sum": {"$cond": ["$relay_light", 1, 0]}},
+#                 "relay_aerator_count": {"$sum": {"$cond": ["$relay_aerator", 1, 0]}},
+#                 "relay_vent_count": {"$sum": {"$cond": ["$relay_vent", 1, 0]}},
+#                 "relay_ph_plus_count": {"$sum": {"$cond": ["$relay_ph_plus", 1, 0]}},
+#                 "relay_ph_minus_count": {"$sum": {"$cond": ["$relay_ph_minus", 1, 0]}},
+#                 "relay_nutri_1_count": {"$sum": {"$cond": ["$relay_nutri_1", 1, 0]}},
+#                 "relay_nutri_2_count": {"$sum": {"$cond": ["$relay_nutri_2", 1, 0]}},
+#                 "relay_nutri_3_count": {"$sum": {"$cond": ["$relay_nutri_3", 1, 0]}},
+#                 "relay_nutri_4_count": {"$sum": {"$cond": ["$relay_nutri_4", 1, 0]}},
+#                 "count": {"$sum": 1}
+#             }
+#         })
+
+#         pipeline.append({"$sort": {"_id": -1}})
+#         pipeline.append({"$skip": (page - 1) * limit})
+#         pipeline.append({"$limit": limit})
+
+#         results = await ActuatorData.aggregate(pipeline).to_list(None)
+#         total_pipeline = pipeline[:-2] + [{"$count": "total"}]
+#         total = await ActuatorData.aggregate(total_pipeline).to_list()
+#         total_count = total[0]["total"] if total else 0
+
+#         return {
+#             "data": [
+#                 {
+#                     "datetime": r["_id"],
+#                     "relay_water_count": r["relay_water_count"],
+#                     "relay_water_time": r["relay_water_count"] * actuator.relay_water_time if actuator.relay_water_time else 0,
+#                     "relay_light_count": r["relay_light_count"],
+#                     "relay_light_time": r["relay_light_count"] * actuator.relay_light_time if actuator.relay_light_time else 0,
+#                     "relay_aerator_count": r["relay_aerator_count"],
+#                     "relay_aerator_time": r["relay_aerator_count"] * actuator.relay_aerator_time if actuator.relay_aerator_time else 0,
+#                     "relay_vent_count": r["relay_vent_count"],
+#                     "relay_vent_time": r["relay_vent_count"] * actuator.relay_vent_time if actuator.relay_vent_time else 0,
+#                     "relay_ph_plus_count": r["relay_ph_plus_count"],
+#                     "relay_ph_plus_time": r["relay_ph_plus_count"] * actuator.relay_ph_plus_time if actuator.relay_ph_plus_time else 0,
+#                     "relay_ph_minus_count": r["relay_ph_minus_count"],
+#                     "relay_ph_minus_time": r["relay_ph_minus_count"] * actuator.relay_ph_minus_time if actuator.relay_ph_minus_time else 0,
+#                     "relay_nutri_1_count": r["relay_nutri_1_count"],
+#                     "relay_nutri_1_time": r["relay_nutri_1_count"] * actuator.relay_nutri_1_time if actuator.relay_nutri_1_time else 0,
+#                     "relay_nutri_2_count": r["relay_nutri_2_count"],
+#                     "relay_nutri_2_time": r["relay_nutri_2_count"] * actuator.relay_nutri_2_time if actuator.relay_nutri_2_time else 0,
+#                     "relay_nutri_3_count": r["relay_nutri_3_count"],
+#                     "relay_nutri_3_time": r["relay_nutri_3_count"] * actuator.relay_nutri_3_time if actuator.relay_nutri_3_time else 0,
+#                     "relay_nutri_4_count": r["relay_nutri_4_count"],
+#                     "relay_nutri_4_time": r["relay_nutri_4_count"] * actuator.relay_nutri_4_time if actuator.relay_nutri_4_time else 0,
+#                     "samples": r["count"]
+#                 } for r in results
+#             ],
+#             "pagination": {
+#                 "aggregation": aggregation,
+#                 "total": total_count,
+#                 "page": page,
+#                 "pages": ceil(total_count / limit),
+#                 "limit": limit
+#             }
+#         }
+
+#     # Si no hay agregación, devolver los datos originales
+#     total = await ActuatorData.find(query).count()
+#     data = await ActuatorData.find(query).sort("-datetime").skip((page - 1) * limit).limit(limit).to_list()
+
+#     return {
+#         "data": data,
+#         "pagination": {
+#             "aggregation": aggregation,
+#             "total": total,
+#             "page": page,
+#             "pages": ceil(total / limit),
+#             "limit": limit
+#         }
+#     }
+
+@router.get("/", response_model=PaginatedResponse[Union[ActuatorData, AggregatedActuatorData]])
+async def get_actuator_data(
+    actuator_code: Optional[str] = Query(None),
+    start_date: Optional[datetime] = Query(None),
+    end_date: Optional[datetime] = Query(None),
+    aggregation: Optional[str] = Query(None, description="Aggregation: 1m, 5m, 15m, 30m, 1h, 2h"),
+    page: int = Query(1, ge=1),
+    limit: int = Query(100, ge=1, le=1000),
+    user: User = Depends(current_user)):
+    
+    # Inicializar la consulta
+    query = {}
+    
+    # Filtrar por código de actuador
+    if actuator_code:
+        query["actuator_code"] = actuator_code
+        
+    # Si se proporciona una fecha de inicio o fin, se agrega a la consulta
+    if start_date or end_date:
+        query["datetime"] = {}
+        if start_date:
+            query["datetime"]["$gte"] = start_date
+        if end_date:
+            query["datetime"]["$lte"] = end_date
+
+    # Determinar unidad y binSize
+    # Si no se proporciona una fecha de inicio o fin, se establece un rango predeterminado
+    if aggregation or (start_date and end_date):
+        if aggregation:
+            unit, bin_size = AGGREGATION_OPTIONS.get(aggregation, DEFAULT_AGGREGATION)
+        else:
+            unit, bin_size = determine_aggregation(start_date, end_date)
+
+        # Inicializar la consulta de Match
+        match_stage = {"$match": query} if query else {}
+        # Crear la etapa de proyección
+        project_stage = {
+            "$project": {
+                "datetime": 1,
+                "actuator_code": 1,
+                "relay_states": {
+                    "relay_water": "$relay_water",
+                    "relay_light": "$relay_light",
+                    "relay_aerator": "$relay_aerator",
+                    "relay_vent": "$relay_vent",
+                    "relay_ph_plus": "$relay_ph_plus",
+                    "relay_ph_minus": "$relay_ph_minus",
+                    "relay_nutri_1": "$relay_nutri_1",
+                    "relay_nutri_2": "$relay_nutri_2",
+                    "relay_nutri_3": "$relay_nutri_3",
+                    "relay_nutri_4": "$relay_nutri_4",
+                },
+                "bin": {
+                    "$dateTrunc": {
+                        "date": "$datetime",
+                        "unit": unit,
+                        "binSize": bin_size
+                    }
+                }
+            }
+        }
+
+        # Inicializar la consulta de agregación
+        pipeline = []
+        
+        # Agregar la etapa de coincidencia si hay un filtro
+        if match_stage:
+            pipeline.append(match_stage)
+        # Agregar la etapa de agregación y ordenación
+        pipeline.append(project_stage)
+        pipeline.append({"$sort": {"datetime": 1}})
+        # Agregar los datos y los resultados
+        results = await ActuatorData.aggregate(pipeline).to_list(None)
+
+        # Agrupar por bin
+        grouped = {}
+        for r in results:
+            bin_time = r["bin"]
+            if bin_time not in grouped:
+                grouped[bin_time] = []
+            grouped[bin_time].append({"datetime": r["datetime"], **r["relay_states"]})
+            
+        # Calcular la cantidad de activaciones por cada relay
+        def compute_relay_activation_count(events: list[dict], relay_key: str):
+            count = 0
+            last_state = None
+            for event in events:
+                current_state = event.get(relay_key)
+                if current_state is True and last_state is not True:
+                    count += 1
+                last_state = current_state
+            return count
+
+        # Determinar el tiempo de activación por cada relay
+        def compute_activation_time(relay_events: list[dict], relay_key: str):
+            total_time = 0
+            last_on = None
+            for event in relay_events:
+                if event.get(relay_key) is True:
+                    if last_on is None:
+                        last_on = event["datetime"]
+                elif event.get(relay_key) is False:
+                    if last_on is not None:
+                        total_time += (event["datetime"] - last_on).total_seconds()
+                        last_on = None
+            return total_time
+
+        # Procesar los datos agrupados
+        final_data = []
+        # Recorrer cada grupo de eventos
+        for bin_time, events in grouped.items():
+            relay_data = {}
+            for relay in [
+                "relay_water", "relay_light", "relay_aerator", "relay_vent",
+                "relay_ph_plus", "relay_ph_minus", "relay_nutri_1",
+                "relay_nutri_2", "relay_nutri_3", "relay_nutri_4"
+            ]:
+                # Calcular la cantidad de activaciones y el tiempo de activación
+                relay_data[f"{relay}_count"] = compute_relay_activation_count(events, relay)
+                relay_data[f"{relay}_time"] = compute_activation_time(events, relay)
+            # Agregar la fecha y la cantidad de muestras
+            relay_data["datetime"] = bin_time
+            relay_data["samples"] = len(events)
+            final_data.append(relay_data)
+        # Calcular el total de muestras
+        total_count = len(final_data)
+        # Calcular la paginación
+        paginated_data = final_data[(page - 1) * limit : page * limit]
+        # Retornar los resultados
+        return {
+            # Retornar los datos agregados
+            "data": paginated_data,
+            # Retornar la paginación
+            "pagination": {
+                "aggregation": aggregation,
+                "total": total_count,
+                "page": page,
+                "pages": ceil(total_count / limit),
+                "limit": limit
+            }
+        }
+
+    # Si no hay agregación, devolver los datos originales
+    total = await ActuatorData.find(query).count()
+    data = await ActuatorData.find(query).sort("-datetime").skip((page - 1) * limit).limit(limit).to_list()
+    # Retornar los resultados
+    return {
+        # Retornar los datos
+        "data": data,
+        # Retornar la paginación
+        "pagination": {
+            "aggregation": aggregation,
+            "total": total,
+            "page": page,
+            "pages": ceil(total / limit),
+            "limit": limit
+        }
+    }
 
 
 # Ruta para obtener un Dato de un Actuador

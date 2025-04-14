@@ -17,3 +17,7 @@ class EnvironmentalSensorData(Document):
     
     class Settings:
         collection_name = "environmental_sensors_data"
+        indexes = [
+            [("datetime", 1)],  # Índice para búsquedas por fecha
+            [("sensor_code", 1), ("datetime", 1)]  # Índice compuesto
+        ]
