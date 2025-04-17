@@ -23,7 +23,7 @@
 \contentsline {figure}{\numberline {3.7}{\ignorespaces Pasos para verificar la conexión con el broker MQTT.}}{23}{figure.caption.29}%
 \contentsline {figure}{\numberline {3.8}{\ignorespaces Pasos para publicar un mensaje en un tópico específico.}}{23}{figure.caption.30}%
 \contentsline {figure}{\numberline {3.9}{\ignorespaces Pasos para la conexión del cliente MQTT.}}{24}{figure.caption.32}%
-\contentsline {figure}{\numberline {3.10}{\ignorespaces Pasos para establecer la conexión WebSocket.}}{24}{figure.caption.33}%
+\contentsline {figure}{\numberline {3.10}{\ignorespaces Pasos para establecer la conexión WebSocket.}}{25}{figure.caption.33}%
 \addvspace {10\p@ }
 \contentsline {figure}{\numberline {A.1}{\ignorespaces Modelo de datos implementado en el trabajo.}}{28}{figure.caption.34}%
 \addvspace {10\p@ }

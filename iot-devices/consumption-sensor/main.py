@@ -15,6 +15,7 @@ import json
 # Configuración inicial
 CONFIG_FILE = "interval.conf"
 WIFI_FILE = "wifi.dat"
+TIMEZONE_FILE = "timezone.conf"
 DEFAULT_INTERVAL = 5
 sensor_interval = DEFAULT_INTERVAL
 sensor_data = {}  # Diccionario para datos de sensores
@@ -96,6 +97,9 @@ try:
 except Exception as e:
     print("Error inicializando sensor HCSR04-6:", e)
     
+# Liberamos la memoria
+gc.collect()
+    
 # Método para conectar Wi-Fi con mejor manejo de errores
 def connect_wifi():
     global wifi_connected
@@ -166,6 +170,19 @@ except Exception as e:
     print("Error cargando certificados:", e)
     raise
 
+#Leer la zona horaria desde el archivo de configuración
+#TIMEZONE_FILE = "timezone.conf"
+try:
+    with open(TIMEZONE_FILE, 'r') as f:
+        TIMEZONE = f.read().strip()
+        print("Zona horaria configurada:", TIMEZONE)
+except Exception as e:
+    print("Error leyendo zona horaria:", e)
+    raise
+
+# Liberamos la memoria
+gc.collect()
+
 # Configuración de conexión MQTT
 try:
     print("Configurando SSL...")
@@ -193,7 +210,7 @@ except Exception as e:
     print("Error creando cliente MQTT:", e)
     raise
 
-# Callback para mensajes entrantes (Seteo de nuevo intervalo)
+# Callback para mensajes entrantes (Seteo de nuevo intervalo y lectura inmediata)
 def subscription_cb(topic, message):
     print("\nMensaje recibido:")
     print("Tópico:", topic.decode("utf-8"))
@@ -208,31 +225,60 @@ def subscription_cb(topic, message):
             print("Mensaje no destinado a este sensor")
             return
         
-        new_interval = msg.get("interval")
-        
-        # Validar intervalo
-        if isinstance(new_interval, int) and 1 <= new_interval <= 86400:
-            global sensor_interval, timer
+        # Comando para lectura inmediata
+        if msg.get("command") == "read_now":
+            print("Comando de lectura inmediata recibido")
             
-            # Actualizar y guardar intervalo
-            sensor_interval = new_interval
-            if save_interval(sensor_interval):
-                # Reconfigurar timer
-                timer.deinit()
-                timer.init(period=sensor_interval*1000, mode=Timer.PERIODIC, callback=lambda t: leer_sensores())
-                print("Intervalo actualizado:", sensor_interval)
+            # Enviar confirmación
+            response = {
+                "sensor_code": config.SENSOR_CODE,
+                "command": "read_now_ack",
+                "status": "received"
+            }
+            mqtt_client.publish(config.AWS_TOPIC_SUB, json.dumps(response), qos=0)
+            print("Confirmación de lectura enviada al servidor")
+            
+            # Ejecutar lectura inmediata
+            leer_sensores()
+            
+        # Comando para lectura inmediata
+        if msg.get("command") == "read_now_ack":
+            pass
+        
+        # Cambio de intervalo
+        elif "interval" in msg:
+            new_interval = msg.get("interval")
+            
+            # Validar intervalo
+            if isinstance(new_interval, int) and 1 <= new_interval <= 86400:
+                global sensor_interval, timer
                 
-                # Enviar confirmación
-                response = {
-                    "sensor_code": config.SENSOR_CODE,
-                    "interval": "OK",
-                    "seconds_to_report": sensor_interval
-                }
-                mqtt_client.publish(config.AWS_TOPIC_SUB, json.dumps(response), qos=0)
-                print("Confirmación enviada al servidor")
+                # Actualizar y guardar intervalo
+                sensor_interval = new_interval
+                if save_interval(sensor_interval):
+                    # Reconfigurar timer
+                    timer.deinit()
+                    timer.init(period=sensor_interval*1000, mode=Timer.PERIODIC, callback=lambda t: leer_sensores())
+                    print("Intervalo actualizado:", sensor_interval)
+                    
+                    # Enviar confirmación
+                    response = {
+                        "sensor_code": config.SENSOR_CODE,
+                        "interval": "OK",
+                        "seconds_to_report": sensor_interval
+                    }
+                    mqtt_client.publish(config.AWS_TOPIC_SUB, json.dumps(response), qos=0)
+                    print("Confirmación enviada al servidor")
+        
+        # Comando no reconocido
+        #else:
+        #    print("Comando no reconocido en el mensaje", msg)
                 
     except Exception as e:
         print("Error procesando mensaje:", e)
+        
+    # Liberamos la memoria
+    gc.collect()
 
 # Método para reiniciar el dispositivo 
 def check_boot_button():
@@ -289,41 +335,7 @@ def save_interval(value):
         return False
 
 # Leer sensores y enviar datos por MQTT
-def leer_sensores(new_interval=None):
-    
-    try:
-        # Verificar sensores disponibles
-        if pzem is None:
-            print("Error: Sensor PZEM-004-T no disponible")
-            return
-        
-        if level_1 is None:
-            print("Error: Sensor HCSR04-1 no disponible")
-            return
-        
-        if level_2 is None:
-            print("Error: Sensor HCSR04-2 no disponible")
-            return
-        
-        if level_3 is None:
-            print("Error: Sensor HCSR04-3 no disponible")
-            return
-        
-        if level_4 is None:
-            print("Error: Sensor HCSR04-4 no disponible")
-            return
-        
-        if level_5 is None:
-            print("Error: Sensor HCSR04-5 no disponible")
-            return
-        
-        if level_6 is None:
-            print("Error: Sensor HCSR04-6 no disponible")
-            return      
-            
-    except Exception as e:
-        print("Error en leer_sensores:", e)
-        
+def leer_sensores(new_interval=None):        
     global sensor_interval, timer
     
     try:
@@ -340,20 +352,47 @@ def leer_sensores(new_interval=None):
         if not check_wifi_connection():
             return
         
-        # Se toma la fecha y hora del ESP32    
-        datetime = time.localtime()
-        year, month, day, hour, minute, second = datetime[:6]
+        # Obtener la hora local ajustada por timezone
+        def adjust_time_with_timezone(utc_time, timezone_offset):
+            """Ajusta la hora UTC según el offset de timezone (ej: '-03:00')"""
+            try:
+                # Parsear el offset de timezone
+                sign = -1 if timezone_offset[0] == '-' else 1
+                hours = int(timezone_offset[1:3])
+                minutes = int(timezone_offset[4:6])
+                total_offset = sign * (hours * 3600 + minutes * 60)
+                
+                # Convertir tiempo local a segundos desde epoch
+                epoch_time = time.mktime(utc_time)
+                
+                # Aplicar el offset
+                adjusted_time = epoch_time + total_offset
+                return time.localtime(adjusted_time)
+            except Exception as e:
+                print("Error ajustando zona horaria:", e)
+                return utc_time  # Si hay error, devolver la hora sin ajuste
+        
+        # Se toma la fecha y hora del ESP32 y se ajusta por timezone
+        current_time = time.localtime()
+        adjusted_time = adjust_time_with_timezone(current_time, TIMEZONE)
+        # print("La hora ajustada segun zona horaria es: ", adjusted_time)
+        
+        # Formateamos la fecha y hora
+        year, month, day, hour, minute, second = adjusted_time[:6]
         fecha_formateada = f"{year}-{month:02d}-{day:02d} {hour:02d}:{minute:02d}:{second:02d}"
         
         # Se acceden a los sensores
         
         # Leer PZEM-004-T
-        voltage = round(pzem.getVoltage(),1)
-        current = round(pzem.getCurrent(),1)
-        power = round(pzem.getActivePower(),1)
-        energy = round(pzem.getActiveEnergy(),1)
-        frecuency = round(pzem.getFrequency(),1)
-        power_factor = round(pzem.getPowerFactor(),1)
+        if pzem.read():
+            voltage = pzem.getVoltage()
+            current = pzem.getCurrent()
+            power = pzem.getActivePower()
+            energy = pzem.getActiveEnergy()
+            frecuency = pzem.getFrequency()
+            power_factor = pzem.getPowerFactor()
+        else:
+                print("Error al leer los datos del PZEM")
         
         # Leer niveles
         distance_level_1 = round(level_1.distance_cm(),2)
@@ -366,12 +405,12 @@ def leer_sensores(new_interval=None):
         try:
             sensor_data.update({
                 "sensor_code": config.SENSOR_CODE,
-                "voltage": voltage,
-                "current": current,
-                "power": power,
+                "voltage": round(voltage,2),
+                "current": round(current,2),
+                "power": round(power,2),
                 "energy": energy,
-                "frecuency": frecuency,
-                "power_factor": power_factor,
+                "frecuency": round(frecuency,2),
+                "power_factor": round(power_factor,2),
                 "nutrient_1_level": distance_level_1,
                 "nutrient_2_level": distance_level_2,
                 "nutrient_3_level": distance_level_3,
@@ -392,6 +431,9 @@ def leer_sensores(new_interval=None):
             mqtt_client.connect()
             mqtt_client.publish(topic=config.AWS_TOPIC_PUB, msg=json.dumps(sensor_data), qos=0)
             
+        # Liberamos la memoria
+        gc.collect()
+            
     except Exception as e:
         print("Error en check_wifi_connection:", e)
 
@@ -408,6 +450,9 @@ try:
             # Sincronizar hora si WiFi está conectado
             if not sync_time():
                 print("Advertencia: No se pudo sincronizar la hora por NTP")
+            
+            # Liberamos la memoria
+            gc.collect()
             
             # Conexión al servidor AWS IoT Core
             print("Intentando conectar a AWS IoT Core...")
@@ -431,13 +476,16 @@ try:
     
     # Configurar timer y leer sensores y liberar memoria
     timer = Timer(-1)
+    # Liberamos la memoria
     gc.collect()
     # Tarea de lectura de sensores
     timer.init(period=sensor_interval*1000, mode=Timer.PERIODIC, callback=lambda t: leer_sensores())
+    # Liberamos la memoria
     gc.collect()
         
     # Bucle principal
     while True:
+        # Liberamos la memoria
         gc.collect()
         try:
             # Verificación periódica silenciosa
