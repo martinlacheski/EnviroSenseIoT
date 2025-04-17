@@ -36,6 +36,61 @@ class WifiManager:
         self.reboot = reboot
         
         self.debug = debug
+        
+        # Archivo para guardar la zona horaria
+        self.timezone_file = 'timezone.conf'
+        
+        # Lista de zonas horarias comunes
+        self.timezones = {
+            '-12:00': 'UTC-12:00: Isla Baker, Isla Howland',
+            '-11:00': 'UTC-11:00: Samoa Americana, Niue',
+            '-10:00': 'UTC-10:00: Honolulu, Papeete',
+            '-09:30': 'UTC-09:30: Islas Marquesas',
+            '-09:00': 'UTC-09:00: Anchorage, Juneau',
+            '-08:00': 'UTC-08:00: Los Ángeles, Tijuana, Vancouver',
+            '-07:00': 'UTC-07:00: Denver, Phoenix, Chihuahua',
+            '-06:00': 'UTC-06:00: Ciudad de México, San José, Chicago',
+            '-05:00': 'UTC-05:00: Bogotá, Lima, Quito, Nueva York',
+            '-04:30': 'UTC-04:30: Caracas (hora antigua)',
+            '-04:00': 'UTC-04:00: Caracas, La Paz, Santiago (verano)',
+            '-03:30': 'UTC-03:30: St. John’s (Terranova)',
+            '-03:00': 'UTC-03:00: Buenos Aires, São Paulo, Montevideo',
+            '-02:00': 'UTC-02:00: Atlántico Sur, Islas Georgias del Sur',
+            '-01:00': 'UTC-01:00: Azores, Cabo Verde',
+            '+00:00': 'UTC+00:00: Londres, Lisboa, Casablanca',
+            '+01:00': 'UTC+01:00: Madrid, París, Berlín, Roma',
+            '+02:00': 'UTC+02:00: El Cairo, Atenas, Jerusalén',
+            '+03:00': 'UTC+03:00: Moscú, Nairobi, Bagdad',
+            '+03:30': 'UTC+03:30: Teherán',
+            '+04:00': 'UTC+04:00: Dubái, Bakú',
+            '+04:30': 'UTC+04:30: Kabul',
+            '+05:00': 'UTC+05:00: Islamabad, Taskent',
+            '+05:30': 'UTC+05:30: Nueva Delhi, Colombo',
+            '+05:45': 'UTC+05:45: Katmandú',
+            '+06:00': 'UTC+06:00: Daca, Thimphu',
+            '+06:30': 'UTC+06:30: Rangún, Islas Cocos',
+            '+07:00': 'UTC+07:00: Bangkok, Hanoi, Yakarta',
+            '+08:00': 'UTC+08:00: Beijing, Hong Kong, Perth',
+            '+08:45': 'UTC+08:45: Eucla (Australia)',
+            '+09:00': 'UTC+09:00: Tokio, Seúl, Yakutsk',
+            '+09:30': 'UTC+09:30: Adelaida, Darwin',
+            '+10:00': 'UTC+10:00: Sídney, Port Moresby',
+            '+10:30': 'UTC+10:30: Isla Lord Howe',
+            '+11:00': 'UTC+11:00: Honiara, Nueva Caledonia',
+            '+12:00': 'UTC+12:00: Auckland, Fiyi',
+            '+12:45': 'UTC+12:45: Islas Chatham',
+            '+13:00': 'UTC+13:00: Nukualofa (Tonga), Samoa',
+            '+14:00': 'UTC+14:00: Islas Line (Kiribati)'
+        }
+        
+    def save_timezone(self, timezone):
+        """Guarda la zona horaria en el archivo de configuración"""
+        try:
+            with open(self.timezone_file, 'w') as f:
+                f.write(str(timezone))
+                print(f"Zona horaria guardada: {timezone}")
+        except:
+            print(f"No se pudo guardar la zona horaria")
 
 
     def connect(self):
@@ -202,6 +257,20 @@ class WifiManager:
             """.format(ssid))
         self.client.sendall("""
                         <p><label for="password">Password:&nbsp;</label><input type="password" id="password" name="password"></p>
+                        <p>
+                            <label for="timezone">Zona horaria:&nbsp;</label>
+                            <select id="timezone" name="timezone">
+        """)
+        
+        # Añadir opciones de zonas horarias
+        for tz, desc in sorted(self.timezones.items()):
+            self.client.sendall(f"""
+                                <option value="{tz}">{desc}</option>
+            """)
+        
+        self.client.sendall("""
+                            </select>
+                        </p>
                         <p><input type="submit" value="Conectar"></p>
                     </form>
                 </body>
@@ -209,33 +278,38 @@ class WifiManager:
         """)
         self.client.close()
 
-
     def handle_configure(self):
-        match = re.search('ssid=([^&]*)&password=(.*)', self.url_decode(self.request))
+        match = re.search('ssid=([^&]*)&password=(.*?)&timezone=([^&]*)', self.url_decode(self.request))
         if match:
             ssid = match.group(1).decode('utf-8').replace('+', ' ')
             password = match.group(2).decode('utf-8')
+            timezone = match.group(3).decode('utf-8')
+            
             if len(ssid) == 0:
                 self.send_response("""
                     <p>Se debe proporcionar el SSID!</p>
                     <p>Volver atrás para intentar de nuevo!</p>
                 """, 400)
             elif self.wifi_connect(ssid, password):
-                self.send_response("""
+                # Guardar la zona horaria seleccionada
+                self.save_timezone(timezone)
+                
+                self.send_response(f"""
                     <p>Conectado exitosamente a</p>
-                    <h1>{0}</h1>
-                    <p>Dirección IP: {1}</p>
-                """.format(ssid, self.wlan_sta.ifconfig()[0]))
+                    <h1>{ssid}</h1>
+                    <p>Dirección IP: {self.wlan_sta.ifconfig()[0]}</p>
+                    <p>Zona horaria configurada: {self.timezones.get(timezone, timezone)}</p>
+                """)
                 profiles = self.read_credentials()
                 profiles[ssid] = password
                 self.write_credentials(profiles)
                 time.sleep(5)
             else:
-                self.send_response("""
+                self.send_response(f"""
                     <p>No se pudo conectar a</p>
-                    <h1>{0}</h1>
+                    <h1>{ssid}</h1>
                     <p>Volver atrás para intentar de nuevo!</p>
-                """.format(ssid))
+                """)
                 time.sleep(5)
         else:
             self.send_response("""
@@ -287,4 +361,3 @@ class WifiManager:
                 appnd(item)
 
         return b''.join(res)
-
