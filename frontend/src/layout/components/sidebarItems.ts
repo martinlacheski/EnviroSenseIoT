@@ -35,6 +35,7 @@ export const sidebarItems: MenuItemData[] = [
       { title: "Ciudades", link: "/parametros/ciudades" },
       { title: "Tipos de nutrientes", link: "/parametros/tipos-nutrientes" },
       { title: "Tipos de ambientes", link: "/parametros/tipos-ambientes" },
+      { title: "Usuarios", link: "/usuarios" },
       { title: "Roles", link: "/parametros/roles" },
     ],
   },

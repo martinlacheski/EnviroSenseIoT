@@ -137,6 +137,52 @@ async def process_sensor_message_sub(topic, payload):
             print(f"🔔 Mensaje recibido (esperando confirmación del {device_type})")
     except Exception as e:
         print(f"❌ Error procesando mensaje: {e}")
+        
+async def update_device_report_interval(
+    self, 
+    device_type: str, 
+    device_code: str, 
+    seconds_to_report: int
+):
+    """
+    Publica un mensaje para actualizar el intervalo de reporte de un dispositivo
+    
+    Args:
+        device_type: Tipo de dispositivo ('environmental', 'nutrient', 'consumption' o 'actuator')
+        device_code: Código del dispositivo a actualizar
+        seconds_to_report: Nuevo intervalo en segundos
+    """
+    
+    # Mapeo de tipos de dispositivo a sus tópicos correspondientes
+    TOPIC_MAP = {
+        'environmental': 'environmental/sensor/sub',
+        'nutrient': 'nutrient/solution/sensor/sub',
+        'consumption': 'consumption/sensor/sub',
+        'actuator': 'actuators/sub'
+    }
+    try:
+        # Determinar el tipo de código según el tipo de dispositivo
+        code_field = 'sensor_code' if device_type != 'actuator' else 'actuator_code'
+        
+        # Construir el mensaje
+        message = {
+            code_field: device_code,
+            "interval": seconds_to_report
+        }
+        
+        # Obtener el tópico correspondiente
+        topic = TOPIC_MAP.get(device_type)
+        if not topic:
+            raise ValueError(f"Tipo de dispositivo no válido: {device_type}")
+        
+        # Publicar el mensaje
+        self.publish(
+            topic=topic,
+            message=message
+        )
+    except Exception as e:
+        print(f"❌ Error al publicar mensaje: {str(e)}")
+        raise
             
 # Clase para manejar la conexión y comunicación con AWS IoT Core
 class AWSMQTTClient:

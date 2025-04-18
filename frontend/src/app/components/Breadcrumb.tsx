@@ -4,12 +4,17 @@ import { Link } from "react-router-dom";
 import "./styles.css";
 
 type Sections =
+  | "usuarios"
   | "parametros"
   | "ambientes"
   | "dispositivos"
   | "aux";
 
 const sections: Record<Sections, { label: string; to: string }> = {
+  usuarios: {
+    label: "USUARIOS",
+    to: "/usuarios",
+  },
   parametros: {
     label: "PARÁMETROS",
     to: "/parametros",

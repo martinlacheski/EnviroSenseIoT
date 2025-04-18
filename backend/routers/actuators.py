@@ -10,6 +10,12 @@ from models.actuator import Actuator
 # Importamos metodo de autenticación JWT
 from utils.authentication import current_user
 
+# Importamos el cliente MQTT
+from utils.mqtt_dependencies import get_mqtt_client
+
+# Importamos el método para actualizar el intervalo de reporte
+from mqtt.aws_mqtt import update_device_report_interval
+
 # Definimos el prefijo y una respuesta si no existe.
 router = APIRouter(
     prefix="/actuators",
@@ -17,13 +23,11 @@ router = APIRouter(
     responses={404: {"mensaje": "No encontrado"}},
 )
 
-
 # Ruta para obtener todos los Actuadores
 @router.get("/", response_model=List[Actuator])
 async def get_actuators(user: User = Depends(current_user)):
     actuators = await Actuator.find(fetch_links=True).to_list()
     return actuators
-
 
 # Ruta para obtener un Actuador
 @router.get("/{id}", response_model=Actuator)
@@ -32,7 +36,6 @@ async def get_actuator(id: PydanticObjectId, user: User = Depends(current_user))
     if not actuator:
         raise HTTPException(status_code=404, detail="Actuador no encontrado")
     return actuator
-
 
 # Ruta para crear un Actuador
 @router.post("/", response_model=Actuator, status_code=status.HTTP_201_CREATED)
@@ -85,7 +88,9 @@ async def create_actuator(actuator: Actuator, user: User = Depends(current_user)
 
 # Ruta para actualizar un Actuador
 @router.put("/", response_model=Actuator)
+#async def update_actuator(actuator: Actuator, user: User = Depends(current_user)):
 async def update_actuator(actuator: Actuator, user: User = Depends(current_user)):
+      
     # Verificar si el ID está presente
     if actuator.id is None:
         raise HTTPException(
@@ -109,6 +114,16 @@ async def update_actuator(actuator: Actuator, user: User = Depends(current_user)
         raise HTTPException(
             status_code=status.HTTP_400_BAD_REQUEST,
             detail="Ya existe un actuador con ese código"
+        )
+        
+    # Comprobar si se ha modificado el campo seconds_to_report
+    if existing_actuator.seconds_to_report != actuator.seconds_to_report:
+        mqtt_client = get_mqtt_client()
+        await update_device_report_interval(  # Llama al método de la instancia
+            mqtt_client,
+            device_type="actuator",
+            device_code=actuator.actuator_code,
+            seconds_to_report=actuator.seconds_to_report
         )
 
     # Actualizar el actuador

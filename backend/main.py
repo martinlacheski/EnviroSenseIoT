@@ -10,8 +10,12 @@ from config import init_db
 # Importamos metodo de autenticación JWT
 from utils.authentication import current_user
 
+# Importa el cliente MQTT desde el módulo de dependencias
+from utils.mqtt_dependencies import init_mqtt, mqtt_client
+
 # Importamos el cliente MQTT
-from mqtt.aws_mqtt import AWSMQTTClient, process_sensor_message_pub, process_sensor_message_sub
+from mqtt.aws_mqtt import process_sensor_message_pub, process_sensor_message_sub
+
 
 # Importamos el cliente WebSocket
 from utils.websocket import websocket_manager
@@ -46,12 +50,12 @@ from routers import (
 app = FastAPI()
 
 # Inicializar cliente MQTT
-mqtt_client = AWSMQTTClient()
+# mqtt_client = AWSMQTTClient()
 
 @app.on_event("startup")
 async def startup():
     await init_db()
-    mqtt_client.connect()
+    mqtt_client = init_mqtt()  # Inicializa el cliente MQTT
          
     # Suscripción a tópicos de publicación de sensores y actuadores
     mqtt_client.subscribe("environmental/sensor/pub", process_sensor_message_pub)
@@ -67,6 +71,7 @@ async def startup():
 
 @app.on_event("shutdown")
 async def shutdown():
+    mqtt_client = init_mqtt()
     mqtt_client.disconnect()
 
 # Routers
@@ -127,12 +132,14 @@ class PublishRequest(BaseModel):
 # Endpoint para publicar mensajes MQTT
 @app.post("/mqtt/publish")
 def publish_message(request: PublishRequest, user: dict = Depends(current_user)):
+    mqtt_client = init_mqtt()
     mqtt_client.publish(request.topic, request.message)
     return {"status": "Mensaje publicado", "topic": request.topic, "message": request.message}
 
 # Endpoint para probar la conexión MQTT
 @app.get("/mqtt/test")
 def test_mqtt_connection(user: dict = Depends(current_user)):
+    mqtt_client = init_mqtt()
     try:
         mqtt_client.connect()
         return {"status": "Conexión exitosa"}

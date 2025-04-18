@@ -10,6 +10,12 @@ from models.sensor_consumption import ConsumptionSensor
 # Importamos metodo de autenticación JWT
 from utils.authentication import current_user
 
+# Importamos el cliente MQTT
+from utils.mqtt_dependencies import get_mqtt_client
+
+# Importamos el método para actualizar el intervalo de reporte
+from mqtt.aws_mqtt import update_device_report_interval
+
 # Definimos el prefijo y una respuesta si no existe.
 router = APIRouter(
     prefix="/sensors/consumption",
@@ -108,6 +114,16 @@ async def update_consumption_sensor(sensor: ConsumptionSensor, user: User = Depe
         raise HTTPException(
             status_code=status.HTTP_400_BAD_REQUEST,
             detail="Ya existe un sensor de consumos con ese código"
+        )
+        
+    # Comprobar si se ha modificado el campo seconds_to_report
+    if existing_sensor.seconds_to_report != sensor.seconds_to_report:
+        mqtt_client = get_mqtt_client()
+        await update_device_report_interval(  # Llama al método de la instancia
+            mqtt_client,
+            device_type="consumption",
+            device_code=sensor.sensor_code,
+            seconds_to_report=sensor.seconds_to_report
         )
 
     # Actualizar el sensor

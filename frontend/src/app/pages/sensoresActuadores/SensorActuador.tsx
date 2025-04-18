@@ -25,6 +25,29 @@ export const SensorActuador = () => {
     }
   };
 
+  const handleSendCommand = async (channel: string, duration: number) => {
+    try {
+      setLoading(true);
+      const payload = {
+        topic: "actuators/sub",
+        message: {
+          actuator_code: actuador?.actuator_code,
+          relay: channel,
+          command: "ON",
+          duration: duration
+        }
+      };
+
+      await api.post(`/mqtt/publish`, payload);
+      // SweetAlert2.successAlert("Comando enviado correctamente");
+      SweetAlert2.successToast("Comando enviado correctamente");
+    } catch (error) {
+      SweetAlert2.errorAlert("Error al enviar el comando");
+    } finally {
+      setLoading(false);
+    }
+  };
+
   useEffect(() => {
     fetch();
   }, []);
@@ -122,16 +145,17 @@ export const SensorActuador = () => {
               <Card className="h-100">
                 <Card.Header>
                   <i className="bi bi-info-circle me-2"></i>
-                  <span>Información del los canales</span>
+                  <span>Información de los canales</span>
                 </Card.Header>
                 <Card.Body className="p-0 small">
                   <Table striped hover responsive className="mb-0">
                     <thead>
                       <tr>
                         <th className="col-3">Canal</th>
-                        <th className="col-3">Activo</th>
+                        <th className="col-2" text-center>Activo</th>
                         <th className="col-3">Nombre</th>
-                        <th className="col-3">Tiempo</th>
+                        <th className="col-2" text-center>Tiempo</th>
+                        <th className="col-2" text-center>Ejecutar</th>
                       </tr>
                     </thead>
                     <tbody>
@@ -142,6 +166,16 @@ export const SensorActuador = () => {
                         </td>
                         <td>Relay de bomba de agua</td>
                         <td>{actuador.relay_water_time}</td>
+                        <td>
+                          <button
+                            title="Enviar comando"
+                            className="btn px-2 py-0 border-secondary"
+                            style={{ backgroundColor: "#E4E4E5" }}
+                            onClick={() => handleSendCommand("relay_water", actuador.relay_water_time)}
+                          >
+                            <i className="bi bi-send"></i>
+                          </button>
+                        </td>
                       </tr>
                       <tr key="2">
                         <td>Canal 2</td>
@@ -150,6 +184,16 @@ export const SensorActuador = () => {
                         </td>
                         <td>Relay de aireador</td>
                         <td>{actuador.relay_aerator_time}</td>
+                        <td>
+                          <button
+                            title="Enviar comando"
+                            className="btn px-2 py-0 border-secondary"
+                            style={{ backgroundColor: "#E4E4E5" }}
+                            onClick={() => handleSendCommand("relay_aerator", actuador.relay_aerator_time)}
+                          >
+                            <i className="bi bi-send"></i>
+                          </button>
+                        </td>
                       </tr>
                       <tr key="3">
                         <td>Canal 3</td>
@@ -158,6 +202,16 @@ export const SensorActuador = () => {
                         </td>
                         <td>Relay de ventilación</td>
                         <td>{actuador.relay_vent_time}</td>
+                        <td>
+                          <button
+                            title="Enviar comando"
+                            className="btn px-2 py-0 border-secondary"
+                            style={{ backgroundColor: "#E4E4E5" }}
+                            onClick={() => handleSendCommand("relay_vent", actuador.relay_vent_time)}
+                          >
+                            <i className="bi bi-send"></i>
+                          </button>
+                        </td>
                       </tr>
                       <tr key="4">
                         <td>Canal 4</td>
@@ -166,6 +220,16 @@ export const SensorActuador = () => {
                         </td>
                         <td>Relay de iluminación</td>
                         <td>{actuador.relay_light_time}</td>
+                        <td>
+                          <button
+                            title="Enviar comando"
+                            className="btn px-2 py-0 border-secondary"
+                            style={{ backgroundColor: "#E4E4E5" }}
+                            onClick={() => handleSendCommand("relay_light", actuador.relay_light_time)}
+                          >
+                            <i className="bi bi-send"></i>
+                          </button>
+                        </td>
                       </tr>
                       <tr key="5">
                         <td>Canal 5</td>
@@ -174,6 +238,16 @@ export const SensorActuador = () => {
                         </td>
                         <td>Relay de pH +</td>
                         <td>{actuador.relay_ph_plus_time}</td>
+                        <td>
+                          <button
+                            title="Enviar comando"
+                            className="btn px-2 py-0 border-secondary"
+                            style={{ backgroundColor: "#E4E4E5" }}
+                            onClick={() => handleSendCommand("relay_ph_plus", actuador.relay_ph_plus_time)}
+                          >
+                            <i className="bi bi-send"></i>
+                          </button>
+                        </td>
                       </tr>
                       <tr key="6">
                         <td>Canal 6</td>
@@ -182,6 +256,16 @@ export const SensorActuador = () => {
                         </td>
                         <td>Relay de pH -</td>
                         <td>{actuador.relay_ph_minus_time}</td>
+                        <td>
+                          <button
+                            title="Enviar comando"
+                            className="btn px-2 py-0 border-secondary"
+                            style={{ backgroundColor: "#E4E4E5" }}
+                            onClick={() => handleSendCommand("relay_ph_minus", actuador.relay_ph_minus_time)}
+                          >
+                            <i className="bi bi-send"></i>
+                          </button>
+                        </td>
                       </tr>
                       <tr key="7">
                         <td>Canal 7</td>
@@ -190,6 +274,16 @@ export const SensorActuador = () => {
                         </td>
                         <td>Relay nutriente 1</td>
                         <td>{actuador.relay_nutri_1_time}</td>
+                        <td>
+                          <button
+                            title="Enviar comando"
+                            className="btn px-2 py-0 border-secondary"
+                            style={{ backgroundColor: "#E4E4E5" }}
+                            onClick={() => handleSendCommand("relay_nutri_1", actuador.relay_nutri_1_time)}
+                          >
+                            <i className="bi bi-send"></i>
+                          </button>
+                        </td>
                       </tr>
                       <tr key="8">
                         <td>Canal 8</td>
@@ -198,6 +292,16 @@ export const SensorActuador = () => {
                         </td>
                         <td>Relay nutriente 2</td>
                         <td>{actuador.relay_nutri_2_time}</td>
+                        <td>
+                          <button
+                            title="Enviar comando"
+                            className="btn px-2 py-0 border-secondary"
+                            style={{ backgroundColor: "#E4E4E5" }}
+                            onClick={() => handleSendCommand("relay_nutri_2", actuador.relay_nutri_2_time)}
+                          >
+                            <i className="bi bi-send"></i>
+                          </button>
+                        </td>
                       </tr>
                       <tr key="9">
                         <td>Canal 9</td>
@@ -206,6 +310,16 @@ export const SensorActuador = () => {
                         </td>
                         <td>Relay nutriente 3</td>
                         <td>{actuador.relay_nutri_3_time}</td>
+                        <td>
+                          <button
+                            title="Enviar comando"
+                            className="btn px-2 py-0 border-secondary"
+                            style={{ backgroundColor: "#E4E4E5" }}
+                            onClick={() => handleSendCommand("relay_nutri_3", actuador.relay_nutri_3_time)}
+                          >
+                            <i className="bi bi-send"></i>
+                          </button>
+                        </td>
                       </tr>
                       <tr key="10">
                         <td>Canal 10</td>
@@ -214,6 +328,16 @@ export const SensorActuador = () => {
                         </td>
                         <td>Relay nutriente 4</td>
                         <td>{actuador.relay_nutri_4_time}</td>
+                        <td>
+                          <button
+                            title="Enviar comando"
+                            className="btn px-2 py-0 border-secondary"
+                            style={{ backgroundColor: "#E4E4E5" }}
+                            onClick={() => handleSendCommand("relay_nutri_4", actuador.relay_nutri_4_time)}
+                          >
+                            <i className="bi bi-send"></i>
+                          </button>
+                        </td>
                       </tr>
                     </tbody>
                   </Table>
