@@ -11,6 +11,7 @@ import AmbientesRoutes from "./AmbientesRoutes";
 import SensoresRoutes from "./SensoresRoutes";
 import UsuariosRoutes from "./Usuarios";
 import ReportesRoutes from "./ReportesRoutes";
+import MyAccount from "../pages/MyAccount";
 
 const AppRoutes = () => {
   const { roles } = useSelector((state: RootState) => state.auth);
@@ -22,14 +23,20 @@ const AppRoutes = () => {
           <>
             <Route path="/" element={<Inicio />} />
             <Route path="/dashboard" element={<Dashboard />} />
-            <Route path="/usuarios/*" element={<UsuariosRoutes />} />
-            <Route path="/ambientes/*" element={<AmbientesRoutes />} />
-            <Route path="/parametros/*" element={<ParametersRoutes />} />
-            <Route path="/dispositivos/*" element={<SensoresRoutes />} />
-            <Route path="/reportes/*" element={<ReportesRoutes />} />
+            <Route path="/panel-usuario/*" element={<MyAccount />} />
           </>
         )}
 
+        {hasRole(roles, [RolesEnum.ADMIN]) && (
+          <>
+            <Route path="/ambientes/*" element={<AmbientesRoutes />} />
+            <Route path="/dispositivos/*" element={<SensoresRoutes />} />
+            <Route path="/usuarios/*" element={<UsuariosRoutes />} />
+            <Route path="/parametros/*" element={<ParametersRoutes />} />
+            <Route path="/reportes/*" element={<ReportesRoutes />} />
+          </>
+        )}
+        
         <Route path="/*" element={<Navigate to="/" />} />
       </Route>
     </Routes>
