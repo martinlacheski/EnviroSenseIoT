@@ -56,7 +56,7 @@ const paginationReducer = <T>(state: StateReducer<T>, action: ActionReducer<T>):
 const fetchData = async <T>(endpoint: string, page: number, state: StateReducer<T>, dispatch: React.Dispatch<ActionReducer<T>>) => {
     dispatch({ type: "FETCH_START" });
     try {
-        const { data: responseData } = await api.get(`${endpoint}/paginated`, {
+        const { data: responseData } = await api.get(`${endpoint}`, {
             params: {
                 page,
                 limit: state.perPage,
@@ -65,12 +65,22 @@ const fetchData = async <T>(endpoint: string, page: number, state: StateReducer<
         });
         dispatch({
             type: "FETCH_SUCCESS",
-            data: responseData.items,
-            totalRows: responseData.total_items,
+            data: responseData.data,
+            totalRows: responseData.pagination.total,
         });
     } catch (error) {
+        console.log(error);
         dispatch({ type: "FETCH_FAILURE" });
     }
 };
 
-export { initialState, paginationReducer, fetchData };
+const resetData = (dispatch: React.Dispatch<ActionReducer<any>>) => {
+    dispatch({ type: "FETCH_START" });
+    dispatch({ type: "FETCH_SUCCESS", data: [], totalRows: 0 });
+    dispatch({ type: "PAGE_CHANGE", page: 1 });
+    dispatch({ type: "ROWS_PER_PAGE_CHANGE", newPerPage: 20, page: 1 });
+    dispatch({ type: "FILTERS_CHANGE", newFilters: {} });
+    dispatch({ type: "RESET_FILTERS" });
+};
+
+export { initialState, paginationReducer, fetchData, resetData };

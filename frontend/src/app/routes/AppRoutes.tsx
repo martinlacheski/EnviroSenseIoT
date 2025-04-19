@@ -4,13 +4,13 @@ import { hasRole, RolesEnum } from "./role.middleware";
 import { Routes, Route, Navigate } from "react-router-dom";
 
 import { Layout } from "../../layout/Layout";
-import { Inicio } from "../pages";
+import { Inicio, Dashboard } from "../pages";
 
 import ParametersRoutes from "./ParametersRoutes";
 import AmbientesRoutes from "./AmbientesRoutes";
 import SensoresRoutes from "./SensoresRoutes";
 import UsuariosRoutes from "./Usuarios";
-import MyAccount from "../pages/MyAccount";
+import ReportesRoutes from "./ReportesRoutes";
 
 const AppRoutes = () => {
   const { roles } = useSelector((state: RootState) => state.auth);
@@ -21,20 +21,14 @@ const AppRoutes = () => {
         {hasRole(roles, [RolesEnum.ADMIN, RolesEnum.USUARIO]) && (
           <>
             <Route path="/" element={<Inicio />} />
-            <Route path="/ambientes/*" element={<AmbientesRoutes />} />
-            <Route path="/dispositivos/*" element={<SensoresRoutes />} />
-          </>
-        )}
-
-        {hasRole(roles, [RolesEnum.ADMIN]) && (
-          <>
-            <Route path="/" element={<Inicio />} />
+            <Route path="/dashboard" element={<Dashboard />} />
             <Route path="/usuarios/*" element={<UsuariosRoutes />} />
+            <Route path="/ambientes/*" element={<AmbientesRoutes />} />
             <Route path="/parametros/*" element={<ParametersRoutes />} />
+            <Route path="/dispositivos/*" element={<SensoresRoutes />} />
+            <Route path="/reportes/*" element={<ReportesRoutes />} />
           </>
         )}
-
-        <Route path="/panel-usuario/*" element={<MyAccount />} />
 
         <Route path="/*" element={<Navigate to="/" />} />
       </Route>

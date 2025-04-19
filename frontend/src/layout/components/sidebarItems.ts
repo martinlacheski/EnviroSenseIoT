@@ -5,42 +5,52 @@ export interface MenuItemData {
   icon?: string;
   link?: string;
   subItems?: MenuItemData[];
-  requiredRoles: string[];
   style?: CSSProperties;
 }
 
 export const sidebarItems: MenuItemData[] = [
   {
+    title: "Dashboard",
+    icon: "bi bi-grid-1x2",
+    link: "/dashboard",
+  },
+  {
     title: "Ambientes",
     icon: "bi bi-house-door",
     link: "/ambientes",
-    requiredRoles: ["ADMIN", "USUARIO"],
   },
   {
     title: "Dispositivos",
     icon: "bi bi-cpu",
-    requiredRoles: ["ADMIN", "USUARIO"],
     subItems: [
-      { title: "Actuadores", link: "/dispositivos/actuadores", requiredRoles: ["ADMIN", "USUARIO"] },
-      { title: "Sensores de consumo", link: "/dispositivos/sensores-consumo", requiredRoles: ["ADMIN", "USUARIO"] },
-      { title: "Sensores ambientales", link: "/dispositivos/sensores-ambientales", requiredRoles: ["ADMIN", "USUARIO"] },
-      { title: "Sensores de nutrientes", link: "/dispositivos/sensores-nutrientes", requiredRoles: ["ADMIN", "USUARIO"] },
+      { title: "Actuadores", link: "/dispositivos/actuadores" },
+      { title: "Sensores de consumo", link: "/dispositivos/sensores-consumo" },
+      { title: "Sensores ambientales", link: "/dispositivos/sensores-ambientales" },
+      { title: "Sensores de nutrientes", link: "/dispositivos/sensores-nutrientes", },
     ],
   },
-
+  {
+    title: "Reportes",
+    icon: "bi bi-layout-text-sidebar-reverse",
+    subItems: [
+      { title: "Actuadores", link: "/reportes/actuadores" },
+      { title: "Sensores de consumo", link: "/reportes/sensores-consumo" },
+      { title: "Sensores ambientales", link: "/reportes/sensores-ambientales" },
+      { title: "Sensores de nutrientes", link: "/reportes/sensores-nutrientes", },
+    ],
+  },
   {
     title: "Parámetros",
     icon: "bi bi-sliders",
-    requiredRoles: ["ADMIN"],
     subItems: [
-      { title: "Empresa", link: "/parametros/empresa", requiredRoles: ["ADMIN"] },
-      { title: "Países", link: "/parametros/paises", requiredRoles: ["ADMIN"] },
-      { title: "Provincias", link: "/parametros/provincias", requiredRoles: ["ADMIN"] },
-      { title: "Ciudades", link: "/parametros/ciudades", requiredRoles: ["ADMIN"] },
-      { title: "Tipos de nutrientes", link: "/parametros/tipos-nutrientes", requiredRoles: ["ADMIN"] },
-      { title: "Tipos de ambientes", link: "/parametros/tipos-ambientes", requiredRoles: ["ADMIN"] },
-      { title: "Usuarios", link: "/usuarios", requiredRoles: ["ADMIN"] },
-      { title: "Roles", link: "/parametros/roles", requiredRoles: ["ADMIN"] },
+      { title: "Empresa", link: "/parametros/empresa" },
+      { title: "Países", link: "/parametros/paises" },
+      { title: "Provincias", link: "/parametros/provincias" },
+      { title: "Ciudades", link: "/parametros/ciudades" },
+      { title: "Tipos de nutrientes", link: "/parametros/tipos-nutrientes" },
+      { title: "Tipos de ambientes", link: "/parametros/tipos-ambientes" },
+      { title: "Usuarios", link: "/usuarios" },
+      { title: "Roles", link: "/parametros/roles" },
     ],
   },
 ];

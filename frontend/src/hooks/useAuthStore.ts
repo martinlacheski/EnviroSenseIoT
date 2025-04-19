@@ -59,10 +59,10 @@ export const useAuthStore = () => {
     };
 
     const startLogout = async () => {
-        const confirm = await SweetAlert2.confirm("¿Está seguro de cerrar sesión?");
-            if (!confirm.isConfirmed) return;
-            localStorage.clear();
-            dispatch(onLogout("Sesión cerrada correctamente"));
+        const confirmation = await SweetAlert2.confirm("¿Está seguro de cerrar la sesión?");
+        if (!confirmation.value) return;
+        localStorage.clear();
+        dispatch(onLogout("Sesión cerrada correctamente"));
     };
 
     return {

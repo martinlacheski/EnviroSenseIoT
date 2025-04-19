@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import "./styles.css";
 
 type Sections =
-  | "cuenta"  
+  | "reportes"
   | "usuarios"
   | "parametros"
   | "ambientes"
@@ -12,9 +12,9 @@ type Sections =
   | "aux";
 
 const sections: Record<Sections, { label: string; to: string }> = {
-  cuenta: {
-    label: "CUENTA",
-    to: "/cuenta",
+  reportes: {
+    label: "REPORTES",
+    to: "/reportes",
   },
   usuarios: {
     label: "USUARIOS",

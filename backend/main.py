@@ -158,8 +158,14 @@ async def websocket_endpoint(websocket: WebSocket):
         # Cerrar la conexión si no está autenticado
         return
     
+    # Obtener el ID del ambiente desde la query parameter
+    environment_id = websocket.query_params.get("environment_id")
+    if not environment_id:
+        await websocket.close(code=1008, reason="ID de ambiente no proporcionado")
+        return
+    
     # Conectar el WebSocket al gestor
-    await websocket_manager.connect(websocket, user)
+    await websocket_manager.connect(websocket, user, environment_id)
     
     # Mantener la conexión abierta
     try:
@@ -170,7 +176,6 @@ async def websocket_endpoint(websocket: WebSocket):
     except Exception as e:
         print(f"Error en WebSocket: {e}")
         websocket_manager.disconnect(websocket)
-
 # # Endpoint para obtener los últimos datos de un tipo de sensor
 # @app.get("/api/sensor-data/{sensor_type}")
 # async def get_last_sensor_data(sensor_type: str, user: dict = Depends(current_user)):

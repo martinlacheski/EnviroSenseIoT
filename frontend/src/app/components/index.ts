@@ -4,6 +4,7 @@ export * from './CardInfoUl';
 export * from './Loading';
 export * from './Spinners';
 export * from './ModalSpinner';
+export * from './ConnectionIndicator';
 export * from './UploadFileComponent';
 export * from './carpetas/CardCarpetas';
 

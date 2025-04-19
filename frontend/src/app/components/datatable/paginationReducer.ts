@@ -69,6 +69,7 @@ const fetchData = async <T>(endpoint: string, page: number, state: StateReducer<
             totalRows: responseData.total_items,
         });
     } catch (error) {
+        console.log(error);
         dispatch({ type: "FETCH_FAILURE" });
     }
 };
