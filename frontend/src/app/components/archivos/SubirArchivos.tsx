@@ -52,7 +52,6 @@ export const SubirArchivos = ({
       setFiles([]);
       setKey && setKey("archivos");
     } catch (error) {
-      console.log(error);
       SweetAlert2.errorAlert("¡Algo salió mal! Inténtalo de nuevo.");
     } finally {
       setUploading(false);

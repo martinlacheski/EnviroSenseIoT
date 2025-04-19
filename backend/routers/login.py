@@ -47,13 +47,20 @@ async def login(form: OAuth2PasswordRequestForm = Depends()):
         "username": user.username,
         "exp": datetime.now(timezone.utc) + timedelta(minutes=ACCESS_TOKEN_EXPIRE_MINUTES),
     }
+    
+    is_admin = user.is_admin
+    roles = []
+    if is_admin:
+        roles.append("ADMIN")
+    else:
+        roles.append("USUARIO")
 
     return {
         "user": {
             "id": str(user.id),
             "username": user.username,
             "name": user.name + " " + user.surname,
-            "roles": ["ADMIN"],
+            "roles": roles,
         },
         "access_token": jwt.encode(access_token, SECRET_KEY, algorithm=ALGORITHM),
         "token_type": "bearer",
@@ -73,7 +80,7 @@ async def renew_token(user: User = Depends(current_user)):
             "id": str(user.id),
             "username": user.username,
             "name": user.name + " " + user.surname,
-            "roles": ["ADMIN"],
+            "roles": ["ADMIN"] if user.is_admin else ["USUARIO"],
         },
         "access_token": jwt.encode(access_token, SECRET_KEY, algorithm=ALGORITHM),
         "token_type": "bearer",

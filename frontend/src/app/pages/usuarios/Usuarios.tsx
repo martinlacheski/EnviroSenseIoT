@@ -8,13 +8,9 @@ import { Button, Modal, ButtonGroup, Row } from "react-bootstrap";
 import { Form, Formik } from "formik";
 import * as Yup from "yup";
 import { BreadcrumbHeader, CustomInput } from "../../components";
-import { ActionButtons, DatatableNoPagination } from "../../shared";
+import { DatatableNoPagination } from "../../shared";
 import { Usuario as DataRow } from "./interfaces";
-
-interface ParamInterface {
-  _id: string;
-  name: string;
-}
+import { ActionUsers } from "../../shared/datatables/ActionUsers";
 
 interface FormInterface {
   id: string;
@@ -40,16 +36,33 @@ const initialForm: FormInterface = {
   is_admin: false,
 };
 
+interface ChangePasswordForm {
+  id: string;
+  username: string;
+  new_password: string; 
+  new_password_confirmation: string; 
+}
+
+const initialChangePasswordForm: ChangePasswordForm = {
+  id: "",
+  username: "",
+  new_password: "", 
+  new_password_confirmation: "", 
+};
+
 export const Usuarios = () => {
   const navigate = useNavigate();
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [editingId, setEditingId] = useState<string | null>(null);
   const [form, setForm] = useState<FormInterface>(initialForm);
+  const [isPasswordModalOpen, setIsPasswordModalOpen] = useState(false);
+  const [changePasswordForm, setChangePasswordForm] = useState<ChangePasswordForm>(initialChangePasswordForm);  
 
   const [loading, setLoading] = useState(false);
   const [items, setItems] = useState<DataRow[]>([]);
 
   const [isFormSubmitted, setIsFormSubmitted] = useState(false);
+  const [isPasswordFormSubmitted, setIsPasswordFormSubmitted] = useState(false);
   const endpoint = "/users/";
 
   // DATOS Y PAGINACIÓN
@@ -132,6 +145,46 @@ export const Usuarios = () => {
     }
   };
 
+  const handleChangePassword = (row: DataRow) => {
+    setChangePasswordForm({
+      id: row._id,
+      username: row.username,
+      new_password: "",
+      new_password_confirmation: "",
+    });
+    setIsPasswordModalOpen(true);
+  };
+
+  const handlePasswordSubmit = async (values: ChangePasswordForm) => {
+    try {
+      const confirmation = await SweetAlert2.confirm("¿Confirmar cambio de contraseña?");
+      if (!confirmation.isConfirmed) return;
+      setIsPasswordFormSubmitted(true);
+      
+      const payload = {
+        id: values.id,
+        new_password: values.new_password, 
+        new_password_confirmation: values.new_password_confirmation
+      };
+      
+      const { data } = await api.patch(`${endpoint}password`, payload);
+      
+      SweetAlert2.successToast(data.message || "¡Contraseña actualizada exitosamente!");
+      fetch();
+      handlePasswordHide();
+    } catch (error: any) {
+      SweetAlert2.errorAlert(error.response.data.message || "Error al cambiar contraseña");
+    } finally {
+      setIsPasswordFormSubmitted(false);
+    }
+  };
+
+  // CAMBIAR CONTRASEÑA
+  const handlePasswordHide = () => {
+    setIsPasswordModalOpen(false);
+    setChangePasswordForm(initialChangePasswordForm);
+  };
+
   // COLUMNAS Y RENDERIZADO
   const columns: TableColumn<DataRow>[] = [
     {
@@ -183,8 +236,9 @@ export const Usuarios = () => {
       center: true,
       maxWidth: "130px",
       cell: (row: DataRow) => (
-        <ActionButtons
+        <ActionUsers
           row={row}
+          handleChangePassword={handleChangePassword} 
           handleEdit={handleEdit}
           handleDelete={handleDelete}
         />
@@ -192,7 +246,6 @@ export const Usuarios = () => {
     },
   ];
 
-  // MODAL
   const handleHide = () => {
     setIsModalOpen(false);
     setEditingId(null);
@@ -364,6 +417,74 @@ export const Usuarios = () => {
                   >
                     <i className="bi bi-floppy me-2"></i>
                     {editingId ? `Modificar usuario` : `Crear usuario`}
+                  </Button>
+                </ButtonGroup>
+              </Modal.Footer>
+            </Form>
+          )}
+        </Formik>
+      </Modal>
+      
+      <Modal show={isPasswordModalOpen} onHide={handlePasswordHide}>
+        <Modal.Header closeButton>
+          <Modal.Title>Cambiar contraseña</Modal.Title>
+        </Modal.Header>
+        <Formik
+          initialValues={changePasswordForm}
+          onSubmit={(values) => {
+            handlePasswordSubmit(values);
+          }}
+          validationSchema={Yup.object({
+            new_password: Yup.string()  // Cambiado de newPassword
+              .required("Este campo es requerido")
+              .min(6, 'La contraseña debe tener al menos 6 caracteres'),
+            new_password_confirmation: Yup.string()  // Cambiado de confirmNewPassword
+              .oneOf([Yup.ref('new_password')], 'Las contraseñas no coinciden')
+              .required('Debe confirmar la contraseña'),
+          })}
+        >
+          {({ errors, touched, values }) => (
+            <Form>
+              <Modal.Body>
+                <div className="mb-3">
+                  <label className="form-label">Usuario</label>
+                  <input 
+                    type="text" 
+                    className="form-control" 
+                    value={values.username} 
+                    readOnly 
+                  />
+                </div>
+                <CustomInput.Text
+                  isRequired
+                  label="Nueva contraseña"
+                  name="new_password"
+                  type="password"
+                  placeholder="Nueva contraseña"
+                  isInvalid={!!errors.new_password && touched.new_password}
+                />
+                <CustomInput.Text
+                  isRequired
+                  label="Confirmar nueva contraseña"
+                  name="new_password_confirmation"
+                  type="password"
+                  placeholder="Confirmar nueva contraseña"
+                  isInvalid={!!errors.new_password_confirmation && touched.new_password_confirmation}
+                />
+              </Modal.Body>
+              <Modal.Footer>
+                <ButtonGroup className="d-flex">
+                  <Button size="sm" variant="secondary" onClick={handlePasswordHide}>
+                    Cancelar
+                  </Button>
+                  <Button
+                    type="submit"
+                    variant="primary"
+                    size="sm"
+                    disabled={isPasswordFormSubmitted}
+                  >
+                    <i className="bi bi-person-lock"></i>
+                    Cambiar contraseña
                   </Button>
                 </ButtonGroup>
               </Modal.Footer>

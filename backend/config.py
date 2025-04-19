@@ -6,7 +6,7 @@ from motor.motor_asyncio import AsyncIOMotorClient
 from models.actuator import Actuator
 from models.actuator_data import ActuatorData
 from models.actuator_log import ActuatorLog
-from models.user import User
+from models.user import UpdateCurrentUserPassword, UpdateUserPassword, User
 from models.role import Role
 from models.country import Country
 from models.province import Province
@@ -35,6 +35,8 @@ async def init_db():
     db = client.get_database("envirosense")
     await init_beanie(database=db, document_models=[
         User,
+        UpdateCurrentUserPassword,
+        UpdateUserPassword,
         Role, 
         Country, 
         Province, 
