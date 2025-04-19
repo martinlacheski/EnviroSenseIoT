@@ -1,24 +1,21 @@
 import { Link } from "react-router-dom";
 import { Sidebar, Menu, MenuItem, SubMenu } from "react-pro-sidebar";
-import { useAuthStore } from "../../hooks";
 import { sidebarItems, MenuItemData } from "./sidebarItems";
+import { Image } from "react-bootstrap";
 import { useSelector } from "react-redux";
 import { RootState } from "../../store";
-import { Image } from "react-bootstrap";
+import { useAuthStore } from "../../hooks";
 
 interface SidebarComponentProps {
   collapsed: boolean;
 }
 
-const hasRole = (roles: string[], requiredRoles: string[]) => {
-  return requiredRoles.some(role => roles.includes(role));
-};
-
 export const SidebarComponent = ({ collapsed }: SidebarComponentProps) => {
-  const { startLogout } = useAuthStore();
-  const { user, roles } = useSelector((state: RootState) => state.auth);
+  const { user } = useSelector((state: RootState) => state.auth);
 
-  const handleLogout = async () => {
+  const { startLogout } = useAuthStore();
+
+  const handleLogout = () => {
     startLogout();
   };
 
@@ -33,11 +30,10 @@ export const SidebarComponent = ({ collapsed }: SidebarComponentProps) => {
             }}
             prefix={
               <>
-                <i className={`${item.icon} me-2 fs-6`}></i>
+                <i className={`${item.icon} me-2`}></i>
                 {item.title}
               </>
             }
-            hidden={hasRole(roles, item.requiredRoles) ? false : true}
           >
             {renderMenuItems(item.subItems, true)}
           </SubMenu>
@@ -51,13 +47,12 @@ export const SidebarComponent = ({ collapsed }: SidebarComponentProps) => {
           title={item.title}
           style={{
             height: "36px",
-            fontSize: isSubItem ? "12px" : "14px", // Ajuste de fontSize
+            fontSize: isSubItem ? "13px" : "15px", // Ajuste de fontSize
             marginLeft: isSubItem ? "5px" : "0px", // Ajuste de marginLeft
             ...item.style,
           }}
-          hidden={hasRole(roles, item.requiredRoles) ? false : true}
         >
-          {item.icon && <i className={`${item.icon} me-2 fs-6`}></i>}
+          {item.icon && <i className={`${item.icon} me-2`}></i>}
           {item.title}
         </MenuItem>
       );
@@ -74,21 +69,24 @@ export const SidebarComponent = ({ collapsed }: SidebarComponentProps) => {
         height: "100vh",
       }}
     >
-      <Menu style={{ fontSize: "14px" }}>
+      <Menu style={{ fontSize: "15px" }}>
         <MenuItem
           title="EnviroSense"
           className="text-center"
           style={{ height: "150px" }}
           component={<Link to="/" />}
         >
-          <Image src="/logo-sidebar.png" alt="EnviroSense" height={125} />
+          <div>
+            <Image src="/logo-sidebar.png" alt="EnviroSense" height={125} />
+          </div>
         </MenuItem>
+
         <MenuItem
           component={<Link to="/" />}
           title="Inicio"
           style={{ height: "36px" }}
         >
-          <i className="bi bi-house me-2 fs-6"></i>
+          <i className="bi bi-house me-2"></i>
           Inicio
         </MenuItem>
 
@@ -98,8 +96,8 @@ export const SidebarComponent = ({ collapsed }: SidebarComponentProps) => {
           title="Sesión activa"
           prefix={
             <i>
-              <i className="bi bi-record-fill text-success px-1 me-1 small"></i>
-              {user?.username}
+              <i className="bi bi-record-fill me-2 text-success"></i>
+              {user?.name}
             </i>
           }
           style={{ height: "36px" }}

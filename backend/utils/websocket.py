@@ -1,6 +1,9 @@
 import datetime
 from typing import List, Dict, Optional
+from beanie import PydanticObjectId
 from fastapi import WebSocket
+
+from utils.devices_environment import get_all_sensors_and_actuators
 
 
 
@@ -22,19 +25,33 @@ class WebSocketManager:
     
     # Método para manejar la conexión de un nuevo cliente WebSocket
     # async def connect(self, websocket: WebSocket):
-    async def connect(self, websocket: WebSocket, user: dict):
+    async def connect(self, websocket: WebSocket, user: dict, environment_id: str):
+        try:
+            env_id = PydanticObjectId(environment_id)
+            # Obtener códigos válidos una sola vez al conectar
+            valid_codes = await get_all_sensors_and_actuators(env_id)
+
+        except:
+            await websocket.close(code=1008, reason="ID de ambiente inválido")
+            return
+
         self.active_connections.append({
             "websocket": websocket,
-            "user": user
+            "user": user,
+            "environment_id": env_id,
+            "valid_codes": set(valid_codes["allSensors"])  # Convertimos a set para búsquedas rápidas
         })
-        # Enviar datos almacenados al nuevo cliente
+
+        # Enviar datos almacenados al nuevo cliente (filtrados)
         for sensor_type, data in self.sensor_data_cache.items():
             if data:
-                await websocket.send_json({
-                    "type": sensor_type,
-                    "data": data["data"],
-                    "timestamp": data["timestamp"]
-                })
+                device_code = data["data"].get("sensor_code") or data["data"].get("actuator_code")
+                if device_code and device_code in valid_codes["allSensors"]:
+                    await websocket.send_json({
+                        "type": sensor_type,
+                        "data": data["data"],
+                        "timestamp": data["timestamp"]
+                    })
     
     # Método para manejar la desconexión de un cliente WebSocket
     def disconnect(self, websocket: WebSocket):
@@ -45,12 +62,26 @@ class WebSocketManager:
     
     # Método para enviar un mensaje a un cliente WebSocket específico
     async def broadcast(self, message: dict):
-        for connection in self.active_connections[:]: # Copia de la lista para evitar problemas al eliminar conexiones
+        # Extraer el código del dispositivo (sensor o actuador)
+        device_code = message.get("data", {}).get("sensor_code") or message.get("data", {}).get("actuator_code")
+        if not device_code:
+            return
+
+        for connection in self.active_connections[:]:
             try:
-                await connection["websocket"].send_json(message)
+                # Verificar si el código es válido para esta conexión
+                if device_code in connection["valid_codes"]:
+                    await connection["websocket"].send_json(message)
+                    
+                    # Actualizar caché solo si el mensaje es válido
+                    if message.get("type") in self.sensor_data_cache:
+                        self.sensor_data_cache[message["type"]] = {
+                            "data": message["data"],
+                            "timestamp": datetime.datetime.now().isoformat()
+                        }
             except Exception as e:
                 print(f"Error broadcasting to WebSocket: {e}")
-                self.disconnect(connection)
+                self.disconnect(connection["websocket"])
     
     # Método para enviar un mensaje a todos los clientes WebSocket
     def update_cache(self, sensor_type: str, data: dict):

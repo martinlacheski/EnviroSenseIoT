@@ -53,6 +53,7 @@ export const CarpetaForm = ({
             ...values,
           }
         );
+        console.log(data);
         SweetAlert2.successToast(data.message || "¡Operación exitosa!");
         setCarpetas((prevCarpetas: CarpetaInterface[]) =>
           prevCarpetas.map((carpeta) =>

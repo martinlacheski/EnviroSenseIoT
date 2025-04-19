@@ -1,6 +1,7 @@
 export * from './Inicio';
 export * from './Dispositivos';
 export * from './parametros';
+export * from './dashboard';
 export * from './ambientes';
 export * from './sensoresConsumos';
 export * from './sensoresActuadores';

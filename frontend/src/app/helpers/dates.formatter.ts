@@ -4,7 +4,7 @@ import updateLocale from 'dayjs/plugin/updateLocale';
 export class DateFormatter {
     constructor() { }
 
-    static toDDmmYYYY(date: string): string {      
+    static toDDmmYYYY(date: string): string {
         return dayjs(date).format('DD/MM/YYYY');
     }
 
@@ -75,6 +75,13 @@ export class DateFormatter {
             month: 'long',
             year: 'numeric',
         });
+        return formatted;
+    }
+
+    // Format HH:MM:SS
+    static toHHMMString(date: string): string {
+        const new_date = new Date(date);
+        const formatted = new_date.toTimeString().split(' ')[0];
         return formatted;
     }
 

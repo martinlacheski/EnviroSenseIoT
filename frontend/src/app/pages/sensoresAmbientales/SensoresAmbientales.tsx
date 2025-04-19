@@ -118,6 +118,7 @@ export const SensoresAmbientales = () => {
     );
     if (!confirmation.isConfirmed) return;
     try {
+      console.log(row._id);
       const { data } = await api.delete(`${endpoint}/${row._id}`);
       SweetAlert2.successToast(data.message || "¡Eliminación exitosa!");
       fetchSensores();
