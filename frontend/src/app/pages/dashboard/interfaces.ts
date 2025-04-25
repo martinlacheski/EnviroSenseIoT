@@ -33,7 +33,7 @@ export interface Environment {
     address: string;
     gps_location: string;
     description: string;
-};
+}
 
 export interface EnvironmentSensor {
     sensor_code: string;

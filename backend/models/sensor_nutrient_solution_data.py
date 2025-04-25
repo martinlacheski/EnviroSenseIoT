@@ -12,6 +12,8 @@ class NutrientSolutionSensorData(Document):
     tds: Optional[float]
     ph: Optional[float]
     ce: Optional[float]
+    ec_mS: Optional[float]
+    ec_uS: Optional[float]
     datetime: Optional[datetime]
     #   timestamp: datetime = datetime.now(timezone.utc)
     

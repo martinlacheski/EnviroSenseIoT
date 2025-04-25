@@ -75,24 +75,38 @@ export const Dashboard = () => {
   const addMessage = (msg: WSMessage) => {
     const { type, data, timestamp } = msg;
     // Setear los códigos de los sensores
-    if (type === "environmental" && !ambientalCode) {
+    // if (type === "environmental" && !ambientalCode) {
+    //   const { sensor_code } = data as EnvironmentalData;
+    //   if (sensor_code) setAmbientalCode(sensor_code);
+    // }
+
+    // Actualizar códigos solo si el mensaje contiene el código correspondiente
+    if (type === "environmental") {
       const { sensor_code } = data as EnvironmentalData;
-      if (sensor_code) setAmbientalCode(sensor_code);
+      if (sensor_code && sensor_code !== ambientalCode) {
+        setAmbientalCode(sensor_code);
+      }
     }
 
-    if (type === "consumption" && !consumptionCode) {
+    if (type === "consumption") {
       const { sensor_code } = data as ConsumptionData;
-      if (sensor_code) setConsumptionCode(sensor_code);
+      if (sensor_code && sensor_code !== consumptionCode) {
+        setConsumptionCode(sensor_code);
+      }
     }
 
-    if (type === "nutrient_solution" && !nutrientSolutionCode) {
+    if (type === "nutrient_solution") {
       const { sensor_code } = data as NutrientSolutionData;
-      if (sensor_code) setNutrientSolutionCode(sensor_code);
+      if (sensor_code && sensor_code !== nutrientSolutionCode) {
+        setNutrientSolutionCode(sensor_code);
+      }
     }
 
-    if (type === "actuators" && !actuatorCode) {
+    if (type === "actuators") {
       const { actuator_code } = data as ActuatorData;
-      if (actuator_code) setActuatorCode(actuator_code);
+      if (actuator_code && actuator_code !== actuatorCode) {
+        setActuatorCode(actuator_code);
+      }
     }
 
     setMessages((prev) => {
@@ -232,6 +246,9 @@ export const Dashboard = () => {
     },
   });
 
+
+  const [isLoading, setIsLoading] = useState(false);
+
   const handleSync = async (
     type: "sensor" | "actuador",
     topic: string,
@@ -254,11 +271,14 @@ export const Dashboard = () => {
         message: { actuator_code: sensorCode, command: "read_now" },
       };
     }
+    setIsLoading(true);
     try {
       await api.post("/mqtt/publish", body);
     } catch (error) {
       console.error("Error al sincronizar:", error);
       SweetAlert2.errorAlert("Error al sincronizar");
+    } finally {
+      setIsLoading(false);
     }
   };
 
@@ -290,20 +310,26 @@ export const Dashboard = () => {
         {/* SENSOR AMBIENTAL */}
         <Col xs={12} lg={6}>
           <Card>
+            {/* Ejemplo para Sensor Ambiental */}
             <Card.Header className="py-1 d-flex justify-content-between align-items-center">
               <span className="small mb-0">
                 <i className="bi bi-cloud me-1"></i> Sensor ambiental{" "}
-                <strong className="mx-1">{ambientalCode}</strong>
+                {ambientalCode && <strong className="mx-1">{ambientalCode}</strong>}
               </span>
-              <button
-                className="btn btn-sm py-0 px-1"
-                onClick={() =>
-                  handleSync("sensor", "environmental", ambientalCode)
-                }
-                hidden={!ambientalCode}
-              >
-                <i className="bi bi-arrow-clockwise"></i>
-              </button>
+              {ambientalCode && (
+                <button
+                  className="btn btn-sm py-0 px-1"
+                  onClick={() => handleSync("sensor", "environmental", ambientalCode)}
+                  disabled={isLoading}
+                  title="Sincronizar"
+                >
+                  {isLoading ? (
+                    <span className="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                  ) : (
+                    <i className="bi bi-arrow-clockwise"></i>
+                  )}
+                </button>
+              )}
             </Card.Header>
             <Card.Body className="p-0">
               <Row className="g-2 p-2">
