@@ -33,10 +33,9 @@ literate={á}{{\'a}}1 {é}{{\'e}}1 {í}{{\'i}}1 {ó}{{\'o}}1 {ú}{{\'u}}1
 
 \label{Chapter3} % Change X to a consecutive number; for referencing this chapter elsewhere, use \ref{ChapterX}
 
-En este capítulo se describe el diseño y la implementación del sistema de
-monitoreo y control de invernaderos. Se detallan los componentes principales
-del sistema, las decisiones de diseño tomadas y los pasos seguidos para su
-implementación.
+Este capítulo describe el diseño y la implementación del sistema de monitoreo y
+control de invernaderos. Se detallan los componentes principales del sistema,
+las decisiones de diseño tomadas y los pasos seguidos para su implementación.
 
 %----------------------------------------------------------------------------------------
 %	SECTION 1
@@ -56,18 +55,6 @@ la interacción entre los diferentes componentes.
 La arquitectura planteada para el desarrollo del trabajo sigue el modelo de
 tres capas típico de un sistema IoT: percepción, red y aplicación.
 
-% \begin{itemize}
-%     \item Capa de percepción: formada por nodos sensores y actuadores que recopilan datos
-%           del entorno y ejecutan acciones de acuerdo con la configuración establecida.
-%     \item Capa de red: encargada de gestionar la comunicación entre los dispositivos IoT
-%           y el backend. Los sensores y actuadores transmiten datos a través de Wi-Fi, los
-%           cuales son gestionados por un broker MQTT.
-%     \item Capa de aplicación: plataforma en la nube responsable del procesamiento,
-%           almacenamiento y visualización de datos. Facilita la interacción con los
-%           dispositivos, la gestión de la información y la presentación de datos mediante
-%           una interfaz accesible para el usuario.
-% \end{itemize}
-
 \subsection{Capa de percepción}
 
 La capa de percepción está constituida por los nodos sensores y actuadores, que
@@ -85,11 +72,6 @@ sistemas de recirculación de nutrientes.
 Los nodos están conectados a una red Wi-Fi local, lo que les permite establecer
 comunicación con la red y transmitir los datos de los sensores hacia el
 servidor IoT. La transmisión de datos se realiza con el protocolo MQTT.
-
-% Los nodos están conectados a una red Wi-Fi local, lo que les permite establecer
-% comunicación con otros dispositivos en la red y transmitir los datos de los
-% sensores hacia el servidor IoT. La transmisión de datos se realiza con el
-% protocolo MQTT.
 
 \subsection{Capa de red}
 
@@ -121,87 +103,12 @@ el almacenamiento de la información. Además, se implementó una interfaz gráf
 de usuario en React para la visualización y gestión de los datos. Todos estos
 servicios fueron desplegados a través de contenedores Docker.
 
-% \subsection{Capa de percepción}
-
-% Esta capa está compuesta por los nodos sensores y actuadores. Cada nodo sensor
-% está compuesto por un microcontrolador ESP-WROOM-32 y diversos sensores que
-% permiten medir parámetros ambientales, como temperatura, humedad, luminosidad,
-% concentración de $CO_2$, pH, conductividad eléctrica, temperatura de la
-% solución nutritiva, nivel, consumo eléctrico, entre otros. Además, los nodos
-% actuadores están equipados con relés que permiten controlar dispositivos como
-% ventiladores, iluminación y recirculación de nutrientes.
-
-% Estos nodos se conectan a una red Wi-Fi y se comunican a través de un broker
-% MQTT con el servidor IoT. La comunicación de los nodos con el broker MQTT se
-% realiza de manera segura, se utilizan certificados para autenticar la conexión
-% y cifrar los datos transmitidos.
-
-% \subsection{Capa de Red}
-
-% Esta capa está compuesta por un broker MQTT que actúa como intermediario entre
-% los nodos sensores y actuadores y el servidor IoT. El broker MQTT utilizado en
-% el desarrollo del trabajo fue AWS IoT Core, que es un servicio totalmente
-% gestionado que permite la conexión de dispositivos IoT a la nube. Para cada
-% nodo y para el servidor backend, se generaron certificados de seguridad y
-% claves privadas, que permiten la autenticación y el cifrado de la información
-% transmitida.
-
-% \subsection{Capa de aplicación}
-% El servidor IoT es la plataforma en la nube responsable del procesamiento,
-% almacenamiento y visualización de los datos recopilados por los nodos. La
-% solución utilizada en el trabajo fue AWS EC2, que es un servicio de computación
-% en la nube que permite ejecutar aplicaciones y servicios en instancias
-% virtuales. Los servicios necesarios (FastAPI, MongoDB y React) se implementaron
-% con Docker, lo que permite desplegar y gestionar aplicaciones de manera
-% eficiente y escalable.
-
 %----------------------------------------------------------------------------------------
 %	SECTION 2
 %----------------------------------------------------------------------------------------
 \section{Modelo de datos}
 
 En esta sección se presenta el modelo de datos implementado en el sistema.
-
-% \subsection{Pruebas iniciales de sensores}
-
-% Para diseñar el modelo adecuado, se llevó a cabo una prueba inicial con los
-% sensores y se registraron los datos generados por cada uno de ellos. La tabla
-% \ref{tab:sensores y librerias} muestra los datos obtenidos de cada sensor, tal
-% como lo devuelve la librería utilizada para su configuración y lectura.
-
-% \begin{table}[h]
-%     \centering
-%     \caption[Principales sensores y librerias utilizadas]{Principales sensores y librerias utilizadas}
-%     \begin{tabular}{p{3.2cm}p{9.6cm}}
-%         \toprule
-%         \textbf{Componente}               & \textbf{Datos}                                                   \\
-%         \midrule
-%         \multirow{1}{*}{Sensor BME280}    & La librería utilizada \cite{BME280_MicroPython_Driver} devuelve
-%         los valores de temperatura ambiente, humedad relativa y presión atmosférica como Float.              \\
-%         \multirow{1}{*}{Sensor BH1750}    & La librería utilizada \cite{BH1750_MicroPython_Driver} devuelve
-%         el valor de lux como Float.                                                                          \\
-%         \multirow{1}{*}{Sensor MH-Z19C}   & La librería utilizada \cite{MHZ19_MicroPython_Driver} devuelve
-%         el valor de ppm de $CO_2$ como Int.                                                                  \\
-%         \multirow{1}{*}{Sensor PH-4502}   & La librería utilizada \cite{PH_Sensor_Driver} devuelve
-%         el valor de TDS como Float.                                                                          \\
-%         \multirow{1}{*}{Sensor de CE}     & La librería utilizada \cite{EC_Sensor_Driver} devuelve
-%         el valor de TDS como Float.                                                                          \\
-%         \multirow{1}{*}{Sensor de TDS}    & La librería utilizada \cite{TDS_Sensor_Driver} devuelve
-%         el valor de TDS como Float.                                                                          \\
-%         \multirow{1}{*}{Sensor DS18B20}   & La librería utilizada \cite{DS18B20_MicroPython_Driver} devuelve
-%         el valor de la temperatura como Float.                                                               \\
-%         \multirow{1}{*}{Sensor HC-SR04}   & La librería utilizada \cite{HCSR04_Sensor_Driver} devuelve
-%         el valor de distancia en centímetros como Int.                                                       \\
-%         \multirow{1}{*}{Sensor PZEM-004T} & La librería utilizada \cite{PZEM004T_Sensor_Driver} devuelve
-%         los valores de voltaje, corriente, potencia, cálculo de potencia y factor de potencia como Float.    \\
-%         % \multirow{1}{*}{Módulo Relay}     & Protocolo de comunicación entre cliente y servidor.              \\
-%         \bottomrule
-%         \hline
-%     \end{tabular}
-%     \label{tab:sensores y librerias}
-% \end{table}
-
-% \subsection{Diseño del modelo de datos}
 
 La figura \ref{fig:modelo de datos} permite visualizar las principales
 colecciones y sus relaciones dentro de la base de datos. El diseño del modelo
@@ -252,30 +159,6 @@ en las siguientes categorías principales:
 El modelo de datos completo del sistema, puede consultarse en el apéndice
 \ref{AppendixA}.
 
-% El diseño del modelo de datos se desarrolló de acuerdo a los tipos de datos
-% proporcionados por los sensores, así como los requerimientos técnicos
-% establecidos para el sistema.
-
-% La estructura se organizó en colecciones dentro de MongoDB, donde cada
-% colección representa un tipo de dato específico. Cada colección contiene
-% documentos que almacenan las lecturas de los sensores y actuadores, usuarios,
-% ambientes, tipos de ambientes, entre otros. Las colecciones se vinculan
-% mediante identificadores únicos, lo que facilita la conexión entre las
-% diferentes colecciones.
-
-% La estructura de datos se diseñó para ser flexible y escalable, permitiendo
-% agregar nuevos tipos de sensores y actuadores en el futuro sin necesidad de
-% realizar cambios significativos en la base de datos. Además, se implementaron
-% mecanismos de validación de datos para garantizar la integridad y
-% coherencia de la información almacenada.
-
-% La estructura se organizó en colecciones dentro de MongoDB, donde cada
-% colección representa un tipo de dato específico. Cada colección contiene
-% documentos que almacenan las lecturas de los sensores y actuadores, y también
-% incluye colecciones relacionadas con usuarios, ambientes, tipos de ambientes,
-% entre otros. Las colecciones se vinculan mediante identificadores únicos, lo
-% que facilita la conexión entre las diferentes colecciones.
-
 %----------------------------------------------------------------------------------------
 %	SECTION 3
 %----------------------------------------------------------------------------------------
@@ -283,66 +166,6 @@ El modelo de datos completo del sistema, puede consultarse en el apéndice
 
 En esta sección se presenta la arquitectura del sistema y se detallan las
 tecnologías utilizadas y la arquitectura del servidor.
-
-% \subsection{Tecnologías utilizadas}
-
-% \subsubsection{Backend}
-
-% Para el desarrollo del backend se optó por utilizar el framework FastAPI basado
-% en Python, que permite crear APIs RESTful de manera rápida y eficiente. La
-% comunicación entre el frontend y el backend se realizó a través de la API REST
-% expuesta con HTTP y el formato JSON para el intercambio de datos.
-
-% Para el envío de los datos en tiempo real desde el backend al frontend, se
-% utilizó la librería Websocket \cite{FastAPIWebSockets} de FastAPI, que permite
-% establecer una conexión bidireccional entre el servidor y el cliente.
-
-% La comunicación entre el backend y el broker MQTT se implementó mediante el SDK
-% (del inglés, \textit{Software Development Kit}) de AWS IoT para Python
-% \cite{AWSIoTSDK}, que simplifica la integración de FastAPI con el protocolo
-% MQTT. Este SDK permite gestionar la conexión con el broker, así como publicar y
-% suscribirse a tópicos.
-
-% \subsubsection{Base de datos}
-
-% Como se mencionó anteriormente, se utilizó MongoDB como base de datos para
-% almacenar los datos generados por los nodos sensores y actuadores, así como la
-% información relacionada con los requerimientos del sistema.
-
-% La comunicación entre el backend y la base de datos se realizó a través de la
-% librería Motor \cite{MotorMongoDB}, que proporciona una interfaz asíncrona para
-% interactuar con MongoDB. Además se utilizó el ODM (del inglés, \textit{Object
-%     Document Mapper}), a través de la librería Beanie \cite{BeaniODM}, que permite
-% definir modelos y realizar consultas y operaciones sobre la base de datos de
-% manera sencilla.
-
-% \subsubsection{Frontend}
-
-% El frontend se desarrolló mediante la librería React de Facebook. Para el
-% diseño de la interfaz, se utilizó la librería Bootstrap para React
-% \cite{ReactBootstrap} lo que permitió crear una aplicación web responsiva y
-% fácil de usar.
-
-% La comunicación entre el frontend y el backend se realizó a través de los
-% endpoints de la API REST. Para la visualización de los datos en tiempo real, se
-% utilizó la librería Socket.IO \cite{SocketIO}, que permite establecer una
-% conexión WebSocket entre el frontend y el backend.
-
-% \subsubsection{Despliegue}
-
-% Por último, para el despliegue del sistema se utilizó Docker, que permite crear
-% contenedores para cada uno de los componentes del sistema. Esto facilita la
-% gestión y el despliegue de la aplicación, ya que cada componente se ejecuta en
-% su propio contenedor, lo que permite una mayor flexibilidad y escalabilidad.
-
-% Se utilizaron los siguientes contenedores:
-% \begin{itemize}
-%     \item Contenedor del servidor Backend.
-%     \item Contenedor de la base de datos MongoDB.
-%     \item Contenedor del frontend desarrollado en React.
-% \end{itemize}
-
-% \subsection{Arquitectura del servidor}
 
 \subsection{Arquitectura del servidor}
 
@@ -377,96 +200,6 @@ A continuación, se describe brevemente cada uno de estos componentes:
           tiempo real y configurar el sistema. Se conecta con la API REST del backend y
           utiliza WebSocket \cite{SocketIO} para actualizaciones en tiempo real.
 \end{itemize}
-
-% La arquitectura se diseñó para ser escalable, flexible y fácil de mantener.
-% Está compuesta de los siguientes componentes principales:
-
-% \begin{itemize}
-%     \item Backend.
-%           \begin{itemize}
-%               \item API REST.
-%               \item Autenticación y autorización.
-%               \item Integración con la base de datos.
-%               \item Conexión con el broker MQTT.
-%               \item Comunicación con frontend en tiempo real. % con WebSocket.
-%           \end{itemize}
-%     \item Capa de datos.
-%     \item Frontend.
-%           \begin{itemize}
-%               \item Interfaz de usuario.
-%               \item Comunicación con backend en tiempo real. % con WebSocket.
-%           \end{itemize}
-% \end{itemize}
-
-% La figura \ref{fig:arquitectura servidor} muestra la arquitectura del del
-% servidor del sistema IoT.
-
-% \begin{figure}[H]
-%     \centering
-%     \includegraphics[width=.97\textwidth]{./Images/16.png}
-%     \caption{Arquitectura del servidor del sistema IoT.}
-%     \label{fig:arquitectura servidor}
-% \end{figure}
-
-% A continuación, se describe brevemente cada uno de estos componentes:
-
-% \subsubsection{Backend}
-
-% % renglon en negrita que diga API REST
-
-% \textbf{API REST:} es el servicio principal que gestiona las peticiones del frontend. Permite la
-% creación, lectura, actualización y eliminación de datos relacionados con los
-% sensores, actuadores, ambientes y usuarios, entre otros.
-
-% La API REST posee los endpoints necesarios para realizar las operaciones de
-% lectura de datos históricos y configuración de los nodos sensores y actuadores.
-
-% Para implementar el modelo de datos representado en la figura \ref{fig:modelo
-%     de datos}, se utilizó la librería Beanie, que permite definir modelos de datos
-% de manera declarativa y realizar consultas de forma sencilla.
-
-% \textbf{Autenticación y autorización:} es el componente encargado de gestionar
-% la autenticación y autorización de los usuarios. Se implementó un sistema de
-% autenticación basado en tokens con JWT, que permite a los usuarios acceder a la
-% API de manera segura. Se estableció una duración para los tokens de acceso y de
-% refresco, lo que permitió que los usuarios mantengan su sesión activa sin
-% necesidad de autenticarse nuevamente con sus credenciales.
-
-% \textbf{Integración con la base de datos:} es la integración de FastAPI con MongoDB
-% para persistir la información. Se utilizó la biblioteca Motor para la conexión
-% asíncrona con la base de datos. Beanie ODM proporciona una capa
-% de abstracción sobre Motor, lo que facilita la interacción con la base de datos y
-% permite definir modelos de datos de manera declarativa.
-
-% \textbf{Conexión con el broker MQTT:} es el componente encargado de la comunicación
-% bidireccional con los dispositivos IoT. Se implementó un cliente MQTT que se conecta
-% a AWS IoT Core y gestiona la publicación y suscripción a los tópicos correspondientes.
-
-% \textbf{Comunicación con frontend en tiempo real:} es el componente
-% encargado de gestionar la comunicación en tiempo real entre el servidor y el cliente.
-% Se implementó la librería WebSocket en el backend que permite a los clientes conectarse
-% y recibir actualizaciones en tiempo real sobre los datos recopilados por los nodos.
-
-% \subsubsection{Capa de datos}
-
-% Es el componente encargado de persistir la información en la base de datos
-% MongoDB. Se implementó un esquema de datos que permite almacenar los datos
-% recopilados por los nodos sensores y actuadores, así como la información
-% relacionada con los usuarios, ambientes y tipos de ambientes, entre otros. Los
-% datos se almacenan en colecciones, donde cada colección representa un tipo de
-% dato.
-
-% \subsubsection{Frontend}
-
-% Es la interfaz de usuario desarrollada en React. Permite a los usuarios
-% interactuar con el sistema, visualizar los datos en tiempo real y gestionar la
-% configuración de los nodos sensores y actuadores. Se implementó una interfaz
-% responsiva que se adapta a diferentes dispositivos y tamaños de pantalla.
-
-% La comunicación entre el frontend y el backend se realiza a través de la API
-% REST expuesta por el servidor. Además, se implementó la comunicación en tiempo
-% real mediante WebSocket, lo que permite a los usuarios recibir actualizaciones
-% en tiempo real sobre los datos recopilados por los nodos sensores y actuadores.
 
 %----------------------------------------------------------------------------------------
 %	SECTION 4
@@ -524,66 +257,6 @@ utilizado.
     \label{tab:endpoints}
 \end{table}
 
-% \begin{table}[H]
-%     \centering
-%     \caption[Resumen de principales endpoints de la API]{Resumen de principales endpoints de la API.}
-%     \begin{tabular}{l l l}
-%         % \begin{tabular}{p{1.3cm}p{5.7cm}p{4.9cm}}
-%         \toprule
-%         \textbf{Método} & \textbf{Endpoint}                  & \textbf{Acción}            \\
-%         \midrule
-%         GET             & /mqtt/test                         & Test conexión cliente MQTT \\
-%         POST            & /mqtt/publish                      & Publicar en tópico MQTT    \\
-%         \midrule
-%         POST            & /login                             & Login de usuarios          \\
-%         GET             & /renew-token                       & Renovar token              \\
-%         \midrule
-%         GET             & /users/                            & Obtener usuarios           \\
-%         POST            & /users/                            & Crear usuario              \\
-%         PUT             & /users/                            & Actualizar usuario         \\
-%         GET             & /users/\{id\}                      & Obtener un usuario         \\
-%         DELETE          & /users/\{id\}                      & Eliminar usuario           \\
-%         \midrule
-%         GET             & /environments/                     & Obtener ambientes          \\
-%         POST            & /environments/                     & Crear ambiente             \\
-%         GET             & /environments/\{id\}               & Obtener un ambiente        \\
-%         PUT             & /environments/\{id\}               & Actualizar ambiente        \\
-%         DELETE          & /environments/\{id\}               & Eliminar ambiente          \\
-%         \midrule
-%         GET             & /actuators/                        & Obtener actuadores         \\
-%         POST            & /actuators/                        & Crear actuador             \\
-%         GET             & /actuators/\{id\}                  & Obtener un actuador        \\
-%         PUT             & /actuators/\{id\}                  & Actualizar actuador        \\
-%         DELETE          & /actuators/\{id\}                  & Eliminar actuador          \\
-%         \midrule
-%         GET             & /sensors/environmental/            & Obtener sensores           \\
-%         POST            & /sensors/environmental/            & Crear sensor ambiental     \\
-%         GET             & /sensors/environmental/\{id\}      & Obtener un sensor          \\
-%         PUT             & /sensors/environmental/\{id\}      & Actualizar sensor          \\
-%         DELETE          & /sensors/environmental/\{id\}      & Eliminar sensor            \\
-%         \midrule
-%         GET             & /sensors/nutrients/solution/       & Obtener sensores           \\
-%         POST            & /sensors/nutrients/solution/       & Crear sensor               \\
-%         GET             & /sensors/nutrients/solution/\{id\} & Obtener un sensor          \\
-%         PUT             & /sensors/nutrients/solution/\{id\} & Actualizar sensor          \\
-%         DELETE          & /sensors/nutrients/solution/\{id\} & Eliminar sensor            \\
-%         \midrule
-%         GET             & /sensors/consumption/              & Obtener sensores           \\
-%         POST            & /sensors/consumption/              & Crear sensor               \\
-%         GET             & /sensors/consumption/\{id\}        & Obtener un sensor          \\
-%         PUT             & /sensors/consumption/\{id\}        & Actualizar sensor          \\
-%         DELETE          & /sensors/consumption/\{id\}        & Eliminar sensor            \\
-%         \midrule
-%         GET             & /actuators/data/                   & Datos históricos           \\
-%         GET             & /sensors/environmental/data/       & Datos históricos           \\
-%         GET             & /sensors/consumption/data/         & Datos históricos           \\
-%         GET             & /sensors/nutrients/solution/data/  & Datos históricos           \\
-%         \bottomrule
-%         \hline
-%     \end{tabular}
-%     \label{tab:endpoints}
-% \end{table}
-
 El listado completo de endpoints de la API se puede consultar en el apéndice
 \ref{AppendixB}.
 
@@ -610,7 +283,7 @@ autorización y renovación de tokens implementado en el sistema.
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=.80\textwidth]{./Images/17.png}
+    \includegraphics[width=.78\textwidth]{./Images/17.png}
     \caption{Esquema de autenticación y autorización.}
     \label{fig:esquema autenticacion}
 \end{figure}
@@ -625,53 +298,16 @@ utilizó el ODM (del inglés, \textit{Object Document Mapper}), a través de la
 biblioteca Beanie, que permite definir modelos y realizar consultas y
 operaciones sobre la base de datos de manera sencilla.
 
-% La comunicación entre el backend y la base de datos se realizó a través de la
-% librería Motor \cite{MotorMongoDB}, que proporciona una interfaz asíncrona para
-% interactuar con MongoDB. Además se utilizó el ODM (del inglés, \textit{Object
-%     Document Mapper}), a través de la librería Beanie \cite{BeaniODM}, que permite
-% definir modelos y realizar consultas y operaciones sobre la base de datos de
-% manera sencilla.
-
 La figura \ref{fig:diagrama de clases} muestra un ejemplo de la relación entre
 los modelos implementados en el sistema y los métodos HTTP de la colección
 \texttt{EnvironmentalSensor}.
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=.95\textwidth]{./Images/18.png}
+    \includegraphics[width=.85\textwidth]{./Images/18.png}
     \caption{Diagrama de clases de los modelos implementados.}
     \label{fig:diagrama de clases}
 \end{figure}
-
-% El código \ref{cod:models} muestra un ejemplo de cómo se definen los modelos
-% con Beanie y se ejemplifica una relación entre los modelos con la clase
-% \textit{EnvironmentalSensor} y la clase \textit{Environment} a través de un
-% enlace (del inglés, \textit{Link}).
-
-% \begin{lstlisting}[label=cod:models,caption=Ejemplo de definición de modelos con Beanie, language=Python]
-% from beanie import Document, Link, PydanticObjectId
-% from typing import Optional
-% from models.environment import Environment
-
-% class EnvironmentalSensor(Document):
-%     id: Optional[PydanticObjectId] = None 
-%     environment: Link[Environment]
-%     description: str
-%     sensor_code: str
-%     temperature_alert_min: float
-%     temperature_alert_max: float
-%     humidity_alert_min: float
-%     humidity_alert_max: float
-%     atmospheric_pressure_alert_min: float
-%     atmospheric_pressure_alert_max: float
-%     co2_alert_min: float
-%     co2_alert_max: float
-%     minutes_to_report: int
-%     enabled: bool
-
-%     class Settings:
-%         collection_name = "environmental_sensors"
-% \end{lstlisting}
 
 Como se mencionó anteriormente, los datos se almacenan en MongoDB. Para
 establecer la conexión con la base de datos, se utiliza el cliente asíncrono de
@@ -687,46 +323,18 @@ la conexión entre FastAPI y MongoDB.
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=.90\textwidth]{./Images/19.png}
+    \includegraphics[width=.85\textwidth]{./Images/19.png}
     \caption{Pasos para la conexión de FastAPI y MongoDB.}
     \label{fig:conexion mongo}
 \end{figure}
 
-% Como se mencionó anteriormente, los datos se almacenan en la base de datos
-% MongoDB. La conexión a la base de datos MongoDB se realiza utilizando la
-% librería Motor, que es un cliente asíncrono para MongoDB. Además, se utiliza la
-% librería Beanie para inicializar los modelos y realizar consultas de manera
-% sencilla. La conexión se establece mediante una URL que incluye el nombre de
-% usuario, la contraseña y la dirección del servidor MongoDB.
-
 El código para establecer la conexión y la inicialización de los modelos se
 puede consultar en el apéndice \ref{AppendixD}.
-
-% \begin{lstlisting}[label=cod:mongo_connection,caption=Ejemplo de conexión a MongoDB, language=Python]
-% async def init_db():
-%     client = AsyncIOMotorClient("mongodb://USER:PASSWORD@URL:PORT/?authSource=admin")
-%     db = client.get_database("envirosense")
-%     await init_beanie(database=db, document_models=[
-%         User, Role, Country, Province, City, Company, EnvironmentType, 
-%         Environment, NutrientType, ConsumptionSensor, 
-%         ConsumptionSensorData, ConsumptionSensorLog, 
-%         EnvironmentalSensor, EnvironmentalSensorData, 
-%         EnvironmentalSensorLog, NutrientSolutionSensor, 
-%         NutrientSolutionSensorData, NutrientSolutionSensorLog, 
-%         Actuator, ActuatorData, ActuatorLog
-% ])
-% \end{lstlisting}
 
 \subsection{Comunicación con el broker MQTT}
 
 A continuación, se describe la implementación de la comunicación con el broker
 MQTT.
-
-% La comunicación con el broker MQTT se realiza a través de la SDK de AWS IoT
-% para Python. Se implementaron métodos para recibir datos de los nodos sensores
-% y actuadores, y para enviar comandos a los dispositivos. Además, se implementó
-% un sistema de almacenamiento de datos que permite guardar los datos recibidos
-% en la base de datos MongoDB.
 
 \subsubsection{Pasos en AWS IoT Core}
 
@@ -770,12 +378,6 @@ generados previamente. Este cliente permite publicar y suscribirse a los
 tópicos correspondientes, lo que facilitó la comunicación entre el servidor y
 los dispositivos IoT.
 
-% Una vez establecida la conexión entre el servidor IoT y AWS IoT Core, se
-% implementaron métodos para publicar y suscribirse a los tópicos
-% correspondientes. Estos métodos permiten enviar y recibir datos de los nodos
-% sensores y actuadores, así como almacenar los datos en la base de datos
-% MongoDB.
-
 En la aplicación FastAPI se definieron dos rutas claves para la chequear la
 comunicación con AWS IoT Core:
 
@@ -805,31 +407,6 @@ mensaje en un tópico específico.
     \label{fig:publish_mqtt}
 \end{figure}
 
-% El fragmento de código \ref{cod:mqtt} muestra la implementación de estas rutas
-% en FastAPI.
-
-% \begin{lstlisting}[label=cod:mqtt,caption=Métodos MQTT en FastAPI, language=PythonUTF8]
-%     # Clase para manejar la publicación de mensajes MQTT
-%     class PublishRequest(BaseModel):
-%         topic: str
-%         message: dict
-
-%     # Endpoint para publicar mensajes en un tópico MQTT
-%     @app.post("/mqtt/publish")
-%     def publish_message(request: PublishRequest):
-%         mqtt_client.publish(request.topic, request.message)
-%         return {"status": "Mensaje publicado", "topic": request.topic, "message": request.message}
-
-%     # Endpoint para comprobar la conexión con el broker MQTT
-%     @app.get("/mqtt/test")
-%     def test_mqtt_connection():
-%         try:
-%             mqtt_client.connect()
-%             return {"status": "Conexión exitosa"}
-%         except Exception as e:
-%             return {"status": "Error de conexión", "error": str(e)}
-% \end{lstlisting}
-
 \subsubsection{Comunicación con MQTT en FastAPI}
 
 Además de las rutas anteriores, en FastAPI se implementaron métodos para
@@ -853,84 +430,10 @@ FastAPI se conecta al broker MQTT y se suscribe a los tópicos solicitados.
     \label{fig:cliente_mqtt}
 \end{figure}
 
-% Para finalizar, la figura \ref{fig:mongodb} muestra los datos almacenados en la
-% base de datos MongoDB, que refleja la información presentada en la Figura
-% \ref{fig:cliente_mqtt}.
-
-% \begin{figure}[H]
-%     \centering
-%     \includegraphics[width=.99\textwidth]{./Images/19.png}
-%     \caption{Datos almacenados en MongoDB.}
-%     \label{fig:mongodb}
-% \end{figure}
-
 El código completo de la implementación de la conexión con el broker MQTT se
 encuentra en el Apéndice \ref{AppendixE}.
 
 \subsection{Implementación de WebSockets}
-
-% La implementación de WebSockets se realizó utilizando la librería Websocket de
-% FastAPI, que permitío enviar datos en tiempo real desde el servidor al cliente.
-% Se implementaron métodos para autorizar la conexión y gestionar la suscripción
-% a los eventos de actualización de datos. El servidor establece la conexión
-% WebSocket y envia datos al cliente cuando se reciben nuevos datos de los nodos
-% sensores y actuadores.
-
-% El cliente WebSocket se conecta al servidor y se suscribe al evento de
-% actualización de datos. Cuando se reciben nuevos datos, el servidor envía un
-% mensaje al cliente a través de la conexión WebSocket, lo que permite actualizar
-% la interfaz en tiempo real.
-
-% La implementación de la comunicación en tiempo real se realizó mediante
-% WebSockets, a través del módulo \texttt{websockets} de FastAPI. Se definió una
-% ruta específica para la conexión WebSocket, que permite a los clientes
-% conectarse para recibir datos actualizados de sensores y actuadores. La
-% conexión permanece activa mientras se intercambian datos, y se cierra
-% automáticamente en caso de error o si el usuario no está autorizado.
-
-% Para establecer la conexión, el cliente debe tener un token activo, que se
-% envía a través del encabezado \texttt{Authorization} o como \texttt{Query
-%     Params}. Si la autenticación es exitosa, el servidor acepta la conexión y añade
-% al cliente a la lista de conexiones activas gestionada por la clase
-% \texttt{WebSocketManager}.
-
-% Dicha clase, es responsable de mantener el listado de clientes conectados,
-% gestionar la suscripción a eventos y enviar los datos en tiempo real. También
-% mantiene un caché con los últimos valores por tipo de sensor para optimizar la
-% entrega de información.
-
-% Cuando se reciben nuevos datos desde los nodos sensores o actuadores, el
-% servidor actualiza el caché y transmite los datos a todos los clientes
-% conectados. Esto permite actualizar la interfaz del usuario en tiempo real, y
-% asegurar una experiencia fluida y continua.
-
-% El código desarrollado para la implementación de WebSockets en FastAPI se
-% encuentra en el apéndice \ref{AppendixF}.
-
-% La figura \ref{fig:websocket} muestra los pasos realizados para establecer la
-% conexión WebSocket entre el servidor y el cliente.
-
-% La comunicación en tiempo real se implementó mediante el módulo
-% \texttt{websockets} de FastAPI. Se definió una ruta específica para que los
-% clientes se conecten y reciban datos actualizados de sensores y actuadores. La
-% conexión se mantiene activa mientras haya intercambio de datos y se cierra
-% automáticamente ante errores o falta de autorización.
-
-% El cliente debe contar con un token válido, enviado a través del encabezado
-% \texttt{Authorization} o como \texttt{Query Params}. Si la autenticación es
-% exitosa, el servidor acepta la conexión y registra al cliente en la lista de
-% conexiones activas administrada por la clase \texttt{WebSocketManager}.
-
-% Esta clase gestiona los clientes conectados, las suscripciones a eventos y el
-% envío de datos en tiempo real. También mantiene un caché con los últimos
-% valores por tipo de sensor para optimizar el rendimiento. Cuando se reciben
-% nuevos datos desde sensores o actuadores, el servidor actualiza el caché y los
-% transmite a todos los clientes conectados, permitiendo una actualización fluida
-% de la interfaz del usuario.
-
-% El código correspondiente se encuentra en el apéndice \ref{AppendixF}, y la
-% figura \ref{fig:websocket} ilustra el proceso de conexión WebSocket entre
-% cliente y servidor.
 
 La comunicación en tiempo real se implementó mediante el módulo
 \texttt{websockets} de FastAPI, con una ruta específica para que los clientes
@@ -962,17 +465,545 @@ la figura \ref{fig:websocket} ilustra el proceso de conexión.
 %----------------------------------------------------------------------------------------
 \section{Desarrollo del frontend}
 
-% En esta sección se describe el diseño y desarrollo de la interfaz de usuario,
-% enfocada en la visualización de datos en tiempo real y la gestión de
-% dispositivos.
+En esta sección se describe el diseño y desarrollo de la interfaz de usuario,
+enfocada en la visualización de datos en tiempo real y la gestión de
+dispositivos a través de una aplicación web.
+
+\subsection{Tecnologías utilizadas}
+
+El frontend se desarrolló a través de la biblioteca \texttt{React}
+\cite{React}. Para los estilos y la disposición visual se utilizó la biblioteca
+\texttt{React Bootstrap} \cite{ReactBootstrap}. %, una biblioteca de componentes de interfaz de
+%usuario basada en Bootstrap, que permite crear aplicaciones web responsivas y
+%modernas de manera sencilla. 
+Para los iconos de la interfaz se utilizó \texttt{Bootstrap Icons}
+\cite{BootstrapIcons}, que proporciona una amplia variedad de iconos gratuitos
+personalizables y fáciles de usar.
+
+La comunicación con el servidor se implementó mediante la biblioteca
+\texttt{axios} \cite{Axios} para realizar solicitudes HTTP, mientras que la
+recepción de datos en tiempo real se logró con la implementación de un
+\texttt{WebSocket} nativo, a través de un \texttt{hook} personalizado
+desarrollado en React.
+
+La gestión del estado de autenticación y control de sesiones se implementó con
+\texttt{Redux Toolkit} \cite{ReduxToolkit} y la navegación entre páginas se
+gestionó a través de la biblioteca \texttt{react-router-dom}
+\cite{ReactRouter}.
+
+Para la visualización de los gráficos, se empleó la librería \texttt{Recharts}
+\cite{Recharts}, mientras que para la representación de tablas se utilizó la
+biblioteca \texttt{React Data Table Component} \cite{ReactDataTable}.
+
+\subsection{Arquitectura de la interfaz}
+
+La aplicación se estructuró en torno a un componente principal de
+\texttt{Layout}, que organiza la navegación mediante un \texttt{sidebar}
+lateral y un \texttt{navbar} superior.
+
+Cada sección de la interfaz de usuario corresponde a un módulo de funcionalidad
+específica (como visualización en tiempo real, reportes, configuración de
+ambientes y dispositivos, parámetros y administración de usuarios), que son
+renderizados dinámicamente en función de la ruta activa.
+
+% La aplicación se estructuró en torno a un componente principal de
+% \texttt{Layout}, que organiza la navegación mediante un \texttt{sidebar}
+% lateral y una \texttt{navbar} superior.
+
+% La aplicación implementa un sistema de navegación basado en rutas mediante la
+% biblioteca de enrutamiento \texttt{react-router-dom} \cite{ReactRouter}, donde
+% cada módulo funcional se estructura como un componente independiente, lo que
+% permite un fácil mantenimiento y escalabilidad. La estructura de carpetas se
+% organizó en función de los módulos y componentes, facilitando la localización y
+% modificación de los mismos.
+
+\subsection{Componentes principales de la interfaz de usuario}
+
+A continuación, se presenta un detalle de los principales componentes
+desarrollados para la construcción de la interfaz:
+
+\subsubsection{Gestión de autenticación}
+
+La autenticación se implementó mediante un \texttt{hook} denominado
+\texttt{useAuthStore}, basado en \texttt{Redux Toolkit}. Este módulo gestiona
+el inicio de sesión, la validación del token y el cierre de sesión de los
+usuarios, para asegurar el acceso restringido a las funcionalidades de la
+plataforma.
+
+Al iniciar sesión, se almacena el token en el \texttt{localStorage} del
+navegador, lo que permite mantener la sesión activa y acceder a las
+funcionalidades de la aplicación. El token se envía en cada solicitud a la API
+para autenticar al usuario y garantizar la seguridad de la comunicación.
+
+La figura \ref{fig:login} muestra la pantalla de inicio de sesión, donde los
+usuarios ingresan sus credenciales para acceder a la aplicación web.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.65\textwidth]{./Images/24_login.png}
+    \caption{Pantalla de Login}
+    \label{fig:login}
+\end{figure}
+
+\subsubsection{Layout}
+
+El componente \texttt{Layout} organiza la estructura general de la aplicación e
+incluye:
+\begin{itemize}
+    \item \textbf{SidebarComponent}: componente que muestra el menú lateral, con
+          opciones de navegación entre los distintos módulos.
+    \item \textbf{NavbarComponent}: barra superior que permite colapsar o expandir
+          el menú lateral y contiene el botón de cierre de sesión.
+\end{itemize}
+
+La figura \ref{fig:layout} muestra la pantalla principal de la aplicación,
+donde se puede observar la barra de navegación superior y el menú lateral desde
+el rol \texttt{admin}.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.75\textwidth]{./Images/25_layout.png}
+    \caption{Estructura del componente Layout}
+    \label{fig:layout}
+\end{figure}
+
+Además, esta pantalla permite visualizar los módulos disponibles en la
+aplicación, como dashboard, reportes, ambientes, dispositivos, parámetros y
+panel de usuario.
+
+\subsubsection{Arquitectura de navegación y control de acceso}
+
+La aplicación implementa un sistema de navegación que gestiona dinámicamente
+las rutas públicas y privadas mediante la biblioteca \texttt{react-router-dom}.
+Utiliza los componentes \texttt{Routes} para definir la estructura de
+navegación y \texttt{Outlet} para renderizar sub-rutas.
+
+Además, se implementa un flujo de acceso controlado por:
+
+\begin{itemize}
+    \item \textbf{Rutas públicas}: accesibles sin autenticación, como la página de
+          inicio de sesión.
+    \item \textbf{Rutas privadas}: requieren autenticación y autorización, como el
+          acceso a los módulos de la aplicación.
+    \item \textbf{Rutas restringidas}: accesibles solo para usuarios con los permisos
+          adecuados, como reportes, la gestión de usuarios, ambientes, y dispositivos.
+\end{itemize}
+
+Este esquema asegura que los usuarios solo tengan acceso a las funcionalidades
+correspondientes a sus permisos, como se ilustra en la figura
+\ref{fig:navegacion}. Por ejemplo, un usuario \texttt{martin}, con permisos de
+\texttt{usuario básico}, solo puede acceder al \texttt{Dashboard} y al panel de
+usuario para consultar su información personal.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.75\textwidth]{./Images/26_navegacion.png}
+    \caption{Sistema de navegación}
+    \label{fig:navegacion}
+\end{figure}
+
+\subsection{Visualización de datos en tiempo real}
+
+% Se desarrolló un \texttt{hook} personalizado llamado \texttt{useWebSocket}, el
+% cual permite establecer conexiones WebSocket de forma sencilla. Este
+% \texttt{hook} maneja los eventos de conexión, recepción de mensajes, cierre de
+% conexión y manejo de errores, permitiendo recibir y procesar datos en tiempo
+% real.
+
+Se diseñó una página que muestra los datos de los actuadores y sensores de un
+ambiente específico. Esta página permite visualizar los datos recopilados por
+los sensores, así como el estado de los actuadores en tiempo real. Esta página
+se actualiza automáticamente a medida que se reciben nuevos datos a través de
+WebSocket.
+
+La figura \ref{fig:dashboard} ilustra el \texttt{dashboard} de la aplicación,
+donde se pueden observar los datos de los sensores y actuadores en tiempo real
+de un ambiente específico.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.99\textwidth]{./Images/27_dashboard.png}
+    \caption{Visualización de datos en tiempo real}
+    \label{fig:dashboard}
+\end{figure}
+
+\subsection{Reportes de datos históricos}
+
+Se desarrollaron un conjunto de reportes que permiten visualizar los datos
+históricos de los sensores y actuadores. % Estos reportes permiten realizar un análisis de
+% los datos recopilados a lo largo del tiempo.
+Los diferentes tipos de reportes están organizados en módulos independientes.
+
+Cada reporte permite:
+\begin{itemize}
+    \item Filtrar los datos por dispositivo, rango de fechas y nivel de agregación
+          temporal.
+          \begin{itemize}
+              \item \textbf{Actuadores:} el reporte permite visualizar la cantidad de veces que
+                    se activó y el tiempo total de activación de cada canal del actuador en un
+                    rango de fechas determinado.
+              \item \textbf{Sensores:} el reporte permite visualizar el promedio de los datos
+                    recopilados por cada sensor en un rango de fechas determinado.
+          \end{itemize}
+    \item Alternar entre una vista tabular y una vista gráfica.
+    \item Consultar los datos procesados a través de la API del backend.
+\end{itemize}
+
+La figura \ref{fig:reportes_tabla_consumos} presenta la pantalla de reportes,
+donde se visualiza la tabla con los datos históricos de un sensor de consumos.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.99\textwidth]{./Images/28_reportes_1.png}
+    \caption{Pantalla de reportes}
+    \label{fig:reportes_tabla_consumos}
+\end{figure}
+
+La figura \ref{fig:reportes_graficos_consumos} muestra la pantalla de reportes,
+donde se exhiben los gráficos con los datos históricos de un sensor de
+consumos.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.99\textwidth]{./Images/28_reportes_2.png}
+    \caption{Pantalla de reportes}
+    \label{fig:reportes_graficos_consumos}
+\end{figure}
+
+La figura \ref{fig:reportes_tabla_actuadores} muestra la pantalla de reportes,
+donde se puede observar la tabla con los datos históricos de un actuador.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.99\textwidth]{./Images/28_reportes_3.png}
+    \caption{Pantalla de reportes}
+    \label{fig:reportes_tabla_actuadores}
+\end{figure}
+
+Finalmente, la figura \ref{fig:dashboar_celular} presenta vistas de la
+aplicación web en un dispositivo móvil, mosse muestra la pantalla de
+visualización de datos en tiempo real. La interfaz se ajusta automáticamente a
+distintos tamaños de pantalla, ofreciendo una experiencia de usuario optimizada
+en dispositivos móviles y tabletas.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.99\textwidth]{./Images/29_dashboard_celular.png}
+    \caption{Visualización de datos en tiempo real desde un dispositivo móvil}
+    \label{fig:dashboar_celular}
+\end{figure}
 
 %----------------------------------------------------------------------------------------
 %	SECTION 6
 %----------------------------------------------------------------------------------------
-\section{Desarrollo de nodos sensores y actuadores}
+\section{Desarrollo del firmware de los dispositivos IoT}
 
-% Explicación del desarrollo del firmware para los nodos sensores y actuadores
-% basados en el microcontrolador ESP32.
+En esta sección se detalla el desarrollo del firmware hecho en MicroPython para
+los nodos basados en el microcontrolador ESP32. Se describen la arquitectura
+general del firmware y la estructura del código.
+
+\subsection{Arquitectura general del firmware}
+
+Todos los nodos comparten una arquitectura de firmware similar, diseñada para
+la adquisición de datos, control de actuadores, comunicación inalámbrica,
+gestión de eventos y la interacción con el broker MQTT.
+
+\subsection{Estructura del código}
+
+La estructura general del código para cada nodo se organizó de la siguiente
+manera:
+
+\begin{itemize}
+    \item \textbf{Importación de librerías}: importación de módulos para sensores,
+          Wi-Fi, MQTT, gestión del tiempo y otras funcionalidades.
+    \item \textbf{Configuración inicial}: definición de variables y constantes
+          (pines, parámetros de conexión, intervalos).
+    \item \textbf{Inicialización}: configuración de periféricos del ESP32,
+          inicialización de sensores/relays y manejo de errores.
+    \item \textbf{Funciones auxiliares}: definición de funciones para la conexión Wi-Fi,
+          sincronización NTP (del inglés, \textit{Network Time Protocol}) y carga de
+          certificados TLS.
+    \item \textbf{Conexión MQTT}: establecimiento de la conexión con el broker (con TLS).
+    \item \textbf{Callback de mensajes MQTT}: función para procesar mensajes MQTT
+          (configuración remota, acciones específicas).
+    \item \textbf{Función de lectura/control}: implementación de la lógica para leer
+          sensores o controlar actuadores.
+    \item \textbf{Bucle principal}:
+          \begin{itemize}
+              \item Verificación de la conexión Wi-Fi.
+              \item Lectura de datos de los sensores o control de los actuadores.
+              \item Envío de datos al broker MQTT.
+              \item Recepción y procesamiento de mensajes MQTT.
+              \item Gestión de errores y reinicio del sistema en caso de fallos.
+          \end{itemize}
+\end{itemize}
+
+\subsection{Gestión de tareas y concurrencia}
+
+La ejecución concurrente de tareas en MicroPython se logró mediante la
+implementación de:
+
+\begin{itemize}
+    \item Un bucle principal para tareas críticas como:
+          \begin{itemize}
+              \item Conexión Wi-Fi.
+              \item Procesamiento de mensajes MQTT.
+              \item Lectura de datos de sensores.
+          \end{itemize}
+    \item Temporizadores hardware (\texttt{Timers}) del ESP32 para:
+          \begin{itemize}
+              \item Ejecutar acciones periódicas (ej. control de actuadores).
+              \item Procesar tareas en paralelo sin afectar el flujo principal.
+          \end{itemize}
+\end{itemize}
+
+% ----------------------------------------------------------------------------------------
+
+% \section{Desarrollo del firmware de los dispositivos IoT}
+
+% En esta sección se detalla el desarrollo del firmware para los nodos basados en
+% el microcontrolador ESP32, a través de MicroPython. Se describen las
+% principales funciones de cada tipo de nodo, la arquitectura del firmware y las
+% características más relevantes.
+
+% \subsection{Arquitectura general del firmware}
+
+% Todos los nodos comparten una arquitectura de firmware similar, diseñada para
+% la adquisición de datos y el control de actuadores, la comunicación
+% inalámbrica, la gestión de eventos y la interacción con el broker MQTT.
+
+% \subsection{Estructura del código}
+
+% La estructura general del código para cada nodo se organiza de la siguiente
+% manera:
+
+% \begin{itemize}
+%     \item \textbf{Importación de librerías}: se importan los módulos necesarios para la
+%           interacción con los sensores, la comunicación Wi-Fi, la conexión MQTT,
+%           la gestión del tiempo y otras funcionalidades.
+%     \item \textbf{Configuración inicial}: se definen las variables y constantes de
+%           configuración, como los pines de los sensores y relays, los parámetros de conexión
+%           Wi-Fi y MQTT, y los intervalos de muestreo.
+%     \item \textbf{Inicialización}: se configuran los periféricos
+%           del ESP32 y se inicializan los sensores y relays específicos de cada
+%           tipo de nodo. Se implementan manejos de errores para garantizar la
+%           robustez del sistema.
+%     \item \textbf{Funciones auxiliares}: se definen funciones para establecer y chequear
+%           la conexión Wi-Fi, la sincronización de la hora con un servidor NTP (del
+%           inglés, \textit{Network Time Protocol}), la carga de certificados TLS y otras
+%           tareas comunes.
+%     \item \textbf{Conexión MQTT}: se establece la conexión con el broker MQTT,
+%           con la utilización de certificados TLS para la seguridad de la comunicación.
+%     \item \textbf{Callback de mensajes MQTT}: se define una función que se ejecuta cuando
+%           se reciben mensajes MQTT, esto permite la configuración remota de los nodos
+%           y la ejecución de acciones específicas.
+%     \item \textbf{Función de lectura de sensores/control de actuadores}: se implementa
+%           la lógica específica para leer los datos de los sensores o controlar los
+%           actuadores.
+%     \item \textbf{Bucle principal}: se ejecuta un bucle infinito que realiza las
+%           siguientes tareas de forma continua:
+%           \begin{itemize}
+%               \item Verificación de la conexión Wi-Fi.
+%               \item Lectura de datos de los sensores o control de los actuadores.
+%               \item Envío de datos al broker MQTT.
+%               \item Recepción y procesamiento de mensajes MQTT.
+%               \item Gestión de errores y reinicio del sistema en caso de fallos.
+%           \end{itemize}
+% \end{itemize}
+
+% \subsection{Gestión de tareas y concurrencia}
+
+% Si bien MicroPython no incluye un sistema operativo en tiempo real (RTOS, del
+% inglés, \textit{Real-Time Operating System}) por defecto, la ejecución
+% concurrente de tareas se logra mediante la gestión del bucle principal, el uso
+% de interrupciones y, principalmente, la utilización de los \texttt{Timers} del
+% ESP32 para la ejecución periódica de tareas.
+
+% El firmware desarrollado en los nodos implementa un bucle principal para la
+% ejecución iterativa de tareas como la conexión Wi-Fi y el procesamiento de
+% mensajes MQTT.
+
+% Para la tarea de activación/desactivación de canales en el nodo actuador se
+% utilizan los \texttt{Timers} del ESP32, lo que permite descargar esta tarea del
+% bucle principal y mejorar la eficiencia. Cada tarea se ejecuta con su propio
+% temporizador, lo que permite ejecutar múltiples tareas de forma simultánea sin
+% bloquear el bucle principal.
+
+\subsection{Comunicación inalámbrica}
+
+Todos los nodos desarrollados utilizan la comunicación Wi-Fi para conectarse a
+la red local y enviar datos al broker MQTT.
+
+\subsubsection{Wi-Fi}
+
+Se utilizó la librería \texttt{wifi\_manager} \cite{MicroPythonWifiManager}
+para gestionar la conexión Wi-Fi. Los nodos intentan conectarse a la red
+configurada y realizan verificaciones periódicas para asegurar su
+disponibilidad. Se modificó la librería para adaptarla a las necesidades del
+trabajo. Se incorporó la funcionalidad de guardar redes que el SSID posea
+espacios en blanco y se añadió un menú desplegable para seleccionar la zona
+horaria.
+
+\subsubsection{MQTT}
+
+Se utilizó la librería \texttt{umqtt.robust} de \texttt{MicropythonLib}
+\cite{MicropythonLib} para implementar un cliente MQTT que se reconecta
+automáticamente al broker en caso de fallos. Se implementó TLS para asegurar la
+comunicación, y los certificados se almacenaron en el dispositivo.
+
+\subsubsection{Protocolo de comunicación}
+
+Los datos de los sensores y los comandos de control se transmiten en formato
+JSON a través de los tópicos MQTT definidos en el archivo \texttt{config.py}.
+Se utilizó un esquema de mensajes estandarizado para facilitar el procesamiento
+de los datos en el backend y en los nodos.
+
+% ----------------------------------------------------------------------------------------
+
+\subsection{Gestión de la configuración}
+
+La configuración de los nodos, código del sensor o actuador, tópicos MQTT, el
+intervalo de muestreo y los parámetros de conexión Wi-Fi, se almacenaron en
+archivos locales en el ESP32. Esto permitió la persistencia de la configuración
+entre reinicios.
+
+A continuación, se describen los archivos de configuración utilizados en el
+firmware de los nodos:
+
+\subsubsection{Archivo de configuración}
+
+El archivo \texttt{config.py} contiene constantes y variables de configuración
+específicas de cada nodo. Incluye:
+\begin{itemize}
+    \item \textbf{Códigos de identificación}: incluye el código para identificar unívocamente
+          a cada dispositivo.
+    \item \textbf{Tópicos MQTT}: incluye los tópicos para la publicación y
+          suscripción de datos. Cada nodo tiene un tópico único para enviar datos
+          y otro para recibir comandos.
+    \item \textbf{Parámetros de conexión AWS IoT Core}: incluye el identificador del cliente y el
+          endpoint del broker MQTT.
+\end{itemize}
+
+\subsubsection{Archivo de configuración del intervalo}
+
+El intervalo de muestreo de los sensores se guarda en el archivo
+\texttt{interval.conf}. Al inicio del programa, se intenta leer el valor del
+intervalo desde este archivo. Si el archivo no existe o está corrupto, se
+utiliza un valor por defecto. Los mensajes MQTT pueden modificar este
+intervalo, y el nuevo valor se guarda en el archivo para su uso en futuros
+reinicios.
+
+\subsubsection{Archivo de configuración Wi-Fi}
+
+Los parámetros de conexión Wi-Fi (SSID y contraseña) se almacenan en el archivo
+\texttt{wifi.dat}, lo que permite al nodo reconectarse automáticamente después
+de un reinicio. Este archivo soporta múltiples configuraciones de red para
+facilitar la conexión en diferentes ubicaciones.
+
+En caso de que el nodo no pueda conectarse a la red Wi-Fi, se inicia un
+servidor web que permite al usuario configurar la red Wi-Fi. El servidor
+proporciona una interfaz para seleccionar el SSID, ingresar la contraseña y
+elegir la zona horaria. Después de ingresar la información, el dispositivo
+intenta conectarse a la red especificada. Si la conexión es exitosa, la
+configuración se guarda en \texttt{wifi.dat} y el nodo se reinicia para aplicar
+los cambios.
+
+\subsubsection{Archivo de configuración de la zona horaria}
+
+La zona horaria se lee desde el archivo \texttt{timezone.conf} para permitir la
+correcta conversión de las marcas de tiempo. Esta funcionalidad se usó en los
+nodos sensores y actuadores, para enviar la hora correcta en los mensajes
+enviados al broker MQTT.
+
+Además, en caso de error al leer el archivo, se utiliza la zona horaria por
+defecto (UTC-3).
+
+% ----------------------------------------------------------------------------------------
+
+\subsection{Manejo de errores}
+
+Se implementaron mecanismos de manejo de errores en todo el firmware para
+garantizar la robustez y la confiabilidad de los nodos.
+
+A continuación, se describen las principales estrategias de manejo de errores
+implementadas:
+
+\subsubsection{Manejo de excepciones}
+
+Se utilizaron bloques \texttt{try-except} para capturar y manejar excepciones
+durante la ejecución. Esto permitió que el programa continúe operativo, incluso
+en caso de errores como fallos en la lectura de sensores o problemas de
+conexión de red.
+
+\subsubsection{Reintentos}
+
+En operaciones críticas, como la conexión Wi-Fi y la sincronización de la hora
+con el servidor NTP, se implementaron mecanismos de reintento. Si la operación
+falla inicialmente, el programa intenta realizarla nuevamente un número
+determinado de veces antes de considerarla fallida.
+
+\subsubsection{Logging}
+
+Se implementaron mensajes de registro (\texttt{print}) para informar sobre el
+estado del programa y los errores que se producen. Esto facilitó la depuración
+y el mantenimiento del firmware.
+
+\subsubsection{Optimización de recursos}
+
+Se utilizó la función \texttt{gc.collect()} para liberar memoria
+periódicamente, esto ayudó a optimizar el uso de memoria y evitar problemas de
+memoria insuficiente. Esta función se ejecuta en momentos específicos del
+programa, como después de la lectura de sensores o el envío de datos al broker
+MQTT. Esto permite liberar memoria no utilizada y optimizar el rendimiento del
+sistema.
+
+\subsection{Resumen de nodos sensores y actuadores}
+
+La tabla \ref{tab:nodos_iot} presenta un resumen de las funciones principales y
+la descripción general del firmware de los nodos sensores y actuadores. Estos
+nodos se diseñaron para cumplir roles específicos en la adquisición de datos
+del entorno o el control de los dispositivos actuadores.
+
+\begin{table}[H]
+    \centering
+    \caption[Resumen de nodos]{Resumen de nodos: funciones y firmware.}
+    % \begin{tabular}{l l l}
+    \begin{tabular}{p{1.5cm}p{5.4cm}p{5.5cm}}
+        \hline
+        \textbf{Nodo}                                     & \textbf{Funciones principales}                                                & \textbf{Descripción del firmware}              \\
+        \multirow{6}{1.5cm}{Sensor de consumos}           & Medición de voltaje, corriente y potencia (PZEM-004T)                         & Uso de UART para PZEM-004T                     \\
+                                                          & Medición de nivel de líquidos (HC-SR04)                                       & GPIO para HC-SR04                              \\
+                                                          & Conexión Wi-Fi                                                                & Envío de datos en formato JSON vía MQTT        \\
+                                                          & Configuración remota de intervalo                                             & Sincronización NTP                             \\
+                                                          & Indicador LED                                                                 & Manejo de conexión Wi-Fi                       \\
+                                                          & Botón de reinicio                                                             & Gestión de errores                             \\
+        \hline
+        \multirow{7}{1.5cm}{Sensor ambiental}             & Medición de temperatura, humedad y presión (BME280)                           & Comunicación I\textsuperscript{2}C para BME280 \\
+                                                          & Medición de luminosidad (BH1750)                                              & UART para MH-Z19C                              \\
+                                                          & Medición de concentración de $CO_2$ (MH-Z19C)                                 & Calibración inicial de $CO_2$                  \\
+                                                          & Conexión Wi-Fi                                                                & Envío de datos en JSON vía MQTT                \\
+                                                          & Configuración remota de intervalo                                             & Sincronización NTP                             \\
+                                                          & Indicador LED                                                                 & Reconexión automática Wi-Fi                    \\
+                                                          & Botón de reinicio                                                             &                                                \\
+        \hline
+        \multirow{7}{1.5cm}{Sensor de solución nutritiva} & Medición de temperatura (DS18B20)                                             & Lectura OneWire para DS18B20                   \\
+                                                          & Medición de pH, CE y TDS                                                      & Medición de CE/TDS/pH                          \\
+                                                          & Medición de nivel de líquidos (HC-SR04)                                       & Promedio de muestras                           \\
+                                                          & Conexión Wi-Fi                                                                & Envío de datos en JSON vía MQTT                \\
+                                                          & Configuración remota de intervalo                                             & Sincronización NTP                             \\
+                                                          & Indicador LED                                                                 & Manejo de errores                              \\
+                                                          & Botón de reinicio                                                             &                                                \\
+        \hline
+        \multirow{7}{1.5cm}{Actuador}                     & Control de relés para dispositivos (bombas, aireadores, luces, dosificadores) & Control de salidas GPIO                        \\
+                                                          & Ejecución simultánea de comandos                                              & Recepción de comandos MQTT                     \\
+                                                          & Conexión Wi-Fi                                                                & Ejecución de temporizadores con Timers ESP32   \\
+                                                          & Configuración remota                                                          & Manejo de estados de relés en JSON             \\
+                                                          & Indicador LED                                                                 & Sincronización NTP                             \\
+                                                          & Botón de reinicio                                                             & Reconexión Wi-Fi automática                    \\
+        \hline
+    \end{tabular}
+    \label{tab:nodos_iot}
+\end{table}
 
 %----------------------------------------------------------------------------------------
 %	SECTION 7

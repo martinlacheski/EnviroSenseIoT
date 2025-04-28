@@ -1046,5 +1046,127 @@
     \field{urlmonth}{04}
     \field{urlyear}{2025}
   \endentry
+
+  \entry{ReactBootstrap}{online}{}
+    \field{labeltitlesource}{title}
+    \field{title}{React-Bootstrap: Bootstrap components built with React}
+    \verb{url}
+    \verb https://react-bootstrap.netlify.app/
+    \endverb
+    \field{urlday}{27}
+    \field{urlmonth}{04}
+    \field{urlyear}{2025}
+  \endentry
+
+  \entry{BootstrapIcons}{online}{}
+    \field{labeltitlesource}{title}
+    \field{title}{Bootstrap Icons: Free, high quality SVG icon library}
+    \verb{url}
+    \verb https://icons.getbootstrap.com/
+    \endverb
+    \field{urlday}{28}
+    \field{urlmonth}{04}
+    \field{urlyear}{2025}
+  \endentry
+
+  \entry{Axios}{online}{}
+    \field{labeltitlesource}{title}
+    \field{title}{Axios: Promise based HTTP client for the browser and node.js}
+    \verb{url}
+    \verb https://axios-http.com/
+    \endverb
+    \field{urlday}{28}
+    \field{urlmonth}{04}
+    \field{urlyear}{2025}
+  \endentry
+
+  \entry{ReduxToolkit}{online}{}
+    \field{labeltitlesource}{title}
+    \field{title}{Redux Toolkit: The official, opinionated, batteries-included toolset for efficient Redux development}
+    \verb{url}
+    \verb https://redux-toolkit.js.org/
+    \endverb
+    \field{urlday}{28}
+    \field{urlmonth}{04}
+    \field{urlyear}{2025}
+  \endentry
+
+  \entry{ReactRouter}{online}{}
+    \field{labeltitlesource}{title}
+    \field{title}{React Router: Declarative Routing for React.js}
+    \verb{url}
+    \verb https://reactrouter.com/
+    \endverb
+    \field{urlday}{28}
+    \field{urlmonth}{04}
+    \field{urlyear}{2025}
+  \endentry
+
+  \entry{Recharts}{online}{}
+    \field{labeltitlesource}{title}
+    \field{title}{Recharts: A composable charting library built on React components}
+    \verb{url}
+    \verb https://recharts.org/en-US
+    \endverb
+    \field{urlday}{28}
+    \field{urlmonth}{04}
+    \field{urlyear}{2025}
+  \endentry
+
+  \entry{ReactDataTable}{online}{}
+    \field{labeltitlesource}{title}
+    \field{note}{Versión 7.6.2 utilizada en el proyecto}
+    \field{title}{React Data Table Component: Interactive and accessible data tables for React}
+    \verb{url}
+    \verb https://reactdatatable.com/
+    \endverb
+    \field{urlday}{28}
+    \field{urlmonth}{04}
+    \field{urlyear}{2025}
+  \endentry
+
+  \entry{MicroPythonWifiManager}{online}{}
+    \name{author}{1}{}{%
+      {{hash=FI}{%
+         family={Ferreira},
+         familyi={F\bibinitperiod},
+         given={Igor},
+         giveni={I\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{FI1}
+    \strng{fullhash}{FI1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{title}{micropython-wifi\_manager: WiFi connection handler for MicroPython}
+    \verb{url}
+    \verb https://github.com/ferreira-igor/micropython-wifi_manager
+    \endverb
+    \field{urlday}{28}
+    \field{urlmonth}{04}
+    \field{urlyear}{2025}
+  \endentry
+
+  \entry{MicropythonLib}{online}{}
+    \name{author}{1}{}{%
+      {{hash=CM}{%
+         family={Community},
+         familyi={C\bibinitperiod},
+         given={MicroPython},
+         giveni={M\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{CM1}
+    \strng{fullhash}{CM1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{title}{micropython-lib: Standard library modules for MicroPython}
+    \verb{url}
+    \verb https://github.com/micropython/micropython-lib
+    \endverb
+    \field{urlday}{28}
+    \field{urlmonth}{04}
+    \field{urlyear}{2025}
+  \endentry
 \enddatalist
 \endinput

@@ -1,8 +1,8 @@
 \chapter{Introducción específica}
 
-En este capítulo se presentan los protocolos de comunicación, componentes de
-hardware y herramientas de software utilizados en el desarrollo del trabajo. Se
-detallan las características y sus especificaciones técnicas.
+Este capítulo presenta los protocolos de comunicación, componentes de hardware
+y herramientas de software utilizados en el desarrollo del trabajo. Se detallan
+las características y sus especificaciones técnicas.
 
 %----------------------------------------------------------------------------------------
 %	SECTION 1 - Protocolos de comunicación
@@ -11,26 +11,7 @@ detallan las características y sus especificaciones técnicas.
 \section{Protocolos de comunicación}
 
 En esta sección se describen los diferentes protocolos de comunicación
-utilizados en el desarrollo del trabajo. % La tabla \ref{tab:comunicacion}
-% presenta los principales protocolos utilizados y su función.
-
-% \begin{table}[h]
-% 	\centering
-% 	\caption[Principales protocolos utilizados]{Principales protocolos utilizados}
-% 	\begin{tabular}{p{3.2cm}p{9.6cm}}
-% 		\toprule
-% 		\textbf{Protocolo}         & \textbf{Función}                                                     \\
-% 		\midrule
-% 		\multirow{1}{*}{Wi-Fi}     & Conexión entre dispositivos e Internet.                              \\
-% 		\multirow{1}{*}{MQTT}      & Protocolo ligero para mensajería entre dispositivos y servidor IoT.  \\
-% 		\multirow{1}{*}{TLS}       & Protocolo de seguridad que cifra la comunicación entre dispositivos. \\
-% 		\multirow{1}{*}{HTTP}      & Protocolo cliente/servidor utilizado entre backend y frontend.       \\
-% 		\multirow{1}{*}{WebSocket} & Protocolo de comunicación entre cliente y servidor.                  \\
-% 		\bottomrule
-% 		\hline
-% 	\end{tabular}
-% 	\label{tab:comunicacion}
-% \end{table}
+utilizados en el desarrollo del trabajo. 
 
 \subsection{Wi-Fi}
 
@@ -72,15 +53,6 @@ modelo de publicación/suscripción, donde:
 	      una estructura jerárquica de tópicos.
 \end{itemize}
 
-% La figura \ref{fig:MqttProtocol} muestra la arquitectura del protocolo MQTT.
-
-% \begin{figure}[H]
-% 	\centering
-% 	\includegraphics[width=.99\textwidth]{./Images/2.png}
-% 	\caption{Arquitectura del protocolo MQTT.}
-% 	\label{fig:MqttProtocol}
-% \end{figure}
-
 \subsection{TLS}
 
 TLS es un protocolo de seguridad criptográfica diseñado para garantizar la
@@ -92,31 +64,6 @@ TLS se utiliza para garantizar la confidencialidad de los protocolos de
 aplicación (MQTT \cite{OASIS_MQTT_Standard}, HTTP \cite{IBMTCPIP} y WebSocket
 \cite{RFC6455}) \cite{awsiot_tls}.
 
-% \subsection{HTTP}
-
-% HTTP es un protocolo a nivel de aplicación que opera sobre TCP/IP
-% \cite{IBMTCPIP} y está diseñado para sistemas de información distribuidos,
-% colaborativos e hipermedia. Está basado en el modelo cliente-servidor, diseñado
-% para la transferencia de recursos web \cite{rfc2616}.
-
-% Este protocolo es asíncrono, lo que significa que un cliente puede enviar una
-% petición sin necesidad de mantener una conexión activa mientras espera la
-% respuesta. Esto optimiza el uso de recursos en la red \cite{MicrosoftHTTPAsync}
-% y permite que cada interacción sea independiente, gracias a su diseño sin
-% estado.
-
-% \subsection{WebSocket}
-
-% WebSocket es un protocolo de comunicación bidireccional y simultánea
-% (full-duplex) que mantiene una conexión persistente entre un cliente y un
-% servidor sobre una única conexión TCP \cite{RFC6455}. Para establecer la
-% conexión, utiliza una secuencia de solicitud-respuesta HTTP estándar. Una vez
-% conectados, la API WebSocket proporciona una interfaz para la lectura y
-% escritura de datos de manera asíncrona y en modo dúplex \cite{IBMWebSocket}.
-% Esto lo hace ideal para aplicaciones que requieren baja latencia y
-% actualizaciones en tiempo real, como chats, juegos en línea y sistemas de
-% monitoreo.
-
 %----------------------------------------------------------------------------------------
 %	SECTION 2 - Componentes de hardware
 %----------------------------------------------------------------------------------------
@@ -124,32 +71,7 @@ aplicación (MQTT \cite{OASIS_MQTT_Standard}, HTTP \cite{IBMTCPIP} y WebSocket
 \section{Componentes de hardware}\label{sec:hardware}
 
 En esta sección se describen los diferentes elementos de hardware utilizados en
-el desarrollo del trabajo. % La tabla \ref{tab:hardware} presenta los principales
-% componentes utilizados y su función.
-
-% \begin{table}[h]
-% 	\centering
-% 	\caption[Principales componentes hardware utilizados]{Principales componentes hardware utilizados}
-% 	\begin{tabular}{p{3.2cm}p{9.6cm}}
-% 		\toprule
-% 		\textbf{Protocolo}                & \textbf{Función}                                                                                        \\
-% 		\midrule
-% 		\multirow{1}{*}{Módulo ESP32}     & Microcontrolador con Wi-Fi y Bluetooth integrado para conectividad y procesamiento central del sistema. \\
-% 		\multirow{1}{*}{Sensor BME280}    & Mide temperatura ambiental, humedad relativa y presión atmosférica con alta precisión.                  \\
-% 		\multirow{1}{*}{Sensor BH1750}    & Sensor de intensidad luminosa que mide la iluminación ambiental en lux.                                 \\
-% 		\multirow{1}{*}{Sensor MHZ19C}    & Detector de dióxido de carbono $CO_2$ por infrarrojo.                                                   \\
-% 		\multirow{1}{*}{Sensor de pH}     & Mide la acidez o alcalinidad de la solución nutritiva mediante electrodo.                               \\
-% 		\multirow{1}{*}{Sensor de CE}     & Determina la conductividad eléctrica de la solución para estimar cantidad de nutrientes.                \\
-% 		\multirow{1}{*}{Sensor de TDS}    & Mide sólidos disueltos totales en líquidos, relacionado con la concentración de nutrientes.             \\
-% 		\multirow{1}{*}{Sensor DS18B20}   & Sensor digital de temperatura sumergible para líquidos.                                                 \\
-% 		\multirow{1}{*}{Sensor HC-SR04}   & Mide distancias por ultrasonido (nivel de agua en depósitos).                                           \\
-% 		\multirow{1}{*}{Sensor PZEM-004T} & Módulo de medición de parámetros eléctricos (tensión, corriente, potencia).                             \\
-% 		\multirow{1}{*}{Relay 2 canales } & Actuador eléctrico para control ON/OFF de dispositivos (bombas, luces, etc.).                           \\
-% 		\bottomrule
-% 		\hline
-% 	\end{tabular}
-% 	\label{tab:hardware}
-% \end{table}
+el desarrollo del trabajo. 
 
 \subsection{Microcontrolador}\label{sec:microcontrolador}
 
@@ -170,7 +92,7 @@ IoT.
 \end{figure}
 
 \footnotetext{Imagen tomada de \href{https://www.hobbytronica.com.ar/MLA-916790826-nodemcu-esp32-wifi-bluetooth-42-iot-wroom-esp32s-arduino-_JM}
-{Nodemcu Esp32 Wifi HobbyTronica.}}
+	{Nodemcu Esp32 Wifi HobbyTronica.}}
 
 \subsection{Sensor de temperatura ambiente, humedad relativa y presión atmosférica}
 
@@ -188,7 +110,7 @@ para la presión atmosférica \cite{BoschBME280}.
 \end{figure}
 
 \footnotetext{Imagen tomada de \href{https://naylampmechatronics.com/sensores-posicion-inerciales-gps/357-sensor-bme280-presion-temperatura-y-humedad.html}
-{Sensor BME280 Naylamp Mechatronics.}}
+	{Sensor BME280 Naylamp Mechatronics.}}
 
 \subsection{Sensor de luz digital}\label{sec:BH1750}
 
@@ -205,7 +127,7 @@ una precisión de 1 lux \cite{ROHM_BH1750}.
 \end{figure}
 
 \footnotetext{Imagen tomada de \href{https://www.hobbytronica.com.ar/MLA-905448482-modulo-sensor-de-luz-digital-ambiente-bh1750-gy-302-arduino-_JM}
-{Sensor BH1750 HobbyTronica.}}
+	{Sensor BH1750 HobbyTronica.}}
 
 \subsection{Sensor de dióxido de carbono}
 
@@ -222,7 +144,7 @@ de 0 a 5000 ppm con una precisión de 50 ppm \cite{WINSEN_MHZ19C}.
 \end{figure}
 
 \footnotetext{Imagen tomada de \href{https://qiita-image-store.s3.ap-northeast-1.amazonaws.com/0/130771/54be6203-1014-ba5e-3a6f-86e3a403c472.png}
-{MH-Z19C PartsCabi.net.}}
+	{MH-Z19C PartsCabi.net.}}
 
 \subsection{Sensor de detección de pH}
 
@@ -238,7 +160,7 @@ analógica y es capaz de medir el pH en un rango de 0 a 14 \cite{PH-4502C}.
 \end{figure}
 
 \footnotetext{Imagen tomada de \href{https://http2.mlstatic.com/D_NQ_NP_755250-MLM42784110936_072020-O.webp}
-{Sensor PH-4502C Mercado Libre Static.}}
+	{Sensor PH-4502C Mercado Libre Static.}}
 
 \subsection{Sensor de conductividad eléctrica}
 
@@ -256,7 +178,7 @@ conductividad en un rango de 0 a 20 mS/cm \cite{EC-Sensor}.
 \end{figure}
 
 \footnotetext{Imagen tomada de \href{https://m.media-amazon.com/images/I/51dAS-cD01L._AC_SL1000_.jpg}
-{Sensor CE Amazon.}}
+	{Sensor CE Amazon.}}
 
 \subsection{Sensor de sólidos disueltos totales}
 
@@ -273,7 +195,7 @@ de TDS en un rango de 0 a 1000 ppm \cite{TDS-Sensor}.
 \end{figure}
 
 \footnotetext{Imagen tomada de \href{https://es.aliexpress.com/i/1005003343459012.html?gatewayAdapt=glo2esp}
-{Sensor TDS Aliexpress.}}
+	{Sensor TDS Aliexpress.}}
 
 \subsection{Sensor de temperatura digital sumergible}
 
@@ -290,7 +212,7 @@ la temperatura en un rango de -55 °C a 125 °C con una precisión de ±0.5 °C
 \end{figure}
 
 \footnotetext{Imagen tomada de \href{https://articulo.mercadolibre.com.ar/MLA-1904241050-sensor-de-temperatura-ds18b20-sumergible-con-cable-de-2-m-_JM}
-{Sensor DS18B20 Mercado Libre.}}
+	{Sensor DS18B20 Mercado Libre.}}
 
 \subsection{Sensor ultrasónico}
 
@@ -306,7 +228,7 @@ interfaz GPIO \cite{HC-SR04}.
 \end{figure}
 
 \footnotetext{Imagen tomada de \href{https://es.aliexpress.com/item/1005007542287447.html}
-{Sensor HC-SR04 Aliexpress.}}
+	{Sensor HC-SR04 Aliexpress.}}
 
 \subsection{Sensor de medición de consumo eléctrico}
 
@@ -324,7 +246,7 @@ potencia en un rango de 0 a 22 kW \cite{PZEM-004T}.
 \end{figure}
 
 \footnotetext{Imagen adaptada de \href{https://articulo.mercadolibre.com.ar/MLA-908885966-modulo-monitoreo-energia-monofasico-pzem-004t-elegir-_JM}
-{Sensor PZEM-004T Mercado Libre.}}
+	{Sensor PZEM-004T Mercado Libre.}}
 
 \subsection{Módulo Relay}
 
@@ -341,7 +263,7 @@ controlar dispositivos de hasta 10 A y 250 VAC \cite{Relay}.
 \end{figure}
 
 \footnotetext{Imagen tomada de \href{https://www.amazon.com.mx/MV-ELECTRONICA-RELEVADOR-Canales-LOWLEVEL/dp/B07PR7XHWT}
-{Relay de 2 Canales Amazon.}}
+	{Relay de 2 Canales Amazon.}}
 
 %----------------------------------------------------------------------------------------
 %	SECTION 3 - Componentes de software
@@ -405,11 +327,11 @@ desarrollo del frontend.
 
 \subsection{React}
 
-React es una biblioteca de JavaScript de código abierto para construir interfaces
-de usuario interactivas y reutilizables. Desarrollada por Facebook, React
-permite crear componentes de interfaz de usuario que se actualizan de forma
-eficiente cuando cambian los datos, lo que facilita la creación de aplicaciones
-web rápidas y dinámicas \cite{React}.
+React es una biblioteca de JavaScript de código abierto para construir
+interfaces de usuario interactivas y reutilizables. Desarrollada por Facebook,
+React permite crear componentes de interfaz de usuario que se actualizan de
+forma eficiente cuando cambian los datos, lo que facilita la creación de
+aplicaciones web rápidas y dinámicas \cite{React}.
 
 %----------------------------------------------------------------------------------------
 %	SECTION 6 - Infraestructura y despliegue
@@ -478,14 +400,6 @@ permite a los desarrolladores diseñar, probar y documentar de forma rápida.
 Proporciona una interfaz gráfica intuitiva para enviar solicitudes HTTP a un
 servidor y visualizar las respuestas, lo que facilita la depuración y el
 desarrollo de APIs \cite{Postman}.
-
-% \subsection{Git}
-
-% Git es un sistema de control de versiones distribuido de código abierto
-% diseñado para gestionar proyectos de software de cualquier tamaño con rapidez y
-% eficiencia. Permite a los desarrolladores trabajar en paralelo en un mismo
-% proyecto, realizar seguimiento de los cambios, revertir a versiones anteriores
-% y colaborar en el desarrollo de software \cite{Git}.
 
 \subsection{GitHub}
 

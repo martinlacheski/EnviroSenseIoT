@@ -23,9 +23,18 @@
 \contentsline {figure}{\numberline {3.7}{\ignorespaces Pasos para verificar la conexión con el broker MQTT.}}{23}{figure.caption.29}%
 \contentsline {figure}{\numberline {3.8}{\ignorespaces Pasos para publicar un mensaje en un tópico específico.}}{23}{figure.caption.30}%
 \contentsline {figure}{\numberline {3.9}{\ignorespaces Pasos para la conexión del cliente MQTT.}}{24}{figure.caption.32}%
-\contentsline {figure}{\numberline {3.10}{\ignorespaces Pasos para establecer la conexión WebSocket.}}{25}{figure.caption.33}%
+\contentsline {figure}{\numberline {3.10}{\ignorespaces Pasos para establecer la conexión WebSocket.}}{24}{figure.caption.33}%
+\contentsline {figure}{\numberline {3.11}{\ignorespaces Pantalla de Login}}{26}{figure.caption.35}%
+\contentsline {figure}{\numberline {3.12}{\ignorespaces Estructura del componente Layout}}{26}{figure.caption.37}%
+\contentsline {figure}{\numberline {3.13}{\ignorespaces Sistema de navegación}}{27}{figure.caption.39}%
+\contentsline {figure}{\numberline {3.14}{\ignorespaces Visualización de datos en tiempo real}}{28}{figure.caption.40}%
+\contentsline {figure}{\numberline {3.15}{\ignorespaces Pantalla de reportes}}{28}{figure.caption.41}%
+\contentsline {figure}{\numberline {3.16}{\ignorespaces Pantalla de reportes}}{29}{figure.caption.42}%
+\contentsline {figure}{\numberline {3.17}{\ignorespaces Pantalla de reportes}}{29}{figure.caption.43}%
+\contentsline {figure}{\numberline {3.18}{\ignorespaces Visualización de datos en tiempo real desde un dispositivo móvil}}{30}{figure.caption.44}%
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {A.1}{\ignorespaces Modelo de datos implementado en el trabajo.}}{28}{figure.caption.34}%
+\contentsline {figure}{\numberline {A.1}{\ignorespaces Modelo de datos implementado en el trabajo.}}{36}{figure.caption.57}%
+\addvspace {10\p@ }
 \addvspace {10\p@ }
 \addvspace {10\p@ }
 \addvspace {10\p@ }
