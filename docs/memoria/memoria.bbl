@@ -701,7 +701,7 @@
     \field{urlyear}{2025}
   \endentry
 
-  \entry{Relay}{online}{}
+  \entry{Relé}{online}{}
     \name{author}{1}{}{%
       {{hash=RS}{%
          family={Relay},
@@ -714,7 +714,7 @@
     \strng{fullhash}{RS1}
     \field{labelnamesource}{author}
     \field{labeltitlesource}{title}
-    \field{title}{Datos técnicos del Relay Songle}
+    \field{title}{Datos técnicos del relé Songle}
     \verb{url}
     \verb https://datasheet4u.com/pdf-down/S/R/D/SRD-12VDC-xx-x_ETC.pdf
     \endverb
@@ -1163,6 +1163,28 @@
     \field{title}{micropython-lib: Standard library modules for MicroPython}
     \verb{url}
     \verb https://github.com/micropython/micropython-lib
+    \endverb
+    \field{urlday}{28}
+    \field{urlmonth}{04}
+    \field{urlyear}{2025}
+  \endentry
+
+  \entry{GithubFirmware}{online}{}
+    \name{author}{1}{}{%
+      {{hash=LM}{%
+         family={Lacheski},
+         familyi={L\bibinitperiod},
+         given={Martin},
+         giveni={M\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{LM1}
+    \strng{fullhash}{LM1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{title}{MicroPython-IoT-Devices}
+    \verb{url}
+    \verb https://github.com/martinlacheski/MicroPython-IoT-Devices
     \endverb
     \field{urlday}{28}
     \field{urlmonth}{04}

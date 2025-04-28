@@ -25,7 +25,7 @@
 \contentsline {subsection}{\numberline {2.2.8}Sensor de temperatura digital sumergible}{10}{subsection.2.2.8}%
 \contentsline {subsection}{\numberline {2.2.9}Sensor ultrasónico}{11}{subsection.2.2.9}%
 \contentsline {subsection}{\numberline {2.2.10}Sensor de medición de consumo eléctrico}{11}{subsection.2.2.10}%
-\contentsline {subsection}{\numberline {2.2.11}Módulo Relay}{11}{subsection.2.2.11}%
+\contentsline {subsection}{\numberline {2.2.11}Módulo de relés}{11}{subsection.2.2.11}%
 \contentsline {section}{\numberline {2.3}Desarrollo de firmware}{12}{section.2.3}%
 \contentsline {subsection}{\numberline {2.3.1}MicroPython}{12}{subsection.2.3.1}%
 \contentsline {section}{\numberline {2.4}Desarrollo backend y API}{12}{section.2.4}%
@@ -74,33 +74,31 @@
 \contentsline {section}{\numberline {3.6}Desarrollo del firmware de los dispositivos IoT}{30}{section.3.6}%
 \contentsline {subsection}{\numberline {3.6.1}Arquitectura general del firmware}{30}{subsection.3.6.1}%
 \contentsline {subsection}{\numberline {3.6.2}Estructura del código}{30}{subsection.3.6.2}%
-\contentsline {subsection}{\numberline {3.6.3}Gestión de tareas y concurrencia}{31}{subsection.3.6.3}%
-\contentsline {subsection}{\numberline {3.6.4}Comunicación inalámbrica}{31}{subsection.3.6.4}%
-\contentsline {subsubsection}{Wi-Fi}{31}{section*.45}%
-\contentsline {subsubsection}{MQTT}{31}{section*.46}%
-\contentsline {subsubsection}{Protocolo de comunicación}{32}{section*.47}%
-\contentsline {subsection}{\numberline {3.6.5}Gestión de la configuración}{32}{subsection.3.6.5}%
-\contentsline {subsubsection}{Archivo de configuración}{32}{section*.48}%
-\contentsline {subsubsection}{Archivo de configuración del intervalo}{32}{section*.49}%
-\contentsline {subsubsection}{Archivo de configuración Wi-Fi}{32}{section*.50}%
-\contentsline {subsubsection}{Archivo de configuración de la zona horaria}{33}{section*.51}%
-\contentsline {subsection}{\numberline {3.6.6}Manejo de errores}{33}{subsection.3.6.6}%
-\contentsline {subsubsection}{Manejo de excepciones}{33}{section*.52}%
-\contentsline {subsubsection}{Reintentos}{33}{section*.53}%
-\contentsline {subsubsection}{Logging}{33}{section*.54}%
-\contentsline {subsubsection}{Optimización de recursos}{33}{section*.55}%
-\contentsline {subsection}{\numberline {3.6.7}Resumen de nodos sensores y actuadores}{33}{subsection.3.6.7}%
-\contentsline {section}{\numberline {3.7}Despliegue del sistema}{34}{section.3.7}%
-\contentsline {chapter}{\numberline {A}Modelo de datos implementado en el trabajo}{35}{appendix.Alph1}%
-\contentsline {chapter}{\numberline {B}Resumen de endpoints de la API}{37}{appendix.Alph2}%
-\contentsline {chapter}{\numberline {C}Autenticación con JWT}{41}{appendix.Alph3}%
-\contentsline {chapter}{\numberline {D}Conexión de la aplicación FastAPI con la base de datos MongoDB}{43}{appendix.Alph4}%
-\contentsline {chapter}{\numberline {E}Conexión al broker MQTT con FastAPI y AWS IoT SDK para Python}{45}{appendix.Alph5}%
-\contentsline {chapter}{\numberline {F}Conexión por WebSocket en FastAPI}{51}{appendix.Alph6}%
-\contentsline {section}{\numberline {F.1}Introducción}{51}{section.Alph6.1}%
-\contentsline {section}{\numberline {F.2}Autorización para WebSocket}{51}{section.Alph6.2}%
-\contentsline {section}{\numberline {F.3}Gestión de conexiones WebSocket}{52}{section.Alph6.3}%
-\contentsline {section}{\numberline {F.4}Integración con FastAPI}{53}{section.Alph6.4}%
-\contentsline {chapter}{\numberline {G}Firmware del nodo sensor de consumos}{55}{appendix.Alph7}%
-\contentsline {section}{\numberline {G.1}Introducción}{55}{section.Alph7.1}%
-\contentsline {chapter}{Bibliografía}{65}{appendix*.62}%
+\contentsline {subsection}{\numberline {3.6.3}Gestión de la configuración}{32}{subsection.3.6.3}%
+\contentsline {subsubsection}{Archivo de configuración}{32}{section*.46}%
+\contentsline {subsubsection}{Archivo de configuración del intervalo}{32}{section*.47}%
+\contentsline {subsubsection}{Archivo de configuración Wi-Fi}{32}{section*.48}%
+\contentsline {subsubsection}{Archivo de configuración de la zona horaria}{32}{section*.49}%
+\contentsline {subsection}{\numberline {3.6.4}Comunicación inalámbrica}{32}{subsection.3.6.4}%
+\contentsline {subsubsection}{Wi-Fi}{33}{section*.50}%
+\contentsline {subsubsection}{MQTT}{33}{section*.51}%
+\contentsline {subsubsection}{Comunicación y formato de mensajes}{33}{section*.53}%
+\contentsline {subsection}{\numberline {3.6.5}Gestión de tareas y concurrencia}{34}{subsection.3.6.5}%
+\contentsline {subsection}{\numberline {3.6.6}Manejo de errores}{34}{subsection.3.6.6}%
+\contentsline {subsubsection}{Manejo de excepciones}{34}{section*.54}%
+\contentsline {subsubsection}{Reintentos}{34}{section*.55}%
+\contentsline {subsubsection}{Logging}{34}{section*.56}%
+\contentsline {subsubsection}{Optimización de recursos}{34}{section*.57}%
+\contentsline {subsection}{\numberline {3.6.7}Resumen de nodos sensores y actuadores}{34}{subsection.3.6.7}%
+\contentsline {section}{\numberline {3.7}Despliegue del sistema}{36}{section.3.7}%
+\contentsline {chapter}{\numberline {A}Modelo de datos implementado en el trabajo}{37}{appendix.Alph1}%
+\contentsline {chapter}{\numberline {B}Resumen de endpoints de la API}{39}{appendix.Alph2}%
+\contentsline {chapter}{\numberline {C}Autenticación con JWT}{43}{appendix.Alph3}%
+\contentsline {chapter}{\numberline {D}Conexión de la aplicación FastAPI con la base de datos MongoDB}{45}{appendix.Alph4}%
+\contentsline {chapter}{\numberline {E}Conexión al broker MQTT con FastAPI y AWS IoT SDK para Python}{47}{appendix.Alph5}%
+\contentsline {chapter}{\numberline {F}Conexión por WebSocket en FastAPI}{53}{appendix.Alph6}%
+\contentsline {section}{\numberline {F.1}Introducción}{53}{section.Alph6.1}%
+\contentsline {section}{\numberline {F.2}Autorización para WebSocket}{53}{section.Alph6.2}%
+\contentsline {section}{\numberline {F.3}Gestión de conexiones WebSocket}{54}{section.Alph6.3}%
+\contentsline {section}{\numberline {F.4}Integración con FastAPI}{55}{section.Alph6.4}%
+\contentsline {chapter}{Bibliografía}{57}{appendix*.64}%

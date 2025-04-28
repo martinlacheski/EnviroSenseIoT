@@ -698,28 +698,40 @@ en dispositivos móviles y tabletas.
 %----------------------------------------------------------------------------------------
 \section{Desarrollo del firmware de los dispositivos IoT}
 
-En esta sección se detalla el desarrollo del firmware hecho en MicroPython para
-los nodos basados en el microcontrolador ESP32. Se describen la arquitectura
-general del firmware y la estructura del código.
+En esta sección se detalla el desarrollo del firmware realizado en MicroPython
+para los nodos. Se describe la arquitectura general del firmware y la
+estructura del código.
 
 \subsection{Arquitectura general del firmware}
 
 Todos los nodos comparten una arquitectura de firmware similar, diseñada para
-la adquisición de datos, control de actuadores, comunicación inalámbrica,
-gestión de eventos y la interacción con el broker MQTT.
+realizar:
+
+\begin{itemize}
+    \item Adquisición de datos: lectura de sensores y actuadores.
+    \item Control de actuadores: gestión de dispositivos conectados.
+    \item Comunicación inalámbrica: conexión a la red Wi-Fi y al broker MQTT.
+    \item Gestión de eventos: manejo de interrupciones y temporizadores.
+    \item Interacción con el broker MQTT: publicación y suscripción a tópicos.
+\end{itemize}
+
+% ----------------------------------------------------------------------------------------
 
 \subsection{Estructura del código}
 
-La estructura general del código para cada nodo se organizó de la siguiente
-manera:
+Para el desarrollo de los nodos, se adoptó un esquema de organización que
+facilitó la modularidad, la reutilización de código y la facilidad de
+mantenimiento.
 
-\begin{itemize}
+La estructura es la siguiente:
+
+\begin{enumerate}
     \item \textbf{Importación de librerías}: importación de módulos para sensores,
           Wi-Fi, MQTT, gestión del tiempo y otras funcionalidades.
     \item \textbf{Configuración inicial}: definición de variables y constantes
           (pines, parámetros de conexión, intervalos).
     \item \textbf{Inicialización}: configuración de periféricos del ESP32,
-          inicialización de sensores/relays y manejo de errores.
+          inicialización de sensores/relés y manejo de errores.
     \item \textbf{Funciones auxiliares}: definición de funciones para la conexión Wi-Fi,
           sincronización NTP (del inglés, \textit{Network Time Protocol}) y carga de
           certificados TLS.
@@ -729,14 +741,137 @@ manera:
     \item \textbf{Función de lectura/control}: implementación de la lógica para leer
           sensores o controlar actuadores.
     \item \textbf{Bucle principal}:
-          \begin{itemize}
+          \begin{enumerate}
               \item Verificación de la conexión Wi-Fi.
               \item Lectura de datos de los sensores o control de los actuadores.
               \item Envío de datos al broker MQTT.
               \item Recepción y procesamiento de mensajes MQTT.
               \item Gestión de errores y reinicio del sistema en caso de fallos.
-          \end{itemize}
+          \end{enumerate}
+\end{enumerate}
+
+% La Figura \ref{fig:flujo_nodos} presenta el diagrama de flujo de alto nivel del
+% firmware de los nodos. Se detalla el proceso desde la inicialización del
+% hardware hasta la ejecución cíclica del bucle principal, se incluye la gestión
+% de comandos MQTT y las acciones específicas para sensores y actuadores.
+
+La Figura \ref{fig:flujo_nodos} muestra el flujo de alto nivel del firmware,
+desde la inicialización del hardware hasta la ejecución cíclica del bucle
+principal, incluye la gestión de comandos MQTT y las acciones sobre sensores y
+actuadores.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.89\textwidth]{./Images/30_flujo_ppal_nodos.png}
+    \caption{Flujo de ejecución del código en los nodos}
+    \label{fig:flujo_nodos}
+\end{figure}
+
+% ----------------------------------------------------------------------------------------
+
+\subsection{Gestión de la configuración}
+
+La configuración de los parámetros operativos de cada nodo se almacenó en
+archivos en el ESP32. Esto permitió la persistencia de la configuración entre
+reinicios.
+
+A continuación, se describen los archivos de configuración utilizados en el
+firmware de los nodos:
+
+\subsubsection{Archivo de configuración}
+
+El archivo \texttt{config.py} contiene constantes y variables de configuración
+específicas de cada nodo. Incluye:
+\begin{itemize}
+    \item \textbf{Códigos de identificación}: incluye el código para identificar unívocamente
+          a cada dispositivo.
+    \item \textbf{Tópicos MQTT}: incluye los tópicos para la publicación y
+          suscripción de datos. Cada nodo posee un tópico para enviar datos
+          y otro para recibir comandos.
+    \item \textbf{Parámetros de conexión AWS IoT Core}: incluye el identificador del cliente y el
+          endpoint del broker MQTT.
 \end{itemize}
+
+\subsubsection{Archivo de configuración del intervalo}
+
+El archivo \texttt{interval.conf} almacena el intervalo de muestreo de sensores
+y actuadores. Al iniciar el dispositivo, se intenta leer este valor; si el
+archivo no existe o está corrupto, se usa un valor por defecto. El intervalo
+puede actualizarse remotamente mediante MQTT, se sobrescribe el archivo para
+conservar la nueva configuración tras reinicios.
+
+\subsubsection{Archivo de configuración Wi-Fi}
+
+El archivo \texttt{wifi.dat} almacena los parámetros de conexión Wi-Fi (SSID y
+contraseña), permite guardar múltiples configuraciones de red. Si el nodo no
+logra conectarse, se inicia un servidor web para que el usuario seleccione el
+SSID, ingrese la contraseña y defina la zona horaria. Al configurarse con
+éxito, los datos se guardan en el archivo y el dispositivo se reinicia.
+
+\subsubsection{Archivo de configuración de la zona horaria}
+
+La zona horaria se obtiene desde el archivo \texttt{timezone.conf} para
+garantizar la marca de tiempo correcta. Esta funcionalidad se utiliza en los
+nodos sensores y actuadores con el fin de incluir la hora local en los mensajes
+enviados al broker MQTT. En caso de error en la lectura del archivo, se asigna
+una zona horaria por defecto (UTC-3).
+
+% ----------------------------------------------------------------------------------------
+
+\subsection{Comunicación inalámbrica}
+
+Los nodos desarrollados utilizan la comunicación Wi-Fi para conectarse a la red
+local y enviar datos al broker MQTT a través de Internet.
+
+A continuación, se describen las librerías utilizadas para gestionar la
+comunicación inalámbrica:
+
+\subsubsection{Wi-Fi}
+
+Para gestionar la conexión Wi-Fi, se empleó la librería \texttt{wifi\_manager}
+\cite{MicroPythonWifiManager}. Los nodos intentan conectarse a la red
+configurada y realizan verificaciones periódicas para asegurar su
+disponibilidad. La librería se modificó para adaptarla a los requerimientos del
+trabajo. Se agregó la capacidad de almacenar datos de redes cuyo SSID contenga
+espacios en blanco y se implementó un menú desplegable para la selección de la
+zona horaria.
+
+\subsubsection{MQTT}
+
+Para desarrollar la comunicación MQTT, se utilizó la librería
+\texttt{umqtt.robust} de \texttt{MicropythonLib} \cite{MicropythonLib}, que
+permitió implementar un cliente MQTT en los nodos. Se estableció la conexión al
+broker MQTT de AWS IoT Core mediante certificados TLS almacenados localmente en
+cada dispositivo.
+
+La Figura \ref{fig:secuencia_mqtt} muestra el flujo de comunicación
+bidireccional entre los nodos, el broker MQTT de AWS IoT Core y el backend
+desarrollado en FastAPI. Cada extremo establece conexiones seguras TLS y
+suscripciones a tópicos específicos. Los nodos publican datos de sensores y
+estados de relés, y reciben comandos de control, mientras que el backend
+centraliza la gestión de las comunicaciones.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.82\textwidth]{./Images/31_secuencia_mqtt.png}
+    \caption{Flujo de comunicación entre nodos y broker MQTT}
+    \label{fig:secuencia_mqtt}
+\end{figure}
+
+\subsubsection{Comunicación y formato de mensajes}
+
+% La transmisión de los datos de sensores y los comandos de control se realiza
+% mediante el protocolo MQTT, a través de mensajes en formato JSON publicados en
+% los tópicos definidos en el archivo \texttt{config.py}. Se implementó un
+% esquema de mensajes estandarizado para facilitar el procesamiento en el backend
+% y en los nodos.
+
+Los datos de sensores, actuadores y los comandos de control se transmiten
+mediante MQTT, en formato JSON, y se publican en los tópicos definidos en el
+archivo \texttt{config.py}. Se implementó un esquema estandarizado para
+simplificar el procesamiento tanto en los nodos como en el backend.
+
+% ----------------------------------------------------------------------------------------
 
 \subsection{Gestión de tareas y concurrencia}
 
@@ -744,7 +879,7 @@ La ejecución concurrente de tareas en MicroPython se logró mediante la
 implementación de:
 
 \begin{itemize}
-    \item Un bucle principal para tareas críticas como:
+    \item Un bucle principal para tareas como:
           \begin{itemize}
               \item Conexión Wi-Fi.
               \item Procesamiento de mensajes MQTT.
@@ -759,188 +894,25 @@ implementación de:
 
 % ----------------------------------------------------------------------------------------
 
-% \section{Desarrollo del firmware de los dispositivos IoT}
-
-% En esta sección se detalla el desarrollo del firmware para los nodos basados en
-% el microcontrolador ESP32, a través de MicroPython. Se describen las
-% principales funciones de cada tipo de nodo, la arquitectura del firmware y las
-% características más relevantes.
-
-% \subsection{Arquitectura general del firmware}
-
-% Todos los nodos comparten una arquitectura de firmware similar, diseñada para
-% la adquisición de datos y el control de actuadores, la comunicación
-% inalámbrica, la gestión de eventos y la interacción con el broker MQTT.
-
-% \subsection{Estructura del código}
-
-% La estructura general del código para cada nodo se organiza de la siguiente
-% manera:
-
-% \begin{itemize}
-%     \item \textbf{Importación de librerías}: se importan los módulos necesarios para la
-%           interacción con los sensores, la comunicación Wi-Fi, la conexión MQTT,
-%           la gestión del tiempo y otras funcionalidades.
-%     \item \textbf{Configuración inicial}: se definen las variables y constantes de
-%           configuración, como los pines de los sensores y relays, los parámetros de conexión
-%           Wi-Fi y MQTT, y los intervalos de muestreo.
-%     \item \textbf{Inicialización}: se configuran los periféricos
-%           del ESP32 y se inicializan los sensores y relays específicos de cada
-%           tipo de nodo. Se implementan manejos de errores para garantizar la
-%           robustez del sistema.
-%     \item \textbf{Funciones auxiliares}: se definen funciones para establecer y chequear
-%           la conexión Wi-Fi, la sincronización de la hora con un servidor NTP (del
-%           inglés, \textit{Network Time Protocol}), la carga de certificados TLS y otras
-%           tareas comunes.
-%     \item \textbf{Conexión MQTT}: se establece la conexión con el broker MQTT,
-%           con la utilización de certificados TLS para la seguridad de la comunicación.
-%     \item \textbf{Callback de mensajes MQTT}: se define una función que se ejecuta cuando
-%           se reciben mensajes MQTT, esto permite la configuración remota de los nodos
-%           y la ejecución de acciones específicas.
-%     \item \textbf{Función de lectura de sensores/control de actuadores}: se implementa
-%           la lógica específica para leer los datos de los sensores o controlar los
-%           actuadores.
-%     \item \textbf{Bucle principal}: se ejecuta un bucle infinito que realiza las
-%           siguientes tareas de forma continua:
-%           \begin{itemize}
-%               \item Verificación de la conexión Wi-Fi.
-%               \item Lectura de datos de los sensores o control de los actuadores.
-%               \item Envío de datos al broker MQTT.
-%               \item Recepción y procesamiento de mensajes MQTT.
-%               \item Gestión de errores y reinicio del sistema en caso de fallos.
-%           \end{itemize}
-% \end{itemize}
-
-% \subsection{Gestión de tareas y concurrencia}
-
-% Si bien MicroPython no incluye un sistema operativo en tiempo real (RTOS, del
-% inglés, \textit{Real-Time Operating System}) por defecto, la ejecución
-% concurrente de tareas se logra mediante la gestión del bucle principal, el uso
-% de interrupciones y, principalmente, la utilización de los \texttt{Timers} del
-% ESP32 para la ejecución periódica de tareas.
-
-% El firmware desarrollado en los nodos implementa un bucle principal para la
-% ejecución iterativa de tareas como la conexión Wi-Fi y el procesamiento de
-% mensajes MQTT.
-
-% Para la tarea de activación/desactivación de canales en el nodo actuador se
-% utilizan los \texttt{Timers} del ESP32, lo que permite descargar esta tarea del
-% bucle principal y mejorar la eficiencia. Cada tarea se ejecuta con su propio
-% temporizador, lo que permite ejecutar múltiples tareas de forma simultánea sin
-% bloquear el bucle principal.
-
-\subsection{Comunicación inalámbrica}
-
-Todos los nodos desarrollados utilizan la comunicación Wi-Fi para conectarse a
-la red local y enviar datos al broker MQTT.
-
-\subsubsection{Wi-Fi}
-
-Se utilizó la librería \texttt{wifi\_manager} \cite{MicroPythonWifiManager}
-para gestionar la conexión Wi-Fi. Los nodos intentan conectarse a la red
-configurada y realizan verificaciones periódicas para asegurar su
-disponibilidad. Se modificó la librería para adaptarla a las necesidades del
-trabajo. Se incorporó la funcionalidad de guardar redes que el SSID posea
-espacios en blanco y se añadió un menú desplegable para seleccionar la zona
-horaria.
-
-\subsubsection{MQTT}
-
-Se utilizó la librería \texttt{umqtt.robust} de \texttt{MicropythonLib}
-\cite{MicropythonLib} para implementar un cliente MQTT que se reconecta
-automáticamente al broker en caso de fallos. Se implementó TLS para asegurar la
-comunicación, y los certificados se almacenaron en el dispositivo.
-
-\subsubsection{Protocolo de comunicación}
-
-Los datos de los sensores y los comandos de control se transmiten en formato
-JSON a través de los tópicos MQTT definidos en el archivo \texttt{config.py}.
-Se utilizó un esquema de mensajes estandarizado para facilitar el procesamiento
-de los datos en el backend y en los nodos.
-
-% ----------------------------------------------------------------------------------------
-
-\subsection{Gestión de la configuración}
-
-La configuración de los nodos, código del sensor o actuador, tópicos MQTT, el
-intervalo de muestreo y los parámetros de conexión Wi-Fi, se almacenaron en
-archivos locales en el ESP32. Esto permitió la persistencia de la configuración
-entre reinicios.
-
-A continuación, se describen los archivos de configuración utilizados en el
-firmware de los nodos:
-
-\subsubsection{Archivo de configuración}
-
-El archivo \texttt{config.py} contiene constantes y variables de configuración
-específicas de cada nodo. Incluye:
-\begin{itemize}
-    \item \textbf{Códigos de identificación}: incluye el código para identificar unívocamente
-          a cada dispositivo.
-    \item \textbf{Tópicos MQTT}: incluye los tópicos para la publicación y
-          suscripción de datos. Cada nodo tiene un tópico único para enviar datos
-          y otro para recibir comandos.
-    \item \textbf{Parámetros de conexión AWS IoT Core}: incluye el identificador del cliente y el
-          endpoint del broker MQTT.
-\end{itemize}
-
-\subsubsection{Archivo de configuración del intervalo}
-
-El intervalo de muestreo de los sensores se guarda en el archivo
-\texttt{interval.conf}. Al inicio del programa, se intenta leer el valor del
-intervalo desde este archivo. Si el archivo no existe o está corrupto, se
-utiliza un valor por defecto. Los mensajes MQTT pueden modificar este
-intervalo, y el nuevo valor se guarda en el archivo para su uso en futuros
-reinicios.
-
-\subsubsection{Archivo de configuración Wi-Fi}
-
-Los parámetros de conexión Wi-Fi (SSID y contraseña) se almacenan en el archivo
-\texttt{wifi.dat}, lo que permite al nodo reconectarse automáticamente después
-de un reinicio. Este archivo soporta múltiples configuraciones de red para
-facilitar la conexión en diferentes ubicaciones.
-
-En caso de que el nodo no pueda conectarse a la red Wi-Fi, se inicia un
-servidor web que permite al usuario configurar la red Wi-Fi. El servidor
-proporciona una interfaz para seleccionar el SSID, ingresar la contraseña y
-elegir la zona horaria. Después de ingresar la información, el dispositivo
-intenta conectarse a la red especificada. Si la conexión es exitosa, la
-configuración se guarda en \texttt{wifi.dat} y el nodo se reinicia para aplicar
-los cambios.
-
-\subsubsection{Archivo de configuración de la zona horaria}
-
-La zona horaria se lee desde el archivo \texttt{timezone.conf} para permitir la
-correcta conversión de las marcas de tiempo. Esta funcionalidad se usó en los
-nodos sensores y actuadores, para enviar la hora correcta en los mensajes
-enviados al broker MQTT.
-
-Además, en caso de error al leer el archivo, se utiliza la zona horaria por
-defecto (UTC-3).
-
-% ----------------------------------------------------------------------------------------
-
 \subsection{Manejo de errores}
 
-Se implementaron mecanismos de manejo de errores en todo el firmware para
-garantizar la robustez y la confiabilidad de los nodos.
-
-A continuación, se describen las principales estrategias de manejo de errores
-implementadas:
+Se implementaron mecanismos en todo el firmware para garantizar la robustez y
+confiabilidad de los nodos frente a posibles fallos. A continuación, se
+detallan las principales estrategias implementadas para la gestión de errores:
 
 \subsubsection{Manejo de excepciones}
 
 Se utilizaron bloques \texttt{try-except} para capturar y manejar excepciones
-durante la ejecución. Esto permitió que el programa continúe operativo, incluso
-en caso de errores como fallos en la lectura de sensores o problemas de
-conexión de red.
+durante la ejecución. De este modo, el programa puede continuar operativo
+incluso ante errores como fallos en la lectura de sensores o problemas de
+conexión a la red.
 
 \subsubsection{Reintentos}
 
-En operaciones críticas, como la conexión Wi-Fi y la sincronización de la hora
-con el servidor NTP, se implementaron mecanismos de reintento. Si la operación
-falla inicialmente, el programa intenta realizarla nuevamente un número
-determinado de veces antes de considerarla fallida.
+Para operaciones críticas, como la conexión Wi-Fi y la sincronización de la
+hora con el servidor NTP, se implementaron mecanismos de reintento. Si una
+operación falla, el programa intenta repetirla un número preestablecido de
+veces antes de considerarla fallida.
 
 \subsubsection{Logging}
 
@@ -950,19 +922,15 @@ y el mantenimiento del firmware.
 
 \subsubsection{Optimización de recursos}
 
-Se utilizó la función \texttt{gc.collect()} para liberar memoria
-periódicamente, esto ayudó a optimizar el uso de memoria y evitar problemas de
-memoria insuficiente. Esta función se ejecuta en momentos específicos del
-programa, como después de la lectura de sensores o el envío de datos al broker
-MQTT. Esto permite liberar memoria no utilizada y optimizar el rendimiento del
-sistema.
+Se utilizó la función \texttt{gc.collect()} para liberar memoria periódicamente
+y optimizar el rendimiento del sistema. Esta función se ejecuta tras la lectura
+de sensores o el envío de datos al broker MQTT.
 
 \subsection{Resumen de nodos sensores y actuadores}
 
-La tabla \ref{tab:nodos_iot} presenta un resumen de las funciones principales y
-la descripción general del firmware de los nodos sensores y actuadores. Estos
-nodos se diseñaron para cumplir roles específicos en la adquisición de datos
-del entorno o el control de los dispositivos actuadores.
+La tabla \ref{tab:nodos_iot} resume las funciones y descripción general del
+firmware de los nodos sensores y actuadores, diseñados para adquirir datos del
+entorno o controlar dispositivos actuadores.
 
 \begin{table}[H]
     \centering
@@ -1004,6 +972,20 @@ del entorno o el control de los dispositivos actuadores.
     \end{tabular}
     \label{tab:nodos_iot}
 \end{table}
+
+% El código de la implementación del firmware de los nodos se publicó en un
+% repositorio público de GitHub \cite{GithubFirmware} bajo la licencia MIT. Este
+% repositorio contiene el código fuente del firmware de los nodos, así como la
+% documentación necesaria para su instalación, implementación y uso.
+
+% El firmware de los nodos fue desarrollado y publicado en un repositorio público
+% de GitHub \cite{GithubFirmware} bajo licencia MIT. En dicho repositorio se
+% encuentran disponibles tanto el código fuente como la documentación requerida
+% para su instalación, implementación y utilización.
+
+El firmware de los nodos se publicó en un repositorio de GitHub
+\cite{GithubFirmware} bajo licencia MIT, incluye el código fuente y la
+documentación para su instalación y uso.
 
 %----------------------------------------------------------------------------------------
 %	SECTION 7

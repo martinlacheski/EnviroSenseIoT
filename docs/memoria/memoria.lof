@@ -12,7 +12,7 @@
 \contentsline {figure}{\numberline {2.8}{\ignorespaces Sensor de temperatura DS18B20\footnotemark .}}{11}{figure.caption.16}%
 \contentsline {figure}{\numberline {2.9}{\ignorespaces Sensor HC-SR04\footnotemark .}}{11}{figure.caption.17}%
 \contentsline {figure}{\numberline {2.10}{\ignorespaces Sensor de medición de consumo eléctrico\footnotemark .}}{11}{figure.caption.18}%
-\contentsline {figure}{\numberline {2.11}{\ignorespaces Relay de 2 Canales 5 V 10 A\footnotemark .}}{12}{figure.caption.19}%
+\contentsline {figure}{\numberline {2.11}{\ignorespaces Relé de 2 Canales 5 V 10 A\footnotemark .}}{12}{figure.caption.19}%
 \addvspace {10\p@ }
 \contentsline {figure}{\numberline {3.1}{\ignorespaces Arquitectura de la solución propuesta.}}{15}{figure.caption.20}%
 \contentsline {figure}{\numberline {3.2}{\ignorespaces Modelo de datos implementado.}}{17}{figure.caption.21}%
@@ -32,9 +32,10 @@
 \contentsline {figure}{\numberline {3.16}{\ignorespaces Pantalla de reportes}}{29}{figure.caption.42}%
 \contentsline {figure}{\numberline {3.17}{\ignorespaces Pantalla de reportes}}{29}{figure.caption.43}%
 \contentsline {figure}{\numberline {3.18}{\ignorespaces Visualización de datos en tiempo real desde un dispositivo móvil}}{30}{figure.caption.44}%
+\contentsline {figure}{\numberline {3.19}{\ignorespaces Flujo de ejecución del código en los nodos}}{31}{figure.caption.45}%
+\contentsline {figure}{\numberline {3.20}{\ignorespaces Flujo de comunicación entre nodos y broker MQTT}}{33}{figure.caption.52}%
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {A.1}{\ignorespaces Modelo de datos implementado en el trabajo.}}{36}{figure.caption.57}%
-\addvspace {10\p@ }
+\contentsline {figure}{\numberline {A.1}{\ignorespaces Modelo de datos implementado en el trabajo.}}{38}{figure.caption.59}%
 \addvspace {10\p@ }
 \addvspace {10\p@ }
 \addvspace {10\p@ }
