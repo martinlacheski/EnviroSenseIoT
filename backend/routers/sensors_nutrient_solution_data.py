@@ -75,11 +75,13 @@ async def get_nutrient_solution_sensor_data(
                 "tds": {"$avg": "$tds"},
                 "ph": {"$avg": "$ph"},
                 "ce": {"$avg": "$ce"},
+                "ec_mS": {"$avg": "$ec_mS"},
+                "ec_uS": {"$avg": "$ec_uS"},
                 "sensor_code": {"$first": "$sensor_code"}
             }
         })
         # Agregar la etapa de ordenación, paginación y límite
-        pipeline.append({"$sort": {"_id": -1}})
+        pipeline.append({"$sort": {"datetime": 1}})
         pipeline.append({"$skip": (page - 1) * limit})
         pipeline.append({"$limit": limit})
         # Agregar los datos y los resultados
@@ -98,6 +100,8 @@ async def get_nutrient_solution_sensor_data(
                     "tds": round(r["tds"], 2),
                     "ph": round(r["ph"], 2),
                     "ce": round(r["ce"], 2),
+                    "ec_mS": round(r["ec_mS"], 2), 
+                    "ec_uS": round(r["ec_uS"], 2), 
                     "sensor_code": r["sensor_code"]
                 } for r in results
             ],

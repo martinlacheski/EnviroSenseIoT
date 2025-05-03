@@ -9,4 +9,4 @@ __pycache__/
 backend/certificates/*.crt
 backend/certificates/*.key
 .env
-
+envirosense-app-key.pem

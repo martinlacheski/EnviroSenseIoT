@@ -12,7 +12,7 @@ COPY . .
 
 # Establecer variables de entorno para la configuración de Vite
 ARG VITE_BACKEND_API_URL
-ENV VITE_BACKEND_API_URL=http://localhost:8000/
+ENV VITE_BACKEND_API_URL=/api/ 
 
 # Ejecutar el build de la aplicación
 RUN npm run build

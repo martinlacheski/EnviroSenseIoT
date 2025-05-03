@@ -239,7 +239,7 @@ export const Dashboard = () => {
 
   const { isConnected } = useWebSocket({
     url: selectedEnv
-      ? `ws://localhost:8000/ws/sensor-data?authorization=${token}&environment_id=${selectedEnv}`
+      ? `ws://envirosense.duckdns.org:8000/ws/sensor-data?authorization=${token}&environment_id=${selectedEnv}`
       : "",
     onMessage: (msg) => {
       addMessage(msg);

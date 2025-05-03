@@ -285,10 +285,11 @@ export const Consumo = () => {
                         onChange={handleInputChange}
                         required
                       >
-                        {/* <option value="">Agregación</option> */}
+                        <option value="">Agregación</option>
                         <option value="1m">1 minuto</option>
                         <option value="5m">5 minutos</option>
                         <option value="15m">15 minutos</option>
+                        <option value="30m">30 minutos</option>
                         <option value="1h">1 hora</option>
                         <option value="2h">2 horas</option>
                       </Form.Select>
