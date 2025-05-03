@@ -1190,5 +1190,60 @@
     \field{urlmonth}{04}
     \field{urlyear}{2025}
   \endentry
+
+  \entry{DockerCompose}{online}{}
+    \field{labeltitlesource}{title}
+    \field{title}{Docker Compose Documentation}
+    \verb{url}
+    \verb https://docs.docker.com/compose/
+    \endverb
+    \field{urlday}{02}
+    \field{urlmonth}{05}
+    \field{urlyear}{2025}
+  \endentry
+
+  \entry{DuckDNS}{online}{}
+    \field{labeltitlesource}{title}
+    \field{title}{DuckDNS: Free Dynamic DNS hosted on AWS}
+    \verb{url}
+    \verb https://www.duckdns.org/
+    \endverb
+    \field{urlday}{02}
+    \field{urlmonth}{05}
+    \field{urlyear}{2025}
+  \endentry
+
+  \entry{NGINX}{online}{}
+    \field{labeltitlesource}{title}
+    \field{title}{NGINX: High Performance Load Balancer, Web Server, \& Reverse Proxy}
+    \verb{url}
+    \verb https://nginx.org/
+    \endverb
+    \field{urlday}{02}
+    \field{urlmonth}{05}
+    \field{urlyear}{2025}
+  \endentry
+
+  \entry{EnviroSenseIoT}{online}{}
+    \name{author}{1}{}{%
+      {{hash=LM}{%
+         family={Lacheski},
+         familyi={L\bibinitperiod},
+         given={Martin},
+         giveni={M\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{LM1}
+    \strng{fullhash}{LM1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{title}{EnviroSenseIoT}
+    \verb{url}
+    \verb https://github.com/martinlacheski/EnviroSenseIoT
+    \endverb
+    \field{urlday}{03}
+    \field{urlmonth}{05}
+    \field{urlyear}{2025}
+  \endentry
 \enddatalist
 \endinput

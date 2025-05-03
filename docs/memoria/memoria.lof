@@ -35,9 +35,14 @@
 \contentsline {figure}{\numberline {3.19}{\ignorespaces Flujo de ejecución del código en los nodos}}{31}{figure.caption.45}%
 \contentsline {figure}{\numberline {3.20}{\ignorespaces Flujo de comunicación entre nodos y broker MQTT}}{33}{figure.caption.52}%
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {A.1}{\ignorespaces Modelo de datos implementado en el trabajo.}}{38}{figure.caption.59}%
+\contentsline {figure}{\numberline {A.1}{\ignorespaces Modelo de datos implementado en el trabajo.}}{40}{figure.caption.67}%
 \addvspace {10\p@ }
 \addvspace {10\p@ }
 \addvspace {10\p@ }
 \addvspace {10\p@ }
 \addvspace {10\p@ }
+\addvspace {10\p@ }
+\contentsline {figure}{\numberline {G.1}{\ignorespaces Resumen de la instancia EC2 creada.}}{60}{figure.caption.71}%
+\contentsline {figure}{\numberline {G.2}{\ignorespaces Conexión SSH a la instancia EC2.}}{61}{figure.caption.72}%
+\contentsline {figure}{\numberline {G.3}{\ignorespaces Acceso a la aplicación web EnviroSenseIoT.}}{66}{figure.caption.73}%
+\contentsline {figure}{\numberline {G.4}{\ignorespaces Visualización de datos en tiempo real.}}{66}{figure.caption.74}%
