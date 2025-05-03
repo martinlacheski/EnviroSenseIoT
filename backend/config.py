@@ -1,4 +1,4 @@
-from pymongo import MongoClient
+import os
 
 from beanie import init_beanie
 from motor.motor_asyncio import AsyncIOMotorClient
@@ -26,11 +26,17 @@ from models.sensor_nutrient_solution_data import NutrientSolutionSensorData
 from models.sensor_nutrient_solution_log import NutrientSolutionSensorLog
 
 
-db_client = MongoClient("mongodb://localhost:27017/")['envirosense']
-# db_client = MongoClient("mongodb://admin:adminpassword@localhost:27017/")['envirosense']
+# Configuración desde variables de entorno
+MONGO_USER = os.getenv("MONGO_USER", "admin")  # Valor por defecto si no existe
+MONGO_PASSWORD = os.getenv("MONGO_PASSWORD", "adminpassword")
+MONGO_HOST = os.getenv("MONGO_HOST", "mongodb")  # "localhost" en desarrollo, "mongodb" en Docker
+MONGO_DB = os.getenv("MONGO_DB", "envirosense")
 
 async def init_db():
     client = AsyncIOMotorClient("mongodb://localhost:27017/")
+    # uri = f"mongodb://{MONGO_USER}:{MONGO_PASSWORD}@{MONGO_HOST}:27017/{MONGO_DB}?authSource=admin"
+    # client = AsyncIOMotorClient(uri)
+    # db = client[MONGO_DB]
     #client = AsyncIOMotorClient("mongodb://admin:adminpassword@localhost:27017/?authSource=admin")
     db = client.get_database("envirosense")
     await init_beanie(database=db, document_models=[
