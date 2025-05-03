@@ -79,7 +79,7 @@ async def get_sensor_data(
             }
         })
         # Agregar la etapa de ordenación, paginación y límite
-        pipeline.append({"$sort": {"datetime": 1}})
+        pipeline.append({"$sort": {"_id": 1}})
         pipeline.append({"$skip": (page - 1) * limit})
         pipeline.append({"$limit": limit})
         # Agregar los datos y los resultados

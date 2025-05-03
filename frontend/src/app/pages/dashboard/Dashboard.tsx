@@ -8,6 +8,8 @@ import { useWebSocket } from "../../../hooks";
 import { SweetAlert2 } from "../../utils";
 import api from "../../../api/api";
 
+const SOCKET_BASE_URL = import.meta.env.VITE_BACKEND_SOCKET_URL;
+
 type ConsumptionsLevelSeriesValue = {
   timestamp: string;
   value1: number;
@@ -74,11 +76,6 @@ export const Dashboard = () => {
 
   const addMessage = (msg: WSMessage) => {
     const { type, data, timestamp } = msg;
-    // Setear los códigos de los sensores
-    // if (type === "environmental" && !ambientalCode) {
-    //   const { sensor_code } = data as EnvironmentalData;
-    //   if (sensor_code) setAmbientalCode(sensor_code);
-    // }
 
     // Actualizar códigos solo si el mensaje contiene el código correspondiente
     if (type === "environmental") {
@@ -239,7 +236,7 @@ export const Dashboard = () => {
 
   const { isConnected } = useWebSocket({
     url: selectedEnv
-      ? `ws://envirosense.duckdns.org:8000/ws/sensor-data?authorization=${token}&environment_id=${selectedEnv}`
+      ? `${SOCKET_BASE_URL}?authorization=${token}&environment_id=${selectedEnv}`
       : "",
     onMessage: (msg) => {
       addMessage(msg);

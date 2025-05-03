@@ -13,13 +13,14 @@ services:
     build:
       context: ./frontend
       args:
-        VITE_BACKEND_API_URL: http://backend:8000/
+        VITE_BACKEND_API_URL: ${VITE_BACKEND_API_URL}
+        VITE_BACKEND_SOCKET_URL: ${VITE_BACKEND_SOCKET_URL}
         VITE_PWD_SIGNUP_ENABLED: true
         VITE_GA_TRACKING_ID: ""
     depends_on:
       - backend
     ports:
-      - "80:80"  # puertos 5173:80 para evitar conflicto con Apache
+      - "80:80"
     networks:
       - app_network
 
