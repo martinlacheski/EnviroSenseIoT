@@ -8,3 +8,5 @@ __pycache__/
 *.pyc
 backend/certificates/*.crt
 backend/certificates/*.key
+.env
+

@@ -1,10 +1,7 @@
 import axios from "axios";
-import { getEnvs } from "../helpers";
-
-const { VITE_API_URL } = getEnvs();
 
 const api = axios.create({
-    baseURL: VITE_API_URL,
+    baseURL: import.meta.env.VITE_BACKEND_API_URL, // Acceso directo a la variable de entorno de Vite
 });
 
 // Interceptor para agregar el token a las peticiones

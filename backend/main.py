@@ -1,8 +1,13 @@
+import json
 import os
 from fastapi import FastAPI, Depends, WebSocket, WebSocketDisconnect
 from fastapi.staticfiles import StaticFiles
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
+from dotenv import load_dotenv
+
+# Cargar variables de entorno desde el archivo .env
+load_dotenv() 
 
 # Importamos Modelo y Esquema de la Entidad
 from config import init_db
@@ -106,21 +111,26 @@ if not os.path.exists(static_dir):
 # Montar archivos estáticos
 app.mount("/static", StaticFiles(directory=static_dir), name="static")
 
-# Habilitar Origenes
-origins = [
-    "http://localhost:5173",
-]
+# Leer la variable de entorno y convertirla en una lista de orígenes
+origins = os.getenv("BACKEND_CORS_ORIGINS")
+if origins is None:
+    raise ValueError("No se encontró la variable de entorno BACKEND_CORS_ORIGINS")
 
+# Convertir la cadena JSON en una lista de Python
+origins = json.loads(origins)
+print(f"Orígenes permitidos: {origins}")
+
+# Configurar CORS con los orígenes permitidos
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=origins,
+    allow_origins=origins,  # Aquí pasas la lista de orígenes
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
 )
 
 # Lanzar APP
-@app.get("/api")
+@app.get("/api/test")
 def read_root():
     return {"Hello": "World"}
 
@@ -176,12 +186,3 @@ async def websocket_endpoint(websocket: WebSocket):
     except Exception as e:
         print(f"Error en WebSocket: {e}")
         websocket_manager.disconnect(websocket)
-# # Endpoint para obtener los últimos datos de un tipo de sensor
-# @app.get("/api/sensor-data/{sensor_type}")
-# async def get_last_sensor_data(sensor_type: str, user: dict = Depends(current_user)):
-#     return websocket_manager.get_cached_data(sensor_type)
-
-# # Endpoint para obtener la cantidad de clientes WebSocket conectados
-# @app.get("/ws/connections")
-# async def get_websocket_connections(user: dict = Depends(current_user)):
-#     return {"connected_clients": websocket_manager.connected_clients}

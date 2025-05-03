@@ -16,9 +16,28 @@ router = APIRouter(
 
 # to get a string like this run:
 # ejecutar comando: openssl rand -hex 32
-SECRET_KEY = "ff2031bb7ab10940108585eb799adecca55aafee12572b36d3060e4c7123724c"  # Clave Secreta generada
-ALGORITHM = "HS256"
-ACCESS_TOKEN_EXPIRE_MINUTES = 120
+# importamos las claves de seguridad desde .env
+from dotenv import load_dotenv
+import os
+load_dotenv()
+# Si no existe la variable de entorno, se lanza un error
+# Si existe, se asigna a la variable SECRET_KEY
+SECRET_KEY = os.getenv("BACKEND_SECRET_KEY")
+if SECRET_KEY is None:
+    raise ValueError("No se encontró la clave secreta en las variables de entorno")
+
+# Si no existe la variable de entorno, se lanza un error
+# Si existe, se asigna a la variable ALGORITHM
+ALGORITHM = os.getenv("BACKEND_ALGORITHM")
+if ALGORITHM is None:
+    raise ValueError("No se encontró el algoritmo en las variables de entorno")
+
+# Si no existe la variable de entorno, se lanza un error
+# Si existe, se asigna a la variable REFRESH_TOKEN_EXPIRE_MINUTES
+ACCESS_TOKEN_EXPIRE_MINUTES = os.getenv("BACKEND_ACCESS_TOKEN_EXPIRE_MINUTES")
+if ACCESS_TOKEN_EXPIRE_MINUTES is None:
+    raise ValueError("No se encontró el tiempo de expiración del token en las variables de entorno")
+ACCESS_TOKEN_EXPIRE_MINUTES = int(ACCESS_TOKEN_EXPIRE_MINUTES)
 
 oauth2 = OAuth2PasswordBearer(tokenUrl="login")
 

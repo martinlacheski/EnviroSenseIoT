@@ -286,10 +286,15 @@ export const Usuarios = () => {
         </Modal.Header>
 
         <Formik
+          // initialValues={{
+          //   ...form,
+          //   enabled: form.enabled === true ? "true" : form.enabled === false ? "false" : "",
+          //   is_admin: form.is_admin === true ? "true" : form.is_admin === false ? "false" : ""
+          // }}
           initialValues={{
             ...form,
-            enabled: form.enabled === true ? "true" : form.enabled === false ? "false" : "",
-            is_admin: form.is_admin === true ? "true" : form.is_admin === false ? "false" : ""
+            enabled: !!form.enabled,
+            is_admin: !!form.is_admin
           }}
           onSubmit={(values) => {
             handleSubmit(values);
