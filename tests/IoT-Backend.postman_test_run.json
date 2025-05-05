@@ -1,0 +1,2464 @@
+{
+    "id": "be591ee8-3154-4392-9ef9-049b1e6b0b3b",
+    "name": "IoT-Backend",
+    "timestamp": "2025-05-04T21:40:50.379Z",
+    "collection_id": "28696240-36ee9743-bd8c-4aa2-b177-08d8aef398e4",
+    "folder_id": 0,
+    "environment_id": "0",
+    "totalPass": 0,
+    "delay": 0,
+    "persist": true,
+    "status": "finished",
+    "startedAt": "2025-05-04T21:40:43.808Z",
+    "totalFail": 0,
+    "results": [
+        {
+            "id": "e6ac61e7-ea1a-4168-af62-b15c86215dd4",
+            "name": "login",
+            "url": "http://envirosense.duckdns.org:8000/login",
+            "time": 496,
+            "responseCode": {
+                "code": 200,
+                "name": "OK"
+            },
+            "tests": {},
+            "testPassFailCounts": {},
+            "times": [
+                496
+            ],
+            "allTests": [
+                {}
+            ]
+        },
+        {
+            "id": "3278c2b0-89f4-44d1-9b81-61b7d5916c32",
+            "name": "Renew Token",
+            "url": "http://envirosense.duckdns.org:8000/renew-token",
+            "time": 166,
+            "responseCode": {
+                "code": 200,
+                "name": "OK"
+            },
+            "tests": {},
+            "testPassFailCounts": {},
+            "times": [
+                166
+            ],
+            "allTests": [
+                {}
+            ]
+        },
+        {
+            "id": "40dd2eaf-35e2-4636-877d-cb62d65fda5b",
+            "name": "Publish Interval Consumption",
+            "url": "http://envirosense.duckdns.org:8000/mqtt/publish",
+            "time": 155,
+            "responseCode": {
+                "code": 200,
+                "name": "OK"
+            },
+            "tests": {},
+            "testPassFailCounts": {},
+            "times": [
+                155
+            ],
+            "allTests": [
+                {}
+            ]
+        },
+        {
+            "id": "a9fa95e7-2d76-4e49-b81a-155e038db3bc",
+            "name": "Publish Read Now Consumption",
+            "url": "http://envirosense.duckdns.org:8000/mqtt/publish",
+            "time": 174,
+            "responseCode": {
+                "code": 200,
+                "name": "OK"
+            },
+            "tests": {},
+            "testPassFailCounts": {},
+            "times": [
+                174
+            ],
+            "allTests": [
+                {}
+            ]
+        },
+        {
+            "id": "02687c62-f9c5-4c8f-8e83-a563a5536896",
+            "name": "Publish Interval Environmental",
+            "url": "http://envirosense.duckdns.org:8000/mqtt/publish",
+            "time": 168,
+            "responseCode": {
+                "code": 200,
+                "name": "OK"
+            },
+            "tests": {},
+            "testPassFailCounts": {},
+            "times": [
+                168
+            ],
+            "allTests": [
+                {}
+            ]
+        },
+        {
+            "id": "f3cfd37d-0a87-4d98-83ee-bf2018801557",
+            "name": "Publish Read Now Environmental",
+            "url": "http://envirosense.duckdns.org:8000/mqtt/publish",
+            "time": 166,
+            "responseCode": {
+                "code": 200,
+                "name": "OK"
+            },
+            "tests": {},
+            "testPassFailCounts": {},
+            "times": [
+                166
+            ],
+            "allTests": [
+                {}
+            ]
+        },
+        {
+            "id": "b893c9d7-7775-47fd-909b-45097485e22b",
+            "name": "Publish Interval Nutrient Solution",
+            "url": "http://envirosense.duckdns.org:8000/mqtt/publish",
+            "time": 163,
+            "responseCode": {
+                "code": 200,
+                "name": "OK"
+            },
+            "tests": {},
+            "testPassFailCounts": {},
+            "times": [
+                163
+            ],
+            "allTests": [
+                {}
+            ]
+        },
+        {
+            "id": "665e1223-126c-4c4d-a933-2a7c78364f80",
+            "name": "Publish Read Now Nutrient Solution",
+            "url": "http://envirosense.duckdns.org:8000/mqtt/publish",
+            "time": 162,
+            "responseCode": {
+                "code": 200,
+                "name": "OK"
+            },
+            "tests": {},
+            "testPassFailCounts": {},
+            "times": [
+                162
+            ],
+            "allTests": [
+                {}
+            ]
+        },
+        {
+            "id": "b86e9b31-fbe6-47d7-a6a6-95af37634d3a",
+            "name": "Publish Interval Actuator",
+            "url": "http://envirosense.duckdns.org:8000/mqtt/publish",
+            "time": 166,
+            "responseCode": {
+                "code": 200,
+                "name": "OK"
+            },
+            "tests": {},
+            "testPassFailCounts": {},
+            "times": [
+                166
+            ],
+            "allTests": [
+                {}
+            ]
+        },
+        {
+            "id": "40784b46-e751-4079-b425-9eecc3ab2d5f",
+            "name": "Publish Read Now Actuator",
+            "url": "http://envirosense.duckdns.org:8000/mqtt/publish",
+            "time": 173,
+            "responseCode": {
+                "code": 200,
+                "name": "OK"
+            },
+            "tests": {},
+            "testPassFailCounts": {},
+            "times": [
+                173
+            ],
+            "allTests": [
+                {}
+            ]
+        },
+        {
+            "id": "a0f6b6c9-a677-428f-a6f6-ecf25f4f7d0c",
+            "name": "Publish MQTT Actuator relay_light",
+            "url": "http://envirosense.duckdns.org:8000/mqtt/publish",
+            "time": 164,
+            "responseCode": {
+                "code": 200,
+                "name": "OK"
+            },
+            "tests": {},
+            "testPassFailCounts": {},
+            "times": [
+                164
+            ],
+            "allTests": [
+                {}
+            ]
+        },
+        {
+            "id": "a4799d22-4532-4663-8098-56eadac040c1",
+            "name": "Publish MQTT Actuator relay_vent",
+            "url": "http://envirosense.duckdns.org:8000/mqtt/publish",
+            "time": 167,
+            "responseCode": {
+                "code": 200,
+                "name": "OK"
+            },
+            "tests": {},
+            "testPassFailCounts": {},
+            "times": [
+                167
+            ],
+            "allTests": [
+                {}
+            ]
+        },
+        {
+            "id": "47f8ecb5-7fdd-4674-914a-32e0f6374a1c",
+            "name": "Publish MQTT Actuator relay_aerator",
+            "url": "http://envirosense.duckdns.org:8000/mqtt/publish",
+            "time": 171,
+            "responseCode": {
+                "code": 200,
+                "name": "OK"
+            },
+            "tests": {},
+            "testPassFailCounts": {},
+            "times": [
+                171
+            ],
+            "allTests": [
+                {}
+            ]
+        },
+        {
+            "id": "e5d893f3-d497-4c52-aac3-061150929057",
+            "name": "Publish MQTT Actuator relay_water",
+            "url": "http://envirosense.duckdns.org:8000/mqtt/publish",
+            "time": 174,
+            "responseCode": {
+                "code": 200,
+                "name": "OK"
+            },
+            "tests": {},
+            "testPassFailCounts": {},
+            "times": [
+                174
+            ],
+            "allTests": [
+                {}
+            ]
+        },
+        {
+            "id": "409ac0c9-98be-492c-8b2d-b8bf199ce817",
+            "name": "Publish MQTT Actuator relay_ph_plus",
+            "url": "http://envirosense.duckdns.org:8000/mqtt/publish",
+            "time": 151,
+            "responseCode": {
+                "code": 200,
+                "name": "OK"
+            },
+            "tests": {},
+            "testPassFailCounts": {},
+            "times": [
+                151
+            ],
+            "allTests": [
+                {}
+            ]
+        },
+        {
+            "id": "cf91f09e-f348-4fed-8a00-005c732b3967",
+            "name": "Publish MQTT Actuator relay_ph_minus",
+            "url": "http://envirosense.duckdns.org:8000/mqtt/publish",
+            "time": 164,
+            "responseCode": {
+                "code": 200,
+                "name": "OK"
+            },
+            "tests": {},
+            "testPassFailCounts": {},
+            "times": [
+                164
+            ],
+            "allTests": [
+                {}
+            ]
+        },
+        {
+            "id": "6d091001-71c8-4ff8-8817-9f1959be8737",
+            "name": "Publish MQTT Actuator relay_nutri_1",
+            "url": "http://envirosense.duckdns.org:8000/mqtt/publish",
+            "time": 167,
+            "responseCode": {
+                "code": 200,
+                "name": "OK"
+            },
+            "tests": {},
+            "testPassFailCounts": {},
+            "times": [
+                167
+            ],
+            "allTests": [
+                {}
+            ]
+        },
+        {
+            "id": "46421a6d-265c-4dbf-adc4-3777b6f1b01c",
+            "name": "Publish MQTT Actuator relay_nutri_2",
+            "url": "http://envirosense.duckdns.org:8000/mqtt/publish",
+            "time": 168,
+            "responseCode": {
+                "code": 200,
+                "name": "OK"
+            },
+            "tests": {},
+            "testPassFailCounts": {},
+            "times": [
+                168
+            ],
+            "allTests": [
+                {}
+            ]
+        },
+        {
+            "id": "7bb820cc-eabe-4480-9627-a1ab0d2e05d8",
+            "name": "Publish MQTT Actuator relay_nutri_3",
+            "url": "http://envirosense.duckdns.org:8000/mqtt/publish",
+            "time": 175,
+            "responseCode": {
+                "code": 200,
+                "name": "OK"
+            },
+            "tests": {},
+            "testPassFailCounts": {},
+            "times": [
+                175
+            ],
+            "allTests": [
+                {}
+            ]
+        },
+        {
+            "id": "5798de0a-2af4-4f36-9a88-3ea05d471ce1",
+            "name": "Publish MQTT Actuator relay_nutri_4",
+            "url": "http://envirosense.duckdns.org:8000/mqtt/publish",
+            "time": 165,
+            "responseCode": {
+                "code": 200,
+                "name": "OK"
+            },
+            "tests": {},
+            "testPassFailCounts": {},
+            "times": [
+                165
+            ],
+            "allTests": [
+                {}
+            ]
+        },
+        {
+            "id": "b1ec23ae-5475-42b9-b79e-7554c7344828",
+            "name": "Test MQTT Connection",
+            "url": "http://envirosense.duckdns.org:8000/mqtt/test",
+            "time": 217,
+            "responseCode": {
+                "code": 200,
+                "name": "OK"
+            },
+            "tests": {},
+            "testPassFailCounts": {},
+            "times": [
+                217
+            ],
+            "allTests": [
+                {}
+            ]
+        },
+        {
+            "id": "7101c0f2-cb8b-46cf-91e6-4571406dce33",
+            "name": "GET Users",
+            "url": "http://envirosense.duckdns.org:8000/users",
+            "time": 164,
+            "responseCode": {
+                "code": 200,
+                "name": "OK"
+            },
+            "tests": {},
+            "testPassFailCounts": {},
+            "times": [
+                164
+            ],
+            "allTests": [
+                {}
+            ]
+        },
+        {
+            "id": "36300d44-d2f3-4fca-a9dc-82d3213fb0ca",
+            "name": "GET User",
+            "url": "http://envirosense.duckdns.org:8000/users/6817bbed0009e59e6e8fd6c8",
+            "time": 165,
+            "responseCode": {
+                "code": 200,
+                "name": "OK"
+            },
+            "tests": {},
+            "testPassFailCounts": {},
+            "times": [
+                165
+            ],
+            "allTests": [
+                {}
+            ]
+        },
+        {
+            "id": "8a3bfba2-3279-48b5-91fe-b9618e5a0ad3",
+            "name": "CREATE User",
+            "url": "http://envirosense.duckdns.org:8000/users/",
+            "time": 499,
+            "responseCode": {
+                "code": 201,
+                "name": "Created"
+            },
+            "tests": {},
+            "testPassFailCounts": {},
+            "times": [
+                499
+            ],
+            "allTests": [
+                {}
+            ]
+        },
+        {
+            "id": "cf05e5f7-6985-4f1f-b026-e774927f3851",
+            "name": "UPDATE User",
+            "url": "http://envirosense.duckdns.org:8000/users/",
+            "time": 181,
+            "responseCode": {
+                "code": 200,
+                "name": "OK"
+            },
+            "tests": {},
+            "testPassFailCounts": {},
+            "times": [
+                181
+            ],
+            "allTests": [
+                {}
+            ]
+        },
+        {
+            "id": "cf05e5f7-6985-4f1f-b026-e774927f3851",
+            "name": "UPDATE User",
+            "url": "http://envirosense.duckdns.org:8000/users/",
+            "time": 337,
+            "responseCode": {
+                "code": 200,
+                "name": "OK"
+            },
+            "tests": {},
+            "testPassFailCounts": {},
+            "times": [
+                337
+            ],
+            "allTests": [
+                {}
+            ]
+        },
+        {
+            "id": "9c351214-fe87-4098-820b-baae3f08f91b",
+            "name": "UPDATE Current User Password",
+            "url": "http://envirosense.duckdns.org:8000/users/change/password",
+            "time": 827,
+            "responseCode": {
+                "code": 200,
+                "name": "OK"
+            },
+            "tests": {},
+            "testPassFailCounts": {},
+            "times": [
+                827
+            ],
+            "allTests": [
+                {}
+            ]
+        },
+        {
+            "id": "d316b085-2f5e-4386-8d6e-ce538e925e27",
+            "name": "UPDATE User Password",
+            "url": "http://envirosense.duckdns.org:8000/users/password",
+            "time": 510,
+            "responseCode": {
+                "code": 200,
+                "name": "OK"
+            },
+            "tests": {},
+            "testPassFailCounts": {},
+            "times": [
+                510
+            ],
+            "allTests": [
+                {}
+            ]
+        },
+        {
+            "id": "75829ffa-9e12-4e0c-ba3c-032687c4f811",
+            "name": "DELETE User",
+            "url": "http://envirosense.duckdns.org:8000/users/6817a9bc0009e59e6e8fd06a",
+            "time": 188,
+            "responseCode": {
+                "code": 200,
+                "name": "OK"
+            },
+            "tests": {},
+            "testPassFailCounts": {},
+            "times": [
+                188
+            ],
+            "allTests": [
+                {}
+            ]
+        },
+        {
+            "id": "f4f1c8d6-f114-4f73-afab-ca02aac2e15b",
+            "name": "GET Current User",
+            "url": "http://envirosense.duckdns.org:8000/users/me/",
+            "time": 181,
+            "responseCode": {
+                "code": 200,
+                "name": "OK"
+            },
+            "tests": {},
+            "testPassFailCounts": {},
+            "times": [
+                181
+            ],
+            "allTests": [
+                {}
+            ]
+        },
+        {
+            "id": "b0e925ac-dedd-4b55-9f57-544e982ad047",
+            "name": "GET Roles",
+            "url": "http://envirosense.duckdns.org:8000/roles",
+            "time": 180,
+            "responseCode": {
+                "code": 200,
+                "name": "OK"
+            },
+            "tests": {},
+            "testPassFailCounts": {},
+            "times": [
+                180
+            ],
+            "allTests": [
+                {}
+            ]
+        },
+        {
+            "id": "5ca83b98-887e-465e-af37-a54b3d0d9096",
+            "name": "CREATE Role",
+            "url": "http://envirosense.duckdns.org:8000/roles/",
+            "time": 184,
+            "responseCode": {
+                "code": 201,
+                "name": "Created"
+            },
+            "tests": {},
+            "testPassFailCounts": {},
+            "times": [
+                184
+            ],
+            "allTests": [
+                {}
+            ]
+        },
+        {
+            "id": "fabc510d-52bb-42e4-9cc1-f77b5e4272a4",
+            "name": "GET Role",
+            "url": "http://envirosense.duckdns.org:8000/roles/68179df40009e59e6e8fcc70",
+            "time": 172,
+            "responseCode": {
+                "code": 200,
+                "name": "OK"
+            },
+            "tests": {},
+            "testPassFailCounts": {},
+            "times": [
+                172
+            ],
+            "allTests": [
+                {}
+            ]
+        },
+        {
+            "id": "4c1dfc4d-ef8d-4234-b73d-f7ddc52a63e3",
+            "name": "UPDATE Role",
+            "url": "http://envirosense.duckdns.org:8000/roles/",
+            "time": 187,
+            "responseCode": {
+                "code": 200,
+                "name": "OK"
+            },
+            "tests": {},
+            "testPassFailCounts": {},
+            "times": [
+                187
+            ],
+            "allTests": [
+                {}
+            ]
+        },
+        {
+            "id": "462093d0-5735-48fc-ad8f-440cd665bf6f",
+            "name": "DELETE Role",
+            "url": "http://envirosense.duckdns.org:8000/roles/6817aaa90009e59e6e8fd0ba",
+            "time": 180,
+            "responseCode": {
+                "code": 200,
+                "name": "OK"
+            },
+            "tests": {},
+            "testPassFailCounts": {},
+            "times": [
+                180
+            ],
+            "allTests": [
+                {}
+            ]
+        },
+        {
+            "id": "ec2f66e2-5ecb-4ac2-8455-077e76631672",
+            "name": "GET Countries",
+            "url": "http://envirosense.duckdns.org:8000/countries",
+            "time": 181,
+            "responseCode": {
+                "code": 200,
+                "name": "OK"
+            },
+            "tests": {},
+            "testPassFailCounts": {},
+            "times": [
+                181
+            ],
+            "allTests": [
+                {}
+            ]
+        },
+        {
+            "id": "f5700949-3326-4431-b5cb-61d0dd94914e",
+            "name": "CREATE Country",
+            "url": "http://envirosense.duckdns.org:8000/countries/",
+            "time": 180,
+            "responseCode": {
+                "code": 201,
+                "name": "Created"
+            },
+            "tests": {},
+            "testPassFailCounts": {},
+            "times": [
+                180
+            ],
+            "allTests": [
+                {}
+            ]
+        },
+        {
+            "id": "1bf31ba9-8c7f-4bc0-b6de-06f113d4f306",
+            "name": "GET Country",
+            "url": "http://envirosense.duckdns.org:8000/countries/68179df50009e59e6e8fcc71",
+            "time": 191,
+            "responseCode": {
+                "code": 200,
+                "name": "OK"
+            },
+            "tests": {},
+            "testPassFailCounts": {},
+            "times": [
+                191
+            ],
+            "allTests": [
+                {}
+            ]
+        },
+        {
+            "id": "dd029555-3075-4cb5-addc-7bc047c275cb",
+            "name": "UPDATE Country",
+            "url": "http://envirosense.duckdns.org:8000/countries/",
+            "time": 177,
+            "responseCode": {
+                "code": 200,
+                "name": "OK"
+            },
+            "tests": {},
+            "testPassFailCounts": {},
+            "times": [
+                177
+            ],
+            "allTests": [
+                {}
+            ]
+        },
+        {
+            "id": "241e654b-1b63-45bb-a9ac-0e466c8616ee",
+            "name": "DELETE Country",
+            "url": "http://envirosense.duckdns.org:8000/countries/68179df50009e59e6e8fcc71",
+            "time": 171,
+            "responseCode": {
+                "code": 200,
+                "name": "OK"
+            },
+            "tests": {},
+            "testPassFailCounts": {},
+            "times": [
+                171
+            ],
+            "allTests": [
+                {}
+            ]
+        },
+        {
+            "id": "753ae6e8-b9a2-474f-bdb9-16a6b891eb8b",
+            "name": "GET Provinces",
+            "url": "http://envirosense.duckdns.org:8000/provinces",
+            "time": 176,
+            "responseCode": {
+                "code": 200,
+                "name": "OK"
+            },
+            "tests": {},
+            "testPassFailCounts": {},
+            "times": [
+                176
+            ],
+            "allTests": [
+                {}
+            ]
+        },
+        {
+            "id": "b2c582f2-8eb7-4293-9c07-a509be1a314b",
+            "name": "CREATE Province",
+            "url": "http://envirosense.duckdns.org:8000/provinces/",
+            "time": 179,
+            "responseCode": {
+                "code": 201,
+                "name": "Created"
+            },
+            "tests": {},
+            "testPassFailCounts": {},
+            "times": [
+                179
+            ],
+            "allTests": [
+                {}
+            ]
+        },
+        {
+            "id": "071a0e82-1a1a-4dba-b2cf-9bf5cb4028f5",
+            "name": "GET Province",
+            "url": "http://envirosense.duckdns.org:8000/provinces/67deaee5573afde3736f6d14",
+            "time": 467,
+            "responseCode": {
+                "code": 200,
+                "name": "OK"
+            },
+            "tests": {},
+            "testPassFailCounts": {},
+            "times": [
+                467
+            ],
+            "allTests": [
+                {}
+            ]
+        },
+        {
+            "id": "0c289564-50f8-4791-bd84-aa882b341a3e",
+            "name": "UPDATE Province",
+            "url": "http://envirosense.duckdns.org:8000/provinces/",
+            "time": 184,
+            "responseCode": {
+                "code": 200,
+                "name": "OK"
+            },
+            "tests": {},
+            "testPassFailCounts": {},
+            "times": [
+                184
+            ],
+            "allTests": [
+                {}
+            ]
+        },
+        {
+            "id": "29f1082c-2483-4f10-9cfe-63532f19e838",
+            "name": "DELETE Province",
+            "url": "http://envirosense.duckdns.org:8000/provinces/68179df60009e59e6e8fcc72",
+            "time": 175,
+            "responseCode": {
+                "code": 200,
+                "name": "OK"
+            },
+            "tests": {},
+            "testPassFailCounts": {},
+            "times": [
+                175
+            ],
+            "allTests": [
+                {}
+            ]
+        },
+        {
+            "id": "f2d94814-3ad8-49c3-92a1-f3b871ddf070",
+            "name": "GET Cities",
+            "url": "http://envirosense.duckdns.org:8000/cities",
+            "time": 187,
+            "responseCode": {
+                "code": 200,
+                "name": "OK"
+            },
+            "tests": {},
+            "testPassFailCounts": {},
+            "times": [
+                187
+            ],
+            "allTests": [
+                {}
+            ]
+        },
+        {
+            "id": "73020e31-822f-454a-8587-b6d87df0dd61",
+            "name": "CREATE City",
+            "url": "http://envirosense.duckdns.org:8000/cities/",
+            "time": 188,
+            "responseCode": {
+                "code": 201,
+                "name": "Created"
+            },
+            "tests": {},
+            "testPassFailCounts": {},
+            "times": [
+                188
+            ],
+            "allTests": [
+                {}
+            ]
+        },
+        {
+            "id": "6c42ec16-d9ca-4427-b87a-0589b52f21ed",
+            "name": "GET City",
+            "url": "http://envirosense.duckdns.org:8000/cities/67deaf93573afde3736f6d15",
+            "time": 339,
+            "responseCode": {
+                "code": 200,
+                "name": "OK"
+            },
+            "tests": {},
+            "testPassFailCounts": {},
+            "times": [
+                339
+            ],
+            "allTests": [
+                {}
+            ]
+        },
+        {
+            "id": "052f013a-1b30-4f75-b903-7474c9fbe134",
+            "name": "UPDATE City",
+            "url": "http://envirosense.duckdns.org:8000/cities/",
+            "time": 365,
+            "responseCode": {
+                "code": 200,
+                "name": "OK"
+            },
+            "tests": {},
+            "testPassFailCounts": {},
+            "times": [
+                365
+            ],
+            "allTests": [
+                {}
+            ]
+        },
+        {
+            "id": "92eda9a7-9daa-4517-a38b-a47b09740dc1",
+            "name": "DELETE City",
+            "url": "http://envirosense.duckdns.org:8000/cities/68179df70009e59e6e8fcc73",
+            "time": 179,
+            "responseCode": {
+                "code": 200,
+                "name": "OK"
+            },
+            "tests": {},
+            "testPassFailCounts": {},
+            "times": [
+                179
+            ],
+            "allTests": [
+                {}
+            ]
+        },
+        {
+            "id": "999e29c5-8f36-409b-a128-2afdde924b9e",
+            "name": "GET Companies",
+            "url": "http://envirosense.duckdns.org:8000/company",
+            "time": 165,
+            "responseCode": {
+                "code": 200,
+                "name": "OK"
+            },
+            "tests": {},
+            "testPassFailCounts": {},
+            "times": [
+                165
+            ],
+            "allTests": [
+                {}
+            ]
+        },
+        {
+            "id": "0d3eb71f-23eb-44bb-8c3e-ace009cf64f1",
+            "name": "CREATE Company",
+            "url": "http://envirosense.duckdns.org:8000/company/",
+            "time": 490,
+            "responseCode": {
+                "code": 201,
+                "name": "Created"
+            },
+            "tests": {},
+            "testPassFailCounts": {},
+            "times": [
+                490
+            ],
+            "allTests": [
+                {}
+            ]
+        },
+        {
+            "id": "79515b5c-3dab-41b8-b333-cfa5c0c77059",
+            "name": "GET Company",
+            "url": "http://envirosense.duckdns.org:8000/company/67deb0ec573afde3736f6d1f",
+            "time": 177,
+            "responseCode": {
+                "code": 200,
+                "name": "OK"
+            },
+            "tests": {},
+            "testPassFailCounts": {},
+            "times": [
+                177
+            ],
+            "allTests": [
+                {}
+            ]
+        },
+        {
+            "id": "42dd07d7-5c08-45c5-b73a-671fcade0a9c",
+            "name": "UPDATE Company",
+            "url": "http://envirosense.duckdns.org:8000/company/",
+            "time": 170,
+            "responseCode": {
+                "code": 200,
+                "name": "OK"
+            },
+            "tests": {},
+            "testPassFailCounts": {},
+            "times": [
+                170
+            ],
+            "allTests": [
+                {}
+            ]
+        },
+        {
+            "id": "15ba34c9-f59f-4b5c-ae8f-46fca7e841d9",
+            "name": "DELETE Company",
+            "url": "http://envirosense.duckdns.org:8000/company/6817ad420009e59e6e8fd198",
+            "time": 159,
+            "responseCode": {
+                "code": 200,
+                "name": "OK"
+            },
+            "tests": {},
+            "testPassFailCounts": {},
+            "times": [
+                159
+            ],
+            "allTests": [
+                {}
+            ]
+        },
+        {
+            "id": "f2472524-71b6-45dd-b643-c613c051caaf",
+            "name": "GET Environment Types",
+            "url": "http://envirosense.duckdns.org:8000/environments/types/",
+            "time": 167,
+            "responseCode": {
+                "code": 200,
+                "name": "OK"
+            },
+            "tests": {},
+            "testPassFailCounts": {},
+            "times": [
+                167
+            ],
+            "allTests": [
+                {}
+            ]
+        },
+        {
+            "id": "e510f4c7-62ea-4ed1-8812-d66d949f3937",
+            "name": "CREATE Environment Type",
+            "url": "http://envirosense.duckdns.org:8000/environments/types/",
+            "time": 180,
+            "responseCode": {
+                "code": 201,
+                "name": "Created"
+            },
+            "tests": {},
+            "testPassFailCounts": {},
+            "times": [
+                180
+            ],
+            "allTests": [
+                {}
+            ]
+        },
+        {
+            "id": "43f36544-7119-47bd-a617-a5c599513988",
+            "name": "GET Environment Type",
+            "url": "http://envirosense.duckdns.org:8000/environments/types/68179df90009e59e6e8fcc75",
+            "time": 176,
+            "responseCode": {
+                "code": 200,
+                "name": "OK"
+            },
+            "tests": {},
+            "testPassFailCounts": {},
+            "times": [
+                176
+            ],
+            "allTests": [
+                {}
+            ]
+        },
+        {
+            "id": "d6cefae6-2953-41c6-b1c0-ec64125fe951",
+            "name": "UPDATE Environment Type",
+            "url": "http://envirosense.duckdns.org:8000/environments/types/",
+            "time": 172,
+            "responseCode": {
+                "code": 200,
+                "name": "OK"
+            },
+            "tests": {},
+            "testPassFailCounts": {},
+            "times": [
+                172
+            ],
+            "allTests": [
+                {}
+            ]
+        },
+        {
+            "id": "bee9b0b7-4bf2-4c88-94cb-689a7c1b66ce",
+            "name": "DELETE Environment Type",
+            "url": "http://envirosense.duckdns.org:8000/environments/types/68179df90009e59e6e8fcc75",
+            "time": 161,
+            "responseCode": {
+                "code": 200,
+                "name": "OK"
+            },
+            "tests": {},
+            "testPassFailCounts": {},
+            "times": [
+                161
+            ],
+            "allTests": [
+                {}
+            ]
+        },
+        {
+            "id": "d36466a0-2612-4ebe-9d84-a305b351d4ed",
+            "name": "GET Environments",
+            "url": "http://envirosense.duckdns.org:8000/environments",
+            "time": 166,
+            "responseCode": {
+                "code": 200,
+                "name": "OK"
+            },
+            "tests": {},
+            "testPassFailCounts": {},
+            "times": [
+                166
+            ],
+            "allTests": [
+                {}
+            ]
+        },
+        {
+            "id": "6711de3e-9c45-4854-90e2-08046f902985",
+            "name": "CREATE Environment",
+            "url": "http://envirosense.duckdns.org:8000/environments/",
+            "time": 184,
+            "responseCode": {
+                "code": 201,
+                "name": "Created"
+            },
+            "tests": {},
+            "testPassFailCounts": {},
+            "times": [
+                184
+            ],
+            "allTests": [
+                {}
+            ]
+        },
+        {
+            "id": "94c0298a-0fb0-4f50-9b97-b54317e80ae5",
+            "name": "GET Environment",
+            "url": "http://envirosense.duckdns.org:8000/environments/67deb155573afde3736f6d20",
+            "time": 173,
+            "responseCode": {
+                "code": 200,
+                "name": "OK"
+            },
+            "tests": {},
+            "testPassFailCounts": {},
+            "times": [
+                173
+            ],
+            "allTests": [
+                {}
+            ]
+        },
+        {
+            "id": "ded624bf-33d6-4235-b9cb-39dc6e2a10d9",
+            "name": "UPDATE Environment",
+            "url": "http://envirosense.duckdns.org:8000/environments/",
+            "time": 177,
+            "responseCode": {
+                "code": 200,
+                "name": "OK"
+            },
+            "tests": {},
+            "testPassFailCounts": {},
+            "times": [
+                177
+            ],
+            "allTests": [
+                {}
+            ]
+        },
+        {
+            "id": "099df48b-cba1-49e7-94fe-7a83dc9c2d65",
+            "name": "DELETE Environment",
+            "url": "http://envirosense.duckdns.org:8000/environments/6817af970009e59e6e8fd261",
+            "time": 165,
+            "responseCode": {
+                "code": 200,
+                "name": "OK"
+            },
+            "tests": {},
+            "testPassFailCounts": {},
+            "times": [
+                165
+            ],
+            "allTests": [
+                {}
+            ]
+        },
+        {
+            "id": "7c78bbae-8219-41c9-b0b4-029260a8a15d",
+            "name": "GET Environment Sensors",
+            "url": "http://envirosense.duckdns.org:8000/environments/67deb155573afde3736f6d20/sensor-codes",
+            "time": 172,
+            "responseCode": {
+                "code": 200,
+                "name": "OK"
+            },
+            "tests": {},
+            "testPassFailCounts": {},
+            "times": [
+                172
+            ],
+            "allTests": [
+                {}
+            ]
+        },
+        {
+            "id": "fa981f7a-d6d3-46df-a35c-ed158e2e55ff",
+            "name": "GET Actuators",
+            "url": "http://envirosense.duckdns.org:8000/actuators/",
+            "time": 184,
+            "responseCode": {
+                "code": 200,
+                "name": "OK"
+            },
+            "tests": {},
+            "testPassFailCounts": {},
+            "times": [
+                184
+            ],
+            "allTests": [
+                {}
+            ]
+        },
+        {
+            "id": "c3610732-a5d8-472d-ba71-d20bb9a701eb",
+            "name": "CREATE Actuator",
+            "url": "http://envirosense.duckdns.org:8000/actuators/",
+            "time": 182,
+            "responseCode": {
+                "code": 201,
+                "name": "Created"
+            },
+            "tests": {},
+            "testPassFailCounts": {},
+            "times": [
+                182
+            ],
+            "allTests": [
+                {}
+            ]
+        },
+        {
+            "id": "8a716c16-f6dd-41be-8116-88b6362af2c0",
+            "name": "GET Actuator",
+            "url": "http://envirosense.duckdns.org:8000/actuators/67deb414573afde3736f6d29",
+            "time": 174,
+            "responseCode": {
+                "code": 200,
+                "name": "OK"
+            },
+            "tests": {},
+            "testPassFailCounts": {},
+            "times": [
+                174
+            ],
+            "allTests": [
+                {}
+            ]
+        },
+        {
+            "id": "534a7cac-dd58-403c-ac15-a493f5885b1e",
+            "name": "UPDATE Actuator",
+            "url": "http://envirosense.duckdns.org:8000/actuators/",
+            "time": 179,
+            "responseCode": {
+                "code": 200,
+                "name": "OK"
+            },
+            "tests": {},
+            "testPassFailCounts": {},
+            "times": [
+                179
+            ],
+            "allTests": [
+                {}
+            ]
+        },
+        {
+            "id": "c7c987b1-0b76-4d62-a182-839ad241fc8e",
+            "name": "DELETE Actuator",
+            "url": "http://envirosense.duckdns.org:8000/actuators/6817b0c70009e59e6e8fd2c7",
+            "time": 176,
+            "responseCode": {
+                "code": 200,
+                "name": "OK"
+            },
+            "tests": {},
+            "testPassFailCounts": {},
+            "times": [
+                176
+            ],
+            "allTests": [
+                {}
+            ]
+        },
+        {
+            "id": "ec62df26-ff9a-498a-bfe2-5d8a5f027a0f",
+            "name": "GET Actuators Logs",
+            "url": "http://envirosense.duckdns.org:8000/actuators/log/",
+            "time": 193,
+            "responseCode": {
+                "code": 200,
+                "name": "OK"
+            },
+            "tests": {},
+            "testPassFailCounts": {},
+            "times": [
+                193
+            ],
+            "allTests": [
+                {}
+            ]
+        },
+        {
+            "id": "95295357-11ce-49ff-9001-b3950c213e34",
+            "name": "GET Actuator Log",
+            "url": "http://envirosense.duckdns.org:8000/actuators/log/681591fcc0b8fa28a7b5a6cc",
+            "time": 173,
+            "responseCode": {
+                "code": 200,
+                "name": "OK"
+            },
+            "tests": {},
+            "testPassFailCounts": {},
+            "times": [
+                173
+            ],
+            "allTests": [
+                {}
+            ]
+        },
+        {
+            "id": "c262b1b0-e276-400d-b9ee-e534970f0c83",
+            "name": "GET Actuators Data",
+            "url": "http://envirosense.duckdns.org:8000/actuators/data/?actuator_code=AC001&start_date=2025-05-01T16:30:00&=2025-05-31T23:59:59&aggregation=30m&limit=10&page=2",
+            "time": 271,
+            "responseCode": {
+                "code": 200,
+                "name": "OK"
+            },
+            "tests": {},
+            "testPassFailCounts": {},
+            "times": [
+                271
+            ],
+            "allTests": [
+                {}
+            ]
+        },
+        {
+            "id": "637dbee0-c29f-4f88-a22b-9806b7673073",
+            "name": "GET Actuator Data",
+            "url": "http://envirosense.duckdns.org:8000/actuators/data/6817b19f0009e59e6e8fd313",
+            "time": 180,
+            "responseCode": {
+                "code": 200,
+                "name": "OK"
+            },
+            "tests": {},
+            "testPassFailCounts": {},
+            "times": [
+                180
+            ],
+            "allTests": [
+                {}
+            ]
+        },
+        {
+            "id": "94eaf040-0d6a-4aa7-8dab-5b7341b5c91f",
+            "name": "CREATE Actuator Data",
+            "url": "http://envirosense.duckdns.org:8000/actuators/data/",
+            "time": 154,
+            "responseCode": {
+                "code": 201,
+                "name": "Created"
+            },
+            "tests": {},
+            "testPassFailCounts": {},
+            "times": [
+                154
+            ],
+            "allTests": [
+                {}
+            ]
+        },
+        {
+            "id": "edb65421-c310-4e4e-8074-59077d8a0b49",
+            "name": "GET Nutrient Types",
+            "url": "http://envirosense.duckdns.org:8000/nutrients/types/",
+            "time": 169,
+            "responseCode": {
+                "code": 200,
+                "name": "OK"
+            },
+            "tests": {},
+            "testPassFailCounts": {},
+            "times": [
+                169
+            ],
+            "allTests": [
+                {}
+            ]
+        },
+        {
+            "id": "234fd659-2d6f-409a-bc45-a298fc92fa9d",
+            "name": "CREATE Nutrient Type",
+            "url": "http://envirosense.duckdns.org:8000/nutrients/types/",
+            "time": 182,
+            "responseCode": {
+                "code": 201,
+                "name": "Created"
+            },
+            "tests": {},
+            "testPassFailCounts": {},
+            "times": [
+                182
+            ],
+            "allTests": [
+                {}
+            ]
+        },
+        {
+            "id": "67af2558-c2ec-41d8-9552-73c1fd0a19e3",
+            "name": "GET Nutrient Type",
+            "url": "http://envirosense.duckdns.org:8000/nutrients/types/67deafb7573afde3736f6d17",
+            "time": 182,
+            "responseCode": {
+                "code": 200,
+                "name": "OK"
+            },
+            "tests": {},
+            "testPassFailCounts": {},
+            "times": [
+                182
+            ],
+            "allTests": [
+                {}
+            ]
+        },
+        {
+            "id": "d231fdbc-ec2f-4cb8-bf96-38108b3c5bfa",
+            "name": "UPDATE Nutrient Type",
+            "url": "http://envirosense.duckdns.org:8000/nutrients/types/",
+            "time": 169,
+            "responseCode": {
+                "code": 200,
+                "name": "OK"
+            },
+            "tests": {},
+            "testPassFailCounts": {},
+            "times": [
+                169
+            ],
+            "allTests": [
+                {}
+            ]
+        },
+        {
+            "id": "cf3b91c0-12a2-46e9-937f-6ebdbe1be3dc",
+            "name": "DELETE Nutrient Type",
+            "url": "http://envirosense.duckdns.org:8000/nutrients/types/68179dfd0009e59e6e8fcc77",
+            "time": 181,
+            "responseCode": {
+                "code": 200,
+                "name": "OK"
+            },
+            "tests": {},
+            "testPassFailCounts": {},
+            "times": [
+                181
+            ],
+            "allTests": [
+                {}
+            ]
+        },
+        {
+            "id": "bb1d17a1-dd59-4e38-bd2c-655a18b75b04",
+            "name": "GET Consumption Sensors",
+            "url": "http://envirosense.duckdns.org:8000/sensors/consumption",
+            "time": 172,
+            "responseCode": {
+                "code": 200,
+                "name": "OK"
+            },
+            "tests": {},
+            "testPassFailCounts": {},
+            "times": [
+                172
+            ],
+            "allTests": [
+                {}
+            ]
+        },
+        {
+            "id": "e8c9139f-54b9-46c9-821d-6219fcf8d874",
+            "name": "CREATE Consumption Sensor",
+            "url": "http://envirosense.duckdns.org:8000/sensors/consumption",
+            "time": 187,
+            "responseCode": {
+                "code": 201,
+                "name": "Created"
+            },
+            "tests": {},
+            "testPassFailCounts": {},
+            "times": [
+                187
+            ],
+            "allTests": [
+                {}
+            ]
+        },
+        {
+            "id": "a4a2fef6-33ea-4212-b5a3-6bfb52da53ef",
+            "name": "GET Consumption Sensor",
+            "url": "http://envirosense.duckdns.org:8000/sensors/consumption/67deb39b573afde3736f6d27",
+            "time": 163,
+            "responseCode": {
+                "code": 200,
+                "name": "OK"
+            },
+            "tests": {},
+            "testPassFailCounts": {},
+            "times": [
+                163
+            ],
+            "allTests": [
+                {}
+            ]
+        },
+        {
+            "id": "a6707f59-e9b0-4533-9fd7-33da7373cf30",
+            "name": "UPDATE Consumption Sensor",
+            "url": "http://envirosense.duckdns.org:8000/sensors/consumption",
+            "time": 182,
+            "responseCode": {
+                "code": 200,
+                "name": "OK"
+            },
+            "tests": {},
+            "testPassFailCounts": {},
+            "times": [
+                182
+            ],
+            "allTests": [
+                {}
+            ]
+        },
+        {
+            "id": "658b7643-71f9-4574-8a8b-279ffe2477d4",
+            "name": "DELETE Consumption Sensor",
+            "url": "http://envirosense.duckdns.org:8000/sensors/consumption/6817b43c0009e59e6e8fd3f8",
+            "time": 164,
+            "responseCode": {
+                "code": 200,
+                "name": "OK"
+            },
+            "tests": {},
+            "testPassFailCounts": {},
+            "times": [
+                164
+            ],
+            "allTests": [
+                {}
+            ]
+        },
+        {
+            "id": "bf7e8c4c-0a18-4bc9-9816-5d32b6369852",
+            "name": "GET Consumption Sensors Log",
+            "url": "http://envirosense.duckdns.org:8000/sensors/consumption/log/",
+            "time": 179,
+            "responseCode": {
+                "code": 200,
+                "name": "OK"
+            },
+            "tests": {},
+            "testPassFailCounts": {},
+            "times": [
+                179
+            ],
+            "allTests": [
+                {}
+            ]
+        },
+        {
+            "id": "314535ed-29e7-48a0-a888-e8c6500d1862",
+            "name": "GET Consumption Sensor Log",
+            "url": "http://envirosense.duckdns.org:8000/sensors/consumption/log/68159212c0b8fa28a7b5a6d8",
+            "time": 179,
+            "responseCode": {
+                "code": 200,
+                "name": "OK"
+            },
+            "tests": {},
+            "testPassFailCounts": {},
+            "times": [
+                179
+            ],
+            "allTests": [
+                {}
+            ]
+        },
+        {
+            "id": "7fe874b7-8244-4df6-b674-54e44b11fb2a",
+            "name": "GET Consumption Sensors Data",
+            "url": "http://envirosense.duckdns.org:8000/sensors/consumption/data/?sensor_code=SC001&start_date=2025-05-01T16:30:00&end_date=2025-05-31T23:59:59&aggregation=5m&limit=50&page=3",
+            "time": 208,
+            "responseCode": {
+                "code": 200,
+                "name": "OK"
+            },
+            "tests": {},
+            "testPassFailCounts": {},
+            "times": [
+                208
+            ],
+            "allTests": [
+                {}
+            ]
+        },
+        {
+            "id": "76186e94-2d02-48af-bfaf-38203cda2c41",
+            "name": "GET Consumption Sensor Data",
+            "url": "http://envirosense.duckdns.org:8000/sensors/consumption/data/6817b4d80009e59e6e8fd42e",
+            "time": 166,
+            "responseCode": {
+                "code": 200,
+                "name": "OK"
+            },
+            "tests": {},
+            "testPassFailCounts": {},
+            "times": [
+                166
+            ],
+            "allTests": [
+                {}
+            ]
+        },
+        {
+            "id": "8d3a19cb-253b-43fb-81cb-860885df753a",
+            "name": "CREATE Consumption Sensor Data",
+            "url": "http://envirosense.duckdns.org:8000/sensors/consumption/data/",
+            "time": 181,
+            "responseCode": {
+                "code": 201,
+                "name": "Created"
+            },
+            "tests": {},
+            "testPassFailCounts": {},
+            "times": [
+                181
+            ],
+            "allTests": [
+                {}
+            ]
+        },
+        {
+            "id": "6c8a89b6-2092-437d-b3b4-131dfbc045ad",
+            "name": "GET Environmental Sensors",
+            "url": "http://envirosense.duckdns.org:8000/sensors/environmental",
+            "time": 177,
+            "responseCode": {
+                "code": 200,
+                "name": "OK"
+            },
+            "tests": {},
+            "testPassFailCounts": {},
+            "times": [
+                177
+            ],
+            "allTests": [
+                {}
+            ]
+        },
+        {
+            "id": "14276323-8ff9-4380-974c-bd25f7f81bc7",
+            "name": "CREATE Environmental Sensor",
+            "url": "http://envirosense.duckdns.org:8000/sensors/environmental",
+            "time": 194,
+            "responseCode": {
+                "code": 201,
+                "name": "Created"
+            },
+            "tests": {},
+            "testPassFailCounts": {},
+            "times": [
+                194
+            ],
+            "allTests": [
+                {}
+            ]
+        },
+        {
+            "id": "eff9ea38-febc-41d1-b5b3-1770fd14be6f",
+            "name": "GET Environmental Sensor",
+            "url": "http://envirosense.duckdns.org:8000/sensors/environmental/67deb280573afde3736f6d22",
+            "time": 178,
+            "responseCode": {
+                "code": 200,
+                "name": "OK"
+            },
+            "tests": {},
+            "testPassFailCounts": {},
+            "times": [
+                178
+            ],
+            "allTests": [
+                {}
+            ]
+        },
+        {
+            "id": "800fe62d-5fb5-4b34-a436-addfcdd6693f",
+            "name": "UPDATE Environmental Sensor",
+            "url": "http://envirosense.duckdns.org:8000/sensors/environmental",
+            "time": 178,
+            "responseCode": {
+                "code": 200,
+                "name": "OK"
+            },
+            "tests": {},
+            "testPassFailCounts": {},
+            "times": [
+                178
+            ],
+            "allTests": [
+                {}
+            ]
+        },
+        {
+            "id": "5ee5cb29-80d8-4013-8e35-bbe5c801e26d",
+            "name": "DELETE Environmental Sensor",
+            "url": "http://envirosense.duckdns.org:8000/sensors/environmental/6817c6e313e3c89d5ec49241",
+            "time": 468,
+            "responseCode": {
+                "code": 200,
+                "name": "OK"
+            },
+            "tests": {},
+            "testPassFailCounts": {},
+            "times": [
+                468
+            ],
+            "allTests": [
+                {}
+            ]
+        },
+        {
+            "id": "26ac097e-5abc-4998-85e0-5d3c5e210341",
+            "name": "GET Environmental Sensors Log",
+            "url": "http://envirosense.duckdns.org:8000/sensors/environmental/log/",
+            "time": 186,
+            "responseCode": {
+                "code": 200,
+                "name": "OK"
+            },
+            "tests": {},
+            "testPassFailCounts": {},
+            "times": [
+                186
+            ],
+            "allTests": [
+                {}
+            ]
+        },
+        {
+            "id": "2c93afa2-06cc-4a6e-802b-fe01a1905c1d",
+            "name": "GET Environmental Sensor Log",
+            "url": "http://envirosense.duckdns.org:8000/sensors/environmental/log/68159226c0b8fa28a7b5a6e5",
+            "time": 189,
+            "responseCode": {
+                "code": 200,
+                "name": "OK"
+            },
+            "tests": {},
+            "testPassFailCounts": {},
+            "times": [
+                189
+            ],
+            "allTests": [
+                {}
+            ]
+        },
+        {
+            "id": "9de40d0a-3bda-4a2d-a682-64fca1b84f21",
+            "name": "GET Environmental Sensors Data",
+            "url": "http://envirosense.duckdns.org:8000/sensors/environmental/data/?sensor_code=SE001&start_date=2025-05-01T16:30:00&end_date=2025-05-31T23:59:59&aggregation=30m",
+            "time": 210,
+            "responseCode": {
+                "code": 200,
+                "name": "OK"
+            },
+            "tests": {},
+            "testPassFailCounts": {},
+            "times": [
+                210
+            ],
+            "allTests": [
+                {}
+            ]
+        },
+        {
+            "id": "124010f1-fea2-4410-b965-e1805bb504cc",
+            "name": "GET Environmental Sensor Data",
+            "url": "http://envirosense.duckdns.org:8000/sensors/environmental/data/6817b7610009e59e6e8fd50c",
+            "time": 166,
+            "responseCode": {
+                "code": 200,
+                "name": "OK"
+            },
+            "tests": {},
+            "testPassFailCounts": {},
+            "times": [
+                166
+            ],
+            "allTests": [
+                {}
+            ]
+        },
+        {
+            "id": "e59a1575-42c4-499e-81e4-7dd6ef58eb21",
+            "name": "CREATE Environmental Sensor Data",
+            "url": "http://envirosense.duckdns.org:8000/sensors/environmental/data/",
+            "time": 174,
+            "responseCode": {
+                "code": 201,
+                "name": "Created"
+            },
+            "tests": {},
+            "testPassFailCounts": {},
+            "times": [
+                174
+            ],
+            "allTests": [
+                {}
+            ]
+        },
+        {
+            "id": "bee830f9-d9da-4fef-9118-3be13fbebee2",
+            "name": "GET Nutrient Solution Sensors",
+            "url": "http://envirosense.duckdns.org:8000/sensors/nutrients/solution",
+            "time": 182,
+            "responseCode": {
+                "code": 200,
+                "name": "OK"
+            },
+            "tests": {},
+            "testPassFailCounts": {},
+            "times": [
+                182
+            ],
+            "allTests": [
+                {}
+            ]
+        },
+        {
+            "id": "603ad221-4797-45aa-be67-719785324c86",
+            "name": "CREATE Nutrient Solution Sensor",
+            "url": "http://envirosense.duckdns.org:8000/sensors/nutrients/solution",
+            "time": 179,
+            "responseCode": {
+                "code": 201,
+                "name": "Created"
+            },
+            "tests": {},
+            "testPassFailCounts": {},
+            "times": [
+                179
+            ],
+            "allTests": [
+                {}
+            ]
+        },
+        {
+            "id": "020fe53a-5e2d-4cb0-957d-523dd8866b1b",
+            "name": "GET Nutrient Solution Sensor",
+            "url": "http://envirosense.duckdns.org:8000/sensors/nutrients/solution/6817b7f90009e59e6e8fd53f",
+            "time": 184,
+            "responseCode": {
+                "code": 200,
+                "name": "OK"
+            },
+            "tests": {},
+            "testPassFailCounts": {},
+            "times": [
+                184
+            ],
+            "allTests": [
+                {}
+            ]
+        },
+        {
+            "id": "201e8596-69d3-4aff-8d9c-6f19ce4fd467",
+            "name": "UPDATE Nutrient Solution Sensor",
+            "url": "http://envirosense.duckdns.org:8000/sensors/nutrients/solution",
+            "time": 179,
+            "responseCode": {
+                "code": 200,
+                "name": "OK"
+            },
+            "tests": {},
+            "testPassFailCounts": {},
+            "times": [
+                179
+            ],
+            "allTests": [
+                {}
+            ]
+        },
+        {
+            "id": "efebf292-e506-4bcc-9a5e-a893e9649f3b",
+            "name": "DELETE Nutrient Solution Sensor",
+            "url": "http://envirosense.duckdns.org:8000/sensors/nutrients/solution/6817b7f90009e59e6e8fd53f",
+            "time": 178,
+            "responseCode": {
+                "code": 200,
+                "name": "OK"
+            },
+            "tests": {},
+            "testPassFailCounts": {},
+            "times": [
+                178
+            ],
+            "allTests": [
+                {}
+            ]
+        },
+        {
+            "id": "d231f71e-2734-4213-8849-8cbee1cfeee0",
+            "name": "GET Nutrient Solution Sensors Log",
+            "url": "http://envirosense.duckdns.org:8000/sensors/nutrients/solution/log/",
+            "time": 184,
+            "responseCode": {
+                "code": 200,
+                "name": "OK"
+            },
+            "tests": {},
+            "testPassFailCounts": {},
+            "times": [
+                184
+            ],
+            "allTests": [
+                {}
+            ]
+        },
+        {
+            "id": "3a4895a6-3edc-4bb1-bd6a-f38ca9675a0d",
+            "name": "GET Nutrient Solution Sensor Log",
+            "url": "http://envirosense.duckdns.org:8000/sensors/nutrients/solution/log/68159269c0b8fa28a7b5a710",
+            "time": 183,
+            "responseCode": {
+                "code": 200,
+                "name": "OK"
+            },
+            "tests": {},
+            "testPassFailCounts": {},
+            "times": [
+                183
+            ],
+            "allTests": [
+                {}
+            ]
+        },
+        {
+            "id": "c46d0d2c-eaa0-4aaf-ac35-20339abdc114",
+            "name": "GET Nutrient Solution Sensors Data",
+            "url": "http://envirosense.duckdns.org:8000/sensors/nutrients/solution/data/?sensor_code=SSN001&start_date=2025-05-01T18:00:00&end_date=2025-05-31T23:59:59&aggregation=30m",
+            "time": 198,
+            "responseCode": {
+                "code": 200,
+                "name": "OK"
+            },
+            "tests": {},
+            "testPassFailCounts": {},
+            "times": [
+                198
+            ],
+            "allTests": [
+                {}
+            ]
+        },
+        {
+            "id": "955a5beb-ab12-48c8-93e8-ceadb9a2e7d1",
+            "name": "GET Nutrient Solution Sensor Data",
+            "url": "http://envirosense.duckdns.org:8000/sensors/nutrients/solution/data/6817b8c70009e59e6e8fd586",
+            "time": 174,
+            "responseCode": {
+                "code": 200,
+                "name": "OK"
+            },
+            "tests": {},
+            "testPassFailCounts": {},
+            "times": [
+                174
+            ],
+            "allTests": [
+                {}
+            ]
+        },
+        {
+            "id": "7a785800-bfc7-48cb-91ad-75ac1b83e895",
+            "name": "CREATE Nutrient Solution Sensor Data",
+            "url": "http://envirosense.duckdns.org:8000/sensors/nutrients/solution/data/",
+            "time": 175,
+            "responseCode": {
+                "code": 201,
+                "name": "Created"
+            },
+            "tests": {},
+            "testPassFailCounts": {},
+            "times": [
+                175
+            ],
+            "allTests": [
+                {}
+            ]
+        }
+    ],
+    "count": 1,
+    "totalTime": 22686,
+    "collection": {
+        "requests": [
+            {
+                "id": "e6ac61e7-ea1a-4168-af62-b15c86215dd4",
+                "method": "POST"
+            },
+            {
+                "id": "3278c2b0-89f4-44d1-9b81-61b7d5916c32",
+                "method": "GET"
+            },
+            {
+                "id": "40dd2eaf-35e2-4636-877d-cb62d65fda5b",
+                "method": "POST"
+            },
+            {
+                "id": "a9fa95e7-2d76-4e49-b81a-155e038db3bc",
+                "method": "POST"
+            },
+            {
+                "id": "02687c62-f9c5-4c8f-8e83-a563a5536896",
+                "method": "POST"
+            },
+            {
+                "id": "f3cfd37d-0a87-4d98-83ee-bf2018801557",
+                "method": "POST"
+            },
+            {
+                "id": "b893c9d7-7775-47fd-909b-45097485e22b",
+                "method": "POST"
+            },
+            {
+                "id": "665e1223-126c-4c4d-a933-2a7c78364f80",
+                "method": "POST"
+            },
+            {
+                "id": "b86e9b31-fbe6-47d7-a6a6-95af37634d3a",
+                "method": "POST"
+            },
+            {
+                "id": "40784b46-e751-4079-b425-9eecc3ab2d5f",
+                "method": "POST"
+            },
+            {
+                "id": "a0f6b6c9-a677-428f-a6f6-ecf25f4f7d0c",
+                "method": "POST"
+            },
+            {
+                "id": "a4799d22-4532-4663-8098-56eadac040c1",
+                "method": "POST"
+            },
+            {
+                "id": "47f8ecb5-7fdd-4674-914a-32e0f6374a1c",
+                "method": "POST"
+            },
+            {
+                "id": "e5d893f3-d497-4c52-aac3-061150929057",
+                "method": "POST"
+            },
+            {
+                "id": "409ac0c9-98be-492c-8b2d-b8bf199ce817",
+                "method": "POST"
+            },
+            {
+                "id": "cf91f09e-f348-4fed-8a00-005c732b3967",
+                "method": "POST"
+            },
+            {
+                "id": "6d091001-71c8-4ff8-8817-9f1959be8737",
+                "method": "POST"
+            },
+            {
+                "id": "46421a6d-265c-4dbf-adc4-3777b6f1b01c",
+                "method": "POST"
+            },
+            {
+                "id": "7bb820cc-eabe-4480-9627-a1ab0d2e05d8",
+                "method": "POST"
+            },
+            {
+                "id": "5798de0a-2af4-4f36-9a88-3ea05d471ce1",
+                "method": "POST"
+            },
+            {
+                "id": "b1ec23ae-5475-42b9-b79e-7554c7344828",
+                "method": "GET"
+            },
+            {
+                "id": "7101c0f2-cb8b-46cf-91e6-4571406dce33",
+                "method": "GET"
+            },
+            {
+                "id": "36300d44-d2f3-4fca-a9dc-82d3213fb0ca",
+                "method": "GET"
+            },
+            {
+                "id": "8a3bfba2-3279-48b5-91fe-b9618e5a0ad3",
+                "method": "POST"
+            },
+            {
+                "id": "cf05e5f7-6985-4f1f-b026-e774927f3851",
+                "method": "PUT"
+            },
+            {
+                "id": "752c5b73-0984-4a2e-9d87-9f498e9d30a6",
+                "method": "PATCH"
+            },
+            {
+                "id": "9c351214-fe87-4098-820b-baae3f08f91b",
+                "method": "PATCH"
+            },
+            {
+                "id": "d316b085-2f5e-4386-8d6e-ce538e925e27",
+                "method": "PATCH"
+            },
+            {
+                "id": "75829ffa-9e12-4e0c-ba3c-032687c4f811",
+                "method": "DELETE"
+            },
+            {
+                "id": "f4f1c8d6-f114-4f73-afab-ca02aac2e15b",
+                "method": "GET"
+            },
+            {
+                "id": "b0e925ac-dedd-4b55-9f57-544e982ad047",
+                "method": "GET"
+            },
+            {
+                "id": "5ca83b98-887e-465e-af37-a54b3d0d9096",
+                "method": "POST"
+            },
+            {
+                "id": "fabc510d-52bb-42e4-9cc1-f77b5e4272a4",
+                "method": "GET"
+            },
+            {
+                "id": "4c1dfc4d-ef8d-4234-b73d-f7ddc52a63e3",
+                "method": "PUT"
+            },
+            {
+                "id": "462093d0-5735-48fc-ad8f-440cd665bf6f",
+                "method": "DELETE"
+            },
+            {
+                "id": "ec2f66e2-5ecb-4ac2-8455-077e76631672",
+                "method": "GET"
+            },
+            {
+                "id": "f5700949-3326-4431-b5cb-61d0dd94914e",
+                "method": "POST"
+            },
+            {
+                "id": "1bf31ba9-8c7f-4bc0-b6de-06f113d4f306",
+                "method": "GET"
+            },
+            {
+                "id": "dd029555-3075-4cb5-addc-7bc047c275cb",
+                "method": "PUT"
+            },
+            {
+                "id": "241e654b-1b63-45bb-a9ac-0e466c8616ee",
+                "method": "DELETE"
+            },
+            {
+                "id": "753ae6e8-b9a2-474f-bdb9-16a6b891eb8b",
+                "method": "GET"
+            },
+            {
+                "id": "b2c582f2-8eb7-4293-9c07-a509be1a314b",
+                "method": "POST"
+            },
+            {
+                "id": "071a0e82-1a1a-4dba-b2cf-9bf5cb4028f5",
+                "method": "GET"
+            },
+            {
+                "id": "0c289564-50f8-4791-bd84-aa882b341a3e",
+                "method": "PUT"
+            },
+            {
+                "id": "29f1082c-2483-4f10-9cfe-63532f19e838",
+                "method": "DELETE"
+            },
+            {
+                "id": "f2d94814-3ad8-49c3-92a1-f3b871ddf070",
+                "method": "GET"
+            },
+            {
+                "id": "73020e31-822f-454a-8587-b6d87df0dd61",
+                "method": "POST"
+            },
+            {
+                "id": "6c42ec16-d9ca-4427-b87a-0589b52f21ed",
+                "method": "GET"
+            },
+            {
+                "id": "052f013a-1b30-4f75-b903-7474c9fbe134",
+                "method": "PUT"
+            },
+            {
+                "id": "92eda9a7-9daa-4517-a38b-a47b09740dc1",
+                "method": "DELETE"
+            },
+            {
+                "id": "999e29c5-8f36-409b-a128-2afdde924b9e",
+                "method": "GET"
+            },
+            {
+                "id": "0d3eb71f-23eb-44bb-8c3e-ace009cf64f1",
+                "method": "POST"
+            },
+            {
+                "id": "79515b5c-3dab-41b8-b333-cfa5c0c77059",
+                "method": "GET"
+            },
+            {
+                "id": "42dd07d7-5c08-45c5-b73a-671fcade0a9c",
+                "method": "PUT"
+            },
+            {
+                "id": "15ba34c9-f59f-4b5c-ae8f-46fca7e841d9",
+                "method": "DELETE"
+            },
+            {
+                "id": "f2472524-71b6-45dd-b643-c613c051caaf",
+                "method": "GET"
+            },
+            {
+                "id": "e510f4c7-62ea-4ed1-8812-d66d949f3937",
+                "method": "POST"
+            },
+            {
+                "id": "43f36544-7119-47bd-a617-a5c599513988",
+                "method": "GET"
+            },
+            {
+                "id": "d6cefae6-2953-41c6-b1c0-ec64125fe951",
+                "method": "PUT"
+            },
+            {
+                "id": "bee9b0b7-4bf2-4c88-94cb-689a7c1b66ce",
+                "method": "DELETE"
+            },
+            {
+                "id": "d36466a0-2612-4ebe-9d84-a305b351d4ed",
+                "method": "GET"
+            },
+            {
+                "id": "6711de3e-9c45-4854-90e2-08046f902985",
+                "method": "POST"
+            },
+            {
+                "id": "94c0298a-0fb0-4f50-9b97-b54317e80ae5",
+                "method": "GET"
+            },
+            {
+                "id": "ded624bf-33d6-4235-b9cb-39dc6e2a10d9",
+                "method": "PUT"
+            },
+            {
+                "id": "099df48b-cba1-49e7-94fe-7a83dc9c2d65",
+                "method": "DELETE"
+            },
+            {
+                "id": "7c78bbae-8219-41c9-b0b4-029260a8a15d",
+                "method": "GET"
+            },
+            {
+                "id": "fa981f7a-d6d3-46df-a35c-ed158e2e55ff",
+                "method": "GET"
+            },
+            {
+                "id": "c3610732-a5d8-472d-ba71-d20bb9a701eb",
+                "method": "POST"
+            },
+            {
+                "id": "8a716c16-f6dd-41be-8116-88b6362af2c0",
+                "method": "GET"
+            },
+            {
+                "id": "534a7cac-dd58-403c-ac15-a493f5885b1e",
+                "method": "PUT"
+            },
+            {
+                "id": "c7c987b1-0b76-4d62-a182-839ad241fc8e",
+                "method": "DELETE"
+            },
+            {
+                "id": "ec62df26-ff9a-498a-bfe2-5d8a5f027a0f",
+                "method": "GET"
+            },
+            {
+                "id": "95295357-11ce-49ff-9001-b3950c213e34",
+                "method": "GET"
+            },
+            {
+                "id": "c262b1b0-e276-400d-b9ee-e534970f0c83",
+                "method": "GET"
+            },
+            {
+                "id": "637dbee0-c29f-4f88-a22b-9806b7673073",
+                "method": "GET"
+            },
+            {
+                "id": "94eaf040-0d6a-4aa7-8dab-5b7341b5c91f",
+                "method": "POST"
+            },
+            {
+                "id": "edb65421-c310-4e4e-8074-59077d8a0b49",
+                "method": "GET"
+            },
+            {
+                "id": "234fd659-2d6f-409a-bc45-a298fc92fa9d",
+                "method": "POST"
+            },
+            {
+                "id": "67af2558-c2ec-41d8-9552-73c1fd0a19e3",
+                "method": "GET"
+            },
+            {
+                "id": "d231fdbc-ec2f-4cb8-bf96-38108b3c5bfa",
+                "method": "PUT"
+            },
+            {
+                "id": "cf3b91c0-12a2-46e9-937f-6ebdbe1be3dc",
+                "method": "DELETE"
+            },
+            {
+                "id": "bb1d17a1-dd59-4e38-bd2c-655a18b75b04",
+                "method": "GET"
+            },
+            {
+                "id": "e8c9139f-54b9-46c9-821d-6219fcf8d874",
+                "method": "POST"
+            },
+            {
+                "id": "a4a2fef6-33ea-4212-b5a3-6bfb52da53ef",
+                "method": "GET"
+            },
+            {
+                "id": "a6707f59-e9b0-4533-9fd7-33da7373cf30",
+                "method": "PUT"
+            },
+            {
+                "id": "658b7643-71f9-4574-8a8b-279ffe2477d4",
+                "method": "DELETE"
+            },
+            {
+                "id": "bf7e8c4c-0a18-4bc9-9816-5d32b6369852",
+                "method": "GET"
+            },
+            {
+                "id": "314535ed-29e7-48a0-a888-e8c6500d1862",
+                "method": "GET"
+            },
+            {
+                "id": "7fe874b7-8244-4df6-b674-54e44b11fb2a",
+                "method": "GET"
+            },
+            {
+                "id": "76186e94-2d02-48af-bfaf-38203cda2c41",
+                "method": "GET"
+            },
+            {
+                "id": "8d3a19cb-253b-43fb-81cb-860885df753a",
+                "method": "POST"
+            },
+            {
+                "id": "6c8a89b6-2092-437d-b3b4-131dfbc045ad",
+                "method": "GET"
+            },
+            {
+                "id": "14276323-8ff9-4380-974c-bd25f7f81bc7",
+                "method": "POST"
+            },
+            {
+                "id": "eff9ea38-febc-41d1-b5b3-1770fd14be6f",
+                "method": "GET"
+            },
+            {
+                "id": "800fe62d-5fb5-4b34-a436-addfcdd6693f",
+                "method": "PUT"
+            },
+            {
+                "id": "5ee5cb29-80d8-4013-8e35-bbe5c801e26d",
+                "method": "DELETE"
+            },
+            {
+                "id": "26ac097e-5abc-4998-85e0-5d3c5e210341",
+                "method": "GET"
+            },
+            {
+                "id": "2c93afa2-06cc-4a6e-802b-fe01a1905c1d",
+                "method": "GET"
+            },
+            {
+                "id": "9de40d0a-3bda-4a2d-a682-64fca1b84f21",
+                "method": "GET"
+            },
+            {
+                "id": "124010f1-fea2-4410-b965-e1805bb504cc",
+                "method": "GET"
+            },
+            {
+                "id": "e59a1575-42c4-499e-81e4-7dd6ef58eb21",
+                "method": "POST"
+            },
+            {
+                "id": "bee830f9-d9da-4fef-9118-3be13fbebee2",
+                "method": "GET"
+            },
+            {
+                "id": "603ad221-4797-45aa-be67-719785324c86",
+                "method": "POST"
+            },
+            {
+                "id": "020fe53a-5e2d-4cb0-957d-523dd8866b1b",
+                "method": "GET"
+            },
+            {
+                "id": "201e8596-69d3-4aff-8d9c-6f19ce4fd467",
+                "method": "PUT"
+            },
+            {
+                "id": "efebf292-e506-4bcc-9a5e-a893e9649f3b",
+                "method": "DELETE"
+            },
+            {
+                "id": "d231f71e-2734-4213-8849-8cbee1cfeee0",
+                "method": "GET"
+            },
+            {
+                "id": "3a4895a6-3edc-4bb1-bd6a-f38ca9675a0d",
+                "method": "GET"
+            },
+            {
+                "id": "c46d0d2c-eaa0-4aaf-ac35-20339abdc114",
+                "method": "GET"
+            },
+            {
+                "id": "955a5beb-ab12-48c8-93e8-ceadb9a2e7d1",
+                "method": "GET"
+            },
+            {
+                "id": "7a785800-bfc7-48cb-91ad-75ac1b83e895",
+                "method": "POST"
+            }
+        ]
+    }
+}

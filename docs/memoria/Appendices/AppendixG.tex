@@ -77,18 +77,16 @@ Para crear la instancia EC2, se siguieron los pasos detallados a continuación.
           \end{itemize}
     \item Configurar almacenamiento:
           \begin{itemize}
-              \item Tamaño del volumen raíz: 8 GB.
+              \item Tamaño y tipo de disco: 8 GB gp3.
           \end{itemize}
-    \item Configurar grupo de seguridad:
-          \begin{itemize}
-              \item Crear un nuevo grupo de seguridad con las siguientes reglas:
-                    \begin{enumerate}
-                        \item Tipo: SSH, Protocolo: TCP, Puerto: 22, Origen: Cualquier lugar.
-                        \item Tipo: HTTP, Protocolo: TCP, Puerto: 80, Origen: Cualquier lugar.
-                        \item Tipo: HTTPS, Protocolo: TCP, Puerto: 443, Origen: Cualquier lugar.
-                        \item Tipo: HTTP, Protocolo: TCP, Puerto: 8000, Origen: Cualquier lugar.
-                    \end{enumerate}
-          \end{itemize}
+    \item Crear un nuevo grupo de seguridad con las siguientes reglas:
+          \begin{enumerate}
+              \item SSH, TCP/22, Origen: 0.0.0.0/0.
+              \item HTTP, TCP/80, Origen: 0.0.0.0/0.
+              \item HTTPS, TCP/443, Origen: 0.0.0.0/0.
+              \item WebSocket, TCP/8000, Origen: 0.0.0.0/0.
+              \item MongoDB, TCP/27017, Origen: 0.0.0.0/0.
+          \end{enumerate}
     \item Generar una nueva clave de acceso:
           \begin{itemize}
               \item Nombre de la clave: envirosense-app-key.
@@ -101,7 +99,7 @@ Para crear la instancia EC2, se siguieron los pasos detallados a continuación.
 La figura \ref{fig:aws-ec2} muestra el resumen de la instancia creada.
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.99\textwidth]{./Images/32-ec2-1.png}
+    \includegraphics[width=\textwidth]{./Images/32-ec2-1.png}
     \caption{Resumen de la instancia EC2 creada.}
     \label{fig:aws-ec2}
 \end{figure}
@@ -118,13 +116,13 @@ debe abrir una terminal y ubicar la clave privada
 \texttt{envirosense-app-key.pem}, que será utilizada para la autenticación. Es
 fundamental restringir los permisos del archivo para que solo el propietario
 tenga acceso de lectura, de modo que el sistema SSH lo acepte como válido. Esto
-se logra ejecutando el siguiente comando:
+se logra al ejecutar el siguiente comando:
 
 \begin{verbatim}
 chmod 400 envirosense-app-key.pem
 \end{verbatim}
 
-Una vez configurados los permisos, se puede establecer la conexión utilizando
+Una vez configurados los permisos, se puede establecer la conexión al utilizar
 el DNS público de la instancia. Por ejemplo:
 
 \begin{verbatim}
@@ -134,7 +132,7 @@ ssh -i "key.pem" ubuntu@ec2-X.compute-1.amazonaws.com
 La figura \ref{fig:aws-ec2-ssh} muestra la conexión SSH a la instancia EC2.
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.99\textwidth]{./Images/33-ec2-2.png}
+    \includegraphics[width=\textwidth]{./Images/33-ec2-2.png}
     \caption{Conexión SSH a la instancia EC2.}
     \label{fig:aws-ec2-ssh}
 \end{figure}
@@ -270,7 +268,7 @@ echo "Current IP: $current_ip | Latest IP: $latest_ip"
 if [ "$current_ip" == "$latest_ip" ]; then
 echo "IP no ha cambiado."
 else
-echo "IP ha cambiado. Actualizando DuckDNS..."
+echo "IP ha cambiado. Se actualiza DuckDNS..."
 current_ip="$latest_ip"
 response=$(curl -s -k "https://www.duckdns.org/update?
  domains=envirosense&token=TOKEN&ip=$latest_ip")
@@ -280,7 +278,7 @@ sleep 5m
 done
 \end{verbatim}
 
-Este script se ejecuta de forma continua, verificando cada cinco minutos si se
+Este script se ejecuta de forma continua, verifica cada cinco minutos si se
 produjo un cambio en la IP pública de la instancia.
 
 \subsection{Descarga y configuración del repositorio EnviroSense}
@@ -381,8 +379,7 @@ Este servicio está diseñado para levantar y detener los contenedores Docker
 definidos en el archivo \texttt{docker-compose.yml}, ubicado en el directorio
 del sistema.
 
-Luego se recargó la configuración de \texttt{systemd} con el siguiente
-comando:
+Luego se recargó la configuración de \texttt{systemd} con el siguiente comando:
 
 \begin{verbatim}
 sudo systemctl daemon-reload
@@ -430,7 +427,7 @@ La figura \ref{fig:aws-ec2-service} muestra el acceso a la aplicación web
 \texttt{envirosense.duckdns.org} asociado a la IP pública de la instancia EC2.
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.99\textwidth]{./Images/34-ec2-3.png}
+    \includegraphics[width=\textwidth]{./Images/34-ec2-3.png}
     \caption{Acceso a la aplicación web EnviroSenseIoT.}
     \label{fig:aws-ec2-service}
 \end{figure}
@@ -442,7 +439,7 @@ datos en la interfaz web desplegada en la instancia EC2.
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.99\textwidth]{./Images/35-ec2-4.png}
+    \includegraphics[width=\textwidth]{./Images/35-ec2-4.png}
     \caption{Visualización de datos en tiempo real.}
     \label{fig:aws-ec2-websocket}
 \end{figure}

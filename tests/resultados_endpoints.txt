@@ -1,0 +1,113 @@
+MÉTODO  NOMBRE                                  ENDPOINT                            TIEMPO (ms)   RESPUESTA
+-----------------------------------------------------------------------------------------------------------
+POST    login                                   /login                                      496      200 OK
+GET     Renew Token                             /renew-token                                166      200 OK
+POST    Publish Interval Consumption            /mqtt/publish                               155      200 OK
+POST    Publish Read Now Consumption            /mqtt/publish                               174      200 OK
+POST    Publish Interval Environmental          /mqtt/publish                               168      200 OK
+POST    Publish Read Now Environmental          /mqtt/publish                               166      200 OK
+POST    Publish Interval Nutrient Solution      /mqtt/publish                               163      200 OK
+POST    Publish Read Now Nutrient Solution      /mqtt/publish                               162      200 OK
+POST    Publish Interval Actuator               /mqtt/publish                               166      200 OK
+POST    Publish Read Now Actuator               /mqtt/publish                               173      200 OK
+POST    Publish MQTT Actuator relay_light       /mqtt/publish                               164      200 OK
+POST    Publish MQTT Actuator relay_vent        /mqtt/publish                               167      200 OK
+POST    Publish MQTT Actuator relay_aerator     /mqtt/publish                               171      200 OK
+POST    Publish MQTT Actuator relay_water       /mqtt/publish                               174      200 OK
+POST    Publish MQTT Actuator relay_ph_plus     /mqtt/publish                               151      200 OK
+POST    Publish MQTT Actuator relay_ph_minus    /mqtt/publish                               164      200 OK
+POST    Publish MQTT Actuator relay_nutri_1     /mqtt/publish                               167      200 OK
+POST    Publish MQTT Actuator relay_nutri_2     /mqtt/publish                               168      200 OK
+POST    Publish MQTT Actuator relay_nutri_3     /mqtt/publish                               175      200 OK
+POST    Publish MQTT Actuator relay_nutri_4     /mqtt/publish                               165      200 OK
+GET     Test MQTT Connection                    /mqtt/test                                  217      200 OK
+GET     GET Users                               /users                                      164      200 OK
+GET     GET User                                /users/6817bbed0009e59e6e8fd6c8             165      200 OK
+POST    CREATE User                             /users/                                     499      201 Created
+PUT     UPDATE User                             /users/                                     181      200 OK
+PUT     UPDATE User                             /users/                                     337      200 OK
+PATCH   UPDATE Current User Password            /users/change/password                      827      200 OK
+PATCH   UPDATE User Password                    /users/password                             510      200 OK
+DELETE  DELETE User                             /users/6817a9bc0009e59e6e8fd06a             188      200 OK
+GET     GET Current User                        /users/me/                                  181      200 OK
+GET     GET Roles                               /roles                                      180      200 OK
+POST    CREATE Role                             /roles/                                     184      201 Created
+GET     GET Role                                /roles/68179df40009e59e6e8fcc70             172      200 OK
+PUT     UPDATE Role                             /roles/                                     187      200 OK
+DELETE  DELETE Role                             /roles/6817aaa90009e59e6e8fd0ba             180      200 OK
+GET     GET Countries                           /countries                                  181      200 OK
+POST    CREATE Country                          /countries/                                 180      201 Created
+GET     GET Country                             /countries/68179df50009e59e6e8fcc71         191      200 OK
+PUT     UPDATE Country                          /countries/                                 177      200 OK
+DELETE  DELETE Country                          /countries/68179df50009e59e6e8fcc71         171      200 OK
+GET     GET Provinces                           /provinces                                  176      200 OK
+POST    CREATE Province                         /provinces/                                 179      201 Created
+GET     GET Province                            /provinces/67deaee5573afde3736f6d14         467      200 OK
+PUT     UPDATE Province                         /provinces/                                 184      200 OK
+DELETE  DELETE Province                         /provinces/68179df60009e59e6e8fcc72         175      200 OK
+GET     GET Cities                              /cities                                     187      200 OK
+POST    CREATE City                             /cities/                                    188      201 Created
+GET     GET City                                /cities/67deaf93573afde3736f6d15            339      200 OK
+PUT     UPDATE City                             /cities/                                    365      200 OK
+DELETE  DELETE City                             /cities/68179df70009e59e6e8fcc73            179      200 OK
+GET     GET Companies                           /company                                    165      200 OK
+POST    CREATE Company                          /company/                                   490      201 Created
+GET     GET Company                             /company/67deb0ec573afde3736f6d1f           177      200 OK
+PUT     UPDATE Company                          /company/                                   170      200 OK
+DELETE  DELETE Company                          /company/6817ad420009e59e6e8fd198           159      200 OK
+GET     GET Environment Types                   /environments/types/                        167      200 OK
+POST    CREATE Environment Type                 /environments/types/                        180      201 Created
+GET     GET Environment Type                    /environments/types/68179df90009e59e6e8fcc75    176      200 OK
+PUT     UPDATE Environment Type                 /environments/types/                        172      200 OK
+DELETE  DELETE Environment Type                 /environments/types/68179df90009e59e6e8fcc75         161      200 OK
+GET     GET Environments                        /environments                               166      200 OK
+POST    CREATE Environment                      /environments/                              184      201 Created
+GET     GET Environment                         /environments/67deb155573afde3736f6d20         173      200 OK
+PUT     UPDATE Environment                      /environments/                              177      200 OK
+DELETE  DELETE Environment                      /environments/6817af970009e59e6e8fd261         165      200 OK
+GET     GET Environment Sensors                 /environments/67deb155573afde3736f6d20/sensor-codes         172      200 OK
+GET     GET Actuators                           /actuators/                                 184      200 OK
+POST    CREATE Actuator                         /actuators/                                 182      201 Created
+GET     GET Actuator                            /actuators/67deb414573afde3736f6d29         174      200 OK
+PUT     UPDATE Actuator                         /actuators/                                 179      200 OK
+DELETE  DELETE Actuator                         /actuators/6817b0c70009e59e6e8fd2c7         176      200 OK
+GET     GET Actuators Logs                      /actuators/log/                             193      200 OK
+GET     GET Actuator Log                        /actuators/log/681591fcc0b8fa28a7b5a6cc         173      200 OK
+GET     GET Actuators Data                      /actuators/data/?actuator_code=AC001&start_date=2025-05-01T16:30:00&=2025-05-31T23:59:59&aggregation=30m&limit=10&page=2         271      200 OK
+GET     GET Actuator Data                       /actuators/data/6817b19f0009e59e6e8fd313         180      200 OK
+POST    CREATE Actuator Data                    /actuators/data/                            154      201 Created
+GET     GET Nutrient Types                      /nutrients/types/                           169      200 OK
+POST    CREATE Nutrient Type                    /nutrients/types/                           182      201 Created
+GET     GET Nutrient Type                       /nutrients/types/67deafb7573afde3736f6d17         182      200 OK
+PUT     UPDATE Nutrient Type                    /nutrients/types/                           169      200 OK
+DELETE  DELETE Nutrient Type                    /nutrients/types/68179dfd0009e59e6e8fcc77         181      200 OK
+GET     GET Consumption Sensors                 /sensors/consumption                        172      200 OK
+POST    CREATE Consumption Sensor               /sensors/consumption                        187      201 Created
+GET     GET Consumption Sensor                  /sensors/consumption/67deb39b573afde3736f6d27         163      200 OK
+PUT     UPDATE Consumption Sensor               /sensors/consumption                        182      200 OK
+DELETE  DELETE Consumption Sensor               /sensors/consumption/6817b43c0009e59e6e8fd3f8         164      200 OK
+GET     GET Consumption Sensors Log             /sensors/consumption/log/                   179      200 OK
+GET     GET Consumption Sensor Log              /sensors/consumption/log/68159212c0b8fa28a7b5a6d8         179      200 OK
+GET     GET Consumption Sensors Data            /sensors/consumption/data/?sensor_code=SC001&start_date=2025-05-01T16:30:00&end_date=2025-05-31T23:59:59&aggregation=5m&limit=50&page=3         208      200 OK
+GET     GET Consumption Sensor Data             /sensors/consumption/data/6817b4d80009e59e6e8fd42e         166      200 OK
+POST    CREATE Consumption Sensor Data          /sensors/consumption/data/                  181      201 Created
+GET     GET Environmental Sensors               /sensors/environmental                      177      200 OK
+POST    CREATE Environmental Sensor             /sensors/environmental                      194      201 Created
+GET     GET Environmental Sensor                /sensors/environmental/67deb280573afde3736f6d22         178      200 OK
+PUT     UPDATE Environmental Sensor             /sensors/environmental                      178      200 OK
+DELETE  DELETE Environmental Sensor             /sensors/environmental/6817c6e313e3c89d5ec49241         468      200 OK
+GET     GET Environmental Sensors Log           /sensors/environmental/log/                 186      200 OK
+GET     GET Environmental Sensor Log            /sensors/environmental/log/68159226c0b8fa28a7b5a6e5         189      200 OK
+GET     GET Environmental Sensors Data          /sensors/environmental/data/?sensor_code=SE001&start_date=2025-05-01T16:30:00&end_date=2025-05-31T23:59:59&aggregation=30m         210      200 OK
+GET     GET Environmental Sensor Data           /sensors/environmental/data/6817b7610009e59e6e8fd50c         166      200 OK
+POST    CREATE Environmental Sensor Data        /sensors/environmental/data/                174      201 Created
+GET     GET Nutrient Solution Sensors           /sensors/nutrients/solution                 182      200 OK
+POST    CREATE Nutrient Solution Sensor         /sensors/nutrients/solution                 179      201 Created
+GET     GET Nutrient Solution Sensor            /sensors/nutrients/solution/6817b7f90009e59e6e8fd53f         184      200 OK
+PUT     UPDATE Nutrient Solution Sensor         /sensors/nutrients/solution                 179      200 OK
+DELETE  DELETE Nutrient Solution Sensor         /sensors/nutrients/solution/6817b7f90009e59e6e8fd53f         178      200 OK
+GET     GET Nutrient Solution Sensors Log       /sensors/nutrients/solution/log/            184      200 OK
+GET     GET Nutrient Solution Sensor Log        /sensors/nutrients/solution/log/68159269c0b8fa28a7b5a710         183      200 OK
+GET     GET Nutrient Solution Sensors Data      /sensors/nutrients/solution/data/?sensor_code=SSN001&start_date=2025-05-01T18:00:00&end_date=2025-05-31T23:59:59&aggregation=30m         198      200 OK
+GET     GET Nutrient Solution Sensor Data       /sensors/nutrients/solution/data/6817b8c70009e59e6e8fd586         174      200 OK
+POST    CREATE Nutrient Solution Sensor Data    /sensors/nutrients/solution/data/           175      201 Created

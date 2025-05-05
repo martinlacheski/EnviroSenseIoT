@@ -31,10 +31,10 @@ los requerimientos asociados a los diferentes componentes del sistema.
 
 La agricultura enfrenta desafíos crecientes en la optimización de la
 productividad y la eficiencia, especialmente en regiones con condiciones
-climáticas adversas y variables. Según la FAO (del inglés, \textit{Food and Agriculture
-      Organization of the United Nations}) \cite{GAPReport2016}, para el año 2050, se
-estima que la población superará los 9 mil millones de personas, lo que
-demandará un aumento del 60\code{\%} en la producción de alimentos. Para
+climáticas adversas y variables. Según la FAO (del inglés, \textit{Food and
+      Agriculture Organization of the United Nations}) \cite{GAPReport2016}, para el
+año 2050, se estima que la población superará los 9 mil millones de personas,
+lo que demandará un aumento del 60\code{\%} en la producción de alimentos. Para
 abordar este desafío, es fundamental optimizar el uso del agua, mejorar la
 productividad agrícola y fomentar prácticas que contribuyan a la sostenibilidad
 ambiental.
@@ -53,23 +53,22 @@ crecimiento notable en los últimos años \cite{HorticulturaMisiones2024},
 eficiente de los recursos esenciales. Actualmente, la mayoría de los
 productores emplean sistemas de control basados en temporizadores programables,
 los cuales no consideran las variaciones ambientales. Esto implica la necesidad
-de intervenciones manuales frecuentes y mediciones directas, limitando la
+de intervenciones manuales frecuentes y mediciones directas, lo que limita la
 eficiencia del proceso.
 
-La ausencia de un monitoreo en tiempo real impacta negativamente en la calidad
-y el rendimiento de los cultivos, aumentando los costos operativos y afectando
-la sostenibilidad ambiental debido a la implementación de prácticas poco
-optimizadas.
+La falta de monitoreo en tiempo real impacta negativamente en la calidad y el
+rendimiento de los cultivos, incrementa los costos operativos y afecta la
+sostenibilidad ambiental debido a la implementación de prácticas ineficientes.
 
 %----------------------------------------------------------------------------------------
 
 \section{Motivación}
 
 La motivación de este trabajo radica en el desarrollo e implementación de un
-sistema basado en IoT (del inglés, \textit{Internet of Things}) y de bajo costo, que
-permite monitorear en tiempo real y controlar de manera remota los invernaderos
-de la Facultad de Ciencias Forestales (FCF) de la Universidad Nacional de
-Misiones (UNaM).
+sistema basado en IoT (del inglés, \textit{Internet of Things}) y de bajo
+costo, que permite monitorear en tiempo real y controlar de manera remota los
+invernaderos de la Facultad de Ciencias Forestales (FCF) de la Universidad
+Nacional de Misiones (UNaM).
 
 Este sistema posibilita el registro continuo de diversas variables de interés,
 como temperatura ambiente, humedad relativa, dióxido de carbono ($CO_2$),
@@ -77,11 +76,11 @@ niveles de nutrientes, y consumo de agua y energía, entre otros. Los datos
 generados están disponibles para docentes, estudiantes e investigadores, para
 su uso en la realización de tesis, investigaciones y trabajos académicos.
 
-Así, el trabajo no solo tiene un impacto directo en la producción, sino
-también en la formación académica y el avance científico. Proporciona una
-plataforma de datos para el análisis y el desarrollo de nuevas soluciones
-tecnológicas, alineadas con las demandas actuales de sostenibilidad ambiental y
-seguridad alimentaria \cite{seguridadAlimentariaGaribaldi2018}.
+Así, el trabajo no solo tiene un impacto directo en la producción, sino también
+en la formación académica y el avance científico. Proporciona una plataforma de
+datos para el análisis y el desarrollo de nuevas soluciones tecnológicas,
+alineadas con las demandas actuales de sostenibilidad ambiental y seguridad
+alimentaria \cite{seguridadAlimentariaGaribaldi2018}.
 
 %----------------------------------------------------------------------------------------
 
@@ -94,7 +93,7 @@ ventilación y circulación de nutrientes o riego. La tabla \ref{tab:competencia
 presenta una comparación de algunas de las soluciones disponibles y sus
 características más relevantes.
 
-\begin{table}[h]
+\begin{table}[H]
       \centering
       \caption[Características de la competencia.]{Características de la competencia.}
       \begin{tabular}{p{3.2cm}p{9.6cm}}
@@ -163,9 +162,10 @@ El alcance del trabajo incluyó las siguientes tareas:
             \begin{itemize}
                   \item Configuración de un servidor IoT para gestión de mensajes entre nodos y
                         aplicaciones.
-                  \item Transmisión de datos al servidor IoT mediante MQTT (del inglés, \textit{Message Queue
-                              Telemetry Transport}).
-                  \item Cifrado de comunicaciones mediante TLS (del inglés, \textit{Transport Layer Security}).
+                  \item Transmisión de datos al servidor IoT mediante MQTT (del inglés, \textit{Message
+                              Queue Telemetry Transport}).
+                  \item Cifrado de comunicaciones mediante TLS (del inglés, \textit{Transport Layer
+                              Security}).
             \end{itemize}
 \end{itemize}
 \begin{itemize}
@@ -173,10 +173,10 @@ El alcance del trabajo incluyó las siguientes tareas:
             \begin{itemize}
                   \item Diseño e implementación de una base de datos para almacenar los datos
                         recolectados por los sensores y permitir su consulta y análisis.
-                  \item Diseño y desarrollo de una API (del inglés, \textit{Application Programming Interface})
-                        REST (del inglés, \textit{Representational State Transfer}) que permita la comunicación con
-                        el sistema utilizando HTTP (del inglés, \textit{Hypertext Transfer Protocol}), MQTT y
-                        WebSockets.
+                  \item Diseño y desarrollo de una API (del inglés, \textit{Application Programming
+                              Interface}) REST (del inglés, \textit{Representational State Transfer}) que
+                        permita la comunicación con el sistema a través de HTTP (del inglés,
+                        \textit{Hypertext Transfer Protocol}), MQTT y WebSockets.
                   \item Desarrollo de una aplicación web responsiva para la visualización de datos en
                         tiempo real y el control remoto de actuadores.
             \end{itemize}
@@ -226,11 +226,11 @@ diferentes componentes del sistema.
                   \item Configuración remota del intervalo de envío de datos.
                   \item Los nodos sensores deben transmitir al servidor IoT:
                         \begin{enumerate}
-                              \item Nodos ambientales: temperatura ambiente, humedad relativa, presión atmosférica, nivel de
-                                    luminosidad y nivel de $CO_2$.
+                              \item Nodos ambientales: temperatura ambiente, humedad relativa, presión atmosférica,
+                                    nivel de luminosidad y nivel de $CO_2$.
                               \item Nodos de solución nutritiva: valores de pH (potencial de Hidrógeno),
-                                    conductividad eléctrica (CE) y TDS (del inglés, \textit{Total Dissolved Solids}); nivel y
-                                    temperatura de la solución.
+                                    conductividad eléctrica (CE) y TDS (del inglés, \textit{Total Dissolved
+                                          Solids}); nivel y temperatura de la solución.
                               \item Nodos de consumos: agua, nutrientes y energía eléctrica.
                         \end{enumerate}
                   \item Los nodos actuadores deben transmitir al servidor IoT:
@@ -248,8 +248,8 @@ diferentes componentes del sistema.
             \begin{enumerate}
                   \item Soportar conexiones cifradas mediante TLS.
                   \item Poseer comunicación bidireccional (publicación/suscripción).
-                  \item Implementar QoS (del inglés, \textit{Quality of Service}) para garantizar entrega de
-                        mensajes.
+                  \item Implementar QoS (del inglés, \textit{Quality of Service}) para garantizar
+                        entrega de mensajes.
             \end{enumerate}
 
       \item Frontend (aplicación web)
@@ -268,8 +268,8 @@ diferentes componentes del sistema.
                   \item Tener conexiones seguras mediante TLS.
                   \item Implementar JWT (del inglés, \textit{JSON Web Token}).
                   \item Realizar la persistencia de los datos.
-                  \item Soportar métodos HTTP (CRUD y reportes), WebSockets (datos en tiempo real)
-                        y MQTT (interacción con dispositivos).
+                  \item Soportar métodos HTTP (CRUD y reportes), WebSockets (datos en tiempo real) y
+                        MQTT (interacción con dispositivos).
             \end{enumerate}
 
       \item Requerimientos de documentación:

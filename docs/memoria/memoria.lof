@@ -5,7 +5,7 @@
 \contentsline {figure}{\numberline {2.1}{\ignorespaces Microcontrolador ESP-WROOM-32\footnotemark .}}{8}{figure.caption.9}%
 \contentsline {figure}{\numberline {2.2}{\ignorespaces Sensor BME280\footnotemark .}}{9}{figure.caption.10}%
 \contentsline {figure}{\numberline {2.3}{\ignorespaces Sensor BH1750\footnotemark .}}{9}{figure.caption.11}%
-\contentsline {figure}{\numberline {2.4}{\ignorespaces Sensor MHZ19C\footnotemark .}}{9}{figure.caption.12}%
+\contentsline {figure}{\numberline {2.4}{\ignorespaces Sensor MH-Z19C\footnotemark .}}{9}{figure.caption.12}%
 \contentsline {figure}{\numberline {2.5}{\ignorespaces Sensor PH-4502C\footnotemark .}}{10}{figure.caption.13}%
 \contentsline {figure}{\numberline {2.6}{\ignorespaces Sensor CE\footnotemark .}}{10}{figure.caption.14}%
 \contentsline {figure}{\numberline {2.7}{\ignorespaces Sensor TDS\footnotemark .}}{10}{figure.caption.15}%
@@ -35,14 +35,19 @@
 \contentsline {figure}{\numberline {3.19}{\ignorespaces Flujo de ejecución del código en los nodos}}{31}{figure.caption.45}%
 \contentsline {figure}{\numberline {3.20}{\ignorespaces Flujo de comunicación entre nodos y broker MQTT}}{33}{figure.caption.52}%
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {A.1}{\ignorespaces Modelo de datos implementado en el trabajo.}}{40}{figure.caption.67}%
+\contentsline {figure}{\numberline {4.1}{\ignorespaces Banco de pruebas del sistema EnviroSenseIoT}}{42}{figure.caption.68}%
+\contentsline {figure}{\numberline {4.2}{\ignorespaces Interfaz de Swagger}}{43}{figure.caption.69}%
+\contentsline {figure}{\numberline {4.3}{\ignorespaces Pruebas realizadas en Postman}}{44}{figure.caption.70}%
+\contentsline {figure}{\numberline {4.4}{\ignorespaces Validación de almacenamiento en MongoDB}}{46}{figure.caption.74}%
+\addvspace {10\p@ }
+\contentsline {figure}{\numberline {A.1}{\ignorespaces Modelo de datos implementado en el trabajo.}}{48}{figure.caption.75}%
 \addvspace {10\p@ }
 \addvspace {10\p@ }
 \addvspace {10\p@ }
 \addvspace {10\p@ }
 \addvspace {10\p@ }
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {G.1}{\ignorespaces Resumen de la instancia EC2 creada.}}{60}{figure.caption.71}%
-\contentsline {figure}{\numberline {G.2}{\ignorespaces Conexión SSH a la instancia EC2.}}{61}{figure.caption.72}%
-\contentsline {figure}{\numberline {G.3}{\ignorespaces Acceso a la aplicación web EnviroSenseIoT.}}{66}{figure.caption.73}%
-\contentsline {figure}{\numberline {G.4}{\ignorespaces Visualización de datos en tiempo real.}}{66}{figure.caption.74}%
+\contentsline {figure}{\numberline {G.1}{\ignorespaces Resumen de la instancia EC2 creada.}}{68}{figure.caption.79}%
+\contentsline {figure}{\numberline {G.2}{\ignorespaces Conexión SSH a la instancia EC2.}}{69}{figure.caption.80}%
+\contentsline {figure}{\numberline {G.3}{\ignorespaces Acceso a la aplicación web EnviroSenseIoT.}}{74}{figure.caption.81}%
+\contentsline {figure}{\numberline {G.4}{\ignorespaces Visualización de datos en tiempo real.}}{74}{figure.caption.82}%

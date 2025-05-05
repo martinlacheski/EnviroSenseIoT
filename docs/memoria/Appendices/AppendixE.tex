@@ -33,10 +33,10 @@ tópicos.
 
 En este código, se definen los métodos para conectar al broker, publicar y
 suscribirse a tópicos, y manejar los mensajes recibidos. Se implementó un
-cliente MQTT que interactúa con AWS IoT Core, gestionando la comunicación con
-los nodos sensores y actuadores. Además, se incorporaron métodos para recibir
-datos de estos dispositivos, enviarles comandos y almacenar la información en
-la base de datos MongoDB.
+cliente MQTT que interactúa con AWS IoT Core y se encarga de la comunicación
+con los nodos sensores y actuadores. Además, se incorporaron métodos para
+recibir datos de estos dispositivos, enviarles comandos y almacenar la
+información en la base de datos MongoDB.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % parámetros para configurar el formato del código en los entornos lstlisting
@@ -116,16 +116,16 @@ literate={á}{{\'a}}1 {é}{{\'e}}1 {í}{{\'i}}1 {ó}{{\'o}}1 {ú}{{\'u}}1
     # Método asíncrono para actualizar el intervalo de reporte
     async def update_device_interval(device_code, new_interval, model_class, device_type="sensor"):
         try:
-            print(f"Actualizando {device_type} {device_code} a {new_interval}s en BD...")
+            print(f"Se actualiza {device_type} {device_code} a {new_interval}s en BD...")
             
             # Convertir a entero explícitamente
             interval_value = int(new_interval)
-            # Buscar el dispositivo usando Beanie
+            # Buscar el dispositivo con Beanie
             query_field = "sensor_code" if device_type == "sensor" else "actuator_code"
             device = await model_class.find_one({query_field: device_code})
             
             if device:
-                # Actualizar usando el método set de Beanie
+                # Actualizar con el método set de Beanie
                 await device.set({"seconds_to_report": interval_value})       
                 print(f"Intervalo actualizado para {device_type} {device_code}")
                 return True
@@ -136,7 +136,7 @@ literate={á}{{\'a}}1 {é}{{\'e}}1 {í}{{\'i}}1 {ó}{{\'o}}1 {ú}{{\'u}}1
         except ValueError as e:
             print(f"Error de validación: {e}")
         except Exception as e:
-            print(f"Error actualizando BD: {str(e)}")
+            print(f"Error al actualizar BD: {str(e)}")
         return False
             
     # Método para procesar mensajes entrantes de sensores y actuadores
@@ -147,7 +147,7 @@ literate={á}{{\'a}}1 {é}{{\'e}}1 {í}{{\'i}}1 {ó}{{\'o}}1 {ú}{{\'u}}1
 
             model_class = TOPIC_PUB_MODEL_MAP.get(topic)
             if model_class:
-                print(f"Procesando mensaje de {topic}")
+                print(f"Se procesa mensaje de {topic}")
                 await insert_sensor_data(payload, model_class)
                 
                 # Determinar el tipo de sensor para WebSocket
@@ -206,9 +206,9 @@ literate={á}{{\'a}}1 {é}{{\'e}}1 {í}{{\'i}}1 {ó}{{\'o}}1 {ú}{{\'u}}1
                     device_type=device_type
                 )
             else:
-                print(f"Mensaje recibido (esperando confirmación del {device_type})")
+                print(f"Mensaje recibido (se espera confirmación del {device_type})")
         except Exception as e:
-            print(f"Error procesando mensaje: {e}")
+            print(f"Error al procesar mensaje: {e}")
                 
     # Clase para manejar la conexión y comunicación con AWS IoT Core
     class AWSMQTTClient:

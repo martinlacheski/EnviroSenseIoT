@@ -94,8 +94,8 @@ la transmisión de datos entre los nodos y la capa de aplicación.
 
 La capa de aplicación es responsable del procesamiento, almacenamiento y
 visualización de los datos recopilados por los nodos. Para esta capa, se
-implementó el servidor IoT en la nube utilizando el servicio \textit{AWS EC2},
-que permite ejecutar aplicaciones y servicios en instancias virtuales.
+implementó el servidor IoT en la nube a través del servicio AWS EC2, que
+permite ejecutar aplicaciones y servicios en instancias virtuales.
 
 El procesamiento y la gestión de datos se realiza a través de un backend
 desarrollado con FastAPI, mientras que la base de datos MongoDB se utiliza para
@@ -229,30 +229,30 @@ utilizado.
     \begin{tabular}{l l l}
         % \begin{tabular}{p{1.3cm}p{5.7cm}p{4.9cm}}
         \toprule
-        \textbf{Método} & \textbf{Endpoint}                 & \textbf{Acción}            \\
+        \textbf{Método} & \textbf{Endpoint}                 & \textbf{Acción}             \\
         \midrule
-        GET             & /mqtt/test                        & Test conexión cliente MQTT \\
-        POST            & /mqtt/publish                     & Publicar en tópico MQTT    \\
+        GET             & /mqtt/test                        & Test conexión cliente MQTT. \\
+        POST            & /mqtt/publish                     & Publicar en tópico MQTT.    \\
         \midrule
-        POST            & /login                            & Login de usuarios          \\
-        GET             & /renew-token                      & Renovar token              \\
+        POST            & /login                            & Login de usuarios.          \\
+        GET             & /renew-token                      & Renovar token.              \\
         \midrule
-        GET             & /users/                           & Obtener usuarios           \\
+        GET             & /users/                           & Obtener usuarios.           \\
         \midrule
-        GET             & /environments/                    & Obtener ambientes          \\
+        GET             & /environments/                    & Obtener ambientes.          \\
         \midrule
-        GET             & /actuators/                       & Obtener actuadores         \\
+        GET             & /actuators/                       & Obtener actuadores.         \\
         \midrule
-        GET             & /sensors/environmental/           & Obtener sensores           \\
+        GET             & /sensors/environmental/           & Obtener sensores.           \\
         \midrule
-        GET             & /sensors/nutrients/solution/      & Obtener sensores           \\
+        GET             & /sensors/nutrients/solution/      & Obtener sensores.           \\
         \midrule
-        GET             & /sensors/consumption/             & Obtener sensores           \\
+        GET             & /sensors/consumption/             & Obtener sensores.           \\
         \midrule
-        GET             & /actuators/data/                  & Obtener datos históricos   \\
-        GET             & /sensors/environmental/data/      & Obtener datos históricos   \\
-        GET             & /sensors/consumption/data/        & Obtener datos históricos   \\
-        GET             & /sensors/nutrients/solution/data/ & Obtener datos históricos   \\
+        GET             & /actuators/data/                  & Obtener datos históricos.   \\
+        GET             & /sensors/environmental/data/      & Obtener datos históricos.   \\
+        GET             & /sensors/consumption/data/        & Obtener datos históricos.   \\
+        GET             & /sensors/nutrients/solution/data/ & Obtener datos históricos.   \\
         \bottomrule
         \hline
     \end{tabular}
@@ -660,17 +660,17 @@ donde se puede observar la tabla con los datos históricos de un actuador.
     \label{fig:reportes_tabla_actuadores}
 \end{figure}
 
-Finalmente, la figura \ref{fig:dashboar_celular} presenta vistas de la
-aplicación web en un dispositivo móvil, mosse muestra la pantalla de
+Finalmente, la figura \ref{fig:dashboard_celular} presenta vistas de la
+aplicación web en un dispositivo móvil, donde se muestra la pantalla de
 visualización de datos en tiempo real. La interfaz se ajusta automáticamente a
-distintos tamaños de pantalla, ofreciendo una experiencia de usuario optimizada
-en dispositivos móviles y tabletas.
+distintos tamaños de pantalla, lo que ofrece una experiencia de usuario
+optimizada en dispositivos móviles y tablets.
 
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.99\textwidth]{./Images/29_dashboard_celular.png}
     \caption{Visualización de datos en tiempo real desde un dispositivo móvil}
-    \label{fig:dashboar_celular}
+    \label{fig:dashboard_celular}
 \end{figure}
 
 %----------------------------------------------------------------------------------------
@@ -906,37 +906,39 @@ entorno o controlar dispositivos actuadores.
     \caption[Resumen de nodos]{Resumen de nodos: funciones y firmware.}
     % \begin{tabular}{l l l}
     \begin{tabular}{p{1.5cm}p{5.4cm}p{5.5cm}}
-        \hline
-        \textbf{Nodo}                                     & \textbf{Funciones principales}                                                & \textbf{Descripción del firmware}              \\
-        \multirow{6}{1.5cm}{Sensor de consumos}           & Medición de voltaje, corriente y potencia (PZEM-004T)                         & Uso de UART para PZEM-004T                     \\
-                                                          & Medición de nivel de líquidos (HC-SR04)                                       & GPIO para HC-SR04                              \\
-                                                          & Conexión Wi-Fi                                                                & Envío de datos en formato JSON vía MQTT        \\
-                                                          & Configuración remota de intervalo                                             & Sincronización NTP                             \\
-                                                          & Indicador LED                                                                 & Manejo de conexión Wi-Fi                       \\
-                                                          & Botón de reinicio                                                             & Gestión de errores                             \\
-        \hline
-        \multirow{7}{1.5cm}{Sensor ambiental}             & Medición de temperatura, humedad y presión (BME280)                           & Comunicación I\textsuperscript{2}C para BME280 \\
-                                                          & Medición de luminosidad (BH1750)                                              & UART para MH-Z19C                              \\
-                                                          & Medición de concentración de $CO_2$ (MH-Z19C)                                 & Calibración inicial de $CO_2$                  \\
-                                                          & Conexión Wi-Fi                                                                & Envío de datos en JSON vía MQTT                \\
-                                                          & Configuración remota de intervalo                                             & Sincronización NTP                             \\
-                                                          & Indicador LED                                                                 & Reconexión automática Wi-Fi                    \\
-                                                          & Botón de reinicio                                                             &                                                \\
-        \hline
-        \multirow{7}{1.5cm}{Sensor de solución nutritiva} & Medición de temperatura (DS18B20)                                             & Lectura OneWire para DS18B20                   \\
-                                                          & Medición de pH, CE y TDS                                                      & Medición de CE/TDS/pH                          \\
-                                                          & Medición de nivel de líquidos (HC-SR04)                                       & Promedio de muestras                           \\
-                                                          & Conexión Wi-Fi                                                                & Envío de datos en JSON vía MQTT                \\
-                                                          & Configuración remota de intervalo                                             & Sincronización NTP                             \\
-                                                          & Indicador LED                                                                 & Manejo de errores                              \\
-                                                          & Botón de reinicio                                                             &                                                \\
-        \hline
-        \multirow{7}{1.5cm}{Actuador}                     & Control de relés para dispositivos (bombas, aireadores, luces, dosificadores) & Control de salidas GPIO                        \\
-                                                          & Ejecución simultánea de comandos                                              & Recepción de comandos MQTT                     \\
-                                                          & Conexión Wi-Fi                                                                & Ejecución de temporizadores con Timers ESP32   \\
-                                                          & Configuración remota                                                          & Manejo de estados de relés en JSON             \\
-                                                          & Indicador LED                                                                 & Sincronización NTP                             \\
-                                                          & Botón de reinicio                                                             & Reconexión Wi-Fi automática                    \\
+        \toprule
+        \textbf{Nodo}                                     & \textbf{Funciones principales}                                                 & \textbf{Descripción del firmware}               \\
+        \midrule
+        \multirow{7}{1.5cm}{Sensor ambiental}             & Medición de temperatura, humedad y presión (BME280).                           & Comunicación I\textsuperscript{2}C para BME280. \\
+                                                          & Medición de luminosidad (BH1750).                                              & UART para MH-Z19C.                              \\
+                                                          & Medición de concentración de $CO_2$ (MH-Z19C).                                 & Calibración inicial de $CO_2$.                  \\
+                                                          & Conexión Wi-Fi.                                                                & Envío de datos en JSON vía MQTT.                \\
+                                                          & Configuración remota de intervalo.                                             & Sincronización NTP.                             \\
+                                                          & Indicador LED.                                                                 & Reconexión automática Wi-Fi.                    \\
+                                                          & Botón de reinicio.                                                             &                                                 \\
+        \midrule
+        \multirow{6}{1.5cm}{Sensor de consumos}           & Medición de voltaje, corriente y potencia (PZEM-004T).                         & Uso de UART para PZEM-004T.                     \\
+                                                          & Medición de nivel de líquidos (HC-SR04).                                       & GPIO para HC-SR04.                              \\
+                                                          & Conexión Wi-Fi.                                                                & Envío de datos en formato JSON vía MQTT.        \\
+                                                          & Configuración remota de intervalo.                                             & Sincronización NTP.                             \\
+                                                          & Indicador LED.                                                                 & Manejo de conexión Wi-Fi.                       \\
+                                                          & Botón de reinicio.                                                             & Gestión de errores.                             \\
+        \midrule
+        \multirow{7}{1.5cm}{Sensor de solución nutritiva} & Medición de temperatura (DS18B20).                                             & Lectura OneWire para DS18B20.                   \\
+                                                          & Medición de pH, CE y TDS.                                                      & Medición de CE,TDS y pH.                        \\
+                                                          & Medición de nivel de líquidos (HC-SR04).                                       & Promedio de muestras.                           \\
+                                                          & Conexión Wi-Fi.                                                                & Envío de datos en JSON vía MQTT.                \\
+                                                          & Configuración remota de intervalo.                                             & Sincronización NTP.                             \\
+                                                          & Indicador LED.                                                                 & Manejo de errores.                              \\
+                                                          & Botón de reinicio.                                                             &                                                 \\
+        \midrule
+        \multirow{7}{1.5cm}{Actuador}                     & Control de relés para dispositivos (bombas, aireadores, luces, dosificadores). & Control de salidas GPIO.                        \\
+                                                          & Ejecución simultánea de comandos.                                              & Recepción de comandos MQTT.                     \\
+                                                          & Conexión Wi-Fi.                                                                & Ejecución de temporizadores con Timers ESP32.   \\
+                                                          & Configuración remota.                                                          & Manejo de estados de relés en JSON.             \\
+                                                          & Indicador LED.                                                                 & Sincronización NTP.                             \\
+                                                          & Botón de reinicio.                                                             & Reconexión Wi-Fi automática.                    \\
+        \bottomrule
         \hline
     \end{tabular}
     \label{tab:nodos_iot}
@@ -970,7 +972,7 @@ características:
     \item \textbf{Almacenamiento}: 8 GB tipo gp3.
     \item \textbf{Región}: us-east-1.
     \item \textbf{Grupo de seguridad}: puertos abiertos para HTTP (80), HTTPS (443),
-          SSH (22) y WebSocket (8000).
+          SSH (22), WebSocket (8000) y acceso a la base de datos (27017).
 \end{itemize}
 
 El acceso a la instancia se realizó mediante SSH (del inglés, \textit{Secure
@@ -1091,22 +1093,23 @@ realizadas durante el despliegue del sistema.
     \centering
     \caption[Resumen del despliegue del sistema]{Resumen del despliegue del sistema.}
     \begin{tabular}{p{1.9cm}p{5cm}p{5.5cm}}
-        \hline
-        \textbf{Etapa}                                 & \textbf{Descripción}                                   & \textbf{Acciones realizadas}                                                                 \\
-        \hline
-        \multirow{3}{1.9cm}{Creación instancia EC2}    & Creación de instancia virtual de AWS                   & Datos instancia: t2.micro con Ubuntu 24.04; configuración de red y claves SSH                \\
-        \hline
-        \multirow{4}{1.9cm}{Configura\-ción inicial}   & Preparación de máquina virtual                         & Acceso por SSH, actualización del sistema, instalación de Docker, Docker Compose y DuckDNS   \\
-        \hline
-        \multirow{3}{1.9cm}{Gestión di\-námica de DNS} & Asociación de un subdominio DuckDNS para acceso remoto & Configuración de cliente de actualización de IP con dominio \texttt{envirosense.duckdns.org} \\
-        \hline
-        \multirow{3}{1.9cm}{Preparación del entorno}   & Clonación del código y configuración de parámetros     & Clonación desde GitHub, creación manual del archivo \texttt{.env} con variables de entorno   \\
-        \hline
-        \multirow{2}{1.9cm}{Certificados MQTT}         & Configuración para conexión con AWS IoT Core           & Transferencia y ubicación de certificados en la instancia EC2                                \\
-        \hline
-        \multirow{3}{1.9cm}{Ejecución del sistema}     & Construcción y puesta en marcha del sistema            & Ejecución del sistema con \texttt{docker-compose} y validación por navegador web             \\
-        \hline
-        \multirow{3}{1.9cm}{Ejecución como servicio}   & Automatización del inicio del sistema tras reinicio    & Creación de servicio en \texttt{systemd}, configuración y habilitación                       \\
+        \toprule
+        \textbf{Etapa}                                 & \textbf{Descripción}                                    & \textbf{Acciones realizadas}                                                                  \\
+        \midrule
+        \multirow{3}{1.9cm}{Creación instancia EC2}    & Creación de instancia virtual de AWS.                   & Datos instancia: t2.micro con Ubuntu 24.04; configuración de red y claves SSH.                \\
+        \midrule
+        \multirow{4}{1.9cm}{Configura\-ción inicial}   & Preparación de máquina virtual.                         & Acceso por SSH, actualización del sistema, instalación de Docker, Docker Compose y DuckDNS.   \\
+        \midrule
+        \multirow{3}{1.9cm}{Gestión di\-námica de DNS} & Asociación de un subdominio DuckDNS para acceso remoto. & Configuración de cliente de actualización de IP con dominio \texttt{envirosense.duckdns.org}. \\
+        \midrule
+        \multirow{3}{1.9cm}{Preparación del entorno}   & Clonación del código y configuración de parámetros.     & Clonación desde GitHub, creación manual del archivo \texttt{.env} con variables de entorno.   \\
+        \midrule
+        \multirow{2}{1.9cm}{Certificados MQTT}         & Configuración para conexión con AWS IoT Core.           & Transferencia y ubicación de certificados en la instancia EC2.                                \\
+        \midrule
+        \multirow{3}{1.9cm}{Ejecución del sistema}     & Construcción y puesta en marcha del sistema.            & Ejecución del sistema con \texttt{docker-compose} y validación por navegador web.             \\
+        \midrule
+        \multirow{3}{1.9cm}{Ejecución como servicio}   & Automatización del inicio del sistema tras reinicio.    & Creación de servicio en \texttt{systemd}, configuración y habilitación.                       \\
+        \bottomrule
         \hline
     \end{tabular}
     \label{tab:resumen_despliegue}
@@ -1115,11 +1118,4 @@ realizadas durante el despliegue del sistema.
 Las capturas de pantalla del proceso y los comandos utilizados durante cada
 etapa del despliegue del sistema pueden consultarse en el apéndice
 \ref{AppendixG}.
-
-% Aquí podés insertar las figuras:
-% \begin{figure}[H]
-%   \centering
-%   \includegraphics[width=0.8\textwidth]{figura1.png}
-%   \caption{Instancia EC2 ejecutándose en AWS.}
-% \end{figure}
 

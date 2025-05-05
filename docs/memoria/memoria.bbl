@@ -1245,5 +1245,73 @@
     \field{urlmonth}{05}
     \field{urlyear}{2025}
   \endentry
+
+  \entry{PlacaBaseESP32}{online}{}
+    \name{author}{1}{}{%
+      {{hash=LM}{%
+         family={Libre},
+         familyi={L\bibinitperiod},
+         given={Mercado},
+         giveni={M\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{LM2}
+    \strng{fullhash}{LM2}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{title}{Placa Base Mother Screw Shield NodeMCU ESP32 WROOM 38 Pines}
+    \verb{url}
+    \verb https://articulo.mercadolibre.com.ar/MLA-1422223210-placa-base-mother
+    \verb -screw-shield-nodemcu-esp32-wroom-38-pines-_JM
+    \endverb
+    \field{urlday}{04}
+    \field{urlmonth}{05}
+    \field{urlyear}{2025}
+  \endentry
+
+  \entry{SwaggerIO}{online}{}
+    \name{author}{1}{}{%
+      {{hash=S}{%
+         family={Swagger},
+         familyi={S\bibinitperiod},
+      }}%
+    }
+    \list{organization}{1}{%
+      {SmartBear Software}%
+    }
+    \strng{namehash}{S1}
+    \strng{fullhash}{S1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{title}{Swagger: API Documentation \& Design Tools for Teams}
+    \verb{url}
+    \verb https://swagger.io/
+    \endverb
+    \field{urlday}{04}
+    \field{urlmonth}{05}
+    \field{urlyear}{2025}
+  \endentry
+
+  \entry{MongoDBCompass}{online}{}
+    \name{author}{1}{}{%
+      {{hash=MI}{%
+         family={MongoDB},
+         familyi={M\bibinitperiod},
+         given={Inc.},
+         giveni={I\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{MI1}
+    \strng{fullhash}{MI1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{title}{MongoDB Compass: GUI for MongoDB}
+    \verb{url}
+    \verb https://www.mongodb.com/products/tools/compass
+    \endverb
+    \field{urlday}{04}
+    \field{urlmonth}{05}
+    \field{urlyear}{2025}
+  \endentry
 \enddatalist
 \endinput

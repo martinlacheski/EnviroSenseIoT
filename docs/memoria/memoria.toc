@@ -102,24 +102,32 @@
 \contentsline {subsubsection}{Construcción y ejecución de los servicios}{38}{section*.65}%
 \contentsline {subsection}{\numberline {3.7.3}Configuración del sistema como servicio}{38}{subsection.3.7.3}%
 \contentsline {subsection}{\numberline {3.7.4}Resumen del proceso de despliegue}{38}{subsection.3.7.4}%
-\contentsline {chapter}{\numberline {A}Modelo de datos implementado en el trabajo}{39}{appendix.Alph1}%
-\contentsline {chapter}{\numberline {B}Resumen de endpoints de la API}{41}{appendix.Alph2}%
-\contentsline {chapter}{\numberline {C}Autenticación con JWT}{45}{appendix.Alph3}%
-\contentsline {chapter}{\numberline {D}Conexión de la aplicación FastAPI con la base de datos MongoDB}{47}{appendix.Alph4}%
-\contentsline {chapter}{\numberline {E}Conexión al broker MQTT con FastAPI y AWS IoT SDK para Python}{49}{appendix.Alph5}%
-\contentsline {chapter}{\numberline {F}Conexión por WebSocket en FastAPI}{55}{appendix.Alph6}%
-\contentsline {section}{\numberline {F.1}Introducción}{55}{section.Alph6.1}%
-\contentsline {section}{\numberline {F.2}Autorización para WebSocket}{55}{section.Alph6.2}%
-\contentsline {section}{\numberline {F.3}Gestión de conexiones WebSocket}{56}{section.Alph6.3}%
-\contentsline {section}{\numberline {F.4}Integración con FastAPI}{57}{section.Alph6.4}%
-\contentsline {chapter}{\numberline {G}Despliegue del sistema en instancia EC2}{59}{appendix.Alph7}%
-\contentsline {section}{\numberline {G.1}Introducción}{59}{section.Alph7.1}%
-\contentsline {section}{\numberline {G.2}Creación de la instancia EC2}{59}{section.Alph7.2}%
-\contentsline {section}{\numberline {G.3}Instalación y configuración del servidor EC2}{61}{section.Alph7.3}%
-\contentsline {subsection}{\numberline {G.3.1}Conectarse a la instancia EC2}{61}{subsection.Alph7.3.1}%
-\contentsline {subsection}{\numberline {G.3.2}Instalación de Docker}{62}{subsection.Alph7.3.2}%
-\contentsline {subsection}{\numberline {G.3.3}Instalación de Docker Compose}{62}{subsection.Alph7.3.3}%
-\contentsline {subsection}{\numberline {G.3.4}Instalación del cliente DuckDNS}{63}{subsection.Alph7.3.4}%
-\contentsline {subsection}{\numberline {G.3.5}Descarga y configuración del repositorio EnviroSense}{64}{subsection.Alph7.3.5}%
-\contentsline {subsection}{\numberline {G.3.6}Configuración del sistema como servicio}{65}{subsection.Alph7.3.6}%
-\contentsline {chapter}{Bibliografía}{67}{appendix*.76}%
+\contentsline {chapter}{\numberline {4}Ensayos y resultados}{41}{chapter.4}%
+\contentsline {section}{\numberline {4.1}Banco de pruebas}{41}{section.4.1}%
+\contentsline {section}{\numberline {4.2}Pruebas de backend}{43}{section.4.2}%
+\contentsline {subsection}{\numberline {4.2.1}Pruebas en Postman}{43}{subsection.4.2.1}%
+\contentsline {subsubsection}{Evaluación general}{44}{section*.71}%
+\contentsline {subsubsection}{Resultados generales de las pruebas}{45}{section*.73}%
+\contentsline {subsection}{\numberline {4.2.2}Pruebas de validación de almacenamiento en MongoDB}{45}{subsection.4.2.2}%
+\contentsline {subsection}{\numberline {4.2.3}Resumen de pruebas del backend}{46}{subsection.4.2.3}%
+\contentsline {chapter}{\numberline {A}Modelo de datos implementado en el trabajo}{47}{appendix.Alph1}%
+\contentsline {chapter}{\numberline {B}Resumen de endpoints de la API}{49}{appendix.Alph2}%
+\contentsline {chapter}{\numberline {C}Autenticación con JWT}{53}{appendix.Alph3}%
+\contentsline {chapter}{\numberline {D}Conexión de la aplicación FastAPI con la base de datos MongoDB}{55}{appendix.Alph4}%
+\contentsline {chapter}{\numberline {E}Conexión al broker MQTT con FastAPI y AWS IoT SDK para Python}{57}{appendix.Alph5}%
+\contentsline {chapter}{\numberline {F}Conexión por WebSocket en FastAPI}{63}{appendix.Alph6}%
+\contentsline {section}{\numberline {F.1}Introducción}{63}{section.Alph6.1}%
+\contentsline {section}{\numberline {F.2}Autorización para WebSocket}{63}{section.Alph6.2}%
+\contentsline {section}{\numberline {F.3}Gestión de conexiones WebSocket}{64}{section.Alph6.3}%
+\contentsline {section}{\numberline {F.4}Integración con FastAPI}{65}{section.Alph6.4}%
+\contentsline {chapter}{\numberline {G}Despliegue del sistema en instancia EC2}{67}{appendix.Alph7}%
+\contentsline {section}{\numberline {G.1}Introducción}{67}{section.Alph7.1}%
+\contentsline {section}{\numberline {G.2}Creación de la instancia EC2}{67}{section.Alph7.2}%
+\contentsline {section}{\numberline {G.3}Instalación y configuración del servidor EC2}{69}{section.Alph7.3}%
+\contentsline {subsection}{\numberline {G.3.1}Conectarse a la instancia EC2}{69}{subsection.Alph7.3.1}%
+\contentsline {subsection}{\numberline {G.3.2}Instalación de Docker}{70}{subsection.Alph7.3.2}%
+\contentsline {subsection}{\numberline {G.3.3}Instalación de Docker Compose}{70}{subsection.Alph7.3.3}%
+\contentsline {subsection}{\numberline {G.3.4}Instalación del cliente DuckDNS}{71}{subsection.Alph7.3.4}%
+\contentsline {subsection}{\numberline {G.3.5}Descarga y configuración del repositorio EnviroSense}{72}{subsection.Alph7.3.5}%
+\contentsline {subsection}{\numberline {G.3.6}Configuración del sistema como servicio}{73}{subsection.Alph7.3.6}%
+\contentsline {chapter}{Bibliografía}{75}{appendix*.84}%

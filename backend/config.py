@@ -7,7 +7,7 @@ from motor.motor_asyncio import AsyncIOMotorClient
 from models.actuator import Actuator
 from models.actuator_data import ActuatorData
 from models.actuator_log import ActuatorLog
-from models.user import UpdateCurrentUserPassword, UpdateUserPassword, User
+from models.user import UpdateCurrentUserPassword, UpdateUserPassword, UpdateCurrentUser, User
 from models.role import Role
 from models.country import Country
 from models.province import Province
@@ -39,6 +39,7 @@ async def init_db():
     db = client.get_database(MONGO_DB)
     await init_beanie(database=db, document_models=[
         User,
+        UpdateCurrentUser,
         UpdateCurrentUserPassword,
         UpdateUserPassword,
         Role, 
