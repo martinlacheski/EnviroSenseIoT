@@ -508,43 +508,43 @@ export const Dashboard = () => {
               <Row className="p-2">
                 <Col xs={12}>
                   <BinaryLineChartComponent
-                    name="Relay Agua"
+                    name="Relé Agua"
                     data={messages.actuators.relay_water || []}
                   />
                   <BinaryLineChartComponent
-                    name="Relay Vent."
+                    name="Relé Vent."
                     data={messages.actuators.relay_vent || []}
                   />
                   <BinaryLineChartComponent
-                    name="Relay Ilum."
+                    name="Relé Ilum."
                     data={messages.actuators.relay_light || []}
                   />
                   <BinaryLineChartComponent
-                    name="Relay Air."
+                    name="Relé Air."
                     data={messages.actuators.relay_aerator || []}
                   />
                   <BinaryLineChartComponent
-                    name="Relay pH +"
+                    name="Relé pH +"
                     data={messages.actuators.relay_ph_plus || []}
                   />
                   <BinaryLineChartComponent
-                    name="Relay pH -"
+                    name="Relé pH -"
                     data={messages.actuators.relay_ph_minus || []}
                   />
                   <BinaryLineChartComponent
-                    name="Relay Nu. 1"
+                    name="Relé Nu. 1"
                     data={messages.actuators.relay_nutri_1 || []}
                   />
                   <BinaryLineChartComponent
-                    name="Relay Nu. 2"
+                    name="Relé Nu. 2"
                     data={messages.actuators.relay_nutri_2 || []}
                   />
                   <BinaryLineChartComponent
-                    name="Relay Nu. 3"
+                    name="Relé Nu. 3"
                     data={messages.actuators.relay_nutri_3 || []}
                   />
                   <BinaryLineChartComponent
-                    name="Relay Nu. 4"
+                    name="Relé Nu. 4"
                     data={messages.actuators.relay_nutri_4 || []}
                   />
                 </Col>

@@ -164,7 +164,7 @@ export const SensorActuador = () => {
                         <td>
                           <ActiveBadge active={actuador.relay_water_enabled} />
                         </td>
-                        <td>Relay de bomba de agua</td>
+                        <td>Relé de bomba de agua</td>
                         <td>{actuador.relay_water_time}</td>
                         <td>
                           <button
@@ -182,7 +182,7 @@ export const SensorActuador = () => {
                         <td>
                           <ActiveBadge active={actuador.relay_aerator_enabled} />
                         </td>
-                        <td>Relay de aireador</td>
+                        <td>Relé de aireador</td>
                         <td>{actuador.relay_aerator_time}</td>
                         <td>
                           <button
@@ -200,7 +200,7 @@ export const SensorActuador = () => {
                         <td>
                           <ActiveBadge active={actuador.relay_vent_enabled} />
                         </td>
-                        <td>Relay de ventilación</td>
+                        <td>Relé de ventilación</td>
                         <td>{actuador.relay_vent_time}</td>
                         <td>
                           <button
@@ -218,7 +218,7 @@ export const SensorActuador = () => {
                         <td>
                           <ActiveBadge active={actuador.relay_light_enabled} />
                         </td>
-                        <td>Relay de iluminación</td>
+                        <td>Relé de iluminación</td>
                         <td>{actuador.relay_light_time}</td>
                         <td>
                           <button
@@ -236,7 +236,7 @@ export const SensorActuador = () => {
                         <td>
                           <ActiveBadge active={actuador.relay_ph_plus_enabled} />
                         </td>
-                        <td>Relay de pH +</td>
+                        <td>Relé de pH +</td>
                         <td>{actuador.relay_ph_plus_time}</td>
                         <td>
                           <button
@@ -254,7 +254,7 @@ export const SensorActuador = () => {
                         <td>
                           <ActiveBadge active={actuador.relay_ph_minus_enabled} />
                         </td>
-                        <td>Relay de pH -</td>
+                        <td>Relé de pH -</td>
                         <td>{actuador.relay_ph_minus_time}</td>
                         <td>
                           <button
@@ -272,7 +272,7 @@ export const SensorActuador = () => {
                         <td>
                           <ActiveBadge active={actuador.relay_nutri_1_enabled} />
                         </td>
-                        <td>Relay nutriente 1</td>
+                        <td>Relé nutriente 1</td>
                         <td>{actuador.relay_nutri_1_time}</td>
                         <td>
                           <button
@@ -290,7 +290,7 @@ export const SensorActuador = () => {
                         <td>
                           <ActiveBadge active={actuador.relay_nutri_2_enabled} />
                         </td>
-                        <td>Relay nutriente 2</td>
+                        <td>Relé nutriente 2</td>
                         <td>{actuador.relay_nutri_2_time}</td>
                         <td>
                           <button
@@ -308,7 +308,7 @@ export const SensorActuador = () => {
                         <td>
                           <ActiveBadge active={actuador.relay_nutri_3_enabled} />
                         </td>
-                        <td>Relay nutriente 3</td>
+                        <td>Relé nutriente 3</td>
                         <td>{actuador.relay_nutri_3_time}</td>
                         <td>
                           <button
@@ -326,7 +326,7 @@ export const SensorActuador = () => {
                         <td>
                           <ActiveBadge active={actuador.relay_nutri_4_enabled} />
                         </td>
-                        <td>Relay nutriente 4</td>
+                        <td>Relé nutriente 4</td>
                         <td>{actuador.relay_nutri_4_time}</td>
                         <td>
                           <button
@@ -345,10 +345,6 @@ export const SensorActuador = () => {
               </Card>
             </div>
           </Row>
-
-          <p className="mt-3">
-            Acá podes listar los datos o logs que pertenecen a este actuador etc
-          </p>
         </>
       )}
     </div>

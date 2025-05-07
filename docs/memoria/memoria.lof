@@ -35,19 +35,51 @@
 \contentsline {figure}{\numberline {3.19}{\ignorespaces Flujo de ejecución del código en los nodos}}{31}{figure.caption.45}%
 \contentsline {figure}{\numberline {3.20}{\ignorespaces Flujo de comunicación entre nodos y broker MQTT}}{33}{figure.caption.52}%
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {4.1}{\ignorespaces Banco de pruebas del sistema EnviroSenseIoT}}{42}{figure.caption.68}%
+\contentsline {figure}{\numberline {4.1}{\ignorespaces Banco de pruebas del sistema EnviroSenseIoT}}{42}{figure.caption.67}%
 \contentsline {figure}{\numberline {4.2}{\ignorespaces Interfaz de Swagger}}{43}{figure.caption.69}%
 \contentsline {figure}{\numberline {4.3}{\ignorespaces Pruebas realizadas en Postman}}{44}{figure.caption.70}%
-\contentsline {figure}{\numberline {4.4}{\ignorespaces Validación de almacenamiento en MongoDB}}{46}{figure.caption.74}%
+\contentsline {figure}{\numberline {4.4}{\ignorespaces Pruebas de WebSocket}}{46}{figure.caption.75}%
+\contentsline {figure}{\numberline {4.5}{\ignorespaces Validación de almacenamiento en MongoDB}}{47}{figure.caption.76}%
+\contentsline {figure}{\numberline {4.6}{\ignorespaces Pruebas de autenticación}}{48}{figure.caption.78}%
+\contentsline {figure}{\numberline {4.7}{\ignorespaces Autenticación y autorización rol administrador}}{49}{figure.caption.80}%
+\contentsline {figure}{\numberline {4.8}{\ignorespaces Autenticación y autorización rol usuario}}{49}{figure.caption.81}%
+\contentsline {figure}{\numberline {4.9}{\ignorespaces Validación de formularios}}{50}{figure.caption.83}%
+\contentsline {figure}{\numberline {4.10}{\ignorespaces Verificación de creación de usuario}}{50}{figure.caption.84}%
+\contentsline {figure}{\numberline {4.11}{\ignorespaces Pruebas de funcionalidad en tablas}}{51}{figure.caption.86}%
+\contentsline {figure}{\numberline {4.12}{\ignorespaces Pruebas de funcionalidad en gráficos}}{51}{figure.caption.87}%
+\contentsline {figure}{\numberline {4.13}{\ignorespaces Pruebas de funcionalidad en el dashboard}}{52}{figure.caption.89}%
+\contentsline {figure}{\numberline {4.14}{\ignorespaces Interfaz de ambientes en dispositivo móvil}}{52}{figure.caption.91}%
+\contentsline {figure}{\numberline {4.15}{\ignorespaces Listado en formato apaisado desde dispositivo móvil}}{53}{figure.caption.92}%
+\contentsline {figure}{\numberline {4.16}{\ignorespaces Pruebas de sensor ambiental}}{54}{figure.caption.94}%
+\contentsline {figure}{\numberline {4.17}{\ignorespaces Pruebas de sensor de solución nutritiva}}{54}{figure.caption.96}%
+\contentsline {figure}{\numberline {4.18}{\ignorespaces Pruebas de sensor de consumos}}{54}{figure.caption.98}%
+\contentsline {figure}{\numberline {4.19}{\ignorespaces Pruebas de actuadores}}{55}{figure.caption.99}%
+\contentsline {figure}{\numberline {4.20}{\ignorespaces Pruebas de encendido de relés}}{55}{figure.caption.100}%
+\contentsline {figure}{\numberline {4.21}{\ignorespaces Pruebas de comunicación con sensor ambiental}}{56}{figure.caption.101}%
+\contentsline {figure}{\numberline {4.22}{\ignorespaces Pruebas de comunicación con sensor ambiental}}{56}{figure.caption.102}%
+\contentsline {figure}{\numberline {4.23}{\ignorespaces Pruebas de comunicación con sensor de consumos}}{56}{figure.caption.103}%
+\contentsline {figure}{\numberline {4.24}{\ignorespaces Pruebas de comunicación con sensor de consumos}}{56}{figure.caption.104}%
+\contentsline {figure}{\numberline {4.25}{\ignorespaces Pruebas de comunicación con sensor de solución nutritiva}}{57}{figure.caption.105}%
+\contentsline {figure}{\numberline {4.26}{\ignorespaces Pruebas de comunicación con sensor de solución nutritiva}}{57}{figure.caption.106}%
+\contentsline {figure}{\numberline {4.27}{\ignorespaces Pruebas de comunicación con actuador}}{57}{figure.caption.107}%
+\contentsline {figure}{\numberline {4.28}{\ignorespaces Pruebas de comunicación con actuador}}{58}{figure.caption.108}%
+\contentsline {figure}{\numberline {4.29}{\ignorespaces Pruebas de comunicación con actuador}}{58}{figure.caption.109}%
+\contentsline {figure}{\numberline {4.30}{\ignorespaces Envío de comando de activación al microcontrolador}}{58}{figure.caption.110}%
+\contentsline {figure}{\numberline {4.31}{\ignorespaces Salida por consola del frontend}}{59}{figure.caption.111}%
+\contentsline {figure}{\numberline {4.32}{\ignorespaces Salida por consola del backend}}{59}{figure.caption.112}%
+\contentsline {figure}{\numberline {4.33}{\ignorespaces Salida por consola del microcontrolador}}{59}{figure.caption.113}%
+\contentsline {figure}{\numberline {4.34}{\ignorespaces Salida por consola del backend}}{60}{figure.caption.114}%
+\contentsline {figure}{\numberline {4.35}{\ignorespaces Verificación de persistencia en MongoDB Compass}}{60}{figure.caption.115}%
+\contentsline {figure}{\numberline {4.36}{\ignorespaces Actualización del estado de los relés en el frontend}}{60}{figure.caption.116}%
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {A.1}{\ignorespaces Modelo de datos implementado en el trabajo.}}{48}{figure.caption.75}%
+\contentsline {figure}{\numberline {A.1}{\ignorespaces Modelo de datos implementado en el trabajo.}}{62}{figure.caption.117}%
 \addvspace {10\p@ }
 \addvspace {10\p@ }
 \addvspace {10\p@ }
 \addvspace {10\p@ }
 \addvspace {10\p@ }
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {G.1}{\ignorespaces Resumen de la instancia EC2 creada.}}{68}{figure.caption.79}%
-\contentsline {figure}{\numberline {G.2}{\ignorespaces Conexión SSH a la instancia EC2.}}{69}{figure.caption.80}%
-\contentsline {figure}{\numberline {G.3}{\ignorespaces Acceso a la aplicación web EnviroSenseIoT.}}{74}{figure.caption.81}%
-\contentsline {figure}{\numberline {G.4}{\ignorespaces Visualización de datos en tiempo real.}}{74}{figure.caption.82}%
+\contentsline {figure}{\numberline {G.1}{\ignorespaces Resumen de la instancia EC2 creada.}}{82}{figure.caption.121}%
+\contentsline {figure}{\numberline {G.2}{\ignorespaces Conexión SSH a la instancia EC2.}}{83}{figure.caption.122}%
+\contentsline {figure}{\numberline {G.3}{\ignorespaces Acceso a la aplicación web EnviroSenseIoT.}}{88}{figure.caption.123}%
+\contentsline {figure}{\numberline {G.4}{\ignorespaces Visualización de datos en tiempo real.}}{88}{figure.caption.124}%

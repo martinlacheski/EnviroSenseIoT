@@ -19,12 +19,12 @@ export const sidebarItems: MenuItemData[] = [
   {
     title: "Reportes",
     icon: "bi bi-layout-text-sidebar-reverse",
-    requiredRoles: ["ADMIN"],
+    requiredRoles: ["ADMIN", "USUARIO"],
     subItems: [
-      { title: "Actuadores", link: "/reportes/actuadores", requiredRoles: ["ADMIN"] },
-      { title: "Sensores de consumo", link: "/reportes/sensores-consumo", requiredRoles: ["ADMIN"] },
-      { title: "Sensores ambientales", link: "/reportes/sensores-ambientales", requiredRoles: ["ADMIN"] },
-      { title: "Sensores de nutrientes", link: "/reportes/sensores-nutrientes", requiredRoles: ["ADMIN"] },
+      { title: "Actuadores", link: "/reportes/actuadores", requiredRoles: ["ADMIN", "USUARIO"] },
+      { title: "Sensores de consumo", link: "/reportes/sensores-consumo", requiredRoles: ["ADMIN", "USUARIO"] },
+      { title: "Sensores ambientales", link: "/reportes/sensores-ambientales", requiredRoles: ["ADMIN", "USUARIO"] },
+      { title: "Sensores de nutrientes", link: "/reportes/sensores-nutrientes", requiredRoles: ["ADMIN", "USUARIO"] },
     ],
   },
   {

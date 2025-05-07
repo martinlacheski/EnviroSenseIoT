@@ -74,52 +74,52 @@ interface Helper {
 export const initialHelpers: Helper[] = [
     {
         enabled: 'relay_water_enabled',
-        name: 'Relay de agua',
+        name: 'Relé bomba de agua',
         time: 'relay_water_time',
     },
     {
         enabled: 'relay_aerator_enabled',
-        name: 'Relay de aireador',
+        name: 'Relé bomba de aireador',
         time: 'relay_aerator_time',
     },
     {
         enabled: 'relay_vent_enabled',
-        name: 'Relay de ventilación',
+        name: 'Relé de ventilación',
         time: 'relay_vent_time',
     },
     {
         enabled: 'relay_light_enabled',
-        name: 'Relay de iluminación',
+        name: 'Relé de iluminación',
         time: 'relay_light_time',
     },
     {
         enabled: 'relay_ph_plus_enabled',
-        name: 'Relay de pH +',
+        name: 'Relé bomba de pH +',
         time: 'relay_ph_plus_time',
     },
     {
         enabled: 'relay_ph_minus_enabled',
-        name: 'Relay de pH -',
+        name: 'Relé bomba de pH -',
         time: 'relay_ph_minus_time',
     },
     {
         enabled: 'relay_nutri_1_enabled',
-        name: 'Relay de nutriente 1',
+        name: 'Relé bomba de nutriente 1',
         time: 'relay_nutri_1_time',
     },
     {
         enabled: 'relay_nutri_2_enabled',
-        name: 'Relay de nutriente 2',
+        name: 'Relé bomba de nutriente 2',
         time: 'relay_nutri_2_time',
     },
     {
         enabled: 'relay_nutri_3_enabled',
-        name: 'Relay de nutriente 3',
+        name: 'Relé bomba de nutriente 3',
         time: 'relay_nutri_3_time',
     },
     {
         enabled: 'relay_nutri_4_enabled',
-        name: 'Relay de nutriente 4',
+        name: 'Relé bomba de nutriente 4',
         time: 'relay_nutri_4_time',
     },
 ];

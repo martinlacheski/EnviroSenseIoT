@@ -1,0 +1,13 @@
+REPORTE DE TIEMPOS DE RESPUESTA
+========================================
+
+Promedio general: 204.38 ms
+Total de solicitudes: 111
+
+Promedios por método HTTP:
+----------------------------------------
+DELETE:  195.77 ms (13 solicitudes)
+GET   :   191.0 ms (46 solicitudes)
+PATCH :   668.5 ms (2 solicitudes)
+POST  :  199.47 ms (36 solicitudes)
+PUT   :  202.64 ms (14 solicitudes)

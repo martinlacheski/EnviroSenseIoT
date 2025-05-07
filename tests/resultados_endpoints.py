@@ -1,4 +1,5 @@
 import json
+import csv
 
 # Cargar el archivo JSON
 with open('IoT-Backend.postman_test_run.json', 'r') as file:
@@ -6,35 +7,28 @@ with open('IoT-Backend.postman_test_run.json', 'r') as file:
 
 # Configuración
 BASE_URL = "http://envirosense.duckdns.org:8000"
-OUTPUT_FILE = "resultados_endpoints.txt"
+OUTPUT_FILE = "resultados_endpoints.csv"
 
 # Mapear IDs a métodos HTTP
 method_map = {req['id']: req['method'] for req in data['collection']['requests']}
 
-# Encabezados y separador
-header = (
-    f"{'MÉTODO'.ljust(8)}"
-    f"{'NOMBRE'.ljust(40)}"
-    f"{'ENDPOINT'.ljust(35)}"
-    f"{'TIEMPO (ms)'.rjust(12)}"
-    f"{'RESPUESTA'.rjust(12)}\n"
-    + "-" * 107  # Separador visual
-)
+# Generar datos para CSV
+csv_data = []
+headers = ['MÉTODO', 'NOMBRE', 'ENDPOINT', 'TIEMPO (ms)', 'RESPUESTA']
 
-# Generar contenido
-content = []
 for result in data['results']:
-    method = method_map.get(result['id'], "N/A").ljust(8)
-    name = result['name'].ljust(40)
-    endpoint = result['url'].replace(BASE_URL, "").ljust(35)
-    time = str(result['time']).rjust(12)
-    response = f"{result['responseCode']['code']} {result['responseCode']['name']}".rjust(12)
+    method = method_map.get(result['id'], "N/A")
+    name = result['name']
+    endpoint = result['url'].replace(BASE_URL, "")
+    time = result['time']
+    response = f"{result['responseCode']['code']} {result['responseCode']['name']}"
     
-    content.append(f"{method}{name}{endpoint}{time}{response}")
+    csv_data.append([method, name, endpoint, time, response])
 
-# Escribir archivo
-with open(OUTPUT_FILE, 'w', encoding='utf-8') as file:
-    file.write(header + "\n")
-    file.write("\n".join(content))
+# Escribir archivo CSV
+with open(OUTPUT_FILE, 'w', newline='', encoding='utf-8') as file:
+    writer = csv.writer(file)
+    writer.writerow(headers)  # Escribir encabezados
+    writer.writerows(csv_data)  # Escribir datos
 
-print(f"✓ Archivo generado: '{OUTPUT_FILE}'")
+print(f"✓ Archivo CSV generado: '{OUTPUT_FILE}'")

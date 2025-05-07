@@ -89,10 +89,6 @@ export const Ambiente = () => {
               </div>
             </Card.Body>
           </Card>
-
-          <p>
-            Acá podes listar los dispositivos que pertenecen a este ambiente etc
-          </p>
         </>
       )}
     </div>

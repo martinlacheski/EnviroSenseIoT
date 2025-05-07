@@ -227,61 +227,61 @@ export const Actuadores = () => {
         width: "150px",
       },
       {
-        name: "RELAY AGUA",
+        name: "RELÉ AGUA",
         selector: (row: ActuadorDataRow) => row.relay_water_count,
         format: (row: ActuadorDataRow) =>
           getSpan(row.relay_water_count, row.relay_water_time),
       },
       {
-        name: "RELAY VENTILACIÓN",
+        name: "RELÉ VENTILACIÓN",
         selector: (row: ActuadorDataRow) => row.relay_vent_count,
         format: (row: ActuadorDataRow) =>
           getSpan(row.relay_vent_count, row.relay_vent_time),
       },
       {
-        name: "RELAY ILUMINACIÓN",
+        name: "RELÉ ILUMINACIÓN",
         selector: (row: ActuadorDataRow) => row.relay_light_count,
         format: (row: ActuadorDataRow) =>
           getSpan(row.relay_light_count, row.relay_light_time),
       },
       {
-        name: "RELAY AIREACIÓN",
+        name: "RELÉ AIREACIÓN",
         selector: (row: ActuadorDataRow) => row.relay_aerator_count,
         format: (row: ActuadorDataRow) =>
           getSpan(row.relay_aerator_count, row.relay_aerator_time),
       },
       {
-        name: "RELAY PH+",
+        name: "RELÉ PH+",
         selector: (row: ActuadorDataRow) => row.relay_ph_plus_count,
         format: (row: ActuadorDataRow) =>
           getSpan(row.relay_ph_plus_count, row.relay_ph_plus_time),
       },
       {
-        name: "RELAY PH-",
+        name: "RELÉ PH-",
         selector: (row: ActuadorDataRow) => row.relay_ph_minus_count,
         format: (row: ActuadorDataRow) =>
           getSpan(row.relay_ph_minus_count, row.relay_ph_minus_time),
       },
       {
-        name: "RELAY NUTR. 1",
+        name: "RELÉ NUTR. 1",
         selector: (row: ActuadorDataRow) => row.relay_nutri_1_count,
         format: (row: ActuadorDataRow) =>
           getSpan(row.relay_nutri_1_count, row.relay_nutri_1_time),
       },
       {
-        name: "RELAY NUTR. 2",
+        name: "RELÉ NUTR. 2",
         selector: (row: ActuadorDataRow) => row.relay_nutri_2_count,
         format: (row: ActuadorDataRow) =>
           getSpan(row.relay_nutri_2_count, row.relay_nutri_2_time),
       },
       {
-        name: "RELAY NUTR. 3",
+        name: "RELÉ NUTR. 3",
         selector: (row: ActuadorDataRow) => row.relay_nutri_3_count,
         format: (row: ActuadorDataRow) =>
           getSpan(row.relay_nutri_3_count, row.relay_nutri_3_time),
       },
       {
-        name: "RELAY NUTR. 4",
+        name: "RELÉ NUTR. 4",
         selector: (row: ActuadorDataRow) => row.relay_nutri_4_count,
         format: (row: ActuadorDataRow) =>
           getSpan(row.relay_nutri_4_count, row.relay_nutri_4_time),
@@ -419,7 +419,7 @@ export const Actuadores = () => {
               </p>
               <Col lg={6} xl={3}>
                 <MultiAxisLineChartComponent
-                  title="Relay Agua"
+                  title="Relé Agua"
                   data={waterData}
                   series={series}               
                   height={200}
@@ -427,7 +427,7 @@ export const Actuadores = () => {
               </Col>
               <Col lg={6} xl={3}>
                 <MultiAxisLineChartComponent
-                  title="Relay Ventilación"
+                  title="Relé Ventilación"
                   data={ventData}
                   series={series}               
                   height={200}
@@ -435,7 +435,7 @@ export const Actuadores = () => {
               </Col>
               <Col lg={6} xl={3}>
                 <MultiAxisLineChartComponent
-                  title="Relay Iluminación"
+                  title="Relé Iluminación"
                   data={lightData}
                   series={series}               
                   height={200}
@@ -443,7 +443,7 @@ export const Actuadores = () => {
               </Col>
               <Col lg={6} xl={3}>
                 <MultiAxisLineChartComponent
-                  title="Relay Aireación"
+                  title="Relé Aireación"
                   data={aeratorData}
                   series={series}               
                   height={200}
@@ -451,7 +451,7 @@ export const Actuadores = () => {
               </Col>
               <Col lg={6}>
                 <MultiAxisLineChartComponent
-                  title="Relay PH+"
+                  title="Relé PH+"
                   data={phPlusData}
                   series={series}               
                   height={200}
@@ -459,7 +459,7 @@ export const Actuadores = () => {
               </Col>
               <Col lg={6}>
                 <MultiAxisLineChartComponent
-                  title="Relay PH-"
+                  title="Relé PH-"
                   data={phMinusData}
                   series={series}               
                   height={200}
@@ -467,7 +467,7 @@ export const Actuadores = () => {
               </Col>
               <Col lg={6} xl={3}>
                 <MultiAxisLineChartComponent
-                  title="Relay Nutriente 1"
+                  title="Relé Nutriente 1"
                   data={nutri1Data}
                   series={series}               
                   height={200}
@@ -475,7 +475,7 @@ export const Actuadores = () => {
               </Col>
               <Col lg={6} xl={3}>
                 <MultiAxisLineChartComponent
-                  title="Relay Nutriente 2"
+                  title="Relé Nutriente 2"
                   data={nutri2Data}
                   series={series}               
                   height={200}
@@ -483,7 +483,7 @@ export const Actuadores = () => {
               </Col>
               <Col lg={6} xl={3}>
                 <MultiAxisLineChartComponent
-                  title="Relay Nutriente 3"
+                  title="Relé Nutriente 3"
                   data={nutri3Data}
                   series={series}               
                   height={200}
@@ -491,7 +491,7 @@ export const Actuadores = () => {
               </Col>
               <Col lg={6} xl={3}>
                 <MultiAxisLineChartComponent
-                  title="Relay Nutriente 4"
+                  title="Relé Nutriente 4"
                   data={nutri4Data}
                   series={series}               
                   height={200}

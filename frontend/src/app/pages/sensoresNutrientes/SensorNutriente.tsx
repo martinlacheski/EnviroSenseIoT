@@ -185,10 +185,6 @@ export const SensorNutriente = () => {
               </Card>
             </div>
           </Row>
-
-          <p className="mt-3">
-            Acá podes listar los datos o logs que pertenecen a este sensor etc
-          </p>
         </>
       )}
     </div>
