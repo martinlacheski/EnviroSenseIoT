@@ -1,39 +1,39 @@
 \babel@toc {spanish}{}\relax 
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {1.1}{\ignorespaces Diagrama en bloques del sistema.}}{4}{figure.caption.8}%
+\contentsline {figure}{\numberline {1.1}{\ignorespaces Diagrama en bloques del sistema.}}{4}{figure.caption.7}%
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {2.1}{\ignorespaces Microcontrolador ESP-WROOM-32\footnotemark .}}{8}{figure.caption.9}%
-\contentsline {figure}{\numberline {2.2}{\ignorespaces Sensor BME280\footnotemark .}}{9}{figure.caption.10}%
-\contentsline {figure}{\numberline {2.3}{\ignorespaces Sensor BH1750\footnotemark .}}{9}{figure.caption.11}%
-\contentsline {figure}{\numberline {2.4}{\ignorespaces Sensor MH-Z19C\footnotemark .}}{9}{figure.caption.12}%
-\contentsline {figure}{\numberline {2.5}{\ignorespaces Sensor PH-4502C\footnotemark .}}{10}{figure.caption.13}%
-\contentsline {figure}{\numberline {2.6}{\ignorespaces Sensor CE\footnotemark .}}{10}{figure.caption.14}%
-\contentsline {figure}{\numberline {2.7}{\ignorespaces Sensor TDS\footnotemark .}}{10}{figure.caption.15}%
-\contentsline {figure}{\numberline {2.8}{\ignorespaces Sensor de temperatura DS18B20\footnotemark .}}{11}{figure.caption.16}%
-\contentsline {figure}{\numberline {2.9}{\ignorespaces Sensor HC-SR04\footnotemark .}}{11}{figure.caption.17}%
-\contentsline {figure}{\numberline {2.10}{\ignorespaces Sensor de medición de consumo eléctrico\footnotemark .}}{11}{figure.caption.18}%
-\contentsline {figure}{\numberline {2.11}{\ignorespaces Relé de 2 Canales 5 V 10 A\footnotemark .}}{12}{figure.caption.19}%
+\contentsline {figure}{\numberline {2.1}{\ignorespaces Microcontrolador ESP-WROOM-32\footnotemark .}}{8}{figure.caption.8}%
+\contentsline {figure}{\numberline {2.2}{\ignorespaces Sensor BME280\footnotemark .}}{9}{figure.caption.9}%
+\contentsline {figure}{\numberline {2.3}{\ignorespaces Sensor BH1750\footnotemark .}}{9}{figure.caption.10}%
+\contentsline {figure}{\numberline {2.4}{\ignorespaces Sensor MH-Z19C\footnotemark .}}{9}{figure.caption.11}%
+\contentsline {figure}{\numberline {2.5}{\ignorespaces Sensor PH-4502C\footnotemark .}}{10}{figure.caption.12}%
+\contentsline {figure}{\numberline {2.6}{\ignorespaces Sensor CE\footnotemark .}}{10}{figure.caption.13}%
+\contentsline {figure}{\numberline {2.7}{\ignorespaces Sensor TDS\footnotemark .}}{10}{figure.caption.14}%
+\contentsline {figure}{\numberline {2.8}{\ignorespaces Sensor de temperatura DS18B20\footnotemark .}}{11}{figure.caption.15}%
+\contentsline {figure}{\numberline {2.9}{\ignorespaces Sensor HC-SR04\footnotemark .}}{11}{figure.caption.16}%
+\contentsline {figure}{\numberline {2.10}{\ignorespaces Sensor de medición de consumo eléctrico\footnotemark .}}{11}{figure.caption.17}%
+\contentsline {figure}{\numberline {2.11}{\ignorespaces Relé de 2 Canales 5 V 10 A\footnotemark .}}{12}{figure.caption.18}%
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {3.1}{\ignorespaces Arquitectura de la solución propuesta.}}{15}{figure.caption.20}%
-\contentsline {figure}{\numberline {3.2}{\ignorespaces Modelo de datos implementado.}}{17}{figure.caption.21}%
-\contentsline {figure}{\numberline {3.3}{\ignorespaces Arquitectura del servidor del sistema IoT.}}{18}{figure.caption.22}%
-\contentsline {figure}{\numberline {3.4}{\ignorespaces Esquema de autenticación y autorización.}}{20}{figure.caption.24}%
-\contentsline {figure}{\numberline {3.5}{\ignorespaces Diagrama de clases de los modelos implementados.}}{21}{figure.caption.25}%
-\contentsline {figure}{\numberline {3.6}{\ignorespaces Pasos para la conexión de FastAPI y MongoDB.}}{21}{figure.caption.26}%
+\contentsline {figure}{\numberline {3.1}{\ignorespaces Arquitectura de la solución propuesta.}}{15}{figure.caption.19}%
+\contentsline {figure}{\numberline {3.2}{\ignorespaces Modelo de datos implementado.}}{17}{figure.caption.20}%
+\contentsline {figure}{\numberline {3.3}{\ignorespaces Arquitectura del servidor del sistema IoT.}}{18}{figure.caption.21}%
+\contentsline {figure}{\numberline {3.4}{\ignorespaces Esquema de autenticación y autorización.}}{20}{figure.caption.23}%
+\contentsline {figure}{\numberline {3.5}{\ignorespaces Diagrama de clases de los modelos implementados.}}{21}{figure.caption.24}%
+\contentsline {figure}{\numberline {3.6}{\ignorespaces Pasos para la conexión de FastAPI y MongoDB.}}{21}{figure.caption.25}%
 \contentsline {figure}{\numberline {3.7}{\ignorespaces Pasos para verificar la conexión con el broker MQTT.}}{23}{figure.caption.29}%
 \contentsline {figure}{\numberline {3.8}{\ignorespaces Pasos para publicar un mensaje en un tópico específico.}}{23}{figure.caption.30}%
 \contentsline {figure}{\numberline {3.9}{\ignorespaces Pasos para la conexión del cliente MQTT.}}{24}{figure.caption.32}%
-\contentsline {figure}{\numberline {3.10}{\ignorespaces Pasos para establecer la conexión WebSocket.}}{24}{figure.caption.33}%
+\contentsline {figure}{\numberline {3.10}{\ignorespaces Pasos para establecer la conexión WebSocket.}}{25}{figure.caption.33}%
 \contentsline {figure}{\numberline {3.11}{\ignorespaces Pantalla de Login}}{26}{figure.caption.35}%
-\contentsline {figure}{\numberline {3.12}{\ignorespaces Estructura del componente Layout}}{26}{figure.caption.37}%
-\contentsline {figure}{\numberline {3.13}{\ignorespaces Sistema de navegación}}{27}{figure.caption.39}%
+\contentsline {figure}{\numberline {3.12}{\ignorespaces Estructura del componente layout}}{27}{figure.caption.37}%
+\contentsline {figure}{\numberline {3.13}{\ignorespaces Interfaz de navegación según permisos de usuario estándar}}{28}{figure.caption.39}%
 \contentsline {figure}{\numberline {3.14}{\ignorespaces Visualización de datos en tiempo real}}{28}{figure.caption.40}%
-\contentsline {figure}{\numberline {3.15}{\ignorespaces Pantalla de reportes}}{28}{figure.caption.41}%
-\contentsline {figure}{\numberline {3.16}{\ignorespaces Pantalla de reportes}}{29}{figure.caption.42}%
-\contentsline {figure}{\numberline {3.17}{\ignorespaces Pantalla de reportes}}{29}{figure.caption.43}%
-\contentsline {figure}{\numberline {3.18}{\ignorespaces Visualización de datos en tiempo real desde un dispositivo móvil}}{30}{figure.caption.44}%
-\contentsline {figure}{\numberline {3.19}{\ignorespaces Flujo de ejecución del código en los nodos}}{31}{figure.caption.45}%
-\contentsline {figure}{\numberline {3.20}{\ignorespaces Flujo de comunicación entre nodos y broker MQTT}}{33}{figure.caption.52}%
+\contentsline {figure}{\numberline {3.15}{\ignorespaces Pantalla de reportes}}{29}{figure.caption.41}%
+\contentsline {figure}{\numberline {3.16}{\ignorespaces Pantalla de reportes}}{30}{figure.caption.42}%
+\contentsline {figure}{\numberline {3.17}{\ignorespaces Pantalla de reportes}}{30}{figure.caption.43}%
+\contentsline {figure}{\numberline {3.18}{\ignorespaces Visualización de datos en tiempo real desde un dispositivo móvil}}{31}{figure.caption.44}%
+\contentsline {figure}{\numberline {3.19}{\ignorespaces Flujo de ejecución del código en los nodos}}{32}{figure.caption.45}%
+\contentsline {figure}{\numberline {3.20}{\ignorespaces Flujo de comunicación entre nodos y broker MQTT}}{34}{figure.caption.52}%
 \addvspace {10\p@ }
 \contentsline {figure}{\numberline {4.1}{\ignorespaces Banco de pruebas del sistema EnviroSenseIoT}}{42}{figure.caption.67}%
 \contentsline {figure}{\numberline {4.2}{\ignorespaces Interfaz de Swagger}}{43}{figure.caption.69}%
@@ -72,14 +72,11 @@
 \contentsline {figure}{\numberline {4.35}{\ignorespaces Verificación de persistencia en MongoDB Compass}}{60}{figure.caption.115}%
 \contentsline {figure}{\numberline {4.36}{\ignorespaces Actualización del estado de los relés en el frontend}}{60}{figure.caption.116}%
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {A.1}{\ignorespaces Modelo de datos implementado en el trabajo.}}{62}{figure.caption.117}%
+\addvspace {10\p@ }
+\contentsline {figure}{\numberline {A.1}{\ignorespaces Modelo de datos implementado en el trabajo.}}{64}{figure.caption.117}%
 \addvspace {10\p@ }
 \addvspace {10\p@ }
-\addvspace {10\p@ }
-\addvspace {10\p@ }
-\addvspace {10\p@ }
-\addvspace {10\p@ }
-\contentsline {figure}{\numberline {G.1}{\ignorespaces Resumen de la instancia EC2 creada.}}{82}{figure.caption.121}%
-\contentsline {figure}{\numberline {G.2}{\ignorespaces Conexión SSH a la instancia EC2.}}{83}{figure.caption.122}%
-\contentsline {figure}{\numberline {G.3}{\ignorespaces Acceso a la aplicación web EnviroSenseIoT.}}{88}{figure.caption.123}%
-\contentsline {figure}{\numberline {G.4}{\ignorespaces Visualización de datos en tiempo real.}}{88}{figure.caption.124}%
+\contentsline {figure}{\numberline {C.1}{\ignorespaces Resumen de la instancia EC2 creada.}}{70}{figure.caption.121}%
+\contentsline {figure}{\numberline {C.2}{\ignorespaces Conexión SSH a la instancia EC2.}}{71}{figure.caption.122}%
+\contentsline {figure}{\numberline {C.3}{\ignorespaces Acceso a la aplicación web EnviroSenseIoT.}}{76}{figure.caption.123}%
+\contentsline {figure}{\numberline {C.4}{\ignorespaces Visualización de datos en tiempo real.}}{76}{figure.caption.124}%

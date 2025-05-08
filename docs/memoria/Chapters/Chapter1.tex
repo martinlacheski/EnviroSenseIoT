@@ -176,7 +176,7 @@ El alcance del trabajo incluyó las siguientes tareas:
                   \item Diseño y desarrollo de una API (del inglés, \textit{Application Programming
                               Interface}) REST (del inglés, \textit{Representational State Transfer}) que
                         permita la comunicación con el sistema a través de HTTP (del inglés,
-                        \textit{Hypertext Transfer Protocol}), MQTT y WebSockets.
+                        \textit{Hypertext Transfer Protocol}), MQTT y WebSocket.
                   \item Desarrollo de una aplicación web responsiva para la visualización de datos en
                         tiempo real y el control remoto de actuadores.
             \end{itemize}
@@ -231,7 +231,7 @@ diferentes componentes del sistema.
                               \item Nodos de solución nutritiva: valores de pH (potencial de Hidrógeno),
                                     conductividad eléctrica (CE) y TDS (del inglés, \textit{Total Dissolved
                                           Solids}); nivel y temperatura de la solución.
-                              \item Nodos de consumos: agua, nutrientes y energía eléctrica.
+                              \item Nodos de consumos: nutrientes y energía eléctrica.
                         \end{enumerate}
                   \item Los nodos actuadores deben transmitir al servidor IoT:
                         \begin{enumerate}
@@ -240,7 +240,7 @@ diferentes componentes del sistema.
                         \end{enumerate}
                   \item Los nodos actuadores deben recibir desde el servidor IoT:
                         \begin{enumerate}
-                              \item Comandos de activación/desactivación remota de canales.
+                              \item Comandos de activación/desactivación de canales.
                         \end{enumerate}
             \end{enumerate}
 
@@ -252,15 +252,15 @@ diferentes componentes del sistema.
                         entrega de mensajes.
             \end{enumerate}
 
-      \item Frontend (aplicación web)
+      \item Frontend:
             \begin{enumerate}
                   \item Interfaz intuitiva y responsiva (accesible desde móviles y escritorio).
                   \item Autenticación de usuarios mediante credenciales.
-                  \item Realización de las operaciones CRUD (Crear, Leer, Actualizar, Eliminar).
+                  \item Realización de las operaciones CRUD (del inglés, \textit{Create, Read, Update, Delete}).
                   \item Visualización en tiempo real de datos de sensores y actuadores.
                   \item Envío remoto de comandos y configuraciones.
                   \item Acceso a datos históricos mediante gráficos y tablas.
-                  \item Tablero interactivo para monitoreo y control centralizado.
+                  \item Tablero interactivo para el monitoreo y control centralizado.
             \end{enumerate}
 
       \item Backend:
@@ -268,7 +268,7 @@ diferentes componentes del sistema.
                   \item Tener conexiones seguras mediante TLS.
                   \item Implementar JWT (del inglés, \textit{JSON Web Token}).
                   \item Realizar la persistencia de los datos.
-                  \item Soportar métodos HTTP (CRUD y reportes), WebSockets (datos en tiempo real) y
+                  \item Soportar métodos HTTP (CRUD y reportes), WebSocket (datos en tiempo real) y
                         MQTT (interacción con dispositivos).
             \end{enumerate}
 
@@ -276,7 +276,7 @@ diferentes componentes del sistema.
             \begin{enumerate}
                   \item Se entregará el código del sistema, que incluye todos los componentes
                         desarrollados (sensores, actuadores, broker MQTT, frontend, backend y API).
-                  \item Se entregarán las guías y diagramas de instalación, configuración y operación.
+                  % \item Se entregarán las guías y diagramas de instalación, configuración y operación.
             \end{enumerate}
 \end{enumerate}
 

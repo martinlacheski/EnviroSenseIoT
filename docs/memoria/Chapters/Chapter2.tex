@@ -11,11 +11,11 @@ las características y sus especificaciones técnicas.
 \section{Protocolos de comunicación}
 
 En esta sección se describen los diferentes protocolos de comunicación
-utilizados en el desarrollo del trabajo. 
+utilizados en el desarrollo del trabajo.
 
 \subsection{Wi-Fi}
 
-Wi-Fi es el nombre comercial propiedad de la Wi-Fi Alliance para designar a su
+Wi-Fi es el nombre comercial, propiedad de la Wi-Fi Alliance, que designa a una
 familia de protocolos de comunicación inalámbrica basados en el estándar IEEE
 802.11 para redes de área local sin cables \cite{Li2019}.
 
@@ -34,13 +34,13 @@ infraestructura y ad-hoc.
 \subsection{MQTT}
 
 MQTT es un protocolo de mensajería estándar internacional OASIS
-\cite{OASIS_MQTT_Standard} para Internet de las Cosas (IoT). Está diseñado como
-un transporte de mensajería de publicación/suscripción extremadamente ligero,
-ideal para conectar dispositivos remotos con un consumo de código reducido y un
-ancho de banda de red mínimo.
+\cite{OASIS_MQTT_Standard} para IoT. Está diseñado como un transporte de
+mensajería de publicación/suscripción extremadamente ligero, ideal para
+conectar dispositivos remotos con un consumo de código reducido y un ancho de
+banda de red mínimo.
 
-MQTT es un protocolo ligero basado en TCP/IP \cite{AWS_MQTT} que sigue un
-modelo de publicación/suscripción, donde:
+Basado en TCP/IP \cite{AWS_MQTT}, MQTT implementa un modelo de comunicación de
+publicación/suscripción, en el cual:
 
 \begin{itemize}
 	\item Broker: funciona como un servidor central que recibe los mensajes de los
@@ -71,7 +71,7 @@ aplicación (MQTT \cite{OASIS_MQTT_Standard}, HTTP \cite{IBMTCPIP} y WebSocket
 \section{Componentes de hardware}\label{sec:hardware}
 
 En esta sección se describen los diferentes elementos de hardware utilizados en
-el desarrollo del trabajo. 
+el desarrollo del trabajo.
 
 \subsection{Microcontrolador}\label{sec:microcontrolador}
 
@@ -98,7 +98,7 @@ IoT.
 
 El BME280 (figura \ref{fig:BME280}) es un sensor digital de alta precisión para
 la medición de temperatura ambiente, humedad relativa y presión atmosférica. Se
-comunica a través de las interfaces I2C y SPI y ofrece una precisión de ±1 °C
+comunica a través de las interfaces I2C y SPI, y ofrece una precisión de ±1 °C
 para la temperatura ambiente, ±3 \code{\%} para la humedad relativa y ±1 hPa
 para la presión atmosférica \cite{BoschBME280}.
 
@@ -114,7 +114,7 @@ para la presión atmosférica \cite{BoschBME280}.
 
 \subsection{Sensor de luz digital}\label{sec:BH1750}
 
-El BH1750 (figura \ref{fig:BH1750}) es un sensor digital de intensidad luminosa
+El BH1750 (figura \ref{fig:BH1750}) es un sensor digital de intensidad lumínica
 que mide la iluminación ambiental en lux. Utiliza la interfaz I2C para la
 comunicación y puede medir niveles de luz en un rango de 1 a 65.535 lux, con
 una precisión de 1 lux \cite{ROHM_BH1750}.
@@ -200,9 +200,9 @@ de TDS en un rango de 0 a 1000 ppm \cite{TDS-Sensor}.
 \subsection{Sensor de temperatura digital sumergible}
 
 El DS18B20 (figura \ref{fig:DS18B20}) es un sensor digital de temperatura
-sumergible. Se comunica a través de la interfaz \textit{OneWire} y puede medir
-la temperatura en un rango de -55 °C a 125 °C con una precisión de ±0.5 °C
-\cite{DS18B20}.
+sumergible. Se comunica a través de la interfaz \textit{OneWire} y permite
+medir la temperatura en un rango de -55 °C a 125 °C con una precisión de ±0.5
+°C \cite{DS18B20}.
 
 \begin{figure}[H]
 	\centering
@@ -250,10 +250,10 @@ potencia en un rango de 0 a 22 kW \cite{PZEM-004T}.
 
 \subsection{Módulo de relés}
 
-El módulo de relés (figura \ref{fig:Relé}) es un actuador eléctrico de dos
-canales optocoplados que permite el control de encendido y apagado de
-dispositivos eléctricos. Se comunica a través de la interfaz GPIO y es capaz de
-controlar dispositivos de hasta 10 A y 250 VAC \cite{Relé}.
+El módulo de relés (figura \ref{fig:Relé}) es un actuador eléctrico de canales
+optocoplados que permite el control de encendido y apagado de dispositivos
+eléctricos. Se comunica a través de la interfaz GPIO y es capaz de controlar
+dispositivos de hasta 10 A y 250 VAC \cite{Relé}.
 
 \begin{figure}[H]
 	\centering
@@ -343,11 +343,12 @@ En esta sección se presentan las herramientas de software utilizadas en la
 infraestructura y despliegue del sistema.
 \subsection{Docker}
 
-Docker es una plataforma de código abierto que permite a los desarrolladores y
-a los equipos de operaciones construir, empaquetar y desplegar aplicaciones en
-contenedores. Los contenedores son unidades de software ligeros y portátiles
-que incluyen todo lo necesario para ejecutar una aplicación, incluidas las
-bibliotecas, las dependencias y el código \cite{Docker}.
+Docker es una plataforma de código abierto que permite a los desarrolladores %y
+%a los equipos de operaciones 
+construir, empaquetar y desplegar aplicaciones en contenedores. Los
+contenedores son unidades de software ligeros y portátiles que incluyen todo lo
+necesario para ejecutar una aplicación, incluidas las bibliotecas, las
+dependencias y el código \cite{Docker}.
 
 Docker facilita la creación de entornos de desarrollo y despliegue consistentes
 y reproducibles, lo que garantiza que las aplicaciones se ejecuten de la misma
@@ -397,9 +398,9 @@ integradas, control de versiones y terminal integrada.% cientos de
 
 Postman es una plataforma de colaboración para el desarrollo de APIs que
 permite a los desarrolladores diseñar, probar y documentar de forma rápida.
-Proporciona una interfaz gráfica intuitiva para enviar solicitudes HTTP a un
-servidor y visualizar las respuestas, lo que facilita la depuración y el
-desarrollo de APIs \cite{Postman}.
+Proporciona una interfaz gráfica intuitiva para enviar solicitudes HTTP y
+WebSocket a un servidor y visualizar las respuestas, lo que facilita la
+depuración y el desarrollo de APIs \cite{Postman}.
 
 \subsection{GitHub}
 

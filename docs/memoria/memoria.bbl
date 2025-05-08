@@ -969,6 +969,17 @@
     \field{urlyear}{2025}
   \endentry
 
+  \entry{DockerCompose}{online}{}
+    \field{labeltitlesource}{title}
+    \field{title}{Docker Compose Documentation}
+    \verb{url}
+    \verb https://docs.docker.com/compose/
+    \endverb
+    \field{urlday}{02}
+    \field{urlmonth}{05}
+    \field{urlyear}{2025}
+  \endentry
+
   \entry{BeaniODM}{online}{}
     \field{labeltitlesource}{title}
     \field{title}{Beanie: Asynchronous Python ODM for MongoDB}
@@ -1030,17 +1041,6 @@
     \field{title}{FastAPI WebSockets Reference}
     \verb{url}
     \verb https://fastapi.tiangolo.com/reference/websockets/
-    \endverb
-    \field{urlday}{02}
-    \field{urlmonth}{04}
-    \field{urlyear}{2025}
-  \endentry
-
-  \entry{SocketIO}{online}{}
-    \field{labeltitlesource}{title}
-    \field{title}{Socket.IO: Real-time application framework}
-    \verb{url}
-    \verb https://socket.io/
     \endverb
     \field{urlday}{02}
     \field{urlmonth}{04}
@@ -1166,39 +1166,6 @@
     \endverb
     \field{urlday}{28}
     \field{urlmonth}{04}
-    \field{urlyear}{2025}
-  \endentry
-
-  \entry{GithubFirmware}{online}{}
-    \name{author}{1}{}{%
-      {{hash=LM}{%
-         family={Lacheski},
-         familyi={L\bibinitperiod},
-         given={Martin},
-         giveni={M\bibinitperiod},
-      }}%
-    }
-    \strng{namehash}{LM1}
-    \strng{fullhash}{LM1}
-    \field{labelnamesource}{author}
-    \field{labeltitlesource}{title}
-    \field{title}{MicroPython-IoT-Devices}
-    \verb{url}
-    \verb https://github.com/martinlacheski/MicroPython-IoT-Devices
-    \endverb
-    \field{urlday}{28}
-    \field{urlmonth}{04}
-    \field{urlyear}{2025}
-  \endentry
-
-  \entry{DockerCompose}{online}{}
-    \field{labeltitlesource}{title}
-    \field{title}{Docker Compose Documentation}
-    \verb{url}
-    \verb https://docs.docker.com/compose/
-    \endverb
-    \field{urlday}{02}
-    \field{urlmonth}{05}
     \field{urlyear}{2025}
   \endentry
 

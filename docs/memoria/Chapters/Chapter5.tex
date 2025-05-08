@@ -1,10 +1,9 @@
-% Chapter Template
-
 \chapter{Conclusiones} % Main chapter title
 
-\label{Chapter5} % Change X to a consecutive number; for referencing this chapter elsewhere, use \ref{ChapterX}
-Todos los capítulos deben comenzar con un breve párrafo introductorio que indique cuál es el contenido que se encontrará al leerlo.  La redacción sobre el contenido de la memoria debe hacerse en presente y todo lo referido al proyecto en pasado, siempre de modo impersonal.
+\label{Chapter5}
 
+Este capítulo presenta los resultados obtenidos sobre el trabajo realizado.
+Además, se presentan mejoras como posibles trabajos futuros.
 
 %----------------------------------------------------------------------------------------
 
@@ -12,26 +11,168 @@ Todos los capítulos deben comenzar con un breve párrafo introductorio que indi
 %	SECTION 1
 %----------------------------------------------------------------------------------------
 
-\section{Conclusiones generales }
+\section{Conclusiones generales}
 
-La idea de esta sección es resaltar cuáles son los principales aportes del trabajo realizado y cómo se podría continuar. Debe ser especialmente breve y concisa. Es buena idea usar un listado para enumerar los logros obtenidos.
+Este trabajo alcanzó con éxito el objetivo de diseñar e implementar un
+prototipo funcional para el monitoreo y control remoto de condiciones
+climáticas en invernaderos, mediante tecnologías IoT y una arquitectura
+centrada en el usuario. Se integraron sensores y actuadores capaces de
+gestionar variables ambientales, parámetros de la solución nutritiva, consumos
+de energía y nutrientes, y el control de dispositivos a distancia, todo
+respaldado por una infraestructura en la nube, segura y escalable.
 
-En esta sección no se deben incluir ni tablas ni gráficos.
-
-Algunas preguntas que pueden servir para completar este capítulo:
-
+El sistema desarrollado permite:
 \begin{itemize}
-\item ¿Cuál es el grado de cumplimiento de los requerimientos?
-\item ¿Cuán fielmente se puedo seguir la planificación original (cronograma incluido)?
-\item ¿Se manifestó algunos de los riesgos identificados en la planificación? ¿Fue efectivo el plan de mitigación? ¿Se debió aplicar alguna otra acción no contemplada previamente?
-\item Si se debieron hacer modificaciones a lo planificado ¿Cuáles fueron las causas y los efectos?
-\item ¿Qué técnicas resultaron útiles para el desarrollo del proyecto y cuáles no tanto?
+    \item Registrar y consultar variables ambientales y parámetros del invernadero.
+    \item Controlar actuadores desde una interfaz remota.
+    \item Acceder a datos en tiempo real e históricos a través de una aplicación web
+          responsiva.
 \end{itemize}
 
+Cada componente desarrollado, desde los sensores y actuadores hasta el servidor
+y la aplicación web, cumplió con los requerimientos técnicos establecidos. La
+incorporación del protocolo MQTT con cifrado TLS, junto con el uso de servicios
+en la nube como AWS IoT Core y EC2, garantizó una comunicación segura,
+eficiente y escalable.
+
+La aplicación web, diseñada con un enfoque centrado en la experiencia del
+usuario, resultó accesible, intuitiva y eficaz para la supervisión y el control
+del sistema. El sistema permite asignar distintos roles a los usuarios: el
+perfil administrador accede a todas las funciones, mientras que el usuario
+estándar tiene acceso exclusivo a la visualización del monitoreo en tiempo real
+y a los reportes. Esta diferenciación contribuye a una interacción segura y
+adaptada a distintos perfiles.
+
+La interfaz gráfica, desarrollada con tecnologías modernas como React y
+Bootstrap, facilitó la interacción con el sistema, y su funcionalidad favoreció
+la toma de decisiones informadas y el aprovechamiento de los datos tanto en
+entornos académicos como productivos.
+
+Las pruebas realizadas en un entorno controlado confirmaron la estabilidad,
+eficacia y adaptabilidad del sistema, y evidenciaron su potencial para mejorar
+la eficiencia operativa, la sostenibilidad y la autonomía en la gestión de
+cultivos bajo condiciones controladas.
+
+El desarrollo del prototipo permitió aplicar conocimientos en sistemas
+embebidos, comunicación segura, desarrollo web, gestión de bases de datos y
+despliegue de servicios en la nube. Esta experiencia constituye una base sólida
+para futuras investigaciones y desarrollos tecnológicos en el ámbito de la
+agricultura de precisión y el monitoreo ambiental.
 
 %----------------------------------------------------------------------------------------
 %	SECTION 2
 %----------------------------------------------------------------------------------------
+% \section{Próximos pasos}
+
+% A continuación se proponen líneas de trabajo que permitirían continuar el
+% desarrollo y mejorar el sistema prototipado:
+
+% \begin{itemize}
+%     \item Optimización del firmware: Reescribir el firmware de los nodos en lenguaje C,
+%           con el IDE de Espressif, con el objetivo de mejorar el rendimiento, la
+%           eficiencia en el uso de recursos y la estabilidad del sistema.
+%     \item Incorporacion de actualizaciones OTA: Implementar un sistema de actualizaciones
+%           inalámbricas (Over-The-Air) para el firmware de los nodos, para realizar
+%           mejoras y correcciones sin necesidad de intervención física en el dispositivo.
+%     \item Diseñar producto: Desarrollar un diseño industrial para el prototipo, que
+%           contemple aspectos estéticos y funcionales, así como la integración de los
+%           componentes electrónicos en una carcasa adecuada para su uso en campo.
+%     \item Automatización e inteligencia: Incorporar un sistema de control automático
+%           basado en reglas o algoritmos de aprendizaje automático, con el fin de
+%           optimizar el uso de recursos. Además, aplicar técnicas de análisis de datos e
+%           inteligencia artificial para extraer patrones relevantes y mejorar la toma de
+%           decisiones.
+%     \item Incorporación de control local: Implementar un sistema de control local que
+%           permita operar el sistema de forma autónoma, sin necesidad de conexión a
+%           Internet. Evaluar la integración de inteligencia artificial para la toma de
+%           decisiones.
+%     \item Integración de sensores adicionales: Ampliar la gama de sensores para integrar
+%           captura de imagenes, humedad del suelo, entre otros, con el fin de obtener un
+%           monitoreo más completo y preciso de las condiciones del invernadero.
+%     \item Alertas y monitoreo proactivo: Integrar un sistema de notificaciones que alerte
+%           a los usuarios ante eventos críticos o condiciones anómalas en el invernadero.
+%     \item Interfaz y accesibilidad: Desarrollar una aplicación móvil que complemente la
+%           plataforma web, para brindar mayor accesibilidad desde dispositivos móviles
+%           para el monitoreo y control en campo.
+%     \item Validación en entornos reales: Implementar pruebas piloto en invernaderos
+%           productivos, con el propósito de validar el sistema bajo condiciones reales y
+%           diversas de operación.
+%     \item Gestión energética y sustentabilidad: Analizar alternativas para incorporar un
+%           sistema de gestión de energía que permita reducir el consumo eléctrico y
+%           mejorar la sostenibilidad del sistema, con vistas a disminuir su huella de
+%           carbono.
+% \end{itemize}
+
 \section{Próximos pasos}
 
-Acá se indica cómo se podría continuar el trabajo más adelante.
+A continuación, se proponen líneas de trabajo que permitirán continuar con el
+desarrollo y perfeccionar el sistema prototipado:
+
+\begin{itemize}
+    \item Optimización del firmware: reescribir el firmware en lenguaje C con el entorno
+          de Espressif, para mejorar el rendimiento, la eficiencia y la estabilidad del
+          sistema.
+
+    \item Actualizaciones OTA: incorporar un sistema de actualizaciones inalámbricas que
+          permita aplicar mejoras sin intervención física.
+
+    \item Automatización e inteligencia artificial: desarrollar un sistema de control
+          automático basado en reglas y aplicar técnicas de inteligencia artificial para
+          optimizar el uso de recursos y mejorar la toma de decisiones.
+
+    \item Control local: implementar un sistema autónomo que funcione sin conexión a
+          Internet, con capacidad de decisión in situ.
+
+    \item Validación en entornos reales: ejecutar pruebas piloto en invernaderos
+          productivos para evaluar el desempeño del sistema en condiciones operativas
+          reales.
+
+    \item Interfaz móvil: desarrollar una aplicación para dispositivos móviles que
+          complemente la plataforma web y facilite el acceso en campo.
+
+    \item Expansión funcional: ampliar el sistema con sensores adicionales y evaluar su
+          aplicabilidad en otros contextos, como la gestión de recursos hídricos u otros
+          cultivos.
+\end{itemize}
+
+% \begin{itemize}
+%     \item Optimización del firmware: Reescribir el firmware de los nodos en lenguaje C,
+%           con el entorno de desarrollo de Espressif, para mejorar el rendimiento, la
+%           eficiencia en el uso de recursos y la estabilidad general del sistema.
+%     \item Incorporación de actualizaciones: Implementar un sistema de actualizaciones
+%           inalámbricas OTA (del inglés, \textit{Over The Air}) que permita aplicar
+%           mejoras y correcciones al firmware sin requerir intervención física sobre los
+%           dispositivos.
+%     \item Diseño del producto: Desarrollar una propuesta de diseño industrial para el
+%           prototipo, para considerar aspectos funcionales como estéticos, e integrar los
+%           componentes electrónicos en una carcasa adecuada para condiciones de uso en
+%           campo.
+%     \item Automatización: Incorporar un sistema de control automático basado en reglas
+%           predefinidas, con el propósito de optimizar el uso de recursos.
+%     \item Inteligencia artificial: aplicar técnicas de análisis de datos e inteligencia
+%           artificial para identificar patrones y mejorar la toma de decisiones.
+%     \item Incorporación de control local: Desarrollar un mecanismo de control autónomo
+%           que garantice el funcionamiento del sistema sin dependencia de la conexión a
+%           Internet, con la posibilidad de integrar inteligencia artificial para la toma
+%           de decisiones in-situ.
+%     \item Integración de sensores adicionales: Ampliar el conjunto de sensores
+%           disponibles mediante la incorporación de cámaras, sensores de humedad del suelo
+%           y otros dispositivos relevantes, con el fin de lograr un monitoreo más completo
+%           y preciso del entorno del invernadero.
+%     \item Alertas y monitoreo proactivo: Integrar un sistema de notificaciones que
+%           informe a los usuarios sobre eventos críticos o condiciones anómalas detectadas
+%           en el sistema.
+%     \item Interfaz y accesibilidad: Desarrollar una aplicación móvil que complemente la
+%           plataforma web, para facilitar el acceso y control del sistema desde
+%           dispositivos móviles en entornos de producción.
+%     \item Validación en entornos reales: Realizar pruebas piloto en invernaderos
+%           productivos que permitan evaluar el desempeño y la efectividad del sistema en
+%           condiciones operativas reales y variadas.
+%     \item Gestión energética y sostenibilidad: Evaluar alternativas para incorporar un
+%           sistema de gestión de energía que contribuya a reducir el consumo eléctrico y
+%           mejorar la sostenibilidad del sistema, con el objetivo de disminuir su huella
+%           de carbono.
+%     \item Evaluación de nuevas áreas de aplicación: Analizar la viabilidad de adaptar el
+%           sistema a otros contextos, como la gestión de recursos hídricos o diferentes
+%           productos agrícolas, para ampliar su aplicabilidad y beneficios.
+% \end{itemize}

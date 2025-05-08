@@ -12,11 +12,11 @@ Se construyó un banco de prueba físico con el objetivo de validar el
 rendimiento, la funcionalidad y la integración de los sensores, actuadores y
 módulos del sistema. Este entorno controlado permitió montar los dispositivos,
 realizar el conexionado correspondiente y simular condiciones cercanas a las
-reales de operación, lo que permitió evaluar el comportamiento general del
-sistema. El banco de prueba incluyó los siguientes componentes:
+reales de operación, lo que facilitó la evaluación del comportamiento general
+del sistema. El banco de prueba incluyó los siguientes componentes:
 
 \begin{itemize}
-    \item \textbf{Sensores y actuadores:}
+    \item Sensores y actuadores:
           \begin{itemize}
               \item Nodo ambiental: incluye los sensores BMP280, BH1750 y MH-Z19C.
               \item Nodo de consumos: compuesto por un módulo PZEM-004T y seis sensores HC-SR04.
@@ -26,25 +26,25 @@ sistema. El banco de prueba incluyó los siguientes componentes:
                     módulos de relés de 2 canales (5 V, 10 A).
           \end{itemize}
 
-    \item \textbf{Microcontroladores:}
+    \item Microcontroladores:
           \begin{itemize}
               \item Cuatro módulos ESP-WROOM-32, uno por cada nodo.
               \item Cuatro placas base \cite{PlacaBaseESP32} para los módulos ESP-WROOM-32 para
                     facilitar la conexión de los módulos a los sensores y actuadores.
           \end{itemize}
 
-    \item \textbf{Fuentes de alimentación:}
+    \item Fuentes de alimentación:
           \begin{itemize}
               \item Una fuente de 5 V, 2 A para los relés.
               \item Cuatro fuentes de 5 V, 1.5 A para los microcontroladores.
           \end{itemize}
 
-    \item \textbf{Servidor MQTT:}
+    \item Servidor MQTT:
           \begin{itemize}
               \item El servicio se implementó en AWS IoT Core.
           \end{itemize}
 
-    \item \textbf{Servidor web:}
+    \item Servidor web:
           \begin{itemize}
               \item El backend, frontend y la base de datos se desplegaron en una máquina virtual
                     EC2 de AWS, a través del entorno de laboratorio provisto por \textit{AWS
@@ -107,23 +107,12 @@ el proceso de validación en el entorno de prueba.
 \section{Pruebas de backend}
 \label{sec:pruebas_backend}
 
-El backend del sistema cuenta con un total de 111 endpoints, a través de los
-cuales se realiza la interacción con los distintos módulos y servicios. Para su
-validación, se utilizó la herramienta Postman, que permitió realizar pruebas
-funcionales destinadas a verificar que cada endpoint respondiera correctamente
-a las solicitudes y devolviera los datos esperados conforme a la lógica
-definida.
-
-% Adicionalmente, el sistema incluye una interfaz Swagger \cite{SwaggerIO}, que
-% facilita tanto la documentación como la validación interactiva de los
-% endpoints. Esta interfaz permite explorar las operaciones disponibles,
-% visualizar los parámetros requeridos y ejecutar pruebas directamente desde el
-% navegador, sin necesidad de recurrir a herramientas externas.
-
-% La Figura \ref{fig:swagger} ilustra la interfaz de Swagger, donde se presentan
-% los distintos endpoints organizados por categoría. Cada uno puede expandirse
-% para consultar detalles de las solicitudes y respuestas, acceder a ejemplos y
-% evaluar su comportamiento en tiempo real.
+El backend del sistema cuenta con un total de \textbf{111 endpoints}, a través
+de los cuales se realiza la interacción con los distintos módulos y servicios.
+Para su validación, se utilizó la herramienta Postman, que permitió realizar
+pruebas funcionales destinadas a verificar que cada endpoint respondiera
+correctamente a las solicitudes y devolviera los datos esperados conforme a la
+lógica definida.
 
 Además, FastAPI incorpora una interfaz Swagger \cite{SwaggerIO}, que permite
 documentar, explorar y probar los endpoints desde el navegador. La Figura
@@ -146,8 +135,8 @@ backend evaluados, junto con los resultados correspondientes.
 
 Tambien se incluyen un archivo CSV (del inglés \textit{Comma Separated Values})
 y un archivo en formato texto, en el que se detallan los endpoints, los métodos
-HTTP, los resultados obtenidos y el promedio, para permitir una trazabilidad
-clara del proceso de validación.
+HTTP y los resultados obtenidos, para permitir una trazabilidad clara del
+proceso de validación.
 
 La figura \ref{fig:postman} presenta un ejemplo de las pruebas realizadas en
 Postman, donde se detalla la respuesta de los endpoints, el método HTTP
@@ -194,10 +183,10 @@ analizar el comportamiento del sistema ante distintos tipos de solicitudes.
         \multirow{3}{5cm}{Publicación de mensajes en MQTT y logs}              & POST Publish MQTT                           & 153 – 181 ms                 \\
                                                                                & GET Logs (actuadores y sensores)            & 173 – 193 ms                 \\
         \hline
-        \multirow{2}{5cm}{Consulta de datos de dispositivos}                   & GET Sensors Data                            & $\sim$208 ms                 \\
+        \multirow{2}{5cm}{Consulta de datos de dispositivos}                   & GET Sensors Data                            & $\sim$ 208 ms                \\
                                                                                & GET Actuators Data                          & 271 ms                       \\
         \hline
-        \multirow{3}{5cm}{Operaciones de creación, modificación y eliminación} & POST Create User / Company                  & $\sim$490 ms                 \\
+        \multirow{3}{5cm}{Operaciones de creación, modificación y eliminación} & POST Create User / Company                  & $\sim$ 490 ms                \\
                                                                                & POST Create Sensor / Data                   & 154 – 194 ms                 \\
                                                                                & PUT / DELETE                                & 161 – 188 ms                 \\
         \hline
@@ -253,42 +242,24 @@ pruebas realizadas en Postman:
 
 \subsection{Pruebas de validación de WebSocket}
 
-% Para validar el funcionamiento de la comunicación en tiempo real mediante
-% WebSocket, se realizaron pruebas orientadas a verificar la conexión persistente
-% entre múltiples clientes simultáneos y el servidor backend, así como el
-% correcto envío y recepción de mensajes. Se utilizaron como clientes tanto
-% Postman como navegadores web, lo que permitió establecer conexiones WebSocket
-% entre el frontend y el backend.
+Para validar la comunicación en tiempo real mediante WebSocket, se realizaron
+pruebas enfocadas en verificar la conexión persistente entre múltiples clientes
+simultáneos y el servidor backend, así como el correcto envío y recepción de
+mensajes.
 
-% Se comprobó la estabilidad de la conexión, la capacidad del backend para enviar
-% mensajes a los clientes conectados y la recepción inmediata de los datos por
-% parte de estos. Los resultados obtenidos confirmaron la eficiencia y
-% confiabilidad del canal WebSocket implementado.
+Se utilizaron instancias en Postman y navegadores web para establecer
+conexiones entre el frontend y el backend mediante WebSocket.
 
-% La figura \ref{fig:websocket} muestra un ejemplo de la conexión WebSocket entre
-% el frontend y el backend. A la izquierda, se observa la conexión establecida
-% desde el frontend; a la derecha, las realizadas mediante Postman. También se
-% visualiza una terminal de Linux conectada al backend en una instancia de AWS
-% EC2, donde se evidencia la conexión activa de tres clientes simultáneos.
+Las pruebas confirmaron la estabilidad de la comunicación, la capacidad del
+backend para distribuir mensajes a múltiples clientes y la recepción inmediata
+de datos. Estos resultados demostraron la eficiencia y confiabilidad del canal
+WebSocket implementado.
 
-Para validar la comunicación en tiempo real mediante WebSocket, se ejecutaron
-pruebas que verificaron la conexión persistente entre múltiples clientes
-simultáneos y el servidor backen y el envío y la recepción de mensajes.
-
-Los clientes incluyeron instancias en Postman y navegadores web, lo que
-permitió establecer conexiones WebSocket entre el frontend y el backend.
-
-Las pruebas confirmaron la estabilidad en las conexiones, la capacidad del
-backend para distribuir mensajes a todos los clientes conectados y la recepción
-inmediata de datos en los clientes.
-
-Los resultados demostraron la eficiencia y confiabilidad del canal WebSocket
-implementado. La figura \ref{fig:websocket} ilustra un ejemplo de la conexión
-WebSocket entre el frontend y el backend. A la izquierda, se observa la
-conexión establecida desde el frontend; a la derecha, las realizadas mediante
-Postman. También se visualiza una terminal de Linux conectada al backend en una
-instancia de AWS EC2, donde se evidencia la conexión activa de tres clientes
-simultáneos.
+La figura \ref{fig:websocket} ilustra un ejemplo de la conexión WebSocket entre
+el frontend y el backend. A la izquierda, se observa la conexión establecida
+desde el frontend; a la derecha, las realizadas mediante Postman. También se
+visualiza una terminal de Linux conectada al backend en una instancia de AWS
+EC2, donde se evidencia la conexión activa de tres clientes simultáneos.
 
 \begin{figure}[H]
     \centering
@@ -335,21 +306,6 @@ de la base de datos.
 \end{figure}
 
 % \subsection{conclusión de pruebas realizadas al backend}
-
-% Las pruebas efectuadas sobre el backend confirmaron el correcto funcionamiento
-% y la capacidad para responder adecuadamente a las distintas solicitudes. Los
-% tiempos de respuesta permiten asegurar una experiencia de usuario
-% satisfactoria, y se verificó con éxito la persistencia de los datos en MongoDB.
-
-% Además, se validó la comunicación en tiempo real mediante WebSocket y se
-% comprobó la estabilidad de la conexión persistente entre múltiples clientes
-% simultáneos y el backend. Las pruebas demostraron que la API transmite datos de
-% manera inmediata a todos los clientes conectados, lo que destaca la eficiencia
-% y confiabilidad del canal WebSocket implementado.
-
-% El backend demostró una operabilidad sólida, permitió la gestión y
-% actualización continua de datos de manera confiable y garantizó la integridad y
-% la persistencia de la información a lo largo del tiempo.
 
 \section{Pruebas de frontend}
 \label{sec:pruebas_frontend}
@@ -442,8 +398,8 @@ correctamente en la interfaz.
 \subsubsection{Validación de formularios}
 
 Se verificó que los formularios cumplieran con las restricciones definidas,
-como campos obligatorios, formatos específicos y límites de caracteres. También
-se evaluó la correcta visualización de los mensajes de error ante entradas
+como campos obligatorios, formatos específicos y caracteres mínimos. También se
+evaluó la correcta visualización de los mensajes de error ante entradas
 inválidas.
 
 La figura \ref{fig:formulario} muestra un ejemplo del formulario de creación de
@@ -569,9 +525,9 @@ serial y comprobar el comportamiento de cada módulo en forma directa.
 
 \subsubsection{Prueba de sensor ambiental}
 
-Se evaluaron los sensores ambientales BMP280, BH1750 y MH-Z19C, para medir la
-temperatura ambiente, la humedad relativa, la presión atmosférica, el nivel de
-iluminación y la concentración de $CO_2$ en el entorno de prueba.
+Se evaluaron los sensores ambientales BMP280, BH1750 y MH-Z19C, para medir
+temperatura ambiente, humedad relativa, presión atmosférica, nivel de
+iluminación y concentración de $CO_2$ en el entorno de prueba.
 
 La figura \ref{fig:medicion_sensor_ambiental} muestra un ejemplo de las
 mediciones registradas por el conjunto de sensores ambientales.
@@ -585,10 +541,9 @@ mediciones registradas por el conjunto de sensores ambientales.
 
 \subsubsection{Prueba de sensor de solución nutritiva}
 
-Se probaron sensores que permiten medir el nivel de la solución, la
-temperatura, el pH, la CE y TDS de la solución nutritiva. Se utilizaron los
-sensores DS18B20, PH-4502C, sensor de CE, sensor TDS y sensor ultrasónico
-HC-SR04.
+Se probaron los sensores que permiten medir el nivel de la solución,
+temperatura, pH, CE y TDS de la solución nutritiva. Se utilizaron los sensores
+DS18B20, PH-4502C, sensor de CE, sensor TDS y sensor ultrasónico HC-SR04.
 
 Para validar su funcionamiento, se realizaron dos pruebas:
 
@@ -818,8 +773,8 @@ del frontend, donde se visualiza el envío de dicha solicitud.
 \end{figure}
 
 El backend recibió esta solicitud, la procesó y publicó un mensaje MQTT en el
-tópico correspondiente al microcontrolador. Luego respondió al frontend con un
-estado 200 OK, para indicar que la acción fue ejecutada correctamente.
+tópico correspondiente. Luego respondió al frontend con un estado 200 OK, para
+indicar que la acción fue ejecutada correctamente.
 
 En la figura \ref{fig:prueba_integral_3} se observa la salida por consola del
 backend, el registro de la recepción de la solicitud, el envío del mensaje MQTT

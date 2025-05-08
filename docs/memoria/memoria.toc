@@ -57,51 +57,53 @@
 \contentsline {subsection}{\numberline {3.4.1}Diseño de la API}{19}{subsection.3.4.1}%
 \contentsline {subsection}{\numberline {3.4.2}Autenticación y autorización}{20}{subsection.3.4.2}%
 \contentsline {subsection}{\numberline {3.4.3}Persistencia de datos}{20}{subsection.3.4.3}%
-\contentsline {subsection}{\numberline {3.4.4}Comunicación con el broker MQTT}{22}{subsection.3.4.4}%
-\contentsline {subsubsection}{Pasos en AWS IoT Core}{22}{section*.27}%
+\contentsline {subsection}{\numberline {3.4.4}Comunicación con el Broker MQTT}{22}{subsection.3.4.4}%
+\contentsline {subsubsection}{Configuración del Thing y Certificados de Seguridad}{22}{section*.26}%
+\contentsline {subsubsection}{Gestión de Políticas de Acceso}{22}{section*.27}%
 \contentsline {subsubsection}{Implementación de MQTT en FastAPI}{22}{section*.28}%
-\contentsline {subsubsection}{Comunicación con MQTT en FastAPI}{23}{section*.31}%
-\contentsline {subsection}{\numberline {3.4.5}Implementación de WebSockets}{24}{subsection.3.4.5}%
+\contentsline {subsubsection}{Comunicación con MQTT en FastAPI}{24}{section*.31}%
+\contentsline {subsection}{\numberline {3.4.5}Implementación de WebSocket}{24}{subsection.3.4.5}%
 \contentsline {section}{\numberline {3.5}Desarrollo del frontend}{25}{section.3.5}%
 \contentsline {subsection}{\numberline {3.5.1}Tecnologías utilizadas}{25}{subsection.3.5.1}%
 \contentsline {subsection}{\numberline {3.5.2}Arquitectura de la interfaz}{25}{subsection.3.5.2}%
-\contentsline {subsection}{\numberline {3.5.3}Componentes principales de la interfaz de usuario}{25}{subsection.3.5.3}%
-\contentsline {subsubsection}{Gestión de autenticación}{25}{section*.34}%
+\contentsline {subsection}{\numberline {3.5.3}Componentes principales de la interfaz de usuario}{26}{subsection.3.5.3}%
+\contentsline {subsubsection}{Gestión de autenticación}{26}{section*.34}%
 \contentsline {subsubsection}{Layout}{26}{section*.36}%
 \contentsline {subsubsection}{Arquitectura de navegación y control de acceso}{27}{section*.38}%
-\contentsline {subsection}{\numberline {3.5.4}Visualización de datos en tiempo real}{27}{subsection.3.5.4}%
-\contentsline {subsection}{\numberline {3.5.5}Reportes de datos históricos}{28}{subsection.3.5.5}%
-\contentsline {section}{\numberline {3.6}Desarrollo del firmware de los dispositivos IoT}{30}{section.3.6}%
-\contentsline {subsection}{\numberline {3.6.1}Arquitectura general del firmware}{30}{subsection.3.6.1}%
-\contentsline {subsection}{\numberline {3.6.2}Estructura del código}{30}{subsection.3.6.2}%
-\contentsline {subsection}{\numberline {3.6.3}Gestión de la configuración}{32}{subsection.3.6.3}%
-\contentsline {subsubsection}{Archivo de configuración}{32}{section*.46}%
-\contentsline {subsubsection}{Archivo de configuración del intervalo}{32}{section*.47}%
-\contentsline {subsubsection}{Archivo de configuración Wi-Fi}{32}{section*.48}%
-\contentsline {subsubsection}{Archivo de configuración de la zona horaria}{32}{section*.49}%
-\contentsline {subsection}{\numberline {3.6.4}Comunicación inalámbrica}{32}{subsection.3.6.4}%
-\contentsline {subsubsection}{Wi-Fi}{33}{section*.50}%
-\contentsline {subsubsection}{MQTT}{33}{section*.51}%
-\contentsline {subsubsection}{Comunicación y formato de mensajes}{33}{section*.53}%
-\contentsline {subsection}{\numberline {3.6.5}Gestión de tareas y concurrencia}{34}{subsection.3.6.5}%
-\contentsline {subsection}{\numberline {3.6.6}Manejo de errores}{34}{subsection.3.6.6}%
-\contentsline {subsubsection}{Manejo de excepciones}{34}{section*.54}%
-\contentsline {subsubsection}{Reintentos}{34}{section*.55}%
-\contentsline {subsubsection}{Logging}{34}{section*.56}%
-\contentsline {subsubsection}{Optimización de recursos}{34}{section*.57}%
-\contentsline {subsection}{\numberline {3.6.7}Resumen de nodos sensores y actuadores}{34}{subsection.3.6.7}%
-\contentsline {section}{\numberline {3.7}Despliegue del sistema}{36}{section.3.7}%
-\contentsline {subsection}{\numberline {3.7.1}Entorno de prueba}{36}{subsection.3.7.1}%
-\contentsline {subsubsection}{Creación de la instancia EC2}{36}{section*.59}%
-\contentsline {subsubsection}{Acceso remoto y configuración inicial}{36}{section*.60}%
-\contentsline {subsection}{\numberline {3.7.2}Instalación de componentes del sistema}{36}{subsection.3.7.2}%
-\contentsline {subsubsection}{Docker y Docker Compose}{36}{section*.61}%
-\contentsline {subsubsection}{Cliente de actualización dinámica de DuckDNS}{37}{section*.62}%
-\contentsline {subsubsection}{Clonación del repositorio y preparación}{37}{section*.63}%
-\contentsline {subsubsection}{Configuración de certificados}{37}{section*.64}%
-\contentsline {subsubsection}{Construcción y ejecución de los servicios}{38}{section*.65}%
-\contentsline {subsection}{\numberline {3.7.3}Configuración del sistema como servicio}{38}{subsection.3.7.3}%
-\contentsline {subsection}{\numberline {3.7.4}Resumen del proceso de despliegue}{38}{subsection.3.7.4}%
+\contentsline {subsection}{\numberline {3.5.4}Visualización de datos en tiempo real}{28}{subsection.3.5.4}%
+\contentsline {subsection}{\numberline {3.5.5}Reportes de datos históricos}{29}{subsection.3.5.5}%
+\contentsline {section}{\numberline {3.6}Desarrollo del firmware de los dispositivos IoT}{31}{section.3.6}%
+\contentsline {subsection}{\numberline {3.6.1}Arquitectura general del firmware}{31}{subsection.3.6.1}%
+\contentsline {subsection}{\numberline {3.6.2}Estructura del código}{31}{subsection.3.6.2}%
+\contentsline {subsection}{\numberline {3.6.3}Gestión de la configuración}{33}{subsection.3.6.3}%
+\contentsline {subsubsection}{Archivo de configuración}{33}{section*.46}%
+\contentsline {subsubsection}{Archivo de configuración del intervalo}{33}{section*.47}%
+\contentsline {subsubsection}{Archivo de configuración Wi-Fi}{33}{section*.48}%
+\contentsline {subsubsection}{Archivo de configuración de la zona horaria}{33}{section*.49}%
+\contentsline {subsection}{\numberline {3.6.4}Comunicación inalámbrica}{33}{subsection.3.6.4}%
+\contentsline {subsubsection}{Wi-Fi}{34}{section*.50}%
+\contentsline {subsubsection}{MQTT}{34}{section*.51}%
+\contentsline {subsubsection}{Comunicación y formato de mensajes}{34}{section*.53}%
+\contentsline {subsection}{\numberline {3.6.5}Gestión de tareas y concurrencia}{35}{subsection.3.6.5}%
+\contentsline {subsection}{\numberline {3.6.6}Manejo de errores}{35}{subsection.3.6.6}%
+\contentsline {subsubsection}{Manejo de excepciones}{35}{section*.54}%
+\contentsline {subsubsection}{Reintentos}{35}{section*.55}%
+\contentsline {subsubsection}{Logging}{35}{section*.56}%
+\contentsline {subsubsection}{Optimización de recursos}{35}{section*.57}%
+\contentsline {subsection}{\numberline {3.6.7}Resumen de nodos sensores y actuadores}{35}{subsection.3.6.7}%
+\contentsline {section}{\numberline {3.7}Despliegue del sistema}{37}{section.3.7}%
+\contentsline {subsection}{\numberline {3.7.1}Entorno de prueba}{37}{subsection.3.7.1}%
+\contentsline {subsubsection}{Creación de la instancia EC2}{37}{section*.59}%
+\contentsline {subsubsection}{Acceso remoto y configuración inicial}{37}{section*.60}%
+\contentsline {subsection}{\numberline {3.7.2}Instalación de componentes del sistema}{37}{subsection.3.7.2}%
+\contentsline {subsubsection}{Docker y Docker Compose}{37}{section*.61}%
+\contentsline {subsubsection}{Cliente de actualización dinámica de DuckDNS}{38}{section*.62}%
+\contentsline {subsubsection}{Clonación del repositorio y preparación}{38}{section*.63}%
+\contentsline {subsubsection}{Configuración de certificados}{38}{section*.64}%
+\contentsline {subsubsection}{Construcción y ejecución de los servicios}{39}{section*.65}%
+\contentsline {subsection}{\numberline {3.7.3}Configuración del sistema como servicio}{39}{subsection.3.7.3}%
+\contentsline {subsection}{\numberline {3.7.4}Resumen del proceso de despliegue}{39}{subsection.3.7.4}%
+\contentsline {section}{\numberline {3.8}Código fuente del sistema}{40}{section.3.8}%
 \contentsline {chapter}{\numberline {4}Ensayos y resultados}{41}{chapter.4}%
 \contentsline {section}{\numberline {4.1}Banco de pruebas}{41}{section.4.1}%
 \contentsline {section}{\numberline {4.2}Criterios de evaluación}{42}{section.4.2}%
@@ -132,24 +134,19 @@
 \contentsline {subsection}{\numberline {4.6.3}Pruebas en sensor de solución nutritiva}{57}{subsection.4.6.3}%
 \contentsline {subsection}{\numberline {4.6.4}Pruebas de comunicación en el actuador}{57}{subsection.4.6.4}%
 \contentsline {section}{\numberline {4.7}Prueba integral del sistema}{58}{section.4.7}%
-\contentsline {chapter}{\numberline {A}Modelo de datos implementado en el trabajo}{61}{appendix.Alph1}%
-\contentsline {chapter}{\numberline {B}Resumen de endpoints de la API}{63}{appendix.Alph2}%
-\contentsline {chapter}{\numberline {C}Autenticación con JWT}{67}{appendix.Alph3}%
-\contentsline {chapter}{\numberline {D}Conexión de la aplicación FastAPI con la base de datos MongoDB}{69}{appendix.Alph4}%
-\contentsline {chapter}{\numberline {E}Conexión al broker MQTT con FastAPI y AWS IoT SDK para Python}{71}{appendix.Alph5}%
-\contentsline {chapter}{\numberline {F}Conexión por WebSocket en FastAPI}{77}{appendix.Alph6}%
-\contentsline {section}{\numberline {F.1}Introducción}{77}{section.Alph6.1}%
-\contentsline {section}{\numberline {F.2}Autorización para WebSocket}{77}{section.Alph6.2}%
-\contentsline {section}{\numberline {F.3}Gestión de conexiones WebSocket}{78}{section.Alph6.3}%
-\contentsline {section}{\numberline {F.4}Integración con FastAPI}{79}{section.Alph6.4}%
-\contentsline {chapter}{\numberline {G}Despliegue del sistema en instancia EC2}{81}{appendix.Alph7}%
-\contentsline {section}{\numberline {G.1}Introducción}{81}{section.Alph7.1}%
-\contentsline {section}{\numberline {G.2}Creación de la instancia EC2}{81}{section.Alph7.2}%
-\contentsline {section}{\numberline {G.3}Instalación y configuración del servidor EC2}{83}{section.Alph7.3}%
-\contentsline {subsection}{\numberline {G.3.1}Conectarse a la instancia EC2}{83}{subsection.Alph7.3.1}%
-\contentsline {subsection}{\numberline {G.3.2}Instalación de Docker}{84}{subsection.Alph7.3.2}%
-\contentsline {subsection}{\numberline {G.3.3}Instalación de Docker Compose}{84}{subsection.Alph7.3.3}%
-\contentsline {subsection}{\numberline {G.3.4}Instalación del cliente DuckDNS}{85}{subsection.Alph7.3.4}%
-\contentsline {subsection}{\numberline {G.3.5}Descarga y configuración del repositorio EnviroSense}{86}{subsection.Alph7.3.5}%
-\contentsline {subsection}{\numberline {G.3.6}Configuración del sistema como servicio}{87}{subsection.Alph7.3.6}%
-\contentsline {chapter}{Bibliografía}{89}{appendix*.126}%
+\contentsline {chapter}{\numberline {5}Conclusiones}{61}{chapter.5}%
+\contentsline {section}{\numberline {5.1}Conclusiones generales}{61}{section.5.1}%
+\contentsline {section}{\numberline {5.2}Próximos pasos}{62}{section.5.2}%
+\contentsline {chapter}{\numberline {A}Modelo de datos implementado en el trabajo}{63}{appendix.Alph1}%
+\contentsline {chapter}{\numberline {B}Resumen de endpoints de la API}{65}{appendix.Alph2}%
+\contentsline {chapter}{\numberline {C}Despliegue del sistema en instancia EC2}{69}{appendix.Alph3}%
+\contentsline {section}{\numberline {C.1}Introducción}{69}{section.Alph3.1}%
+\contentsline {section}{\numberline {C.2}Creación de la instancia EC2}{69}{section.Alph3.2}%
+\contentsline {section}{\numberline {C.3}Instalación y configuración del servidor EC2}{71}{section.Alph3.3}%
+\contentsline {subsection}{\numberline {C.3.1}Conectarse a la instancia EC2}{71}{subsection.Alph3.3.1}%
+\contentsline {subsection}{\numberline {C.3.2}Instalación de Docker}{72}{subsection.Alph3.3.2}%
+\contentsline {subsection}{\numberline {C.3.3}Instalación de Docker Compose}{72}{subsection.Alph3.3.3}%
+\contentsline {subsection}{\numberline {C.3.4}Instalación del cliente DuckDNS}{73}{subsection.Alph3.3.4}%
+\contentsline {subsection}{\numberline {C.3.5}Descarga y configuración del repositorio EnviroSense}{74}{subsection.Alph3.3.5}%
+\contentsline {subsection}{\numberline {C.3.6}Configuración del sistema como servicio}{75}{subsection.Alph3.3.6}%
+\contentsline {chapter}{Bibliografía}{77}{appendix*.126}%
