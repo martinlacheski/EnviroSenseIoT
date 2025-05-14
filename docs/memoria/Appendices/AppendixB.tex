@@ -7,47 +7,47 @@ API, junto con una breve descripción de la acción y el método HTTP utilizado.
 
 \begin{table}[H]
     \centering
-    \caption[Resumen de principales endpoints de la API]{Resumen de principales endpoints de la API}
+    \caption[Endpoints básicos]{Endpoints esenciales: autenticación, gestión de usuarios y configuración del sistema.}  
     \begin{tabular}{l l l}
         % \begin{tabular}{p{1.3cm}p{5.7cm}p{4.9cm}}
         \toprule
-        \textbf{Método} & \textbf{Endpoint}      & \textbf{Acción}              \\
+        \textbf{Método} & \textbf{Endpoint}      & \textbf{Acción}             \\
         \midrule
-        GET             & /api/                  & Ruta por defecto             \\
-        GET             & /mqtt/test             & Test conexión cliente MQTT   \\
-        POST            & /mqtt/publish          & Publicar en tópico MQTT      \\
+        GET             & /api/                  & Ruta por defecto.           \\
+        GET             & /mqtt/test             & Test conexión cliente MQTT. \\
+        POST            & /mqtt/publish          & Publicar en tópico MQTT.    \\
         \midrule
-        POST            & /login                 & Login de usuarios            \\
-        GET             & /renew-token           & Renovar token                \\
+        POST            & /login                 & Login de usuarios.          \\
+        GET             & /renew-token           & Renovar token.              \\
         \midrule
-        GET             & /roles/                & Obtener roles                \\
-        POST            & /roles/                & Crear rol                    \\
-        GET             & /roles/\{id\}          & Obtener un rol               \\
-        PUT             & /roles/\{id\}          & Actualizar rol               \\
-        DELETE          & /roles/\{id\}          & Eliminar rol                 \\
+        GET             & /roles/                & Obtener roles.              \\
+        POST            & /roles/                & Crear rol.                  \\
+        GET             & /roles/\{id\}          & Obtener un rol.             \\
+        PUT             & /roles/\{id\}          & Actualizar rol.             \\
+        DELETE          & /roles/\{id\}          & Eliminar rol.               \\
         \midrule
-        GET             & /users/                & Obtener usuarios             \\
-        POST            & /users/                & Crear usuario                \\
-        PUT             & /users/                & Actualizar usuario           \\
-        GET             & /users/\{id\}          & Obtener un usuario           \\
-        DELETE          & /users/\{id\}          & Eliminar usuario             \\
-        PATCH           & /users/                & Actualizar \textbf{username} \\
-        PATCH           & /users/password        & Actualizar \textbf{password} \\
-        GET             & /users/me              & Obtener un usuario           \\
-        PATCH           & /users/change/password & Actualizar 'username'        \\
+        GET             & /users/                & Obtener usuarios.           \\
+        POST            & /users/                & Crear usuario.              \\
+        PUT             & /users/                & Actualizar usuario.         \\
+        GET             & /users/\{id\}          & Obtener un usuario.         \\
+        DELETE          & /users/\{id\}          & Eliminar usuario.           \\
+        PATCH           & /users/                & Actualizar username.        \\
+        PATCH           & /users/password        & Actualizar password.        \\
+        GET             & /users/me              & Obtener un usuario.         \\
+        PATCH           & /users/change/password & Actualizar username.        \\
 
         \midrule
-        GET             & /countries/            & Obtener países               \\
-        POST            & /countries/            & Crear país                   \\
-        GET             & /countries/\{id\}      & Obtener un país              \\
-        PUT             & /countries/\{id\}      & Actualizar país              \\
-        DELETE          & /countries/\{id\}      & Eliminar país                \\
+        GET             & /countries/            & Obtener países.             \\
+        POST            & /countries/            & Crear país.                 \\
+        GET             & /countries/\{id\}      & Obtener un país.            \\
+        PUT             & /countries/\{id\}      & Actualizar país.            \\
+        DELETE          & /countries/\{id\}      & Eliminar país.              \\
         \midrule
-        GET             & /provinces/            & Obtener provincias           \\
-        POST            & /provinces/            & Crear provincia              \\
-        GET             & /provinces/\{id\}      & Obtener una provincia        \\
-        PUT             & /provinces/\{id\}      & Actualizar provincia         \\
-        DELETE          & /provinces/\{id\}      & Eliminar provincia           \\
+        GET             & /provinces/            & Obtener provincias.         \\
+        POST            & /provinces/            & Crear provincia.            \\
+        GET             & /provinces/\{id\}      & Obtener una provincia.      \\
+        PUT             & /provinces/\{id\}      & Actualizar provincia.       \\
+        DELETE          & /provinces/\{id\}      & Eliminar provincia.         \\
         \bottomrule
         \hline
     \end{tabular}
@@ -56,68 +56,68 @@ API, junto con una breve descripción de la acción y el método HTTP utilizado.
 
 \begin{table}[H]
     \centering
-    \caption[Resumen de principales endpoints de la API]{Resumen de principales endpoints de la API}
+    \caption[Endpoints de operación]{Endpoints operativos: control de ambientes, actuadores y monitoreo de consumos.}  
     \begin{tabular}{l l l}
         % \begin{tabular}{p{1.3cm}p{5.7cm}p{4.9cm}}
         \toprule
-        \textbf{Método} & \textbf{Endpoint}                & \textbf{Acción}              \\
+        \textbf{Método} & \textbf{Endpoint}                & \textbf{Acción}               \\
         \midrule
-        GET             & /cities/                         & Obtener ciudades             \\
-        POST            & /cities/                         & Crear ciudad                 \\
-        GET             & /cities/\{id\}                   & Obtener una ciudad           \\
-        PUT             & /cities/\{id\}                   & Actualizar ciudad            \\
-        DELETE          & /cities/\{id\}                   & Eliminar ciudad              \\
+        GET             & /cities/                         & Obtener ciudades.             \\
+        POST            & /cities/                         & Crear ciudad.                 \\
+        GET             & /cities/\{id\}                   & Obtener una ciudad.           \\
+        PUT             & /cities/\{id\}                   & Actualizar ciudad.            \\
+        DELETE          & /cities/\{id\}                   & Eliminar ciudad.              \\
         \midrule
-        GET             & /company/                        & Obtener empresas             \\
-        POST            & /company/                        & Crear empresa                \\
-        GET             & /company/\{id\}                  & Obtener una empresa          \\
-        PUT             & /company/\{id\}                  & Actualizar empresa           \\
-        DELETE          & /company/\{id\}                  & Eliminar empresa             \\
-        POST            & /company/uploadLogo              & subir logo empresa           \\
+        GET             & /company/                        & Obtener empresas.             \\
+        POST            & /company/                        & Crear empresa.                \\
+        GET             & /company/\{id\}                  & Obtener una empresa.          \\
+        PUT             & /company/\{id\}                  & Actualizar empresa.           \\
+        DELETE          & /company/\{id\}                  & Eliminar empresa.             \\
+        POST            & /company/uploadLogo              & subir logo empresa.           \\
         \midrule
-        GET             & /environments/types/             & Obtener tipos de ambientes   \\
-        POST            & /environments/types/             & Crear tipo de ambiente       \\
-        GET             & /environments/types/\{id\}       & Obtener un tipo de ambiente  \\
-        PUT             & /environments/types/\{id\}       & Actualizar tipo de ambiente  \\
-        DELETE          & /environments/types/\{id\}       & Eliminar tipo de ambiente    \\
+        GET             & /environments/types/             & Obtener tipos de ambientes.   \\
+        POST            & /environments/types/             & Crear tipo de ambiente.       \\
+        GET             & /environments/types/\{id\}       & Obtener un tipo de ambiente.  \\
+        PUT             & /environments/types/\{id\}       & Actualizar tipo de ambiente.  \\
+        DELETE          & /environments/types/\{id\}       & Eliminar tipo de ambiente.    \\
         \midrule
-        GET             & /environments/                   & Obtener ambientes            \\
-        POST            & /environments/                   & Crear ambiente               \\
-        GET             & /environments/\{id\}             & Obtener un ambiente          \\
-        PUT             & /environments/\{id\}             & Actualizar ambiente          \\
-        DELETE          & /environments/\{id\}             & Eliminar ambiente            \\
+        GET             & /environments/                   & Obtener ambientes.            \\
+        POST            & /environments/                   & Crear ambiente.               \\
+        GET             & /environments/\{id\}             & Obtener un ambiente.          \\
+        PUT             & /environments/\{id\}             & Actualizar ambiente.          \\
+        DELETE          & /environments/\{id\}             & Eliminar ambiente.            \\
         \midrule
-        GET             & /actuators/                      & Obtener actuadores           \\
-        POST            & /actuators/                      & Crear actuador               \\
-        GET             & /actuators/\{id\}                & Obtener un actuador          \\
-        PUT             & /actuators/\{id\}                & Actualizar actuador          \\
-        DELETE          & /actuators/\{id\}                & Eliminar actuador            \\
+        GET             & /actuators/                      & Obtener actuadores.           \\
+        POST            & /actuators/                      & Crear actuador.               \\
+        GET             & /actuators/\{id\}                & Obtener un actuador.          \\
+        PUT             & /actuators/\{id\}                & Actualizar actuador.          \\
+        DELETE          & /actuators/\{id\}                & Eliminar actuador.            \\
         \midrule
-        GET             & /actuators/log/                  & Obtener logs de actuadores   \\
-        POST            & /actuators/log/                  & Crear log de actuador        \\
+        GET             & /actuators/log/                  & Obtener logs de actuadores.   \\
+        POST            & /actuators/log/                  & Crear log de actuador.        \\
         \midrule
-        GET             & /actuators/data/                 & Obtener datos histórios      \\
-        POST            & /actuators/data/                 & Crear dato histório          \\
-        GET             & /actuators/data/\{id\}           & obtener un dato histório     \\
+        GET             & /actuators/data/                 & Obtener datos históricos.     \\
+        POST            & /actuators/data/                 & Crear dato histórico.         \\
+        GET             & /actuators/data/\{id\}           & Obtener un dato histórico.    \\
         \midrule
-        GET             & /nutrients/types/                & Obtener tipos de nutrientes  \\
-        POST            & /nutrients/types/                & Crear tipo de nutriente      \\
-        GET             & /nutrients/types/\{id\}          & Obtener un tipo de nutriente \\
-        PUT             & /nutrients/types/\{id\}          & Actualizar tipo de nutriente \\
-        DELETE          & /nutrients/types/\{id\}          & Eliminar tipo de nutriente   \\
+        GET             & /nutrients/types/                & Obtener tipos de nutrientes.  \\
+        POST            & /nutrients/types/                & Crear tipo de nutriente.      \\
+        GET             & /nutrients/types/\{id\}          & Obtener un tipo de nutriente. \\
+        PUT             & /nutrients/types/\{id\}          & Actualizar tipo de nutriente. \\
+        DELETE          & /nutrients/types/\{id\}          & Eliminar tipo de nutriente.   \\
         \midrule
-        GET             & /sensors/consumption/            & Obtener sensores             \\
-        POST            & /sensors/consumption/            & Crear sensor                 \\
-        GET             & /sensors/consumption/\{id\}      & Obtener un sensor            \\
-        PUT             & /sensors/consumption/\{id\}      & Actualizar sensor            \\
-        DELETE          & /sensors/consumption/\{id\}      & Eliminar sensor              \\
+        GET             & /sensors/consumption/            & Obtener sensores.             \\
+        POST            & /sensors/consumption/            & Crear sensor.                 \\
+        GET             & /sensors/consumption/\{id\}      & Obtener un sensor.            \\
+        PUT             & /sensors/consumption/\{id\}      & Actualizar sensor.            \\
+        DELETE          & /sensors/consumption/\{id\}      & Eliminar sensor.              \\
         \midrule
-        GET             & /sensors/consumption/log/        & Obtener logs de sensor       \\
-        POST            & /sensors/consumption/log/        & Crear log de sensor          \\
+        GET             & /sensors/consumption/log/        & Obtener logs de sensor.       \\
+        POST            & /sensors/consumption/log/        & Crear log de sensor.          \\
         \midrule
-        GET             & /sensors/consumption/data/       & Obtener datos histórios      \\
-        POST            & /sensors/consumption/data/       & Crear dato histório          \\
-        GET             & /sensors/consumption/data/\{id\} & Obtener un dato histório     \\
+        GET             & /sensors/consumption/data/       & Obtener datos históricos.     \\
+        POST            & /sensors/consumption/data/       & Crear dato histórico.         \\
+        GET             & /sensors/consumption/data/\{id\} & Obtener un dato histórico.    \\
         \bottomrule
         \hline
     \end{tabular}
@@ -126,37 +126,37 @@ API, junto con una breve descripción de la acción y el método HTTP utilizado.
 
 \begin{table}[H]
     \centering
-    \caption[Resumen de principales endpoints de la API.]{Resumen de principales endpoints de la API.}
+    \caption[Endpoints de monitoreo]{Endpoints de monitoreo ambiental y de nutrientes.}  
     \begin{tabular}{l l l}
         % \begin{tabular}{p{1.3cm}p{5.7cm}p{4.9cm}}
         \toprule
-        \textbf{Método} & \textbf{Endpoint}                       & \textbf{Acción}          \\
+        \textbf{Método} & \textbf{Endpoint}                       & \textbf{Acción}            \\
         \midrule
-        GET             & /sensors/environmental/                 & Obtener sensores         \\
-        POST            & /sensors/environmental/                 & Crear sensor ambiental   \\
-        GET             & /sensors/environmental/\{id\}           & Obtener un sensor        \\
-        PUT             & /sensors/environmental/\{id\}           & Actualizar sensor        \\
-        DELETE          & /sensors/environmental/\{id\}           & Eliminar sensor          \\
+        GET             & /sensors/environmental/                 & Obtener sensores.          \\
+        POST            & /sensors/environmental/                 & Crear sensor ambiental.    \\
+        GET             & /sensors/environmental/\{id\}           & Obtener un sensor.         \\
+        PUT             & /sensors/environmental/\{id\}           & Actualizar sensor.         \\
+        DELETE          & /sensors/environmental/\{id\}           & Eliminar sensor.           \\
         \midrule
-        GET             & /sensors/environmental/log/             & Obtener logs de sensor   \\
-        POST            & /sensors/environmental/log/             & Crear log de sensor      \\
+        GET             & /sensors/environmental/log/             & Obtener logs de sensor.    \\
+        POST            & /sensors/environmental/log/             & Crear log de sensor.       \\
         \midrule
-        GET             & /sensors/environmental/data/            & Obtener datos histórios  \\
-        POST            & /sensors/environmental/data/            & Crear dato histório      \\
-        GET             & /sensors/environmental/data/\{id\}      & Obtener un dato histório \\
+        GET             & /sensors/environmental/data/            & Obtener datos históricos.  \\
+        POST            & /sensors/environmental/data/            & Crear dato histórico.      \\
+        GET             & /sensors/environmental/data/\{id\}      & Obtener un dato histórico. \\
         \midrule
-        GET             & /sensors/nutrients/solution/            & Obtener sensores         \\
-        POST            & /sensors/nutrients/solution/            & Crear sensor             \\
-        GET             & /sensors/nutrients/solution/\{id\}      & Obtener un sensor        \\
-        PUT             & /sensors/nutrients/solution/\{id\}      & Actualizar sensor        \\
-        DELETE          & /sensors/nutrients/solution/\{id\}      & Eliminar sensor          \\
+        GET             & /sensors/nutrients/solution/            & Obtener sensores.          \\
+        POST            & /sensors/nutrients/solution/            & Crear sensor.              \\
+        GET             & /sensors/nutrients/solution/\{id\}      & Obtener un sensor.         \\
+        PUT             & /sensors/nutrients/solution/\{id\}      & Actualizar sensor.         \\
+        DELETE          & /sensors/nutrients/solution/\{id\}      & Eliminar sensor.           \\
         \midrule
-        GET             & /sensors/nutrients/solution/log/        & Obtener logs de sensor   \\
-        POST            & /sensors/nutrients/solution/log/        & Crear log de sensor      \\
+        GET             & /sensors/nutrients/solution/log/        & Obtener logs de sensor.    \\
+        POST            & /sensors/nutrients/solution/log/        & Crear log de sensor.       \\
         \midrule
-        GET             & /sensors/nutrients/solution/data/       & Obtener datos histórios  \\
-        POST            & /sensors/nutrients/solution/data/       & Crear dato histório      \\
-        GET             & /sensors/nutrients/solution/data/\{id\} & Obtener un dato histório \\
+        GET             & /sensors/nutrients/solution/data/       & Obtener datos históricos.  \\
+        POST            & /sensors/nutrients/solution/data/       & Crear dato histórico.      \\
+        GET             & /sensors/nutrients/solution/data/\{id\} & Obtener un dato histórico. \\
         \bottomrule
         \hline
     \end{tabular}

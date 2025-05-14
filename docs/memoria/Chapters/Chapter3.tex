@@ -63,11 +63,11 @@ función de los parámetros configurados.
 
 Cada nodo sensor incluye un microcontrolador ESP-WROOM-32, este se conecta a
 diversos sensores que miden parámetros como temperatura ambiente, humedad
-relativa, presión atmosférica, luminosidad, concentración de $CO_2$, pH,
-conductividad eléctrica, temperatura de la solución nutritiva, nivel de
-líquidos, consumo eléctrico, entre otros. Los nodos actuadores, por su parte,
-cuentan con relés para controlar dispositivos como ventiladores, iluminación y
-sistemas de recirculación de nutrientes.
+relativa, presión atmosférica, nivel de iluminación, concentración de $CO_2$,
+pH, CE, temperatura de la solución nutritiva, nivel de líquidos, consumo
+eléctrico, entre otros. Los nodos actuadores, por su parte, cuentan con relés
+para controlar dispositivos como ventiladores, iluminación y sistemas de
+recirculación de nutrientes.
 
 Los nodos fueron conectados a una red Wi-Fi local, lo que les permitió
 establecer comunicación con la red y transmitir los datos hacia el servidor IoT
@@ -95,11 +95,6 @@ La capa de aplicación es responsable del procesamiento, almacenamiento y
 visualización de los datos recopilados por los nodos. Para esta capa, se
 implementó el servidor IoT en la nube a través del servicio AWS EC2, que
 permite ejecutar aplicaciones y servicios en instancias virtuales.
-
-% El procesamiento y la gestión de datos se realizó a través de un backend
-% desarrollado con FastAPI, mientras que la base de datos MongoDB se utilizó para
-% el almacenamiento de la información. Además, se implementó una interfaz de
-% usuario en React para la visualización y gestión de los datos.
 
 El procesamiento de los datos se llevó a cabo mediante un backend desarrollado
 con FastAPI, encargado de gestionar las solicitudes e interactuar con la base
@@ -173,8 +168,8 @@ El modelo de datos completo del sistema, puede consultarse en el apéndice
 %----------------------------------------------------------------------------------------
 \section{Servidor IoT}
 
-En esta sección se presenta la arquitectura del sistema y se detallan las
-tecnologías utilizadas y la arquitectura del servidor.
+En esta sección se presenta la arquitectura del sistema y del servidor, junto
+con las tecnologías utilizadas.
 
 \subsection{Arquitectura del servidor}
 
@@ -186,7 +181,7 @@ backend, almacenamiento y frontend, como se muestra en la figura
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=.97\textwidth]{./Images/16.png}
+    \includegraphics[width=\textwidth]{./Images/16.png}
     \caption{Arquitectura del servidor del sistema IoT.}
     \label{fig:arquitectura servidor}
 \end{figure}
@@ -222,8 +217,8 @@ servidor backend, así como la lógica de negocio implementada.
 \subsection{Diseño de la API}
 
 El diseño se estructuró en base a las necesidades del sistema y los
-requerimientos funcionales y no funcionales establecidos. Se organizaron los
-archivos en carpetas de acuerdo a su funcionalidad.
+requerimientos establecidos. Se organizaron los archivos en carpetas de acuerdo
+a su funcionalidad.
 
 La tabla \ref{tab:endpoints} presenta un resumen de los principales endpoints
 de la API, junto con una breve descripción de la acción y el método HTTP
@@ -231,7 +226,7 @@ utilizado.
 
 \begin{table}[H]
     \centering
-    \caption[Resumen de principales endpoints de la API]{Resumen de principales endpoints de la API.}
+    \caption[Resumen de los principales endpoints de la API]{Resumen de los principales endpoints de la API.}
     \begin{tabular}{l l l}
         % \begin{tabular}{p{1.3cm}p{5.7cm}p{4.9cm}}
         \toprule
@@ -276,20 +271,16 @@ mediante el envío de las credenciales del usuario en el cuerpo de la solicitud,
 y el servidor responde con un token JWT que se utiliza para autenticar las
 solicitudes posteriores.
 
-El token JWT contiene la información del usuario y se envía en el encabezado de
-las solicitudes a la API. El servidor verifica la validez del token y permite o
-deniega el acceso a los recursos solicitados. El servidor verifica su validez
-y, en función de ello, permite o deniega el acceso a los recursos solicitados.
+El token contiene la información del usuario y se envía en el encabezado de las
+solicitudes a la API. El servidor verifica su validez y, en función de ello,
+permite o deniega el acceso a los recursos solicitados.
 
 Dado que el token fue diseñado con un tiempo de expiración, se implementó un
 mecanismo de renovación que permite a los usuarios mantener la sesión activa
 sin necesidad de volver a autenticarse con sus credenciales.
 
-% El código de la implementación de la autenticación y autorización se puede
-% consultar en el apéndice \ref{AppendixC}.
-
 La figura \ref{fig:esquema autenticacion} muestra el esquema de autenticación,
-autorización y renovación de tokens implementado en el sistema.
+autorización y renovación de token implementado en el sistema.
 
 \begin{figure}[H]
     \centering
@@ -315,7 +306,7 @@ los modelos implementados en el sistema y los métodos HTTP de la colección
 \begin{figure}[H]
     \centering
     \includegraphics[width=.88\textwidth]{./Images/18.png}
-    \caption{Diagrama de clases de los modelos implementados.}
+    \caption{Ejemplo de diagrama de clase de la colección \texttt{EnvironmentalSensor}.}
     \label{fig:diagrama de clases}
 \end{figure}
 
@@ -337,44 +328,6 @@ la conexión entre FastAPI y MongoDB.
     \label{fig:conexion mongo}
 \end{figure}
 
-% El código para establecer la conexión y la inicialización de los modelos se
-% puede consultar en el apéndice \ref{AppendixD}.
-
-% \subsection{Comunicación con el broker MQTT}
-
-% A continuación, se describe la implementación de la comunicación con el broker
-% MQTT.
-
-% \subsubsection{Creación del Objeto Thing y certificados de seguridad en AWS IoT Core}
-
-% A continuación, se describen los pasos realizados en AWS IoT Core para crear y
-% configurar el objeto \textit{Thing} y los certificados de seguridad necesarios
-% para establecer una conexión segura con el broker MQTT:
-
-% \begin{enumerate}
-%     \item Se creó un objeto \textit{Thing} en AWS IoT Core, que representa un dispositivo
-%           IoT. Este objeto se utiliza para gestionar la conexión y la comunicación con el
-%           broker.
-%     \item Se generaron certificados de seguridad y claves privadas para el objeto
-%           \textit{Thing}, y se descargó el certificado raíz de Amazon. Estos elementos
-%           son necesarios para autenticar la conexión, garantizar el cifrado de los datos
-%           transmitidos y establecer una comunicación segura con el broker MQTT.
-%     \item Se definieron las políticas de acceso necesarias para el objeto \textit{Thing},
-%           a fin de permitir publicar y suscribirse a los tópicos correspondientes.
-% \end{enumerate}
-
-% \subsubsection{Políticas de acceso en AWS IoT Core}
-
-% Las políticas de acceso determinan los permisos del cliente para publicar,
-% suscribirse y recibir mensajes en los tópicos. Se aplican a los certificados
-% generados para el cliente y controlan el acceso a los recursos de AWS IoT Core.
-
-% Definidas en formato JSON, estas políticas garantizan que solo los clientes
-% autorizados puedan interactuar con los recursos y operar en los tópicos
-% correspondientes. Además, pueden configurarse de manera específica para cada
-% \textit{Thing}, lo que permite ejercer un control granular sobre los permisos
-% de acceso.
-
 \subsection{Comunicación con el Broker MQTT}
 
 A continuación, se detalla el proceso de implementación de la comunicación con
@@ -394,13 +347,13 @@ siguientes pasos en AWS IoT Core:
           \begin{itemize}
               \item Se emitieron certificados de seguridad y claves privadas específicas para el
                     \textit{Thing}.
-              \item Se descargó el certificado raíz de Amazon (CA) para validar la autenticidad del
-                    broker.
+              \item Se descargó el certificado raíz de Amazon CA(del inglés, \textit{Certificate
+                        Authority}) para validar la autenticidad del broker.
           \end{itemize}
           Estos elementos permiten:
           \begin{itemize}
               \item Autenticación mutua entre dispositivo y broker.
-              \item Cifrado de extremo a extremo para la comunicación.
+              \item Cifrado de extremo a extremo de la comunicación.
           \end{itemize}
 
     \item Asignación de políticas: se definieron las políticas de acceso necesarias para
@@ -445,8 +398,7 @@ comunicación con AWS IoT Core:
 
 \begin{enumerate}
     \item Una ruta para verificar la conexión con el broker MQTT.
-    \item Una ruta para enviar mensajes a un tópico y comprobar la comunicación entre el
-          servidor y el broker.
+    \item Una ruta para enviar mensajes a un tópico determinado.
 \end{enumerate}
 
 La figura \ref{fig:test_mqtt} muestra los pasos realizados para verificar la
@@ -482,8 +434,9 @@ permite actualizar la interfaz en tiempo real. Este cliente, que maneja la
 conexión, publicación y suscripción, se inicializa junto con FastAPI para
 asegurar una comunicación eficiente.
 
-La figura \ref{fig:cliente_mqtt} muestra los pasos de cómo la aplicación
-FastAPI se conecta al broker MQTT y se suscribe a los tópicos solicitados.
+La figura \ref{fig:cliente_mqtt} describe la secuencia de acciones que permite
+a la aplicación FastAPI conectarse al broker MQTT y suscribirse a los tópicos
+requeridos.
 
 \begin{figure}[H]
     \centering
@@ -491,9 +444,6 @@ FastAPI se conecta al broker MQTT y se suscribe a los tópicos solicitados.
     \caption{Pasos para la conexión del cliente MQTT.}
     \label{fig:cliente_mqtt}
 \end{figure}
-
-% El código completo de la implementación de la conexión con el broker MQTT se
-% encuentra en el Apéndice \ref{AppendixE}.
 
 \subsection{Implementación de WebSocket}
 
@@ -512,7 +462,6 @@ tiempo real. Además, mantiene un caché con los últimos valores por tipo de
 sensor para optimizar el rendimiento. Al recibir nuevos datos, el servidor
 actualiza el caché y los transmite a todos los clientes conectados.
 
-% El código de la implementación se encuentra en el apéndice \ref{AppendixF}, y
 La figura \ref{fig:websocket} ilustra el proceso de conexión.
 
 \begin{figure}[H]
@@ -548,7 +497,7 @@ La gestión del estado de autenticación y control de sesiones se implementó co
 Redux Toolkit \cite{ReduxToolkit} y la navegación entre páginas se gestionó a
 través de la biblioteca React Router \cite{ReactRouter}.
 
-Para la visualización de los gráficos, se empleó la librería Recharts
+Para la visualización de los gráficos, se empleó la biblioteca Recharts
 \cite{Recharts}, mientras que para la representación de tablas se utilizó la
 biblioteca React Data Table Component \cite{ReactDataTable}.
 
@@ -565,7 +514,7 @@ renderizados dinámicamente en función de la ruta activa.
 
 \subsection{Componentes principales de la interfaz de usuario}
 
-A continuación, se presenta un detalle de los principales componentes
+A continuación, se presenta el detalle de los principales componentes
 desarrollados para la construcción de la interfaz.
 
 \subsubsection{Gestión de autenticación}
@@ -580,14 +529,14 @@ navegador, lo que permite mantener la sesión activa y acceder a las
 funcionalidades de la aplicación. El token se envía en cada solicitud a la API
 para autenticar al usuario y garantizar la seguridad de la comunicación.
 
-La figura \ref{fig:login} muestra la pantalla de inicio de sesión, donde los
-usuarios ingresan sus credenciales para acceder a la aplicación web.
+La figura \ref{fig:login_sistema} muestra la pantalla de inicio de sesión,
+donde los usuarios ingresan sus credenciales para acceder a la aplicación web.
 
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.80\textwidth]{./Images/24_login.png}
-    \caption{Pantalla de Login}
-    \label{fig:login}
+    \caption{Pantalla de inicio de sesión.}
+    \label{fig:login_sistema}
 \end{figure}
 
 \subsubsection{Layout}
@@ -608,7 +557,7 @@ el rol \texttt{admin}.
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.90\textwidth]{./Images/25_layout.png}
-    \caption{Estructura del componente layout}
+    \caption{Pantalla principal de la aplicación web.}
     \label{fig:layout}
 \end{figure}
 
@@ -625,13 +574,23 @@ componentes \texttt{Routes} para definir la estructura de navegación y
 
 Además, se implementa un flujo de acceso controlado por:
 
+% \begin{itemize}
+%     \item Rutas públicas: accesibles sin autenticación, como la página de inicio de
+%           sesión.
+%     \item Rutas privadas: requieren autenticación y autorización, como el acceso a los
+%           módulos de la aplicación.
+%     \item Rutas restringidas: accesibles solo para usuarios con los permisos adecuados,
+%           como reportes, la gestión de usuarios, ambientes, y dispositivos.
+% \end{itemize}
+
 \begin{itemize}
     \item Rutas públicas: accesibles sin autenticación, como la página de inicio de
           sesión.
-    \item Rutas privadas: requieren autenticación y autorización, como el acceso a los
-          módulos de la aplicación.
-    \item Rutas restringidas: accesibles solo para usuarios con los permisos adecuados,
-          como reportes, la gestión de usuarios, ambientes, y dispositivos.
+    \item Rutas privadas: requieren autenticación, destinadas a usuarios registrados que
+          acceden a funcionalidades generales de la aplicación.
+    \item Rutas restringidas: requieren autenticación y permisos específicos, habilitadas
+          solo para ciertos roles (como administradores), por ejemplo para acceder a
+          gestión de usuarios, ambientes y dispositivos.
 \end{itemize}
 
 Este esquema garantiza que cada usuario solo pueda acceder a las
@@ -643,7 +602,7 @@ panel de usuario, donde puede consultar su información personal.
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.90\textwidth]{./Images/26_navegacion.png}
-    \caption{Interfaz de navegación según permisos de usuario estándar}
+    \caption{Interfaz de navegación según permisos de usuario estándar.}
     \label{fig:navegacion}
 \end{figure}
 
@@ -654,15 +613,15 @@ recopilados por los sensores y el estado de los actuadores de un ambiente
 específico. La información se actualiza automáticamente mediante el uso de
 WebSocket a medida que se reciben nuevos datos.
 
-La figura \ref{fig:dashboard} ilustra el \texttt{dashboard} de la aplicación,
+La figura \ref{fig:dashboard_sistema} ilustra el dashboard de la aplicación,
 donde se pueden observar los datos de los sensores y actuadores en tiempo real
 de un ambiente específico.
 
 \begin{figure}[H]
     \centering
     \includegraphics[width=\textwidth]{./Images/27_dashboard.png}
-    \caption{Visualización de datos en tiempo real}
-    \label{fig:dashboard}
+    \caption{Visualización de datos en tiempo real.}
+    \label{fig:dashboard_sistema}
 \end{figure}
 
 \subsection{Reportes de datos históricos}
@@ -686,8 +645,8 @@ Cada reporte permite:
           hay grandes volúmenes de datos.
 \end{itemize}
 
-Los reportes consumen los datos procesados a través de la API del backend, lo
-que permite mantener actualizada la información consultada.
+Los reportes obtienen la información procesada desde la API del backend, lo que
+garantiza que los datos mostrados estén siempre actualizados.
 
 La figura \ref{fig:reportes_tabla_consumos} presenta la pantalla de reportes,
 donde se visualiza la tabla con los datos históricos de un sensor de consumos.
@@ -695,7 +654,7 @@ donde se visualiza la tabla con los datos históricos de un sensor de consumos.
 \begin{figure}[H]
     \centering
     \includegraphics[width=\textwidth]{./Images/28_reportes_1.png}
-    \caption{Pantalla de reportes}
+    \caption{Pantalla de visualización tabular de consumos registrados.}
     \label{fig:reportes_tabla_consumos}
 \end{figure}
 
@@ -706,7 +665,7 @@ consumos.
 \begin{figure}[H]
     \centering
     \includegraphics[width=\textwidth]{./Images/28_reportes_2.png}
-    \caption{Pantalla de reportes}
+    \caption{Pantalla de visualización de gráficos de consumos registrados.}
     \label{fig:reportes_graficos_consumos}
 \end{figure}
 
@@ -716,7 +675,7 @@ donde se puede observar la tabla con los datos históricos de un actuador.
 \begin{figure}[H]
     \centering
     \includegraphics[width=\textwidth]{./Images/28_reportes_3.png}
-    \caption{Pantalla de reportes}
+    \caption{Pantalla de visualización tabular de actuadores.}
     \label{fig:reportes_tabla_actuadores}
 \end{figure}
 
@@ -729,7 +688,7 @@ usuario optimizada tanto en teléfonos móviles como en tablets.
 \begin{figure}[H]
     \centering
     \includegraphics[width=\textwidth]{./Images/29_dashboard_celular.png}
-    \caption{Visualización de datos en tiempo real desde un dispositivo móvil}
+    \caption{Visualización de datos en tiempo real desde un dispositivo móvil.}
     \label{fig:dashboard_celular}
 \end{figure}
 
@@ -738,9 +697,13 @@ usuario optimizada tanto en teléfonos móviles como en tablets.
 %----------------------------------------------------------------------------------------
 \section{Desarrollo del firmware de los dispositivos IoT}
 
-Esta sección presenta el desarrollo del firmware implementado en MicroPython
-para los nodos del sistema. Se describe la arquitectura general del software
-embebido y la estructura del código fuente.
+% Esta sección presenta el desarrollo del firmware implementado en MicroPython
+% para los nodos del sistema. Se describe la arquitectura general del software
+% embebido y la estructura del código fuente.
+
+Esta sección presenta el desarrollo de los distintos firmwares implementados en
+MicroPython para los diferentes tipos de nodos del sistema. Se describe la
+arquitectura general del software embebido y la estructura del código fuente.
 
 \subsection{Arquitectura general del firmware}
 
@@ -766,7 +729,7 @@ mantenimiento.
 La estructura es la siguiente:
 
 \begin{enumerate}
-    \item Importación de librerías: importación de módulos para sensores, Wi-Fi, MQTT,
+    \item Importación de bibliotecas: importación de módulos para sensores, Wi-Fi, MQTT,
           gestión del tiempo y otras funcionalidades.
     \item Configuración inicial: definición de variables y constantes (pines, parámetros
           de conexión, intervalos).
@@ -791,14 +754,14 @@ La estructura es la siguiente:
           \end{enumerate}
 \end{enumerate}
 
-La Figura \ref{fig:flujo_nodos} muestra el flujo general del firmware, desde la
+La figura \ref{fig:flujo_nodos} muestra el flujo general del firmware, desde la
 inicialización hasta el bucle principal, con manejo de comandos MQTT y acciones
 sobre sensores y actuadores.
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.86\textwidth]{./Images/30_flujo_ppal_nodos.png}
-    \caption{Flujo de ejecución del código en los nodos}
+    \includegraphics[width=0.96\textwidth]{./Images/30_flujo_ppal_nodos.png}
+    \caption{Flujo de ejecución del código en los nodos.}
     \label{fig:flujo_nodos}
 \end{figure}
 
@@ -807,11 +770,11 @@ sobre sensores y actuadores.
 \subsection{Gestión de la configuración}
 
 La configuración de los parámetros operativos de cada nodo se almacenó en
-archivos locales en el ESP32, lo que garantiza la persistencia de la
+archivos locales en el ESP32, lo que garantizó la persistencia de la
 configuración incluso después de reinicios.
 
-A continuación, se detallan los archivos de configuración utilizados en el
-firmware de los nodos:
+A continuación, se detallan los archivos de configuración utilizados en los
+nodos:
 
 \subsubsection{Archivo de configuración}
 
@@ -831,9 +794,9 @@ específicas de cada nodo. Incluye:
 
 El archivo \texttt{interval.conf} almacena el intervalo de muestreo de sensores
 y actuadores. Al iniciar el dispositivo, se intenta leer este valor; si el
-archivo no existe o está corrupto, se usa un valor por defecto. El intervalo
-puede actualizarse remotamente mediante MQTT, se sobrescribe el archivo para
-conservar la nueva configuración tras reinicios.
+archivo no existe o está corrupto, se usa un valor por defecto (15 segundos).
+El intervalo puede actualizarse remotamente mediante MQTT, se sobrescribe el
+archivo para conservar la nueva configuración tras reinicios.
 
 \subsubsection{Archivo de configuración Wi-Fi}
 
@@ -858,7 +821,7 @@ una zona horaria por defecto, en este caso, la de Argentina (\texttt{UTC-3}).
 Los nodos desarrollados utilizan la comunicación Wi-Fi para conectarse a la red
 local y enviar datos al broker MQTT a través de Internet.
 
-A continuación, se describen las librerías utilizadas para gestionar la
+A continuación, se describen las bibliotecas utilizadas para gestionar la
 comunicación inalámbrica:
 
 \subsubsection{Wi-Fi}
@@ -881,7 +844,7 @@ implementar un cliente MQTT en los nodos. Se estableció la conexión al broker
 MQTT de AWS IoT Core mediante certificados TLS almacenados localmente en cada
 dispositivo.
 
-La Figura \ref{fig:secuencia_mqtt} ilustra el flujo de comunicación
+La figura \ref{fig:secuencia_mqtt} ilustra el flujo de comunicación
 bidireccional entre los nodos, el broker MQTT de AWS IoT Core y el backend en
 FastAPI, mediante conexiones TLS y tópicos específicos. Los nodos envían datos
 y reciben comandos, mientras que el backend centraliza la gestión de las
@@ -890,7 +853,7 @@ comunicaciones.
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.82\textwidth]{./Images/31_secuencia_mqtt.png}
-    \caption{Flujo de comunicación entre nodos y broker MQTT}
+    \caption{Flujo de comunicación entre nodos y broker MQTT.}
     \label{fig:secuencia_mqtt}
 \end{figure}
 
@@ -968,42 +931,53 @@ entorno o controlar dispositivos.
     % \begin{tabular}{l l l}
     \begin{tabular}{p{1.5cm}p{5.4cm}p{5.5cm}}
         \toprule
-        \textbf{Nodo}                                     & \textbf{Funciones principales}                                                 & \textbf{Descripción del firmware}               \\
+        \textbf{Nodo}                                     & \textbf{Funciones principales}                                  & \textbf{Descripción del firmware}               \\
         \midrule
-        \multirow{7}{1.5cm}{Sensor ambiental}             & Medición de temperatura, humedad y presión (BME280).                           & Comunicación I\textsuperscript{2}C para BME280. \\
-                                                          & Medición de luminosidad (BH1750).                                              & UART para MH-Z19C.                              \\
-                                                          & Medición de concentración de $CO_2$ (MH-Z19C).                                 & Medición inicial de $CO_2$.                     \\
-                                                          & Conexión Wi-Fi.                     Conexión broker MQTT.                      & Envío de datos en JSON vía MQTT.                \\
-                                                          & Configuración remota de intervalo.                                             & Sincronización NTP.                             \\
-                                                          & Indicador LED.                                                                 & Reconexión Wi-Fi automática.                    \\
-                                                          & Botón de reinicio.                                                             &                                                 \\
+        \multirow{7}{1.5cm}{Sensor ambiental}             & Medición de temperatura, humedad y presión (BME280).            & Comunicación I\textsuperscript{2}C para BME280. \\
+                                                          & Medición del nivel de iluminación (BH1750).                     & UART para MH-Z19C.                              \\
+                                                          & Medición de concentración de $CO_2$ (MH-Z19C).                  & Medición inicial de $CO_2$.                     \\
+                                                          & Conexión Wi-Fi.                     Conexión broker MQTT.       & Envío de datos en JSON vía MQTT.                \\
+                                                          & Configuración de intervalo.                                     & Sincronización NTP.                             \\
+                                                          & Indicador LED.                                                  & Reconexión Wi-Fi automática.                    \\
         \midrule
-        \multirow{6}{1.5cm}{Sensor de consumos}           & Medición de voltaje, corriente y potencia (PZEM-004T).                         & Uso de UART para PZEM-004T.                     \\
-                                                          & Medición de nivel de líquidos (HC-SR04).                                       & GPIO para HC-SR04.                              \\
-                                                          & Conexión Wi-Fi.                     Conexión broker MQTT.                      & Envío de datos en formato JSON vía MQTT.        \\
-                                                          & Configuración remota de intervalo.                                             & Sincronización NTP.                             \\
-                                                          & Indicador LED.                                                                 & Reconexión Wi-Fi automática.                    \\
-                                                          & Botón de reinicio.                                                             &                                                 \\
+        \multirow{6}{1.5cm}{Sensor de consumos}           & Medición de voltaje, corriente y potencia (PZEM-004T).          & Uso de UART para PZEM-004T.                     \\
+                                                          & Medición de nivel de líquidos (HC-SR04).                        & GPIO para HC-SR04.                              \\
+                                                          & Conexión Wi-Fi.                     Conexión broker MQTT.       & Envío de datos en formato JSON vía MQTT.        \\
+                                                          & Configuración de intervalo.                                     & Sincronización NTP.                             \\
+                                                          & Indicador LED.                                                  & Reconexión Wi-Fi automática.                    \\
         \midrule
-        \multirow{7}{1.5cm}{Sensor de solución nutritiva} & Medición de temperatura (DS18B20).                                             & Lectura OneWire para DS18B20.                   \\
-                                                          & Medición de pH, CE y TDS.                                                      & Medición de CE,TDS y pH.                        \\
-                                                          & Medición de nivel de líquidos (HC-SR04).                                       & Promedio de muestras.                           \\
-                                                          & Conexión Wi-Fi.                     Conexión broker MQTT.                      & Envío de datos en JSON vía MQTT.                \\
-                                                          & Configuración remota de intervalo.                                             & Sincronización NTP.                             \\
-                                                          & Indicador LED.                                                                 & Reconexión Wi-Fi automática.                    \\
-                                                          & Botón de reinicio.                                                             &                                                 \\
+        \multirow{7}{1.5cm}{Sensor de solución nutritiva} & Medición de temperatura (DS18B20).                              & Lectura OneWire para DS18B20.                   \\
+                                                          & Medición de pH, CE y TDS.                                       & Medición de CE,TDS y pH.                        \\
+                                                          & Medición de nivel de líquidos (HC-SR04).                        & Promedio de muestras.                           \\
+                                                          & Conexión Wi-Fi.                     Conexión broker MQTT.       & Envío de datos en JSON vía MQTT.                \\
+                                                          & Configuración de intervalo.                                     & Sincronización NTP.                             \\
+                                                          & Indicador LED.                                                  & Reconexión Wi-Fi automática.                    \\
         \midrule
-        \multirow{7}{1.5cm}{Actuador}                     & Control de relés para dispositivos (bombas, aireadores, luces, dosificadores). & Control de salidas GPIO.                        \\
-                                                          & Ejecución simultánea de comandos.                                              & Recepción de comandos MQTT.                     \\
-                                                          & Conexión Wi-Fi.                     Conexión broker MQTT.                      & Ejecución de temporizadores con Timers ESP32.   \\
-                                                          & Configuración remota.                                                          & Manejo de estados de relés en JSON.             \\
-                                                          & Indicador LED.                                                                 & Sincronización NTP.                             \\
-                                                          & Botón de reinicio.                                                             & Reconexión Wi-Fi automática.                    \\
+        \multirow{7}{1.5cm}{Actuador}                     & Control de relés para dispositivos (bombas, aireadores, luces). & Control de salidas GPIO.                        \\
+                                                          & Ejecución simultánea de comandos.                               & Recepción de comandos MQTT.                     \\
+                                                          & Conexión Wi-Fi.                     Conexión broker MQTT.       & Ejecución de temporizadores con Timers ESP32.   \\
+                                                          & Configuración de intervalo.                                     & Manejo de estados de relés en JSON.             \\
+                                                          & Indicador LED.                                                  & Sincronización NTP.                             \\
         \bottomrule
         \hline
     \end{tabular}
     \label{tab:nodos_iot}
 \end{table}
+
+\subsubsection{Herramientas de despliegue y monitoreo}
+
+El despliegue del firmware en los nodos se realizó mediante el uso de PyMakr.
+Esta herramienta permitió:
+
+\begin{itemize}
+    \item Transferir los archivos del firmware (como \texttt{main.py}, \texttt{config.py}
+          y los certificados TLS) al sistema de archivos interno del ESP32.
+    \item Establecer una conexión serial para monitorear logs en tiempo real durante la
+          depuración.
+\end{itemize}
+
+Su integración con el entorno de desarrollo resultó fundamental para facilitar
+tanto la implementación como la depuración del firmware en los nodos.
 
 %----------------------------------------------------------------------------------------
 %	SECTION 7
@@ -1013,8 +987,8 @@ entorno o controlar dispositivos.
 En esta sección se describe el proceso de implementación y configuración del
 sistema en un entorno de prueba basado en una instancia EC2 AWS. Se detalla la
 instalación de los componentes, los pasos para realizar la clonación y
-ejecución del sistema, así como la configuración del servicio para su ejecución
-automática.
+ejecución del sistema, así como la configuración del servicio para su
+ejecución.
 
 \subsection{Entorno de prueba}
 
@@ -1024,7 +998,7 @@ El sistema fue desplegado en una instancia EC2 de AWS con las siguientes
 características:
 
 \begin{itemize}
-    \item Nombre: envirosense-app.
+    % \item Nombre: envirosense-app.
     \item Imagen de maquina de Amazon: Ubuntu Server 24.04 LTS (64-bit x86).
     \item Tipo de instancia: t2.micro (1 vCPU, 1 GB de RAM).
     \item Almacenamiento: 8 GB tipo gp3.
@@ -1047,7 +1021,8 @@ A continuación, se instalaron las siguientes herramientas:
 \begin{itemize}
     \item Docker: para los contenedores de la aplicación.
     \item Docker Compose: para la orquestación de los contenedores.
-    \item DuckDNS \cite{DuckDNS}: para la gestión de la IP pública de la instancia.
+    \item DuckDNS \cite{DuckDNS}: para asociar nombre de dominio a la IP pública
+          dinámica.
 \end{itemize}
 
 \subsection{Instalación de componentes del sistema}
@@ -1081,13 +1056,12 @@ comandos para ejecutar cada servicio.
 
 Dado que se trata de un entorno de prueba, no fue necesario utilizar el
 servicio de IP elástica de AWS para mantener una dirección fija. En su lugar,
-se optó por emplear el servicio DuckDNS, que permite asociar un subdominio
-gratuito a la instancia EC2.
+se optó por emplear el servicio DuckDNS, que permite asociar un nombre de
+dominio gratuito a la IP pública de la instancia EC2.
 
-Se configuró un cliente de actualización dinámica, que se ejecuta en la
-instancia cada cinco minutos para actualizar automáticamente la IP pública.
-Esto facilita el acceso remoto al sistema sin necesidad de recordar una IP
-dinámica.
+Se configuró un cliente de actualización, que se ejecuta en la instancia cada
+cinco minutos para actualizar automáticamente la IP pública. Esto facilita el
+acceso remoto al sistema sin necesidad de recordar una IP dinámica.
 
 \subsubsection{Clonación del repositorio y preparación}
 
@@ -1116,9 +1090,9 @@ creó una carpeta denominada \texttt{certificates} en el directorio raíz del
 sistema, donde se almacenaron los certificados correspondientes:
 
 \begin{itemize}
-    \item Certificado del cliente (archivo \texttt{client.cert}).
+    \item Certificado del cliente (archivo \texttt{client.crt}).
     \item Clave privada del cliente (archivo \texttt{client.key}).
-    \item Certificado root de AWS (archivo \textit{client.cert}).
+    \item Certificado root de AWS (archivo \texttt{root.crt}).
 \end{itemize}
 
 Estos archivos fueron generados previamente y luego transferidos a la máquina
@@ -1138,10 +1112,10 @@ aplicación web mediante el acceso a la url
 
 Para garantizar la disponibilidad tras reinicios, se configuró el sistema como
 un servicio gestionado por \texttt{systemd}. Se creó un archivo de definición
-con las instrucciones para iniciar y detener los contenedores mediante
-\texttt{Docker Compose}, en el que se especifican el directorio de trabajo, el
-usuario, el tipo de inicio y las políticas de reinicio. Finalmente, el servicio
-fue habilitado para ejecutarse automáticamente al iniciar el sistema operativo.
+con las instrucciones para iniciar y detener los contenedores mediante Docker
+Compose, en el que se especifican el directorio de trabajo, el usuario, el tipo
+de inicio y las políticas de reinicio. Finalmente, el servicio fue habilitado
+para ejecutarse automáticamente al iniciar el sistema operativo.
 
 \subsection{Resumen del proceso de despliegue}
 
@@ -1153,26 +1127,28 @@ realizadas durante el despliegue del sistema.
     \caption[Resumen del despliegue del sistema]{Resumen del despliegue del sistema.}
     \begin{tabular}{p{1.9cm}p{5cm}p{5.5cm}}
         \toprule
-        \textbf{Etapa}                                 & \textbf{Descripción}                                    & \textbf{Acciones realizadas}                                                                  \\
+        \textbf{Etapa}                                  & \textbf{Descripción}                                                       & \textbf{Acciones realizadas}                                                                  \\
         \midrule
-        \multirow{3}{1.9cm}{Creación instancia EC2}    & Creación de instancia virtual de AWS.                   & Datos instancia: t2.micro con Ubuntu 24.04; configuración de red y claves SSH.                \\
+        \multirow{3}{1.9cm}{Creación instancia EC2.}    & \multirow{3}{5cm}{Creación de instancia virtual de AWS.}                   & Datos instancia: t2.micro con Ubuntu 24.04; configuración de red y claves SSH.                \\
         \midrule
-        \multirow{4}{1.9cm}{Configura\-ción inicial}   & Preparación de máquina virtual.                         & Acceso por SSH, actualización del sistema, instalación de Docker, Docker Compose y DuckDNS.   \\
+        \multirow{4}{1.9cm}{Configura\-ción inicial.}   & \multirow{4}{5cm}{Preparación de máquina virtual.}                         & Acceso por SSH, actualización del sistema, instalación de Docker, Docker Compose y DuckDNS.   \\
         \midrule
-        \multirow{3}{1.9cm}{Gestión di\-námica de DNS} & Asociación de un subdominio DuckDNS para acceso remoto. & Configuración de cliente de actualización de IP con dominio \texttt{envirosense.duckdns.org}. \\
+        \multirow{3}{1.9cm}{Gestión di\-námica de DNS.} & \multirow{3}{5cm}{Asociación de un subdominio DuckDNS para acceso remoto.} & Configuración de cliente de actualización de IP con dominio \texttt{envirosense.duckdns.org}. \\
         \midrule
-        \multirow{3}{1.9cm}{Preparación del entorno}   & Clonación del código y configuración de parámetros.     & Clonación desde GitHub, creación manual del archivo \texttt{.env} con variables de entorno.   \\
+        \multirow{3}{1.9cm}{Preparación del entorno.}   & \multirow{3}{5cm}{Clonación del código y configuración de parámetros.}     & Clonación desde GitHub, creación manual del archivo \texttt{.env} con variables de entorno.   \\
         \midrule
-        \multirow{2}{1.9cm}{Certificados MQTT}         & Configuración para conexión con AWS IoT Core.           & Transferencia y ubicación de certificados en la instancia EC2.                                \\
+        \multirow{2}{1.9cm}{Certificados MQTT.}         & \multirow{2}{5cm}{Configuración para conexión con AWS IoT Core.}           & Transferencia y ubicación de certificados en la instancia EC2.                                \\
         \midrule
-        \multirow{3}{1.9cm}{Ejecución del sistema}     & Construcción y puesta en marcha del sistema.            & Ejecución del sistema con \texttt{docker-compose} y validación por navegador web.             \\
+        \multirow{3}{1.9cm}{Ejecución del sistema.}     & \multirow{3}{5cm}{Construcción y puesta en marcha del sistema.}            & Ejecución del sistema con Docker Compose y validación por navegador web.                      \\
         \midrule
-        \multirow{3}{1.9cm}{Ejecución como servicio}   & Automatización del inicio del sistema tras reinicio.    & Creación de servicio en \texttt{systemd}, configuración y habilitación.                       \\
+        \multirow{3}{1.9cm}{Ejecución como servicio.}   & \multirow{3}{5cm}{Automatización del inicio del sistema tras reinicio.}    & Creación de servicio en \texttt{systemd}, configuración y habilitación.                       \\
         \bottomrule
         \hline
     \end{tabular}
     \label{tab:resumen_despliegue}
 \end{table}
+
+\subsubsection{Documentación del proceso de despliegue}
 
 Las capturas de pantalla del proceso y los comandos utilizados durante cada
 etapa del despliegue del sistema pueden consultarse en el apéndice
@@ -1180,7 +1156,8 @@ etapa del despliegue del sistema pueden consultarse en el apéndice
 
 \section{Código fuente del sistema}
 
-El código fuente completo del sistema, que incluye el backend, el frontend y el
-firmware para dispositivos IoT, se encuentra disponible públicamente en el
-repositorio de GitHub: \url{https://github.com/martinlacheski/EnviroSenseIoT}.
+El código fuente completo del sistema, que incluye backend, frontend y el
+firmware de los nodos IoT, se encuentra disponible en el repositorio público de
+GitHub \cite{EnviroSenseIoT}.
+% \url{https://github.com/martinlacheski/EnviroSenseIoT}. 
 El proyecto se distribuye bajo la licencia MIT.

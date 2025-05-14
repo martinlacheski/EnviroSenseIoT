@@ -39,8 +39,10 @@
 \contentsline {subsection}{\numberline {2.6.3}AWS EC2}{13}{subsection.2.6.3}%
 \contentsline {section}{\numberline {2.7}Herramientas de desarrollo}{14}{section.2.7}%
 \contentsline {subsection}{\numberline {2.7.1}Visual Studio Code}{14}{subsection.2.7.1}%
-\contentsline {subsection}{\numberline {2.7.2}Postman}{14}{subsection.2.7.2}%
-\contentsline {subsection}{\numberline {2.7.3}GitHub}{14}{subsection.2.7.3}%
+\contentsline {subsection}{\numberline {2.7.2}PyMakr}{14}{subsection.2.7.2}%
+\contentsline {subsection}{\numberline {2.7.3}MongoDB Compass}{14}{subsection.2.7.3}%
+\contentsline {subsection}{\numberline {2.7.4}Postman}{14}{subsection.2.7.4}%
+\contentsline {subsection}{\numberline {2.7.5}GitHub}{14}{subsection.2.7.5}%
 \contentsline {chapter}{\numberline {3}Diseño e implementación}{15}{chapter.3}%
 \contentsline {section}{\numberline {3.1}Arquitectura del sistema}{15}{section.3.1}%
 \contentsline {subsection}{\numberline {3.1.1}Capa de percepción}{15}{subsection.3.1.1}%
@@ -91,62 +93,64 @@
 \contentsline {subsubsection}{Logging}{35}{section*.56}%
 \contentsline {subsubsection}{Optimización de recursos}{35}{section*.57}%
 \contentsline {subsection}{\numberline {3.6.7}Resumen de nodos sensores y actuadores}{35}{subsection.3.6.7}%
+\contentsline {subsubsection}{Herramientas de despliegue y monitoreo}{36}{section*.59}%
 \contentsline {section}{\numberline {3.7}Despliegue del sistema}{37}{section.3.7}%
 \contentsline {subsection}{\numberline {3.7.1}Entorno de prueba}{37}{subsection.3.7.1}%
-\contentsline {subsubsection}{Creación de la instancia EC2}{37}{section*.59}%
-\contentsline {subsubsection}{Acceso remoto y configuración inicial}{37}{section*.60}%
+\contentsline {subsubsection}{Creación de la instancia EC2}{37}{section*.60}%
+\contentsline {subsubsection}{Acceso remoto y configuración inicial}{37}{section*.61}%
 \contentsline {subsection}{\numberline {3.7.2}Instalación de componentes del sistema}{37}{subsection.3.7.2}%
-\contentsline {subsubsection}{Docker y Docker Compose}{37}{section*.61}%
-\contentsline {subsubsection}{Cliente de actualización dinámica de DuckDNS}{38}{section*.62}%
-\contentsline {subsubsection}{Clonación del repositorio y preparación}{38}{section*.63}%
-\contentsline {subsubsection}{Configuración de certificados}{38}{section*.64}%
-\contentsline {subsubsection}{Construcción y ejecución de los servicios}{39}{section*.65}%
+\contentsline {subsubsection}{Docker y Docker Compose}{37}{section*.62}%
+\contentsline {subsubsection}{Cliente de actualización dinámica de DuckDNS}{38}{section*.63}%
+\contentsline {subsubsection}{Clonación del repositorio y preparación}{38}{section*.64}%
+\contentsline {subsubsection}{Configuración de certificados}{38}{section*.65}%
+\contentsline {subsubsection}{Construcción y ejecución de los servicios}{39}{section*.66}%
 \contentsline {subsection}{\numberline {3.7.3}Configuración del sistema como servicio}{39}{subsection.3.7.3}%
 \contentsline {subsection}{\numberline {3.7.4}Resumen del proceso de despliegue}{39}{subsection.3.7.4}%
+\contentsline {subsubsection}{Documentación del proceso de despliegue}{40}{section*.68}%
 \contentsline {section}{\numberline {3.8}Código fuente del sistema}{40}{section.3.8}%
 \contentsline {chapter}{\numberline {4}Ensayos y resultados}{41}{chapter.4}%
 \contentsline {section}{\numberline {4.1}Banco de pruebas}{41}{section.4.1}%
 \contentsline {section}{\numberline {4.2}Criterios de evaluación}{42}{section.4.2}%
 \contentsline {section}{\numberline {4.3}Pruebas de backend}{43}{section.4.3}%
 \contentsline {subsection}{\numberline {4.3.1}Pruebas en Postman}{44}{subsection.4.3.1}%
-\contentsline {subsubsection}{Evaluación general}{44}{section*.71}%
-\contentsline {subsubsection}{Resultados generales de las pruebas}{45}{section*.74}%
+\contentsline {subsubsection}{Evaluación general}{44}{section*.73}%
+\contentsline {subsubsection}{Resultados generales de las pruebas}{45}{section*.76}%
 \contentsline {subsection}{\numberline {4.3.2}Pruebas de validación de WebSocket}{46}{subsection.4.3.2}%
-\contentsline {subsection}{\numberline {4.3.3}Pruebas de validación de almacenamiento en MongoDB}{46}{subsection.4.3.3}%
-\contentsline {section}{\numberline {4.4}Pruebas de frontend}{47}{section.4.4}%
-\contentsline {subsection}{\numberline {4.4.1}Pruebas de autenticación y autorización}{48}{subsection.4.4.1}%
-\contentsline {subsubsection}{Pruebas de autenticación}{48}{section*.77}%
-\contentsline {subsubsection}{Pruebas de autenticación y autorización}{48}{section*.79}%
-\contentsline {subsection}{\numberline {4.4.2}Pruebas de funcionalidad}{49}{subsection.4.4.2}%
-\contentsline {subsubsection}{Validación de formularios}{49}{section*.82}%
-\contentsline {subsubsection}{Validación de tablas y gráficos}{50}{section*.85}%
-\contentsline {subsubsection}{Validación de gráficos con WebSocket}{51}{section*.88}%
-\contentsline {subsubsection}{Pruebas de usabilidad}{52}{section*.90}%
-\contentsline {section}{\numberline {4.5}Pruebas de componentes}{53}{section.4.5}%
-\contentsline {subsection}{\numberline {4.5.1}Pruebas de sensores}{53}{subsection.4.5.1}%
-\contentsline {subsubsection}{Prueba de sensor ambiental}{53}{section*.93}%
-\contentsline {subsubsection}{Prueba de sensor de solución nutritiva}{54}{section*.95}%
-\contentsline {subsubsection}{Prueba de sensor de consumos}{54}{section*.97}%
-\contentsline {subsection}{\numberline {4.5.2}Pruebas de actuadores}{55}{subsection.4.5.2}%
-\contentsline {section}{\numberline {4.6}Pruebas de comunicación}{55}{section.4.6}%
-\contentsline {subsection}{\numberline {4.6.1}Pruebas en sensor ambiental}{55}{subsection.4.6.1}%
-\contentsline {subsection}{\numberline {4.6.2}Pruebas en sensor de consumos}{56}{subsection.4.6.2}%
-\contentsline {subsection}{\numberline {4.6.3}Pruebas en sensor de solución nutritiva}{57}{subsection.4.6.3}%
-\contentsline {subsection}{\numberline {4.6.4}Pruebas de comunicación en el actuador}{57}{subsection.4.6.4}%
-\contentsline {section}{\numberline {4.7}Prueba integral del sistema}{58}{section.4.7}%
-\contentsline {chapter}{\numberline {5}Conclusiones}{61}{chapter.5}%
-\contentsline {section}{\numberline {5.1}Conclusiones generales}{61}{section.5.1}%
-\contentsline {section}{\numberline {5.2}Próximos pasos}{62}{section.5.2}%
-\contentsline {chapter}{\numberline {A}Modelo de datos implementado en el trabajo}{63}{appendix.Alph1}%
-\contentsline {chapter}{\numberline {B}Resumen de endpoints de la API}{65}{appendix.Alph2}%
-\contentsline {chapter}{\numberline {C}Despliegue del sistema en instancia EC2}{69}{appendix.Alph3}%
-\contentsline {section}{\numberline {C.1}Introducción}{69}{section.Alph3.1}%
-\contentsline {section}{\numberline {C.2}Creación de la instancia EC2}{69}{section.Alph3.2}%
-\contentsline {section}{\numberline {C.3}Instalación y configuración del servidor EC2}{71}{section.Alph3.3}%
-\contentsline {subsection}{\numberline {C.3.1}Conectarse a la instancia EC2}{71}{subsection.Alph3.3.1}%
-\contentsline {subsection}{\numberline {C.3.2}Instalación de Docker}{72}{subsection.Alph3.3.2}%
-\contentsline {subsection}{\numberline {C.3.3}Instalación de Docker Compose}{72}{subsection.Alph3.3.3}%
-\contentsline {subsection}{\numberline {C.3.4}Instalación del cliente DuckDNS}{73}{subsection.Alph3.3.4}%
-\contentsline {subsection}{\numberline {C.3.5}Descarga y configuración del repositorio EnviroSense}{74}{subsection.Alph3.3.5}%
-\contentsline {subsection}{\numberline {C.3.6}Configuración del sistema como servicio}{75}{subsection.Alph3.3.6}%
-\contentsline {chapter}{Bibliografía}{77}{appendix*.126}%
+\contentsline {subsection}{\numberline {4.3.3}Pruebas de validación de almacenamiento en MongoDB}{47}{subsection.4.3.3}%
+\contentsline {section}{\numberline {4.4}Pruebas de frontend}{49}{section.4.4}%
+\contentsline {subsection}{\numberline {4.4.1}Pruebas de autenticación y autorización}{50}{subsection.4.4.1}%
+\contentsline {subsubsection}{Pruebas de autenticación}{50}{section*.82}%
+\contentsline {subsubsection}{Pruebas de autenticación y autorización}{50}{section*.84}%
+\contentsline {subsection}{\numberline {4.4.2}Pruebas de funcionalidad}{51}{subsection.4.4.2}%
+\contentsline {subsubsection}{Validación de formularios}{51}{section*.87}%
+\contentsline {subsubsection}{Validación de tablas y gráficos}{52}{section*.90}%
+\contentsline {subsubsection}{Validación de gráficos con WebSocket}{53}{section*.93}%
+\contentsline {subsubsection}{Pruebas de usabilidad}{54}{section*.95}%
+\contentsline {section}{\numberline {4.5}Pruebas de componentes}{55}{section.4.5}%
+\contentsline {subsection}{\numberline {4.5.1}Pruebas de sensores}{55}{subsection.4.5.1}%
+\contentsline {subsubsection}{Prueba de sensor ambiental}{55}{section*.98}%
+\contentsline {subsubsection}{Prueba de sensor de solución nutritiva}{56}{section*.100}%
+\contentsline {subsubsection}{Prueba de sensor de consumos}{56}{section*.102}%
+\contentsline {subsection}{\numberline {4.5.2}Pruebas de actuadores}{57}{subsection.4.5.2}%
+\contentsline {section}{\numberline {4.6}Pruebas de comunicación}{57}{section.4.6}%
+\contentsline {subsection}{\numberline {4.6.1}Pruebas en sensor ambiental}{57}{subsection.4.6.1}%
+\contentsline {subsection}{\numberline {4.6.2}Pruebas en sensor de consumos}{58}{subsection.4.6.2}%
+\contentsline {subsection}{\numberline {4.6.3}Pruebas en sensor de solución nutritiva}{59}{subsection.4.6.3}%
+\contentsline {subsection}{\numberline {4.6.4}Pruebas de comunicación en el actuador}{59}{subsection.4.6.4}%
+\contentsline {section}{\numberline {4.7}Prueba integral del sistema}{60}{section.4.7}%
+\contentsline {chapter}{\numberline {5}Conclusiones}{63}{chapter.5}%
+\contentsline {section}{\numberline {5.1}Conclusiones generales}{63}{section.5.1}%
+\contentsline {section}{\numberline {5.2}Próximos pasos}{64}{section.5.2}%
+\contentsline {chapter}{\numberline {A}Modelo de datos implementado en el trabajo}{65}{appendix.Alph1}%
+\contentsline {chapter}{\numberline {B}Resumen de endpoints de la API}{67}{appendix.Alph2}%
+\contentsline {chapter}{\numberline {C}Despliegue del sistema en instancia EC2}{71}{appendix.Alph3}%
+\contentsline {section}{\numberline {C.1}Introducción}{71}{section.Alph3.1}%
+\contentsline {section}{\numberline {C.2}Creación de la instancia EC2}{71}{section.Alph3.2}%
+\contentsline {section}{\numberline {C.3}Instalación y configuración del servidor EC2}{73}{section.Alph3.3}%
+\contentsline {subsection}{\numberline {C.3.1}Conectarse a la instancia EC2}{73}{subsection.Alph3.3.1}%
+\contentsline {subsection}{\numberline {C.3.2}Instalación de Docker}{74}{subsection.Alph3.3.2}%
+\contentsline {subsection}{\numberline {C.3.3}Instalación de Docker Compose}{74}{subsection.Alph3.3.3}%
+\contentsline {subsection}{\numberline {C.3.4}Instalación del cliente DuckDNS}{75}{subsection.Alph3.3.4}%
+\contentsline {subsection}{\numberline {C.3.5}Descarga y configuración del repositorio EnviroSense}{76}{subsection.Alph3.3.5}%
+\contentsline {subsection}{\numberline {C.3.6}Configuración del sistema como servicio}{77}{subsection.Alph3.3.6}%
+\contentsline {chapter}{Bibliografía}{79}{appendix*.131}%

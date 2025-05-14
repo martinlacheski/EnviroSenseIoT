@@ -30,12 +30,8 @@
     \strng{fullhash}{GGAP1}
     \field{labelnamesource}{author}
     \field{labeltitlesource}{title}
-    \field{note}{Documento en línea}
+    \field{note}{URL: \href{https://globalagriculturalproductivity.org/wp-content/uploads/2019/01/2016_GAP_Report.pdf} {Enlace}}
     \field{title}{2016 Global Agricultural Productivity Report}
-    \verb{url}
-    \verb https://globalagriculturalproductivity.org/wp-content/uploads/2019/01
-    \verb /2016_GAP_Report.pdf
-    \endverb
     \list{institution}{1}{%
       {Global Agricultural Productivity}%
     }
@@ -71,14 +67,10 @@
     \strng{fullhash}{SMRRAALCIL1}
     \field{labelnamesource}{author}
     \field{labeltitlesource}{title}
-    \field{note}{Documento en línea}
+    \field{note}{URL: \href{http://www.scielo.org.mx/scielo.php?script=sci_arttext&pid=S2007-24222014000200012&lng=es&tlng=es} {Enlace}}
     \field{number}{2}
     \field{pages}{177\bibrangedash 183}
     \field{title}{La eficiencia en el uso del agua en la agricultura controlada}
-    \verb{url}
-    \verb http://www.scielo.org.mx/scielo.php?script=sci_arttext&pid=S2007-2422
-    \verb 2014000200012&lng=es&tlng=es
-    \endverb
     \field{volume}{5}
     \field{journaltitle}{Tecnología y ciencias del agua}
     \field{year}{2014}
@@ -100,10 +92,8 @@
     \strng{fullhash}{OM1}
     \field{labelnamesource}{author}
     \field{labeltitlesource}{title}
+    \field{note}{URL: \href{https://misionesonline.net/2024/06/14/horticultura-en-misiones-2/} {Enlace}}
     \field{title}{Horticultura en Misiones}
-    \verb{url}
-    \verb https://misionesonline.net/2024/06/14/horticultura-en-misiones-2/
-    \endverb
     \field{urlday}{20}
     \field{urlmonth}{03}
     \field{urlyear}{2025}
@@ -125,11 +115,8 @@
     \strng{fullhash}{EP1}
     \field{labelnamesource}{author}
     \field{labeltitlesource}{title}
+    \field{note}{URL: \href{https://www.primeraedicion.com.ar/nota/100627758/misiones-la-hidroponia-cada-vez-mas-presente/} {Enlace}}
     \field{title}{Misiones: la hidroponía, cada vez más presente}
-    \verb{url}
-    \verb https://www.primeraedicion.com.ar/nota/100627758/misiones-la-hidropon
-    \verb ia-cada-vez-mas-presente/
-    \endverb
     \field{urlday}{20}
     \field{urlmonth}{03}
     \field{urlyear}{2025}
@@ -166,13 +153,10 @@
     \strng{fullhash}{GLAAGFFCPMN1}
     \field{labelnamesource}{author}
     \field{labeltitlesource}{title}
+    \field{note}{URL: \href{https://www.scielo.org.ar/scielo.php?script=sci_arttext&pid=S1667-782X2018000400011&lng=es&tlng=es} {Enlace}}
     \field{number}{3}
     \field{pages}{572\bibrangedash 580}
     \field{title}{Seguridad alimentaria, medio ambiente y nuestros hábitos de Consumo}
-    \verb{url}
-    \verb https://www.scielo.org.ar/scielo.php?script=sci_arttext&pid=S1667-782
-    \verb X2018000400011&lng=es&tlng=es
-    \endverb
     \field{volume}{28}
     \field{journaltitle}{Ecología Austral}
     \field{year}{2018}
@@ -193,9 +177,7 @@
     \strng{namehash}{FH1}
     \strng{fullhash}{FH1}
     \field{labelnamesource}{author}
-    \verb{url}
-    \verb https://hidroponiafil.com.ar/
-    \endverb
+    \field{note}{URL: \href{https://hidroponiafil.com.ar/} {Enlace}}
     \field{urlday}{20}
     \field{urlmonth}{03}
     \field{urlyear}{2025}
@@ -211,9 +193,7 @@
     \strng{namehash}{H1}
     \strng{fullhash}{H1}
     \field{labelnamesource}{author}
-    \verb{url}
-    \verb https://www.hidrosense.com.br/
-    \endverb
+    \field{note}{URL: \href{https://www.hidrosense.com.br/} {Enlace}}
     \field{urlday}{20}
     \field{urlmonth}{03}
     \field{urlyear}{2025}
@@ -229,9 +209,7 @@
     \strng{namehash}{i1}
     \strng{fullhash}{i1}
     \field{labelnamesource}{author}
-    \verb{url}
-    \verb https://iponia.com.br/
-    \endverb
+    \field{note}{URL: \href{https://iponia.com.br/} {Enlace}}
     \field{urlday}{20}
     \field{urlmonth}{03}
     \field{urlyear}{2025}
@@ -247,9 +225,7 @@
     \strng{namehash}{G3}
     \strng{fullhash}{G3}
     \field{labelnamesource}{author}
-    \verb{url}
-    \verb https://www.growcast.io/
-    \endverb
+    \field{note}{URL: \href{https://www.growcast.io/} {Enlace}}
     \field{urlday}{20}
     \field{urlmonth}{03}
     \field{urlyear}{2025}
@@ -271,18 +247,11 @@
     \strng{fullhash}{LS1}
     \field{labelnamesource}{author}
     \field{labeltitlesource}{title}
-    \verb{doi}
-    \verb https://doi.org/10.1051/itmconf/20192501009
-    \endverb
     \field{issn}{2271-2097}
-    \field{note}{Article number 01009}
+    \field{note}{URL: \href{https://www.itm-conferences.org/articles/itmconf/pdf/2019/02/itmconf_icicci2018_01009.pdf} {Enlace}}
     \field{pages}{01009}
     \field{series}{Proceedings of the International Conference on Intelligent Computing, Communication \& Information Technologies (ICICCI 2018)}
     \field{title}{Comparative analysis of infrastructure and Ad-Hoc wireless networks}
-    \verb{url}
-    \verb https://www.itm-conferences.org/articles/itmconf/pdf/2019/02/itmconf_
-    \verb icicci2018_01009.pdf
-    \endverb
     \field{volume}{25}
     \field{journaltitle}{ITM Web of Conferences}
     \field{year}{2019}
@@ -304,11 +273,9 @@
     \strng{fullhash}{OO1}
     \field{labelnamesource}{author}
     \field{labeltitlesource}{title}
+    \field{note}{URL: \href{https://www.oasis-open.org/2014/11/13/foundational-iot-messaging-protocol-mqtt-becomes-international-oasis-standard/} {Enlace}}
     \field{title}{Foundational IoT Messaging Protocol {MQTT} Becomes International {OASIS} Standard}
-    \verb{url}
-    \verb https://www.oasis-open.org/2014/11/13/foundational-iot-messaging-prot
-    \verb ocol-mqtt-becomes-international-oasis-standard/
-    \endverb
+    \field{year}{2014}
     \field{urlday}{25}
     \field{urlmonth}{03}
     \field{urlyear}{2025}
@@ -321,17 +288,12 @@
          familyi={A\bibinitperiod},
       }}%
     }
-    \list{organization}{1}{%
-      {AWS}%
-    }
     \strng{namehash}{A1}
     \strng{fullhash}{A1}
     \field{labelnamesource}{author}
     \field{labeltitlesource}{title}
+    \field{note}{URL: \href{https://aws.amazon.com/es/what-is/mqtt/} {Enlace}}
     \field{title}{¿Qué es {MQTT}?}
-    \verb{url}
-    \verb https://aws.amazon.com/es/what-is/mqtt/
-    \endverb
     \field{urlday}{25}
     \field{urlmonth}{03}
     \field{urlyear}{2025}
@@ -350,15 +312,10 @@
     \strng{fullhash}{RE1}
     \field{labelnamesource}{author}
     \field{labeltitlesource}{title}
-    \verb{doi}
-    \verb 10.17487/RFC8446
-    \endverb
     \field{howpublished}{Internet Requests for Comments}
+    \field{note}{URL: \href{https://datatracker.ietf.org/doc/html/rfc8446} {Enlace}}
     \field{number}{8446}
     \field{title}{The Transport Layer Security (TLS) Protocol Version 1.3}
-    \verb{url}
-    \verb https://datatracker.ietf.org/doc/html/rfc8446
-    \endverb
     \field{type}{RFC}
   \endentry
 
@@ -376,11 +333,8 @@
     \strng{fullhash}{I1}
     \field{labelnamesource}{author}
     \field{labeltitlesource}{title}
+    \field{note}{URL: \href{https://docs.aws.amazon.com/iot/latest/developerguide/transport-security.html} {Enlace}}
     \field{title}{Protocolos TCP/IP}
-    \verb{url}
-    \verb https://docs.aws.amazon.com/iot/latest/developerguide/transport-secur
-    \verb ity.html
-    \endverb
     \field{urlday}{25}
     \field{urlmonth}{03}
     \field{urlyear}{2025}
@@ -409,10 +363,8 @@
     \verb 10.17487/RFC6455
     \endverb
     \field{howpublished}{RFC 6455}
+    \field{note}{URL: \href{https://tools.ietf.org/html/rfc6455} {Enlace}}
     \field{title}{The WebSocket Protocol}
-    \verb{url}
-    \verb https://tools.ietf.org/html/rfc6455
-    \endverb
     \list{institution}{1}{%
       {IETF}%
     }
@@ -430,11 +382,8 @@
     \strng{fullhash}{A1}
     \field{labelnamesource}{author}
     \field{labeltitlesource}{title}
+    \field{note}{URL: \href{https://docs.aws.amazon.com/iot/latest/developerguide/transport-security.html} {Enlace}}
     \field{title}{Transport Security in {AWS IoT Core}}
-    \verb{url}
-    \verb https://docs.aws.amazon.com/iot/latest/developerguide/transport-secur
-    \verb ity.html
-    \endverb
     \field{urlday}{25}
     \field{urlmonth}{03}
     \field{urlyear}{2025}
@@ -451,11 +400,8 @@
     \strng{fullhash}{E1}
     \field{labelnamesource}{author}
     \field{labeltitlesource}{title}
+    \field{note}{URL: \href{https://www.espressif.com/sites/default/files/documentation/esp32-wroom-32_datasheet_en.pdf} {Enlace}}
     \field{title}{ESP32-WROOM-32 Datasheet}
-    \verb{url}
-    \verb https://www.espressif.com/sites/default/files/documentation/esp32-wro
-    \verb om-32_datasheet_en.pdf
-    \endverb
     \field{urlday}{26}
     \field{urlmonth}{03}
     \field{urlyear}{2025}
@@ -472,11 +418,8 @@
     \strng{fullhash}{B1}
     \field{labelnamesource}{author}
     \field{labeltitlesource}{title}
+    \field{note}{URL: \href{https://www.bosch-sensortec.com/products/environmental-sensors/humidity-sensors-bme280/} {Enlace}}
     \field{title}{BME280 - Combined humidity, pressure and temperature sensor}
-    \verb{url}
-    \verb https://www.bosch-sensortec.com/products/environmental-sensors/humidi
-    \verb ty-sensors-bme280/
-    \endverb
     \field{urlday}{26}
     \field{urlmonth}{03}
     \field{urlyear}{2025}
@@ -493,11 +436,8 @@
     \strng{fullhash}{R1}
     \field{labelnamesource}{author}
     \field{labeltitlesource}{title}
+    \field{note}{URL: \href{https://www.mouser.com/catalog/specsheets/Rohm_11162017_ROHMS34826-1.pdf} {Enlace}}
     \field{title}{BH1750 - Ambient Light Sensor (ALS) - Datasheet}
-    \verb{url}
-    \verb https://www.mouser.com/catalog/specsheets/Rohm_11162017_ROHMS34826-1.
-    \verb pdf
-    \endverb
     \field{urlday}{26}
     \field{urlmonth}{03}
     \field{urlyear}{2025}
@@ -514,11 +454,8 @@
     \strng{fullhash}{Z1}
     \field{labelnamesource}{author}
     \field{labeltitlesource}{title}
+    \field{note}{URL: \href{https://www.mouser.com/datasheet/2/1398/Soldered_108994_co2_sensor_mh_z19-3532446.pdf} {Enlace}}
     \field{title}{MH-Z19C NDIR $CO_2$ Sensor - Terminal Type Manual}
-    \verb{url}
-    \verb https://www.mouser.com/datasheet/2/1398/Soldered_108994_co2_sensor_mh
-    \verb _z19-3532446.pdf
-    \endverb
     \field{urlday}{26}
     \field{urlmonth}{03}
     \field{urlyear}{2025}
@@ -535,11 +472,8 @@
     \strng{fullhash}{D1}
     \field{labelnamesource}{author}
     \field{labeltitlesource}{title}
-    \field{title}{Datos técnicos del sensor de pH líquido PH-4502C}
-    \verb{url}
-    \verb https://image.dfrobot.com/image/data/SEN0161/PH%20composite%20electro
-    \verb de%20manual.pdf
-    \endverb
+    \field{note}{URL: \href{https://image.dfrobot.com/image/data/SEN0161/PH\%20composite\%20electrode\%20manual.pdf} {Enlace}}
+    \field{title}{Technical Data of the PH-4502C Liquid pH Sensor}
     \field{urlday}{26}
     \field{urlmonth}{03}
     \field{urlyear}{2025}
@@ -559,11 +493,8 @@
     \strng{fullhash}{M2}
     \field{labelnamesource}{author}
     \field{labeltitlesource}{title}
+    \field{note}{URL: \href{https://www.mt.com/es/es/home/products/Process-Analytics/conductivity-resistivity-analyzers/conductivity-sensor.html} {Enlace}}
     \field{title}{Sensores de Conductividad}
-    \verb{url}
-    \verb https://www.mt.com/es/es/home/products/Process-Analytics/conductivity
-    \verb -resistivity-analyzers/conductivity-sensor.html
-    \endverb
     \field{urlday}{26}
     \field{urlmonth}{03}
     \field{urlyear}{2025}
@@ -582,11 +513,8 @@
     \strng{fullhash}{BE1}
     \field{labelnamesource}{author}
     \field{labeltitlesource}{title}
-    \field{title}{Datos técnicos del sensor de CE}
-    \verb{url}
-    \verb https://es.aliexpress.com/item/1005003479288815.html?spm=a2g0o.order_
-    \verb list.order_list_main.40.42e8194dYjUbr1&gatewayAdapt=glo2esp
-    \endverb
+    \field{note}{URL: \href{https://es.aliexpress.com/item/1005003479288815.html?spm=a2g0o.order_list.order_list_main.40.42e8194dYjUbr1&gatewayAdapt=glo2esp} {Enlace}}
+    \field{title}{Technical data of the EC sensor}
     \field{urlday}{26}
     \field{urlmonth}{03}
     \field{urlyear}{2025}
@@ -605,10 +533,8 @@
     \strng{fullhash}{CH1}
     \field{labelnamesource}{author}
     \field{labeltitlesource}{title}
-    \field{title}{Sólidos (totales y disueltos)}
-    \verb{url}
-    \verb https://es.hach.com/parameters/solids/
-    \endverb
+    \field{note}{URL: \href{https://es.hach.com/parameters/solids/} {Enlace}}
+    \field{title}{Sólidos totales y disueltos}
     \field{urlday}{26}
     \field{urlmonth}{03}
     \field{urlyear}{2025}
@@ -625,10 +551,8 @@
     \strng{fullhash}{D2}
     \field{labelnamesource}{author}
     \field{labeltitlesource}{title}
-    \field{title}{Datos técnicos Sensor TDS}
-    \verb{url}
-    \verb https://www.dfrobot.com/product-1662.html?srsltid
-    \endverb
+    \field{note}{URL: \href{https://www.dfrobot.com/product-1662.html?srsltid} {Enlace}}
+    \field{title}{Technical data TDS sensor}
     \field{urlday}{26}
     \field{urlmonth}{03}
     \field{urlyear}{2025}
@@ -647,10 +571,8 @@
     \strng{fullhash}{SD1}
     \field{labelnamesource}{author}
     \field{labeltitlesource}{title}
-    \field{title}{Datos técnicos Sensor DS18B20}
-    \verb{url}
-    \verb https://cdn.sparkfun.com/datasheets/Sensors/Temp/DS18B20.pdf
-    \endverb
+    \field{note}{URL: \href{https://cdn.sparkfun.com/datasheets/Sensors/Temp/DS18B20.pdf} {Enlace}}
+    \field{title}{Technical data Sensor DS18B20}
     \field{urlday}{26}
     \field{urlmonth}{03}
     \field{urlyear}{2025}
@@ -669,10 +591,8 @@
     \strng{fullhash}{ES1}
     \field{labelnamesource}{author}
     \field{labeltitlesource}{title}
-    \field{title}{Datos técnicos del sensor ultrasónico}
-    \verb{url}
-    \verb https://cdn.sparkfun.com/datasheets/Sensors/Proximity/HCSR04.pdf
-    \endverb
+    \field{note}{URL: \href{https://cdn.sparkfun.com/datasheets/Sensors/Proximity/HCSR04.pdf} {Enlace}}
+    \field{title}{Technical data of the HC-SR04 ultrasonic sensor}
     \field{urlday}{26}
     \field{urlmonth}{03}
     \field{urlyear}{2025}
@@ -691,11 +611,8 @@
     \strng{fullhash}{EU1}
     \field{labelnamesource}{author}
     \field{labeltitlesource}{title}
-    \field{title}{Datos técnicos del sensor de energía eléctrica PZEM-004T}
-    \verb{url}
-    \verb https://uelectronics.com/wp-content/uploads/2024/06/AR4189-AR4190-Med
-    \verb idor-de-Energia-Electrica-AC-100A-Manual.pdf
-    \endverb
+    \field{note}{URL: \href{https://uelectronics.com/wp-content/uploads/2024/06/AR4189-AR4190-Medidor-de-Energia-Electrica-AC-100A-Manual.pdf} {Enlace}}
+    \field{title}{Technical data of the PZEM-004T electrical energy sensor}
     \field{urlday}{26}
     \field{urlmonth}{03}
     \field{urlyear}{2025}
@@ -714,36 +631,30 @@
     \strng{fullhash}{RS1}
     \field{labelnamesource}{author}
     \field{labeltitlesource}{title}
-    \field{title}{Datos técnicos del relé Songle}
-    \verb{url}
-    \verb https://datasheet4u.com/pdf-down/S/R/D/SRD-12VDC-xx-x_ETC.pdf
-    \endverb
+    \field{note}{URL: \href{https://datasheet4u.com/pdf-down/S/R/D/SRD-12VDC-xx-x_ETC.pdf} {Enlace}}
+    \field{title}{Technical data of the relay}
     \field{urlday}{26}
     \field{urlmonth}{03}
     \field{urlyear}{2025}
   \endentry
 
   \entry{MicroPython}{online}{}
-    \name{author}{2}{}{%
-      {{hash=GDP}{%
-         family={George},
-         familyi={G\bibinitperiod},
-         given={Damien\bibnamedelima P.},
-         giveni={D\bibinitperiod\bibinitdelim P\bibinitperiod},
-      }}%
-      {{hash=c}{%
-         family={contributors},
-         familyi={c\bibinitperiod},
+    \name{author}{1}{}{%
+      {{hash=eaDPG}{%
+         prefix={et},
+         prefixi={e\bibinitperiod},
+         family={al.},
+         familyi={a\bibinitperiod},
+         given={Damien P.\bibnamedelima George},
+         giveni={D\bibinitperiod\bibinitdelim P\bibinitperiod\bibinitdelim G\bibinitperiod},
       }}%
     }
-    \strng{namehash}{GDPc1}
-    \strng{fullhash}{GDPc1}
+    \strng{namehash}{aDPGe1}
+    \strng{fullhash}{aDPGe1}
     \field{labelnamesource}{author}
     \field{labeltitlesource}{title}
+    \field{note}{URL: \href{https://micropython.org/} {Enlace}}
     \field{title}{MicroPython}
-    \verb{url}
-    \verb https://micropython.org/
-    \endverb
     \field{urlday}{26}
     \field{urlmonth}{03}
     \field{urlyear}{2025}
@@ -760,10 +671,8 @@
     \strng{fullhash}{C1}
     \field{labelnamesource}{author}
     \field{labeltitlesource}{title}
+    \field{note}{URL: \href{https://www.ctaelectronics.com/es/micropython/} {Enlace}}
     \field{title}{MicroPython - Recursos y Guías}
-    \verb{url}
-    \verb https://www.ctaelectronics.com/es/micropython/
-    \endverb
     \field{urlday}{26}
     \field{urlmonth}{03}
     \field{urlyear}{2025}
@@ -780,10 +689,8 @@
     \strng{fullhash}{T1}
     \field{labelnamesource}{author}
     \field{labeltitlesource}{title}
+    \field{note}{URL: \href{https://fastapi.tiangolo.com/} {Enlace}}
     \field{title}{FastAPI}
-    \verb{url}
-    \verb https://fastapi.tiangolo.com/
-    \endverb
     \field{urlday}{26}
     \field{urlmonth}{03}
     \field{urlyear}{2025}
@@ -800,10 +707,8 @@
     \strng{fullhash}{M4}
     \field{labelnamesource}{author}
     \field{labeltitlesource}{title}
+    \field{note}{URL: \href{https://www.mongodb.com/} {Enlace}}
     \field{title}{MongoDB Documentation}
-    \verb{url}
-    \verb https://www.mongodb.com/
-    \endverb
     \field{urlday}{26}
     \field{urlmonth}{03}
     \field{urlyear}{2025}
@@ -820,10 +725,8 @@
     \strng{fullhash}{M1}
     \field{labelnamesource}{author}
     \field{labeltitlesource}{title}
+    \field{note}{URL: \href{https://es.react.dev/} {Enlace}}
     \field{title}{React: Biblioteca de JavaScript para interfaces de usuario}
-    \verb{url}
-    \verb https://es.react.dev/
-    \endverb
     \field{urlday}{26}
     \field{urlmonth}{03}
     \field{urlyear}{2025}
@@ -840,10 +743,8 @@
     \strng{fullhash}{D3}
     \field{labelnamesource}{author}
     \field{labeltitlesource}{title}
+    \field{note}{URL: \href{https://www.docker.com/} {Enlace}}
     \field{title}{Docker: Desarrollo acelerado de aplicaciones en contenedores}
-    \verb{url}
-    \verb https://www.docker.com/
-    \endverb
     \field{urlday}{26}
     \field{urlmonth}{03}
     \field{urlyear}{2025}
@@ -860,10 +761,8 @@
     \strng{fullhash}{A2}
     \field{labelnamesource}{author}
     \field{labeltitlesource}{title}
+    \field{note}{URL: \href{https://aws.amazon.com/es/iot-core/} {Enlace}}
     \field{title}{{AWS IoT Core}}
-    \verb{url}
-    \verb https://aws.amazon.com/es/iot-core/
-    \endverb
     \field{urlday}{26}
     \field{urlmonth}{03}
     \field{urlyear}{2025}
@@ -880,10 +779,8 @@
     \strng{fullhash}{A2}
     \field{labelnamesource}{author}
     \field{labeltitlesource}{title}
+    \field{note}{URL: \href{https://aws.amazon.com/es/ec2/} {Enlace}}
     \field{title}{EC2, Nube de cómputo elástica de Amazon}
-    \verb{url}
-    \verb https://aws.amazon.com/es/ec2/
-    \endverb
     \field{urlday}{26}
     \field{urlmonth}{03}
     \field{urlyear}{2025}
@@ -892,7 +789,7 @@
   \entry{VSCode}{online}{}
     \name{author}{1}{}{%
       {{hash=M}{%
-         family={{Microsoft Corporation}},
+         family={{Microsoft Corp.}},
          familyi={M\bibinitperiod},
       }}%
     }
@@ -900,12 +797,48 @@
     \strng{fullhash}{M3}
     \field{labelnamesource}{author}
     \field{labeltitlesource}{title}
+    \field{note}{URL: \href{https://code.visualstudio.com/} {Enlace}}
     \field{title}{Visual Studio Code}
-    \verb{url}
-    \verb https://code.visualstudio.com/
-    \endverb
     \field{urlday}{26}
     \field{urlmonth}{03}
+    \field{urlyear}{2025}
+  \endentry
+
+  \entry{Pymakr}{online}{}
+    \name{author}{1}{}{%
+      {{hash=P}{%
+         family={{Pycom}},
+         familyi={P\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{P2}
+    \strng{fullhash}{P2}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{note}{URL: \href{https://github.com/pycom/Pymakr} {Enlace}}
+    \field{title}{Pymakr: Plugin for syncing scripts to Pycom devices}
+    \field{urlday}{26}
+    \field{urlmonth}{03}
+    \field{urlyear}{2025}
+  \endentry
+
+  \entry{MongoDBCompass}{online}{}
+    \name{author}{1}{}{%
+      {{hash=MI}{%
+         family={MongoDB},
+         familyi={M\bibinitperiod},
+         given={Inc.},
+         giveni={I\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{MI1}
+    \strng{fullhash}{MI1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{note}{URL: \href{https://www.mongodb.com/products/tools/compass} {Enlace}}
+    \field{title}{MongoDB Compass: GUI for MongoDB}
+    \field{urlday}{04}
+    \field{urlmonth}{05}
     \field{urlyear}{2025}
   \endentry
 
@@ -920,10 +853,8 @@
     \strng{fullhash}{P1}
     \field{labelnamesource}{author}
     \field{labeltitlesource}{title}
+    \field{note}{URL: \href{https://www.postman.com/} {Enlace}}
     \field{title}{Postman API Platform}
-    \verb{url}
-    \verb https://www.postman.com/
-    \endverb
     \field{urlday}{26}
     \field{urlmonth}{03}
     \field{urlyear}{2025}
@@ -940,10 +871,8 @@
     \strng{fullhash}{G1}
     \field{labelnamesource}{author}
     \field{labeltitlesource}{title}
+    \field{note}{URL: \href{https://git-scm.com/} {Enlace}}
     \field{title}{Sistema de control de versiones Git}
-    \verb{url}
-    \verb https://git-scm.com/
-    \endverb
     \field{urlday}{26}
     \field{urlmonth}{03}
     \field{urlyear}{2025}
@@ -960,10 +889,8 @@
     \strng{fullhash}{G2}
     \field{labelnamesource}{author}
     \field{labeltitlesource}{title}
+    \field{note}{URL: \href{https://github.com/} {Enlace}}
     \field{title}{GitHub}
-    \verb{url}
-    \verb https://github.com/
-    \endverb
     \field{urlday}{26}
     \field{urlmonth}{03}
     \field{urlyear}{2025}
@@ -971,10 +898,8 @@
 
   \entry{DockerCompose}{online}{}
     \field{labeltitlesource}{title}
+    \field{note}{URL: \href{https://docs.docker.com/compose/} {Enlace}}
     \field{title}{Docker Compose Documentation}
-    \verb{url}
-    \verb https://docs.docker.com/compose/
-    \endverb
     \field{urlday}{02}
     \field{urlmonth}{05}
     \field{urlyear}{2025}
@@ -982,10 +907,8 @@
 
   \entry{BeaniODM}{online}{}
     \field{labeltitlesource}{title}
-    \field{title}{Beanie: Asynchronous Python ODM for MongoDB}
-    \verb{url}
-    \verb https://beanie-odm.dev/
-    \endverb
+    \field{note}{URL: \href{https://beanie-odm.dev/} {Enlace}}
+    \field{title}{Beanie: Asynchronous ODM for Python and MongoDB}
     \field{urlday}{01}
     \field{urlmonth}{04}
     \field{urlyear}{2025}
@@ -1004,10 +927,8 @@
     \strng{fullhash}{MI1}
     \field{labelnamesource}{author}
     \field{labeltitlesource}{title}
+    \field{note}{URL: \href{https://motor.readthedocs.io/en/stable/index.html} {Enlace}}
     \field{title}{Motor: Asynchronous Python driver for MongoDB}
-    \verb{url}
-    \verb https://motor.readthedocs.io/en/stable/index.html
-    \endverb
     \field{urlday}{01}
     \field{urlmonth}{04}
     \field{urlyear}{2025}
@@ -1026,11 +947,8 @@
     \strng{fullhash}{SAW1}
     \field{labelnamesource}{author}
     \field{labeltitlesource}{title}
+    \field{note}{URL: \href{https://docs.aws.amazon.com/es_es/iot/latest/developerguide/iot-sdks.html} {Enlace}}
     \field{title}{AWS IoT SDKs - Guía del desarrollador}
-    \verb{url}
-    \verb https://docs.aws.amazon.com/es_es/iot/latest/developerguide/iot-sdks.
-    \verb html
-    \endverb
     \field{urlday}{02}
     \field{urlmonth}{04}
     \field{urlyear}{2025}
@@ -1038,10 +956,8 @@
 
   \entry{FastAPIWebSockets}{online}{}
     \field{labeltitlesource}{title}
+    \field{note}{URL: \href{https://fastapi.tiangolo.com/reference/websockets/} {Enlace}}
     \field{title}{FastAPI WebSockets Reference}
-    \verb{url}
-    \verb https://fastapi.tiangolo.com/reference/websockets/
-    \endverb
     \field{urlday}{02}
     \field{urlmonth}{04}
     \field{urlyear}{2025}
@@ -1049,10 +965,8 @@
 
   \entry{ReactBootstrap}{online}{}
     \field{labeltitlesource}{title}
+    \field{note}{URL: \href{https://react-bootstrap.netlify.app/} {Enlace}}
     \field{title}{React-Bootstrap: Bootstrap components built with React}
-    \verb{url}
-    \verb https://react-bootstrap.netlify.app/
-    \endverb
     \field{urlday}{27}
     \field{urlmonth}{04}
     \field{urlyear}{2025}
@@ -1060,10 +974,8 @@
 
   \entry{BootstrapIcons}{online}{}
     \field{labeltitlesource}{title}
+    \field{note}{URL: \href{https://icons.getbootstrap.com/} {Enlace}}
     \field{title}{Bootstrap Icons: Free, high quality SVG icon library}
-    \verb{url}
-    \verb https://icons.getbootstrap.com/
-    \endverb
     \field{urlday}{28}
     \field{urlmonth}{04}
     \field{urlyear}{2025}
@@ -1071,10 +983,8 @@
 
   \entry{Axios}{online}{}
     \field{labeltitlesource}{title}
+    \field{note}{URL: \href{https://axios-http.com/} {Enlace}}
     \field{title}{Axios: Promise based HTTP client for the browser and node.js}
-    \verb{url}
-    \verb https://axios-http.com/
-    \endverb
     \field{urlday}{28}
     \field{urlmonth}{04}
     \field{urlyear}{2025}
@@ -1082,10 +992,8 @@
 
   \entry{ReduxToolkit}{online}{}
     \field{labeltitlesource}{title}
+    \field{note}{URL: \href{https://redux-toolkit.js.org/} {Enlace}}
     \field{title}{Redux Toolkit: The official, opinionated, batteries-included toolset for efficient Redux development}
-    \verb{url}
-    \verb https://redux-toolkit.js.org/
-    \endverb
     \field{urlday}{28}
     \field{urlmonth}{04}
     \field{urlyear}{2025}
@@ -1093,10 +1001,8 @@
 
   \entry{ReactRouter}{online}{}
     \field{labeltitlesource}{title}
-    \field{title}{React Router: Declarative Routing for React.js}
-    \verb{url}
-    \verb https://reactrouter.com/
-    \endverb
+    \field{note}{URL: \href{https://reactrouter.com/} {Enlace}}
+    \field{title}{React Router: Declarative Routing for React}
     \field{urlday}{28}
     \field{urlmonth}{04}
     \field{urlyear}{2025}
@@ -1104,10 +1010,8 @@
 
   \entry{Recharts}{online}{}
     \field{labeltitlesource}{title}
+    \field{note}{URL: \href{https://recharts.org/en-US} {Enlace}}
     \field{title}{Recharts: A composable charting library built on React components}
-    \verb{url}
-    \verb https://recharts.org/en-US
-    \endverb
     \field{urlday}{28}
     \field{urlmonth}{04}
     \field{urlyear}{2025}
@@ -1115,11 +1019,8 @@
 
   \entry{ReactDataTable}{online}{}
     \field{labeltitlesource}{title}
-    \field{note}{Versión 7.6.2 utilizada en el proyecto}
+    \field{note}{URL: \href{https://reactdatatable.com/} {Enlace}}
     \field{title}{React Data Table Component: Interactive and accessible data tables for React}
-    \verb{url}
-    \verb https://reactdatatable.com/
-    \endverb
     \field{urlday}{28}
     \field{urlmonth}{04}
     \field{urlyear}{2025}
@@ -1138,10 +1039,8 @@
     \strng{fullhash}{FI1}
     \field{labelnamesource}{author}
     \field{labeltitlesource}{title}
-    \field{title}{micropython-wifi\_manager: WiFi connection handler for MicroPython}
-    \verb{url}
-    \verb https://github.com/ferreira-igor/micropython-wifi_manager
-    \endverb
+    \field{note}{URL: \href{https://github.com/ferreira-igor/micropython-wifi_manager} {Enlace}}
+    \field{title}{WiFi connection manager for MicroPython}
     \field{urlday}{28}
     \field{urlmonth}{04}
     \field{urlyear}{2025}
@@ -1160,10 +1059,8 @@
     \strng{fullhash}{CM1}
     \field{labelnamesource}{author}
     \field{labeltitlesource}{title}
+    \field{note}{URL: \href{https://github.com/micropython/micropython-lib} {Enlace}}
     \field{title}{micropython-lib: Standard library modules for MicroPython}
-    \verb{url}
-    \verb https://github.com/micropython/micropython-lib
-    \endverb
     \field{urlday}{28}
     \field{urlmonth}{04}
     \field{urlyear}{2025}
@@ -1171,10 +1068,8 @@
 
   \entry{DuckDNS}{online}{}
     \field{labeltitlesource}{title}
-    \field{title}{DuckDNS: Free Dynamic DNS hosted on AWS}
-    \verb{url}
-    \verb https://www.duckdns.org/
-    \endverb
+    \field{note}{URL: \href{https://www.duckdns.org/} {Enlace}}
+    \field{title}{DuckDNS: Free Dynamic DNS hosted}
     \field{urlday}{02}
     \field{urlmonth}{05}
     \field{urlyear}{2025}
@@ -1182,10 +1077,8 @@
 
   \entry{NGINX}{online}{}
     \field{labeltitlesource}{title}
+    \field{note}{URL: \href{https://nginx.org/} {Enlace}}
     \field{title}{NGINX: High Performance Load Balancer, Web Server, \& Reverse Proxy}
-    \verb{url}
-    \verb https://nginx.org/
-    \endverb
     \field{urlday}{02}
     \field{urlmonth}{05}
     \field{urlyear}{2025}
@@ -1204,10 +1097,8 @@
     \strng{fullhash}{LM1}
     \field{labelnamesource}{author}
     \field{labeltitlesource}{title}
+    \field{note}{URL: \href{https://github.com/martinlacheski/EnviroSenseIoT} {Enlace}}
     \field{title}{EnviroSenseIoT}
-    \verb{url}
-    \verb https://github.com/martinlacheski/EnviroSenseIoT
-    \endverb
     \field{urlday}{03}
     \field{urlmonth}{05}
     \field{urlyear}{2025}
@@ -1226,11 +1117,8 @@
     \strng{fullhash}{LM2}
     \field{labelnamesource}{author}
     \field{labeltitlesource}{title}
+    \field{note}{URL: \href{https://articulo.mercadolibre.com.ar/MLA-1422223210-placa-base-mother-screw-shield-nodemcu-esp32-wroom-38-pines-_JM} {Enlace}}
     \field{title}{Placa Base Mother Screw Shield NodeMCU ESP32 WROOM 38 Pines}
-    \verb{url}
-    \verb https://articulo.mercadolibre.com.ar/MLA-1422223210-placa-base-mother
-    \verb -screw-shield-nodemcu-esp32-wroom-38-pines-_JM
-    \endverb
     \field{urlday}{04}
     \field{urlmonth}{05}
     \field{urlyear}{2025}
@@ -1250,32 +1138,27 @@
     \strng{fullhash}{S1}
     \field{labelnamesource}{author}
     \field{labeltitlesource}{title}
+    \field{note}{URL: \href{https://swagger.io/} {Enlace}}
     \field{title}{Swagger: API Documentation \& Design Tools for Teams}
-    \verb{url}
-    \verb https://swagger.io/
-    \endverb
     \field{urlday}{04}
     \field{urlmonth}{05}
     \field{urlyear}{2025}
   \endentry
 
-  \entry{MongoDBCompass}{online}{}
+  \entry{GoodAPITime}{online}{}
     \name{author}{1}{}{%
-      {{hash=MI}{%
-         family={MongoDB},
-         familyi={M\bibinitperiod},
-         given={Inc.},
-         giveni={I\bibinitperiod},
+      {{hash=o}{%
+         family={oDown},
+         familyi={o\bibinitperiod},
       }}%
     }
-    \strng{namehash}{MI1}
-    \strng{fullhash}{MI1}
+    \strng{namehash}{o1}
+    \strng{fullhash}{o1}
     \field{labelnamesource}{author}
     \field{labeltitlesource}{title}
-    \field{title}{MongoDB Compass: GUI for MongoDB}
-    \verb{url}
-    \verb https://www.mongodb.com/products/tools/compass
-    \endverb
+    \field{note}{URL: \href{https://odown.com/blog/what-is-a-good-api-response-time/} {Enlace}}
+    \field{title}{What is a Good API Response Time?}
+    \field{year}{2023}
     \field{urlday}{04}
     \field{urlmonth}{05}
     \field{urlyear}{2025}

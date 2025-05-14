@@ -18,65 +18,68 @@
 \contentsline {figure}{\numberline {3.2}{\ignorespaces Modelo de datos implementado.}}{17}{figure.caption.20}%
 \contentsline {figure}{\numberline {3.3}{\ignorespaces Arquitectura del servidor del sistema IoT.}}{18}{figure.caption.21}%
 \contentsline {figure}{\numberline {3.4}{\ignorespaces Esquema de autenticación y autorización.}}{20}{figure.caption.23}%
-\contentsline {figure}{\numberline {3.5}{\ignorespaces Diagrama de clases de los modelos implementados.}}{21}{figure.caption.24}%
+\contentsline {figure}{\numberline {3.5}{\ignorespaces Ejemplo de diagrama de clase de la colección \texttt {EnvironmentalSensor}.}}{21}{figure.caption.24}%
 \contentsline {figure}{\numberline {3.6}{\ignorespaces Pasos para la conexión de FastAPI y MongoDB.}}{21}{figure.caption.25}%
 \contentsline {figure}{\numberline {3.7}{\ignorespaces Pasos para verificar la conexión con el broker MQTT.}}{23}{figure.caption.29}%
 \contentsline {figure}{\numberline {3.8}{\ignorespaces Pasos para publicar un mensaje en un tópico específico.}}{23}{figure.caption.30}%
 \contentsline {figure}{\numberline {3.9}{\ignorespaces Pasos para la conexión del cliente MQTT.}}{24}{figure.caption.32}%
 \contentsline {figure}{\numberline {3.10}{\ignorespaces Pasos para establecer la conexión WebSocket.}}{25}{figure.caption.33}%
-\contentsline {figure}{\numberline {3.11}{\ignorespaces Pantalla de Login}}{26}{figure.caption.35}%
-\contentsline {figure}{\numberline {3.12}{\ignorespaces Estructura del componente layout}}{27}{figure.caption.37}%
-\contentsline {figure}{\numberline {3.13}{\ignorespaces Interfaz de navegación según permisos de usuario estándar}}{28}{figure.caption.39}%
-\contentsline {figure}{\numberline {3.14}{\ignorespaces Visualización de datos en tiempo real}}{28}{figure.caption.40}%
-\contentsline {figure}{\numberline {3.15}{\ignorespaces Pantalla de reportes}}{29}{figure.caption.41}%
-\contentsline {figure}{\numberline {3.16}{\ignorespaces Pantalla de reportes}}{30}{figure.caption.42}%
-\contentsline {figure}{\numberline {3.17}{\ignorespaces Pantalla de reportes}}{30}{figure.caption.43}%
-\contentsline {figure}{\numberline {3.18}{\ignorespaces Visualización de datos en tiempo real desde un dispositivo móvil}}{31}{figure.caption.44}%
-\contentsline {figure}{\numberline {3.19}{\ignorespaces Flujo de ejecución del código en los nodos}}{32}{figure.caption.45}%
-\contentsline {figure}{\numberline {3.20}{\ignorespaces Flujo de comunicación entre nodos y broker MQTT}}{34}{figure.caption.52}%
+\contentsline {figure}{\numberline {3.11}{\ignorespaces Pantalla de inicio de sesión.}}{26}{figure.caption.35}%
+\contentsline {figure}{\numberline {3.12}{\ignorespaces Pantalla principal de la aplicación web.}}{27}{figure.caption.37}%
+\contentsline {figure}{\numberline {3.13}{\ignorespaces Interfaz de navegación según permisos de usuario estándar.}}{28}{figure.caption.39}%
+\contentsline {figure}{\numberline {3.14}{\ignorespaces Visualización de datos en tiempo real.}}{28}{figure.caption.40}%
+\contentsline {figure}{\numberline {3.15}{\ignorespaces Pantalla de visualización tabular de consumos registrados.}}{29}{figure.caption.41}%
+\contentsline {figure}{\numberline {3.16}{\ignorespaces Pantalla de visualización de gráficos de consumos registrados.}}{30}{figure.caption.42}%
+\contentsline {figure}{\numberline {3.17}{\ignorespaces Pantalla de visualización tabular de actuadores.}}{30}{figure.caption.43}%
+\contentsline {figure}{\numberline {3.18}{\ignorespaces Visualización de datos en tiempo real desde un dispositivo móvil.}}{31}{figure.caption.44}%
+\contentsline {figure}{\numberline {3.19}{\ignorespaces Flujo de ejecución del código en los nodos.}}{32}{figure.caption.45}%
+\contentsline {figure}{\numberline {3.20}{\ignorespaces Flujo de comunicación entre nodos y broker MQTT.}}{34}{figure.caption.52}%
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {4.1}{\ignorespaces Banco de pruebas del sistema EnviroSenseIoT}}{42}{figure.caption.67}%
-\contentsline {figure}{\numberline {4.2}{\ignorespaces Interfaz de Swagger}}{43}{figure.caption.69}%
-\contentsline {figure}{\numberline {4.3}{\ignorespaces Pruebas realizadas en Postman}}{44}{figure.caption.70}%
-\contentsline {figure}{\numberline {4.4}{\ignorespaces Pruebas de WebSocket}}{46}{figure.caption.75}%
-\contentsline {figure}{\numberline {4.5}{\ignorespaces Validación de almacenamiento en MongoDB}}{47}{figure.caption.76}%
-\contentsline {figure}{\numberline {4.6}{\ignorespaces Pruebas de autenticación}}{48}{figure.caption.78}%
-\contentsline {figure}{\numberline {4.7}{\ignorespaces Autenticación y autorización rol administrador}}{49}{figure.caption.80}%
-\contentsline {figure}{\numberline {4.8}{\ignorespaces Autenticación y autorización rol usuario}}{49}{figure.caption.81}%
-\contentsline {figure}{\numberline {4.9}{\ignorespaces Validación de formularios}}{50}{figure.caption.83}%
-\contentsline {figure}{\numberline {4.10}{\ignorespaces Verificación de creación de usuario}}{50}{figure.caption.84}%
-\contentsline {figure}{\numberline {4.11}{\ignorespaces Pruebas de funcionalidad en tablas}}{51}{figure.caption.86}%
-\contentsline {figure}{\numberline {4.12}{\ignorespaces Pruebas de funcionalidad en gráficos}}{51}{figure.caption.87}%
-\contentsline {figure}{\numberline {4.13}{\ignorespaces Pruebas de funcionalidad en el dashboard}}{52}{figure.caption.89}%
-\contentsline {figure}{\numberline {4.14}{\ignorespaces Interfaz de ambientes en dispositivo móvil}}{52}{figure.caption.91}%
-\contentsline {figure}{\numberline {4.15}{\ignorespaces Listado en formato apaisado desde dispositivo móvil}}{53}{figure.caption.92}%
-\contentsline {figure}{\numberline {4.16}{\ignorespaces Pruebas de sensor ambiental}}{54}{figure.caption.94}%
-\contentsline {figure}{\numberline {4.17}{\ignorespaces Pruebas de sensor de solución nutritiva}}{54}{figure.caption.96}%
-\contentsline {figure}{\numberline {4.18}{\ignorespaces Pruebas de sensor de consumos}}{54}{figure.caption.98}%
-\contentsline {figure}{\numberline {4.19}{\ignorespaces Pruebas de actuadores}}{55}{figure.caption.99}%
-\contentsline {figure}{\numberline {4.20}{\ignorespaces Pruebas de encendido de relés}}{55}{figure.caption.100}%
-\contentsline {figure}{\numberline {4.21}{\ignorespaces Pruebas de comunicación con sensor ambiental}}{56}{figure.caption.101}%
-\contentsline {figure}{\numberline {4.22}{\ignorespaces Pruebas de comunicación con sensor ambiental}}{56}{figure.caption.102}%
-\contentsline {figure}{\numberline {4.23}{\ignorespaces Pruebas de comunicación con sensor de consumos}}{56}{figure.caption.103}%
-\contentsline {figure}{\numberline {4.24}{\ignorespaces Pruebas de comunicación con sensor de consumos}}{56}{figure.caption.104}%
-\contentsline {figure}{\numberline {4.25}{\ignorespaces Pruebas de comunicación con sensor de solución nutritiva}}{57}{figure.caption.105}%
-\contentsline {figure}{\numberline {4.26}{\ignorespaces Pruebas de comunicación con sensor de solución nutritiva}}{57}{figure.caption.106}%
-\contentsline {figure}{\numberline {4.27}{\ignorespaces Pruebas de comunicación con actuador}}{57}{figure.caption.107}%
-\contentsline {figure}{\numberline {4.28}{\ignorespaces Pruebas de comunicación con actuador}}{58}{figure.caption.108}%
-\contentsline {figure}{\numberline {4.29}{\ignorespaces Pruebas de comunicación con actuador}}{58}{figure.caption.109}%
-\contentsline {figure}{\numberline {4.30}{\ignorespaces Envío de comando de activación al microcontrolador}}{58}{figure.caption.110}%
-\contentsline {figure}{\numberline {4.31}{\ignorespaces Salida por consola del frontend}}{59}{figure.caption.111}%
-\contentsline {figure}{\numberline {4.32}{\ignorespaces Salida por consola del backend}}{59}{figure.caption.112}%
-\contentsline {figure}{\numberline {4.33}{\ignorespaces Salida por consola del microcontrolador}}{59}{figure.caption.113}%
-\contentsline {figure}{\numberline {4.34}{\ignorespaces Salida por consola del backend}}{60}{figure.caption.114}%
-\contentsline {figure}{\numberline {4.35}{\ignorespaces Verificación de persistencia en MongoDB Compass}}{60}{figure.caption.115}%
-\contentsline {figure}{\numberline {4.36}{\ignorespaces Actualización del estado de los relés en el frontend}}{60}{figure.caption.116}%
+\contentsline {figure}{\numberline {4.1}{\ignorespaces Banco de pruebas del sistema EnviroSenseIoT}}{42}{figure.caption.69}%
+\contentsline {figure}{\numberline {4.2}{\ignorespaces Interfaz de Swagger}}{43}{figure.caption.71}%
+\contentsline {figure}{\numberline {4.3}{\ignorespaces Pruebas realizadas en Postman}}{44}{figure.caption.72}%
+\contentsline {figure}{\numberline {4.4}{\ignorespaces Pruebas de WebSocket en frontend}}{46}{figure.caption.77}%
+\contentsline {figure}{\numberline {4.5}{\ignorespaces Pruebas de WebSocket en Postman}}{47}{figure.caption.78}%
+\contentsline {figure}{\numberline {4.6}{\ignorespaces Pruebas de WebSocket SSH EC2}}{47}{figure.caption.79}%
+\contentsline {figure}{\numberline {4.7}{\ignorespaces Creación de usuario y validación en MongoDB}}{48}{figure.caption.80}%
+\contentsline {figure}{\numberline {4.8}{\ignorespaces Validación de almacenamiento en MongoDB}}{49}{figure.caption.81}%
+\contentsline {figure}{\numberline {4.9}{\ignorespaces Pruebas de autenticación}}{50}{figure.caption.83}%
+\contentsline {figure}{\numberline {4.10}{\ignorespaces Autenticación y autorización rol administrador}}{51}{figure.caption.85}%
+\contentsline {figure}{\numberline {4.11}{\ignorespaces Autenticación y autorización rol usuario}}{51}{figure.caption.86}%
+\contentsline {figure}{\numberline {4.12}{\ignorespaces Validación de formularios}}{52}{figure.caption.88}%
+\contentsline {figure}{\numberline {4.13}{\ignorespaces Verificación de creación de usuario}}{52}{figure.caption.89}%
+\contentsline {figure}{\numberline {4.14}{\ignorespaces Pruebas de funcionalidad en tablas}}{53}{figure.caption.91}%
+\contentsline {figure}{\numberline {4.15}{\ignorespaces Pruebas de funcionalidad en gráficos}}{53}{figure.caption.92}%
+\contentsline {figure}{\numberline {4.16}{\ignorespaces Pruebas de funcionalidad en el dashboard}}{54}{figure.caption.94}%
+\contentsline {figure}{\numberline {4.17}{\ignorespaces Interfaz de ambientes en dispositivo móvil}}{54}{figure.caption.96}%
+\contentsline {figure}{\numberline {4.18}{\ignorespaces Listado en formato apaisado desde dispositivo móvil}}{55}{figure.caption.97}%
+\contentsline {figure}{\numberline {4.19}{\ignorespaces Mediciones de sensor ambiental}}{56}{figure.caption.99}%
+\contentsline {figure}{\numberline {4.20}{\ignorespaces Mediciones de sensor de solución nutritiva}}{56}{figure.caption.101}%
+\contentsline {figure}{\numberline {4.21}{\ignorespaces Mediciones de sensor de consumos}}{56}{figure.caption.103}%
+\contentsline {figure}{\numberline {4.22}{\ignorespaces Estados de actuadores}}{57}{figure.caption.104}%
+\contentsline {figure}{\numberline {4.23}{\ignorespaces Pruebas de encendido de relés}}{57}{figure.caption.105}%
+\contentsline {figure}{\numberline {4.24}{\ignorespaces Pruebas de comunicación en sensor ambiental}}{58}{figure.caption.106}%
+\contentsline {figure}{\numberline {4.25}{\ignorespaces Solicitud de datos en sensor ambiental}}{58}{figure.caption.107}%
+\contentsline {figure}{\numberline {4.26}{\ignorespaces Pruebas de comunicación en sensor de consumos}}{58}{figure.caption.108}%
+\contentsline {figure}{\numberline {4.27}{\ignorespaces Solicitud de datos en sensor de consumos}}{58}{figure.caption.109}%
+\contentsline {figure}{\numberline {4.28}{\ignorespaces Pruebas de comunicación en sensor de solución nutritiva}}{59}{figure.caption.110}%
+\contentsline {figure}{\numberline {4.29}{\ignorespaces Solicitud de datos en sensor de solución nutritiva}}{59}{figure.caption.111}%
+\contentsline {figure}{\numberline {4.30}{\ignorespaces Pruebas de comunicación en actuador}}{59}{figure.caption.112}%
+\contentsline {figure}{\numberline {4.31}{\ignorespaces Solicitud de datos en actuador}}{60}{figure.caption.113}%
+\contentsline {figure}{\numberline {4.32}{\ignorespaces Envío de comando en actuador}}{60}{figure.caption.114}%
+\contentsline {figure}{\numberline {4.33}{\ignorespaces Envío de comando de activación al microcontrolador}}{60}{figure.caption.115}%
+\contentsline {figure}{\numberline {4.34}{\ignorespaces Salida por consola del frontend}}{61}{figure.caption.116}%
+\contentsline {figure}{\numberline {4.35}{\ignorespaces Salida por consola del backend}}{61}{figure.caption.117}%
+\contentsline {figure}{\numberline {4.36}{\ignorespaces Salida por consola del microcontrolador}}{61}{figure.caption.118}%
+\contentsline {figure}{\numberline {4.37}{\ignorespaces Salida por consola del backend}}{62}{figure.caption.119}%
+\contentsline {figure}{\numberline {4.38}{\ignorespaces Verificación de persistencia en MongoDB Compass}}{62}{figure.caption.120}%
+\contentsline {figure}{\numberline {4.39}{\ignorespaces Actualización del estado de los relés en el frontend}}{62}{figure.caption.121}%
 \addvspace {10\p@ }
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {A.1}{\ignorespaces Modelo de datos implementado en el trabajo.}}{64}{figure.caption.117}%
+\contentsline {figure}{\numberline {A.1}{\ignorespaces Modelo de datos implementado en el trabajo.}}{66}{figure.caption.122}%
 \addvspace {10\p@ }
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {C.1}{\ignorespaces Resumen de la instancia EC2 creada.}}{70}{figure.caption.121}%
-\contentsline {figure}{\numberline {C.2}{\ignorespaces Conexión SSH a la instancia EC2.}}{71}{figure.caption.122}%
-\contentsline {figure}{\numberline {C.3}{\ignorespaces Acceso a la aplicación web EnviroSenseIoT.}}{76}{figure.caption.123}%
-\contentsline {figure}{\numberline {C.4}{\ignorespaces Visualización de datos en tiempo real.}}{76}{figure.caption.124}%
+\contentsline {figure}{\numberline {C.1}{\ignorespaces Resumen de la instancia EC2 creada.}}{72}{figure.caption.126}%
+\contentsline {figure}{\numberline {C.2}{\ignorespaces Conexión SSH a la instancia EC2.}}{73}{figure.caption.127}%
+\contentsline {figure}{\numberline {C.3}{\ignorespaces Acceso a la aplicación web EnviroSenseIoT.}}{78}{figure.caption.128}%
+\contentsline {figure}{\numberline {C.4}{\ignorespaces Visualización de datos en tiempo real.}}{78}{figure.caption.129}%

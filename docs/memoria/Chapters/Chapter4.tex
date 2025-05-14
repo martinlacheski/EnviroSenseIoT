@@ -10,10 +10,13 @@ presentan los resultados obtenidos y su análisis.
 
 Se construyó un banco de prueba físico con el objetivo de validar el
 rendimiento, la funcionalidad y la integración de los sensores, actuadores y
-módulos del sistema. Este entorno controlado permitió montar los dispositivos,
-realizar el conexionado correspondiente y simular condiciones cercanas a las
-reales de operación, lo que facilitó la evaluación del comportamiento general
-del sistema. El banco de prueba incluyó los siguientes componentes:
+módulos del sistema. Este entorno controlado permitió montar los dispositivos y
+realizar el conexionado correspondiente.
+
+% Además, se simularon condiciones cercanas a las reales de operación, lo que
+% facilitó la evaluación del comportamiento general del sistema.
+
+El banco de prueba incluyó los siguientes componentes:
 
 \begin{itemize}
     \item Sensores y actuadores:
@@ -36,14 +39,14 @@ del sistema. El banco de prueba incluyó los siguientes componentes:
     \item Fuentes de alimentación:
           \begin{itemize}
               \item Una fuente de 5 V, 2 A para los relés.
-              \item Cuatro fuentes de 5 V, 1.5 A para los microcontroladores.
+              \item Cuatro fuentes de 5 V, 1,5 A para los microcontroladores.
           \end{itemize}
 
     \item Servidor MQTT:
           \begin{itemize}
               \item El servicio se implementó en AWS IoT Core.
           \end{itemize}
-
+          \newpage
     \item Servidor web:
           \begin{itemize}
               \item El backend, frontend y la base de datos se desplegaron en una máquina virtual
@@ -56,9 +59,16 @@ La figura \ref{fig:banco_pruebas} muestra el banco de pruebas utilizado para la
 validación del sistema, donde se observan los sensores, actuadores,
 microcontroladores y la alimentación eléctrica.
 
+% \begin{figure}[H]
+%     \centering
+%     \includegraphics[width=0.95\textwidth]{Images/36_prototipo.jpeg}
+%     \caption[Banco de pruebas del sistema EnviroSenseIoT]{Banco de pruebas del sistema \texttt{EnviroSenseIoT}.}
+%     \label{fig:banco_pruebas}
+% \end{figure}
+
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.95\textwidth]{Images/36_prototipo.jpeg}
+    \includegraphics[width=\textwidth]{Images/36_prototipo.png}
     \caption[Banco de pruebas del sistema EnviroSenseIoT]{Banco de pruebas del sistema \texttt{EnviroSenseIoT}.}
     \label{fig:banco_pruebas}
 \end{figure}
@@ -84,21 +94,21 @@ el proceso de validación en el entorno de prueba.
 \begin{table}[H]
     \centering
     \caption[Criterios de evaluación del banco de pruebas]{Criterios de evaluación del banco de pruebas.}
-    \begin{tabular}{p{3.4cm}p{3cm}p{6cm}}
+    \begin{tabular}{p{2.9cm}p{3.2cm}p{6.3cm}}
         \hline
-        \textbf{Criterio}                          & \textbf{Componente} & \textbf{Descripción}                                                                                                         \\
+        \textbf{Criterio}                                                & \textbf{Componente}                      & \textbf{Descripción}                                                                                                         \\
         \hline
-        Verificación de endpoints y almacenamiento & Backend             & Comprobación del funcionamiento de los endpoints y del registro de información en la base de datos.                          \\
+        \multirow{3}{2.9cm}{Verificación de endpoints y almacenamiento.} & \multirow{3}{3.2cm}{Backend.}            & Comprobación del funcionamiento de los endpoints y del registro de información en la base de datos.                          \\
         \hline
-        Usabilidad de la interfaz web              & Frontend            & Evaluación de la facilidad de uso y el acceso a funcionalidades.                                                             \\
+        \multirow{2}{2.9cm}{Usabilidad de la interfaz web.}              & \multirow{2}{3.2cm}{Frontend.}           & Evaluación de la facilidad de uso y el acceso a funcionalidades.                                                             \\
         \hline
-        Verificación de mediciones                 & Microcontroladores  & Verificación de los valores reportados por los sensores.                                                                     \\
+        \multirow{2}{2.9cm}{Verificación de mediciones.}                 & \multirow{2}{3.2cm}{Microcontroladores.} & Verificación de los valores reportados por los sensores.                                                                     \\
         \hline
-        Activación de actuadores                   & Microcontroladores  & Validación de la activación de los módulos de relés ante eventos enviados.                                                   \\
+        \multirow{2}{2.9cm}{Activación de actuadores.}                   & \multirow{2}{3.2cm}{Microcontroladores.} & Validación de la activación de los módulos de relés ante eventos enviados.                                                   \\
         \hline
-        Verificación de comunicación MQTT          & Comunicación MQTT   & Verificación de la comunicación entre microcontroladores y servidor web a través del intercambio de mensajes en los tópicos. \\
+        \multirow{4}{2.9cm}{Verificación de comunicación MQTT}           & \multirow{4}{3.2cm}{Comunicación MQTT.}  & Verificación de la comunicación entre microcontroladores y servidor web a través del intercambio de mensajes en los tópicos. \\
         \hline
-        Integración de módulos                     & Todo el sistema     & Verificación del funcionamiento conjunto de sensores, actuadores y servidor web.                                             \\
+        \multirow{3}{2.9cm}{Integración de módulos.}                     & \multirow{3}{3.2cm}{Todo el sistema.}    & Verificación del funcionamiento conjunto de sensores, actuadores y servidor web.                                             \\
         \hline
     \end{tabular}
     \label{tab:criterios_evaluacion}
@@ -107,15 +117,15 @@ el proceso de validación en el entorno de prueba.
 \section{Pruebas de backend}
 \label{sec:pruebas_backend}
 
-El backend del sistema cuenta con un total de \textbf{111 endpoints}, a través
-de los cuales se realiza la interacción con los distintos módulos y servicios.
-Para su validación, se utilizó la herramienta Postman, que permitió realizar
-pruebas funcionales destinadas a verificar que cada endpoint respondiera
-correctamente a las solicitudes y devolviera los datos esperados conforme a la
-lógica definida.
+El backend del sistema cuenta con un total de 111 endpoints, a través de los
+que se realiza la interacción con los distintos módulos y servicios. Para su
+validación, se utilizó la herramienta Postman, que permitió realizar pruebas
+funcionales destinadas a verificar que cada endpoint respondiera correctamente
+a las solicitudes y devolviera los datos esperados conforme a la lógica
+definida.
 
 Además, FastAPI incorpora una interfaz Swagger \cite{SwaggerIO}, que permite
-documentar, explorar y probar los endpoints desde el navegador. La Figura
+documentar, explorar y probar los endpoints desde el navegador. La figura
 \ref{fig:swagger} muestra esta interfaz, donde los endpoints se organizan por
 categoría y pueden consultarse y evaluarse en tiempo real.
 
@@ -128,10 +138,15 @@ categoría y pueden consultarse y evaluarse en tiempo real.
 
 \subsection{Pruebas en Postman}
 
+% En el repositorio de GitHub \cite{EnviroSenseIoT} se encuentra la carpeta
+% \texttt{Tests}, que contiene un archivo JSON con la colección completa de
+% pruebas realizadas con Postman. Dicha colección abarca todos los endpoints del
+% backend evaluados, junto con los resultados correspondientes.
+
 En el repositorio de GitHub \cite{EnviroSenseIoT} se encuentra la carpeta
 \texttt{Tests}, que contiene un archivo JSON con la colección completa de
-pruebas realizadas con Postman. Dicha colección abarca todos los endpoints del
-backend evaluados, junto con los resultados correspondientes.
+pruebas realizadas con Postman. Esta colección incluye la evaluación de la
+totalidad de los endpoints del backend, junto con sus respectivos resultados.
 
 Tambien se incluyen un archivo CSV (del inglés \textit{Comma Separated Values})
 y un archivo en formato texto, en el que se detallan los endpoints, los métodos
@@ -155,8 +170,8 @@ la respuesta.
 Los tiempos de respuesta obtenidos durante las pruebas fueron, en su mayoría,
 adecuados para un entorno compuesto por servicios desplegados en contenedores
 Docker dentro de una instancia EC2 de AWS. El promedio se mantuvo cercano a los
-200 ms, valor que garantiza una experiencia de usuario satisfactoria y un
-rendimiento eficiente del sistema.
+200 ms, valor que garantiza una experiencia de usuario satisfactoria
+\cite{GoodAPITime} y un rendimiento eficiente del sistema.
 
 Las operaciones más exigentes, como las consultas filtradas sobre grandes
 volúmenes de datos o el cambio de contraseñas, presentaron tiempos de respuesta
@@ -164,7 +179,7 @@ ligeramente superiores. Sin embargo, se mantuvieron dentro de márgenes
 aceptables, al considerar la complejidad de estas tareas y las características
 del entorno de ejecución en la nube.
 
-La Tabla \ref{tab:tiempos_respuesta} presenta los resultados obtenidos durante
+La tabla \ref{tab:tiempos_respuesta} presenta los resultados obtenidos durante
 las pruebas de desempeño, organizados por categoría funcional. Se detallan los
 métodos evaluados y los tiempos de respuesta registrados, lo que permite
 analizar el comportamiento del sistema ante distintos tipos de solicitudes.
@@ -172,53 +187,69 @@ analizar el comportamiento del sistema ante distintos tipos de solicitudes.
 \begin{table}[H]
     \centering
     \caption[Resultados de tiempos de respuesta]{Resultados de tiempos de respuesta de las pruebas.}
-    \begin{tabular}{p{5cm}p{5.1cm}p{2.4cm}}
+    \begin{tabular}{p{5cm}p{5.1cm}>{\centering\arraybackslash}p{2.4cm}}
         \toprule
-        \textbf{Categoría}                                                     & \textbf{Método}                             & \textbf{Tiempo de Respuesta} \\
+        \textbf{Categoría}                                                      & \textbf{Método}                             & \textbf{Tiempo de Respuesta} \\
         \midrule
-        \multirow{3}{5cm}{Autenticación y usuarios}                            & POST Login                                  & 496 ms                       \\
-                                                                               & GET Current User                            & 181 ms                       \\
-                                                                               & PATCH Update Password                       & 827 ms                       \\
+        \multirow{3}{5cm}{Autenticación y usuarios.}                            & POST Login                                  & 496 ms                       \\
+                                                                                & GET Current User                            & 181 ms                       \\
+                                                                                & PATCH Update Password                       & 827 ms                       \\
         \hline
-        \multirow{3}{5cm}{Publicación de mensajes en MQTT y logs}              & POST Publish MQTT                           & 153 – 181 ms                 \\
-                                                                               & GET Logs (actuadores y sensores)            & 173 – 193 ms                 \\
+        \multirow{3}{5cm}{Publicación de mensajes en MQTT y logs.}              & POST Publish MQTT                           & 153 – 181 ms                 \\
+                                                                                & GET Logs (actuadores y sensores)            & 173 – 193 ms                 \\
         \hline
-        \multirow{2}{5cm}{Consulta de datos de dispositivos}                   & GET Sensors Data                            & $\sim$ 208 ms                \\
-                                                                               & GET Actuators Data                          & 271 ms                       \\
+        \multirow{2}{5cm}{Consulta de datos de dispositivos.}                   & GET Sensors Data                            & $\sim$ 208 ms                \\
+                                                                                & GET Actuators Data                          & 271 ms                       \\
         \hline
-        \multirow{3}{5cm}{Operaciones de creación, modificación y eliminación} & POST Create User / Company                  & $\sim$ 490 ms                \\
-                                                                               & POST Create Sensor / Data                   & 154 – 194 ms                 \\
-                                                                               & PUT / DELETE                                & 161 – 188 ms                 \\
+        \multirow{3}{5cm}{Operaciones de creación, modificación y eliminación.} & POST Create User / Company                  & $\sim$ 490 ms                \\
+                                                                                & POST Create Sensor / Data                   & 154 – 194 ms                 \\
+                                                                                & PUT / DELETE                                & 161 – 188 ms                 \\
         \hline
-        \multirow{4}{5cm}{Datos geográficos y configuración}                   & GET Countries / Provinces / Cities          & 176 – 187 ms                 \\
-                                                                               & POST Create Environment / Actuator / Sensor & 179 – 194 ms                 \\
+        \multirow{4}{5cm}{Datos geográficos y configuración.}                   & GET Countries / Provinces / Cities          & 176 – 187 ms                 \\
+                                                                                & POST Create Environment / Actuator / Sensor & 179 – 194 ms                 \\
         \bottomrule
     \end{tabular}
     \label{tab:tiempos_respuesta}
 \end{table}
 
-El análisis de los tiempos de respuesta arrojó un promedio general de
-\textbf{204.38 ms} sobre un total de \textbf{111 solicitudes}. Esta métrica
-refuerza la conclusión de que el sistema opera de manera eficiente dentro del
-entorno en la nube.
+El análisis de los tiempos de respuesta arrojó un promedio general de 204,38 ms
+sobre un total de 111 solicitudes. Esta métrica refuerza la conclusión de que
+el sistema opera de manera eficiente dentro del entorno en la nube.
 
 La tabla \ref{tab:promedios_metodo_http} presenta la distribución de los
 tiempos de respuesta por método HTTP. Además, se observó un comportamiento
 diferenciado según el tipo de operación solicitada, como se resume a
 continuación:
 
+% \begin{table}[H]
+%     \centering
+%     \caption[Promedios de tiempos de respuesta]{Promedios de tiempos de respuesta por método HTTP.}
+%     \begin{tabular}{ l l }
+%         \toprule
+%         \textbf{Método HTTP} & \textbf{Tiempo de Respuesta} \\
+%         \midrule
+%         GET                  & 191,0 ms (46 solicitudes)    \\
+%         POST                 & 199,47 ms (36 solicitudes)   \\
+%         PUT                  & 202,64 ms (14 solicitudes)   \\
+%         DELETE               & 195,77 ms (13 solicitudes)   \\
+%         PATCH                & 668,5 ms (2 solicitudes)     \\
+%         \bottomrule
+%     \end{tabular}
+%     \label{tab:promedios_metodo_http}
+% \end{table}
+
 \begin{table}[H]
     \centering
     \caption[Promedios de tiempos de respuesta]{Promedios de tiempos de respuesta por método HTTP.}
-    \begin{tabular}{ l l }
+    \begin{tabular}{ l c c }
         \toprule
-        \textbf{Método HTTP} & \textbf{Tiempo de Respuesta} \\
+        \textbf{Método HTTP} & \textbf{Tiempo (ms)} & \textbf{Solicitudes} \\
         \midrule
-        GET                  & 191.0 ms (46 solicitudes)    \\
-        POST                 & 199.47 ms (36 solicitudes)   \\
-        PUT                  & 202.64 ms (14 solicitudes)   \\
-        DELETE               & 195.77 ms (13 solicitudes)   \\
-        PATCH                & 668.5 ms (2 solicitudes)     \\
+        GET                  & 191,00               & 46                   \\
+        POST                 & 199,47               & 36                   \\
+        PUT                  & 202,64               & 14                   \\
+        DELETE               & 195,77               & 13                   \\
+        PATCH                & 668,50               & 2                    \\
         \bottomrule
     \end{tabular}
     \label{tab:promedios_metodo_http}
@@ -237,7 +268,7 @@ pruebas realizadas en Postman:
     \item Las operaciones clave, como la autenticación, la creación de entidades y las
           consultas de datos, mostraron tiempos de respuesta ligeramente superiores, pero
           no afectaron la experiencia del usuario. El rendimiento se mantuvo
-          satisfactorio en el entorno de prueba con servicios en la nube.
+          satisfactorio en el entorno de prueba.
 \end{itemize}
 
 \subsection{Pruebas de validación de WebSocket}
@@ -250,23 +281,58 @@ mensajes.
 Se utilizaron instancias en Postman y navegadores web para establecer
 conexiones entre el frontend y el backend mediante WebSocket.
 
-Las pruebas confirmaron la estabilidad de la comunicación, la capacidad del
-backend para distribuir mensajes a múltiples clientes y la recepción inmediata
-de datos. Estos resultados demostraron la eficiencia y confiabilidad del canal
-WebSocket implementado.
+% Las pruebas confirmaron la estabilidad de la comunicación, la capacidad del
+% backend para distribuir mensajes a múltiples clientes y la recepción inmediata
+% de datos. Estos resultados demostraron la eficiencia y confiabilidad del canal
+% WebSocket implementado.
 
-La figura \ref{fig:websocket} ilustra un ejemplo de la conexión WebSocket entre
-el frontend y el backend. A la izquierda, se observa la conexión establecida
-desde el frontend; a la derecha, las realizadas mediante Postman. También se
-visualiza una terminal de Linux conectada al backend en una instancia de AWS
-EC2, donde se evidencia la conexión activa de tres clientes simultáneos.
+% La figura \ref{fig:websocket} ilustra un ejemplo de la conexión WebSocket entre
+% el frontend y el backend. A la izquierda, se observa la conexión establecida
+% desde el frontend; a la derecha, las realizadas mediante Postman. También se
+% visualiza una terminal de Linux conectada al backend en una instancia de AWS
+% EC2, donde se evidencia la conexión activa de tres clientes simultáneos.
+
+% \begin{figure}[H]
+%     \centering
+%     \includegraphics[width=\textwidth]{Images/40_websocket_1.png}
+%     \caption[Pruebas de WebSocket]{Pruebas de WebSocket.}
+%     \label{fig:websocket}
+% \end{figure}
+
+La figura \ref{fig:websocket_1} ilustra un ejemplo de la conexión WebSocket
+realizada desde el frontend.
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=\textwidth]{Images/40_websocket.png}
-    \caption[Pruebas de WebSocket]{Pruebas de WebSocket.}
-    \label{fig:websocket}
+    \includegraphics[width=\textwidth]{Images/39_websocket_1.png}
+    \caption[Pruebas de WebSocket en frontend]{Pruebas de WebSocket desde el frontend.}
+    \label{fig:websocket_1}
 \end{figure}
+
+La figura \ref{fig:websocket_2} permite visualizar las conexiones WebSocket
+realizadas mediante Postman.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{Images/39_websocket_2.png}
+    \caption[Pruebas de WebSocket en Postman]{Pruebas de WebSocket desde Postman.}
+    \label{fig:websocket_2}
+\end{figure}
+
+La figura \ref{fig:websocket_3} muestra una terminal de Linux conectada a una
+instancia de AWS EC2, donde se ejecuta el backend. En ella se puede observar la
+conexión activa de tres clientes WebSocket simultáneos.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{Images/39_websocket_3.png}
+    \caption[Pruebas de WebSocket SSH EC2]{Pruebas de WebSocket desde consola SSH en instancia EC2.}
+    \label{fig:websocket_3}
+\end{figure}
+
+Las pruebas realizadas al canal WebSocket confirmaron la estabilidad de la
+comunicación, la capacidad del backend para distribuir mensajes de forma
+simultánea a múltiples clientes y la recepción inmediata de los datos.
 
 \subsection{Pruebas de validación de almacenamiento en MongoDB}
 
@@ -281,31 +347,37 @@ Para ello, se realizaron las siguientes acciones:
     \item Se ejecutaron operaciones desde Postman, para generar nuevas entidades en el
           sistema.
     \item A continuación, se accedió directamente a la base de datos MongoDB, a través de
-          la herramienta MongoDB Compass \cite{MongoDBCompass}, para inspeccionar las
-          colecciones y verificar la existencia y la estructura de los documentos
-          insertados.
+          la herramienta MongoDB Compass, para inspeccionar las colecciones y verificar
+          la existencia y la estructura de los documentos insertados.
     \item Se validó que las operaciones de actualización y eliminación impactaran
           correctamente sobre los documentos correspondientes en MongoDB.
 \end{itemize}
 
-Estas validaciones permitieron confirmar que el backend realiza una correcta
-persistencia de los datos en MongoDB y que no se observaron inconsistencias, ni
-pérdidas de información durante las operaciones.
-
-La figura \ref{fig:mongodb} ilustra un ejemplo del proceso de creación de un
+La figura \ref{fig:mongodb_1} ilustra un ejemplo del proceso de creación de un
 nuevo usuario. Se muestra la solicitud enviada desde Postman junto con la
-respuesta proporcionada por el servidor. Asimismo, en la interfaz de MongoDB
-Compass se visualiza el nuevo usuario incorporado en la colección \texttt{User}
-de la base de datos.
+respuesta proporcionada por el servidor.
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=\textwidth]{Images/39_test_mongodb.png}
-    \caption[Validación de almacenamiento en MongoDB]{Validación de almacenamiento en MongoDB.}
-    \label{fig:mongodb}
+    \includegraphics[width=\textwidth]{Images/40_test_mongodb_1.png}
+    \caption[Creación de usuario y validación en MongoDB]{Creación de usuario desde Postman.}
+    \label{fig:mongodb_1}
 \end{figure}
 
-% \subsection{conclusión de pruebas realizadas al backend}
+La figura \ref{fig:mongodb_2} muestra la interfaz de MongoDB Compass, donde se
+visualiza el nuevo usuario incorporado en la colección \texttt{User} de la base
+de datos.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{Images/40_test_mongodb_2.png}
+    \caption[Validación de almacenamiento en MongoDB]{Validación del usuario creado en MongoDB.}
+    \label{fig:mongodb_2}
+\end{figure}
+
+Estas validaciones permitieron confirmar que el backend realiza una correcta
+persistencia de los datos en MongoDB y que no se observaron inconsistencias, ni
+pérdidas de información durante las operaciones.
 
 \section{Pruebas de frontend}
 \label{sec:pruebas_frontend}
@@ -326,8 +398,8 @@ Las validaciones incluyeron:
           en el frontend funcionaran correctamente.
     \item Pruebas de usabilidad: se evaluó la facilidad de uso de la interfaz y su
           responsividad, para garantizar que los usuarios pudieran navegar sin
-          dificultades, realizar las acciones deseadas y acceder de manera óptima desde
-          diferentes dispositivos y tamaños de pantalla.
+          dificultades, realizar las acciones deseadas y acceder desde diferentes
+          dispositivos y tamaños de pantalla.
 \end{itemize}
 
 \subsection{Pruebas de autenticación y autorización}
@@ -431,12 +503,12 @@ previamente en el formulario.
 \subsubsection{Validación de tablas y gráficos}
 
 Se verificó la correcta visualización de las tablas, así como el funcionamiento
-de la paginación y el filtrado. También se evaluaron los gráficos, se comprueba
+de la paginación y el filtrado. También se evaluaron los gráficos, se comprobó
 su claridad, precisión y actualización dinámica frente a cambios en los datos.
 
 La figura \ref{fig:tabla} presenta un ejemplo de los reportes del sensor
 ambiental. En la parte superior se encuentra el formulario para seleccionar
-sensor, rango de fechas y nivel de agregación; en el centro, la tabla con los
+el sensor, el rango de fechas y el nivel de agregación; en el centro, la tabla con los
 datos generados; y abajo, el sistema de paginación para navegar los registros.
 
 \begin{figure}[H]
@@ -535,7 +607,7 @@ mediciones registradas por el conjunto de sensores ambientales.
 \begin{figure}[H]
     \centering
     \includegraphics[width=\textwidth]{Images/51_sensor_ambiental.png}
-    \caption[Pruebas de sensor ambiental]{Pruebas de sensor ambiental.}
+    \caption[Mediciones de sensor ambiental]{Mediciones de sensor ambiental.}
     \label{fig:medicion_sensor_ambiental}
 \end{figure}
 
@@ -562,7 +634,7 @@ en estas pruebas.
 \begin{figure}[H]
     \centering
     \includegraphics[width=\textwidth]{Images/52_sensor_solucion_nutritiva.png}
-    \caption[Pruebas de sensor de solución nutritiva]{Pruebas de sensor de solución nutritiva.}
+    \caption[Mediciones de sensor de solución nutritiva]{Mediciones de sensor de solución nutritiva.}
     \label{fig:medicion_sensor_solucion}
 \end{figure}
 
@@ -578,7 +650,7 @@ registrados durante las pruebas.
 \begin{figure}[H]
     \centering
     \includegraphics[width=\textwidth]{Images/53_sensor_consumos.png}
-    \caption[Pruebas de sensor de consumos]{Pruebas de sensor de consumos.}
+    \caption[Mediciones de sensor de consumos]{Mediciones de sensor de consumos.}
     \label{fig:medicion_sensor_consumo}
 \end{figure}
 
@@ -594,7 +666,7 @@ el módulo de relé.
 \begin{figure}[H]
     \centering
     \includegraphics[width=\textwidth]{Images/54_actuadores.png}
-    \caption[Pruebas de actuadores]{Pruebas de actuadores.}
+    \caption[Estados de actuadores]{Estados de actuadores.}
     \label{fig:prueba_rele_1}
 \end{figure}
 
@@ -634,7 +706,7 @@ envío de datos a 45 segundos.
 \begin{figure}[H]
     \centering
     \includegraphics[width=\textwidth]{Images/55_prueba_mqtt_sensor_ambiental_1.png}
-    \caption[Pruebas de comunicación con sensor ambiental]{Pruebas de comunicación con sensor ambiental.}
+    \caption[Pruebas de comunicación en sensor ambiental]{Pruebas de comunicación en sensor ambiental.}
     \label{fig:prueba_mqtt_sensor_ambiental_1}
 \end{figure}
 
@@ -646,7 +718,7 @@ recibidos correctamente y almacenados en la base de datos.
 \begin{figure}[H]
     \centering
     \includegraphics[width=\textwidth]{Images/55_prueba_mqtt_sensor_ambiental_2.png}
-    \caption[Pruebas de comunicación con sensor ambiental]{Pruebas de comunicación con sensor ambiental.}
+    \caption[Solicitud de datos en sensor ambiental]{Solicitud de datos en sensor ambiental.}
     \label{fig:prueba_mqtt_sensor_ambiental_2}
 \end{figure}
 
@@ -659,7 +731,7 @@ intervalo de transmisión de datos de 45 segundos.
 \begin{figure}[H]
     \centering
     \includegraphics[width=\textwidth]{Images/56_prueba_mqtt_sensor_consumos_1.png}
-    \caption[Pruebas de comunicación con sensor de consumos]{Pruebas de comunicación con sensor de consumos.}
+    \caption[Pruebas de comunicación en sensor de consumos]{Pruebas de comunicación en sensor de consumos.}
     \label{fig:prueba_mqtt_sensor_consumos_1}
 \end{figure}
 
@@ -671,7 +743,7 @@ en la base de datos.
 \begin{figure}[H]
     \centering
     \includegraphics[width=\textwidth]{Images/56_prueba_mqtt_sensor_consumos_2.png}
-    \caption[Pruebas de comunicación con sensor de consumos]{Pruebas de comunicación con sensor de consumos.}
+    \caption[Solicitud de datos en sensor de consumos]{Solicitud de datos en sensor de consumos.}
     \label{fig:prueba_mqtt_sensor_consumos_2}
 \end{figure}
 
@@ -684,7 +756,7 @@ un nuevo intervalo de transmisión de datos en 45 segundos.
 \begin{figure}[H]
     \centering
     \includegraphics[width=\textwidth]{Images/57_prueba_mqtt_sensor_solucion_nutritiva_1.png}
-    \caption[Pruebas de comunicación con sensor de solución nutritiva]{Pruebas de comunicación con sensor de solución nutritiva.}
+    \caption[Pruebas de comunicación en sensor de solución nutritiva]{Pruebas de comunicación en sensor de solución nutritiva.}
     \label{fig:prueba_mqtt_sensor_solucion_nutritiva_1}
 \end{figure}
 
@@ -697,7 +769,7 @@ datos.
 \begin{figure}[H]
     \centering
     \includegraphics[width=\textwidth]{Images/57_prueba_mqtt_sensor_solucion_nutritiva_2.png}
-    \caption[Pruebas de comunicación con sensor de solución nutritiva]{Pruebas de comunicación con sensor de solución nutritiva.}
+    \caption[Solicitud de datos en sensor de solución nutritiva]{Solicitud de datos en sensor de solución nutritiva.}
     \label{fig:prueba_mqtt_sensor_solucion_nutritiva_2}
 \end{figure}
 
@@ -710,7 +782,7 @@ transmisión de datos de 45 segundos.
 \begin{figure}[H]
     \centering
     \includegraphics[width=\textwidth]{Images/58_prueba_mqtt_actuador_1.png}
-    \caption[Pruebas de comunicación con actuador]{Pruebas de comunicación con actuador.}
+    \caption[Pruebas de comunicación en actuador]{Pruebas de comunicación en actuador.}
     \label{fig:prueba_mqtt_actuador_1}
 \end{figure}
 
@@ -722,7 +794,7 @@ registrados en la base de datos.
 \begin{figure}[H]
     \centering
     \includegraphics[width=\textwidth]{Images/58_prueba_mqtt_actuador_2.png}
-    \caption[Pruebas de comunicación con actuador]{Pruebas de comunicación con actuador.}
+    \caption[Solicitud de datos en actuador]{Solicitud de datos en actuador.}
     \label{fig:prueba_mqtt_actuador_2}
 \end{figure}
 
@@ -736,23 +808,33 @@ confirmación de que la operación ha sido completada correctamente.
 \begin{figure}[H]
     \centering
     \includegraphics[width=\textwidth]{Images/58_prueba_mqtt_actuador_3.png}
-    \caption[Pruebas de comunicación con actuador]{Pruebas de comunicación con actuador.}
+    \caption[Envío de comando en actuador]{Prueba de envío de comando en actuador.}
     \label{fig:prueba_mqtt_actuador_3}
 \end{figure}
 
 \section{Prueba integral del sistema}
 
-Esta prueba tuvo como objetivo validar el funcionamiento completo del sistema,
-para asegurar la correcta interacción entre todos los componentes: frontend,
-backend y dispositivos conectados. Se buscó verificar la secuencia de
-comunicación entre las distintas partes sin interrupciones ni errores.
+% Esta prueba tuvo como objetivo validar el funcionamiento completo del sistema,
+% para asegurar la correcta interacción entre todos los componentes: frontend,
+% backend y dispositivos conectados. Se buscó verificar la secuencia de
+% comunicación entre las distintas partes sin interrupciones ni errores.
 
-La prueba comenzó en el frontend, donde se seleccionó un actuador y se accedió
-a su detalle. A continuación, se activó el relé correspondiente a la bomba de
-agua por un período de 30 segundos.
+% La prueba comenzó en el frontend, donde se seleccionó un actuador y se accedió
+% a su detalle. A continuación, se activó el relé correspondiente a la bomba de
+% agua por un período de 30 segundos.
 
-La figura \ref{fig:prueba_integral_1} muestra la interfaz del frontend al
-momento de ejecutar la orden de activación del relé.
+% La figura \ref{fig:prueba_integral_1} muestra la interfaz del frontend al
+% momento de ejecutar la orden de activación del relé.
+
+El objetivo de esta prueba fue validar el funcionamiento completo del sistema y
+asegurar la correcta interacción entre el frontend, el backend y los
+dispositivos conectados. Se verificó que la secuencia de comunicación entre los
+distintos componentes se realizara sin interrupciones ni errores.
+
+La prueba se inició desde el frontend, donde se seleccionó un actuador, se
+accedió a su detalle y se activó el relé correspondiente a la bomba de agua
+durante 30 segundos. La figura \ref{fig:prueba_integral_1} muestra la interfaz
+del frontend al momento de ejecutar esta orden.
 
 \begin{figure}[H]
     \centering

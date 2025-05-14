@@ -10,8 +10,8 @@ las características y sus especificaciones técnicas.
 
 \section{Protocolos de comunicación}
 
-En esta sección se describen los diferentes protocolos de comunicación
-utilizados en el desarrollo del trabajo.
+En esta sección se detallan los diferentes protocolos de comunicación empleados
+en el desarrollo del trabajo.
 
 \subsection{Wi-Fi}
 
@@ -26,9 +26,9 @@ infraestructura y ad-hoc.
 	\item Modo infraestructura: los dispositivos se conectan a una red inalámbrica a
 	      través de un router o AP (del inglés, \textit{Access Point}) inalámbrico, como
 	      en las WLAN. Los AP se conectan a la infraestructura de la red mediante el
-	      sistema de distribución conectado por cable o de manera inalámbrica.
+	      sistema de distribución, conectado por cable o de manera inalámbrica.
 	\item Modo ad-hoc: los dispositivos se conectan directamente entre sí sin necesidad
-	      de un punto de acceso.
+	      de un AP.
 \end{itemize}
 
 \subsection{MQTT}
@@ -36,8 +36,8 @@ infraestructura y ad-hoc.
 MQTT es un protocolo de mensajería estándar internacional OASIS
 \cite{OASIS_MQTT_Standard} para IoT. Está diseñado como un transporte de
 mensajería de publicación/suscripción extremadamente ligero, ideal para
-conectar dispositivos remotos con un consumo de código reducido y un ancho de
-banda de red mínimo.
+conectar dispositivos remotos con un consumo reducido y un ancho de banda de
+red mínimo.
 
 Basado en TCP/IP \cite{AWS_MQTT}, MQTT implementa un modelo de comunicación de
 publicación/suscripción, en el cual:
@@ -70,19 +70,19 @@ aplicación (MQTT \cite{OASIS_MQTT_Standard}, HTTP \cite{IBMTCPIP} y WebSocket
 
 \section{Componentes de hardware}\label{sec:hardware}
 
-En esta sección se describen los diferentes elementos de hardware utilizados en
-el desarrollo del trabajo.
+En esta sección se describen los diferentes elementos de hardware implementados
+en el desarrollo del trabajo.
 
 \subsection{Microcontrolador}\label{sec:microcontrolador}
 
 El microcontrolador ESP-WROOM-32 (figura \ref{fig:ESP32}), es un chip de tipo
 SoC (del inglés, \textit{System on Chip}) de bajo costo y bajo consumo de
-energía que integra Wi-Fi, Bluetooth y Bluetooth LE en un solo paquete. El
-ESP-WROOM-32 \cite{EspressifESP32WROOM} es un microcontrolador de 32 bits con
-una arquitectura Xtensa LX6 de doble núcleo, lo que le permite ejecutar dos
-hilos de ejecución simultáneos. Además, cuenta con una amplia gama de
-periféricos, como UART, I2C, SPI y ADC, que lo hace ideal para aplicaciones de
-IoT.
+energía que integra Wi-Fi, Bluetooth y BLE (del inglés, \textit{Bluetooth Low
+	Energy}) en un solo paquete. El ESP-WROOM-32 \cite{EspressifESP32WROOM} es un
+microcontrolador de 32 bits con una arquitectura Xtensa LX6 de doble núcleo, lo
+que le permite ejecutar dos hilos de ejecución simultáneos. Además, cuenta con
+una amplia gama de periféricos, como UART, I2C, SPI y ADC, que lo hace ideal
+para aplicaciones de IoT.
 
 \begin{figure}[H]
 	\centering
@@ -201,7 +201,7 @@ de TDS en un rango de 0 a 1000 ppm \cite{TDS-Sensor}.
 
 El DS18B20 (figura \ref{fig:DS18B20}) es un sensor digital de temperatura
 sumergible. Se comunica a través de la interfaz \textit{OneWire} y permite
-medir la temperatura en un rango de -55 °C a 125 °C con una precisión de ±0.5
+medir la temperatura en un rango de -55 °C a 125 °C con una precisión de ±0,5
 °C \cite{DS18B20}.
 
 \begin{figure}[H]
@@ -271,16 +271,15 @@ dispositivos de hasta 10 A y 250 VAC \cite{Relé}.
 
 \section{Desarrollo de firmware}
 
-En esta sección se describe la herramienta de software utilizada para la
+En esta sección se expone la herramienta de software empleada para la
 programación de los microcontroladores ESP32.
 
 \subsection{MicroPython}
 
-MicroPython es una implementación optimizada de Python 3 para
-microcontroladores y sistemas embebidos. Está diseñado para ejecutarse en
-dispositivos con recursos limitados, como el ESP32, y proporciona una forma
-sencilla de programar microcontroladores con un lenguaje de alto nivel como
-Python \cite{MicroPython}.
+MicroPython es una implementación optimizada de Python 3, diseñada para
+ejecutarse en sistemas embebidos y dispositivos con recursos limitados, como el
+ESP32. Proporciona una forma sencilla de programarlos con un lenguaje de alto
+nivel como Python \cite{MicroPython}.
 
 Su facilidad de uso, la amplia disponibilidad de bibliotecas y la reducción del
 tiempo de desarrollo lo convierten en una opción eficiente. Además, al ser un
@@ -294,7 +293,7 @@ depuración, lo que permite identificar y corregir errores en el código
 
 \section{Desarrollo backend y API}
 
-En esta sección se presentan las herramientas de software utilizadas en el
+En esta sección se presentan las herramientas de software aplicadas en el
 desarrollo del backend y la API REST.
 
 \subsection{FastAPI}
@@ -322,8 +321,8 @@ facilita la manipulación y consulta de datos no estructurados \cite{MongoDB}.
 
 \section{Desarrollo frontend}
 
-En esta sección se presentan las herramientas de software utilizadas en el
-desarrollo del frontend.
+En esta sección se detalla la herramienta de software adoptada en la
+construcción del frontend.
 
 \subsection{React}
 
@@ -339,12 +338,12 @@ aplicaciones web rápidas y dinámicas \cite{React}.
 
 \section{Infraestructura y despliegue}
 
-En esta sección se presentan las herramientas de software utilizadas en la
+En esta sección se describen las herramientas de software empleadas en la
 infraestructura y despliegue del sistema.
+
 \subsection{Docker}
 
-Docker es una plataforma de código abierto que permite a los desarrolladores %y
-%a los equipos de operaciones 
+Docker es una plataforma de código abierto que permite a los desarrolladores
 construir, empaquetar y desplegar aplicaciones en contenedores. Los
 contenedores son unidades de software ligeros y portátiles que incluyen todo lo
 necesario para ejecutar una aplicación, incluidas las bibliotecas, las
@@ -379,7 +378,7 @@ aplicaciones escalables y de alta disponibilidad \cite{AWS_EC2}.
 
 \section{Herramientas de desarrollo}
 
-En esta sección se presentan las herramientas de software utilizadas en el
+En esta sección se detallan las herramientas de software utilizadas en el
 desarrollo del sistema.
 
 \subsection{Visual Studio Code}
@@ -392,7 +391,26 @@ compatible con Windows, macOS y Linux \cite{VSCode}.
 VS Code es un editor de código ligero y rápido con soporte para muchos
 lenguajes de programación y extensiones que permiten personalizar y mejorar la
 funcionalidad del editor. Además, cuenta con herramientas de depuración
-integradas, control de versiones y terminal integrada.% cientos de
+integradas, control de versiones y terminal integrada.
+
+\subsection{PyMakr}
+PyMakr es un complemento para VS Code que permite programar y corregir errores
+en el código de MicroPython que se ejecuta en microcontroladores. Desarrollado
+por Pycom, proporciona una interfaz intuitiva para cargar y ejecutar scripts en
+el dispositivo, además de herramientas para depuración y monitoreo en tiempo
+real. Facilita la conexión entre el entorno de desarrollo y el
+microcontrolador, lo que permite a los desarrolladores escribir, transferir y
+depurar código de manera eficiente \cite{Pymakr}.
+
+\subsection{MongoDB Compass}
+
+MongoDB Compass es una herramienta con interfaz gráfica que permite interactuar
+de forma visual con bases de datos MongoDB. Facilita la exploración y el
+análisis de los datos almacenados, así como la creación de consultas, la
+visualización de datos y la gestión de índices. Compass permite a
+desarrolladores y administradores trabajar con MongoDB sin necesidad de
+utilizar la línea de comandos, lo que simplifica notablemente la interacción
+con la base de datos \cite{MongoDBCompass}.
 
 \subsection{Postman}
 
@@ -405,8 +423,8 @@ depuración y el desarrollo de APIs \cite{Postman}.
 \subsection{GitHub}
 
 GitHub es una plataforma de alojamiento de repositorios Git \cite{Git} que
-permite a los desarrolladores colaborar en proyectos de software de forma
-distribuida. Proporciona herramientas para gestionar el código fuente, realizar
-seguimiento de los cambios, revisar el código, realizar integración continua y
-despliegue automático \cite{Github}.
+permite a los desarrolladores trabajar y colaborar en proyectos de software de
+forma distribuida. Proporciona herramientas para gestionar el código fuente,
+realizar seguimiento de los cambios, revisar el código, realizar integración
+continua y despliegue automático \cite{Github}.
 

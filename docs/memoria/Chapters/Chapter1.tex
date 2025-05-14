@@ -58,7 +58,7 @@ eficiencia del proceso.
 
 La falta de monitoreo en tiempo real impacta negativamente en la calidad y el
 rendimiento de los cultivos, incrementa los costos operativos y afecta la
-sostenibilidad ambiental debido a la implementación de prácticas ineficientes.
+sostenibilidad ambiental debido a la utilización de prácticas ineficientes.
 
 %----------------------------------------------------------------------------------------
 
@@ -72,9 +72,10 @@ Nacional de Misiones (UNaM).
 
 Este sistema posibilita el registro continuo de diversas variables de interés,
 como temperatura ambiente, humedad relativa, dióxido de carbono ($CO_2$),
-niveles de nutrientes, y consumo de agua y energía, entre otros. Los datos
-generados están disponibles para docentes, estudiantes e investigadores, para
-su uso en la realización de tesis, investigaciones y trabajos académicos.
+niveles de nutrientes, y consumo de agua, nutrientes y energía, entre otros.
+Los datos generados están disponibles para docentes, estudiantes e
+investigadores, para su uso en la realización de tesis, investigaciones y
+trabajos académicos.
 
 Así, el trabajo no solo tiene un impacto directo en la producción, sino también
 en la formación académica y el avance científico. Proporciona una plataforma de
@@ -88,8 +89,8 @@ alimentaria \cite{seguridadAlimentariaGaribaldi2018}.
 
 En el mercado actual, existen diversas empresas que ofrecen soluciones
 comerciales para optimizar la gestión de invernaderos. Estas herramientas
-permiten el control automatizado de variables clave como temperatura, humedad,
-ventilación y circulación de nutrientes o riego. La tabla \ref{tab:competencia}
+permiten el control de variables clave como temperatura, humedad, ventilación y
+circulación de nutrientes o sistemas de riego. La tabla \ref{tab:competencia}
 presenta una comparación de algunas de las soluciones disponibles y sus
 características más relevantes.
 
@@ -100,16 +101,16 @@ características más relevantes.
             \toprule
             \textbf{Empresa}                                     & \textbf{Características}                                                         \\
             \midrule
-            \multirow{1}{*}{Hidroponía FIL \cite{HidroponiaFIL}} & Ofrece servicios en comodato de sensores y actuadores
+            \multirow{4}{*}{Hidroponía FIL \cite{HidroponiaFIL}.} & Ofrece servicios en comodato de sensores y actuadores
             para monitorear y controlar en tiempo real variables críticas como temperatura ambiente, humedad relativa, conductividad
             eléctrica, pH, riego e iluminación.                                                                                                     \\
-            \multirow{1}{*}{Hidrosense \cite{Hidrosense}}        & Ofrece productos para automatizar la inyección de nutrientes en el sistema
+            \multirow{5}{*}{Hidrosense \cite{Hidrosense}.}        & Ofrece productos para automatizar la inyección de nutrientes en el sistema
             de riego a través del control del nivel de la conductividad eléctrica, la temperatura y el nivel de pH. Ofrece una plataforma para la
             visualización del estado, reportes y el envío de alertas.                                                                               \\
-            \multirow{1}{*}{iPONIA \cite{iPonia}}                & Ofrece productos y una plataforma para monitorear y controlar el invernadero
+            \multirow{6}{*}{iPONIA \cite{iPonia}.}                & Ofrece productos y una plataforma para monitorear y controlar el invernadero
             hidropónico. Integra sensores para medir el nivel de pH, conductividad eléctrica, temperatura de la solución, temperatura ambiente
-            y humedad relativa del aire. También ofrece dosificadores para inyectar los fertilizantes a la solución nutritiva.                      \\
-            \multirow{1}{*}{Growcast \cite{Growcast}}            & Ofrece productos y una plataforma para controlar cultivos a través de sensores y
+            y humedad relativa del aire. También ofrece dosificadores para inyectar los nutrientes a la solución nutritiva.                      \\
+            \multirow{5}{*}{Growcast \cite{Growcast}.}            & Ofrece productos y una plataforma para controlar cultivos a través de sensores y
             actuadores que procesan y reportan datos en tiempo real. Integra sensores para medir temperatura ambiente, humedad relativa y
             $CO_2$. Realiza el control del riego, la iluminación y la ventilación.                                                                  \\
             \bottomrule
@@ -204,7 +205,7 @@ evidencia la integración de hardware, software y servicios en la nube.
 
 \begin{figure}[htpb]
       \centering
-      \includegraphics[width=.85\textwidth]{./Images/1.png}
+      \includegraphics[width=\textwidth]{./Images/1.png}
       \caption{Diagrama en bloques del sistema.}
       \label{fig:diagBloques}
 \end{figure}
@@ -227,8 +228,8 @@ diferentes componentes del sistema.
                   \item Los nodos sensores deben transmitir al servidor IoT:
                         \begin{enumerate}
                               \item Nodos ambientales: temperatura ambiente, humedad relativa, presión atmosférica,
-                                    nivel de luminosidad y nivel de $CO_2$.
-                              \item Nodos de solución nutritiva: valores de pH (potencial de Hidrógeno),
+                                    nivel de iluminación y nivel de $CO_2$.
+                              \item Nodos de solución nutritiva: valores de potencial de Hidrógeno (pH),
                                     conductividad eléctrica (CE) y TDS (del inglés, \textit{Total Dissolved
                                           Solids}); nivel y temperatura de la solución.
                               \item Nodos de consumos: nutrientes y energía eléctrica.
@@ -256,7 +257,8 @@ diferentes componentes del sistema.
             \begin{enumerate}
                   \item Interfaz intuitiva y responsiva (accesible desde móviles y escritorio).
                   \item Autenticación de usuarios mediante credenciales.
-                  \item Realización de las operaciones CRUD (del inglés, \textit{Create, Read, Update, Delete}).
+                  \item Realización de las operaciones CRUD (del inglés, \textit{Create, Read, Update,
+                              Delete}).
                   \item Visualización en tiempo real de datos de sensores y actuadores.
                   \item Envío remoto de comandos y configuraciones.
                   \item Acceso a datos históricos mediante gráficos y tablas.
@@ -276,7 +278,7 @@ diferentes componentes del sistema.
             \begin{enumerate}
                   \item Se entregará el código del sistema, que incluye todos los componentes
                         desarrollados (sensores, actuadores, broker MQTT, frontend, backend y API).
-                  % \item Se entregarán las guías y diagramas de instalación, configuración y operación.
+                        % \item Se entregarán las guías y diagramas de instalación, configuración y operación.
             \end{enumerate}
 \end{enumerate}
 
