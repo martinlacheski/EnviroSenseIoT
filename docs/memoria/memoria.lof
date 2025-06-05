@@ -18,7 +18,7 @@
 \contentsline {figure}{\numberline {3.2}{\ignorespaces Modelo de datos implementado.}}{17}{figure.caption.20}%
 \contentsline {figure}{\numberline {3.3}{\ignorespaces Arquitectura del servidor del sistema IoT.}}{18}{figure.caption.21}%
 \contentsline {figure}{\numberline {3.4}{\ignorespaces Esquema de autenticación y autorización.}}{20}{figure.caption.23}%
-\contentsline {figure}{\numberline {3.5}{\ignorespaces Ejemplo de diagrama de clase de la colección \texttt {EnvironmentalSensor}.}}{21}{figure.caption.24}%
+\contentsline {figure}{\numberline {3.5}{\ignorespaces Diagrama de clase de la colección \texttt {EnvironmentalSensor}.}}{21}{figure.caption.24}%
 \contentsline {figure}{\numberline {3.6}{\ignorespaces Pasos para la conexión de FastAPI y MongoDB.}}{21}{figure.caption.25}%
 \contentsline {figure}{\numberline {3.7}{\ignorespaces Pasos para verificar la conexión con el broker MQTT.}}{23}{figure.caption.29}%
 \contentsline {figure}{\numberline {3.8}{\ignorespaces Pasos para publicar un mensaje en un tópico específico.}}{23}{figure.caption.30}%
