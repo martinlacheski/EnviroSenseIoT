@@ -75,8 +75,7 @@ export const Dashboard = () => {
   }, []);
 
   const addMessage = (msg: WSMessage) => {
-    const { type, data, timestamp } = msg;
-
+    const { type, data } = msg;
     // Actualizar códigos solo si el mensaje contiene el código correspondiente
     if (type === "environmental") {
       const { sensor_code } = data as EnvironmentalData;
@@ -116,14 +115,14 @@ export const Dashboard = () => {
             currentTypeData[key as keyof typeof currentTypeData] || [];
           updatedTypeData[key] = [
             ...series,
-            { timestamp: DateFormatter.toHHMMString(timestamp), value },
+            { timestamp: DateFormatter.toHHMMString((data as EnvironmentalData).datetime), value },
           ].slice(-MAX_LENGTH);
         }
       });
 
       // Combinados para environmental
       if (type === "environmental") {
-        const ts = DateFormatter.toHHMMString(timestamp);
+        const ts = DateFormatter.toHHMMString((data as EnvironmentalData).datetime);
         const temp = (data as EnvironmentalData).temperature;
         const hum = (data as EnvironmentalData).humidity;
 
@@ -139,7 +138,7 @@ export const Dashboard = () => {
 
       // Combinados para nutrient_solution
       if (type === "nutrient_solution") {
-        const ts = DateFormatter.toHHMMString(timestamp);
+        const ts = DateFormatter.toHHMMString((data as EnvironmentalData).datetime);
         const ce = (data as NutrientSolutionData).ce;
         const ph = (data as NutrientSolutionData).ph;
 
@@ -182,7 +181,7 @@ export const Dashboard = () => {
         const allAreNumbers = allNutrients.every((n) => typeof n === "number");
 
         if (allAreNumbers) {
-          const ts = DateFormatter.toHHMMString(timestamp);
+          const ts = DateFormatter.toHHMMString((data as EnvironmentalData).datetime);
 
           updatedTypeData.levels = [
             ...levelsSeries,
@@ -197,7 +196,7 @@ export const Dashboard = () => {
             },
           ].slice(-MAX_LENGTH);
         }
-
+        const ts = DateFormatter.toHHMMString((data as EnvironmentalData).datetime);
         const current = (data as ConsumptionData).current;
         const power = (data as ConsumptionData).power;
         const currentPowerSeries = prev.consumption.current_power || [];
@@ -205,7 +204,7 @@ export const Dashboard = () => {
           updatedTypeData.current_power = [
             ...currentPowerSeries,
             {
-              timestamp: DateFormatter.toHHMMString(timestamp),
+              timestamp: ts,
               value: current,
               value2: power,
             },
@@ -243,8 +242,12 @@ export const Dashboard = () => {
     },
   });
 
-
-  const [isLoading, setIsLoading] = useState(false);
+  const [syncStatus, setSyncStatus] = useState({
+    environmental: false,
+    nutrientSolution: false,
+    consumption: false,
+    actuator: false
+  });
 
   const handleSync = async (
     type: "sensor" | "actuador",
@@ -256,6 +259,19 @@ export const Dashboard = () => {
       return;
     }
 
+    // Determinar qué estado de loading actualizar según el topic
+    let loadingKey: keyof typeof syncStatus;
+
+    if (topic === "environmental") loadingKey = "environmental";
+    else if (topic === "nutrient/solution") loadingKey = "nutrientSolution";
+    else if (topic === "consumption") loadingKey = "consumption";
+    else if (topic === "actuators") loadingKey = "actuator";
+    else {
+      console.error("Tópico no reconocido:", topic);
+      return;
+    }
+
+    // Configurar el body según el tipo
     let body = {};
     if (type === "sensor") {
       body = {
@@ -268,14 +284,18 @@ export const Dashboard = () => {
         message: { actuator_code: sensorCode, command: "read_now" },
       };
     }
-    setIsLoading(true);
+
+    // Activar el loading específico
+    setSyncStatus(prev => ({ ...prev, [loadingKey]: true }));
+
     try {
       await api.post("/mqtt/publish", body);
     } catch (error) {
       console.error("Error al sincronizar:", error);
       SweetAlert2.errorAlert("Error al sincronizar");
     } finally {
-      setIsLoading(false);
+      // Desactivar el loading específico
+      setSyncStatus(prev => ({ ...prev, [loadingKey]: false }));
     }
   };
 
@@ -317,10 +337,9 @@ export const Dashboard = () => {
                 <button
                   className="btn btn-sm py-0 px-1"
                   onClick={() => handleSync("sensor", "environmental", ambientalCode)}
-                  disabled={isLoading}
-                  title="Sincronizar"
+                  disabled={syncStatus.environmental}
                 >
-                  {isLoading ? (
+                  {syncStatus.environmental ? (
                     <span className="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
                   ) : (
                     <i className="bi bi-arrow-clockwise"></i>
@@ -377,16 +396,14 @@ export const Dashboard = () => {
               </span>
               <button
                 className="btn btn-sm py-0 px-1"
-                onClick={() =>
-                  handleSync(
-                    "sensor",
-                    "nutrient/solution",
-                    nutrientSolutionCode
-                  )
-                }
-                hidden={!nutrientSolutionCode}
+                onClick={() => handleSync("sensor", "nutrient/solution", nutrientSolutionCode)}
+                disabled={syncStatus.nutrientSolution}
               >
-                <i className="bi bi-arrow-clockwise"></i>
+                {syncStatus.nutrientSolution ? (
+                  <span className="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                ) : (
+                  <i className="bi bi-arrow-clockwise"></i>
+                )}
               </button>
             </Card.Header>
             <Card.Body className="p-0">
@@ -438,12 +455,14 @@ export const Dashboard = () => {
               </span>
               <button
                 className="btn btn-sm py-0 px-1"
-                onClick={() =>
-                  handleSync("sensor", "consumption", consumptionCode)
-                }
-                hidden={!consumptionCode}
+                onClick={() => handleSync("sensor", "consumption", consumptionCode)}
+                disabled={syncStatus.consumption}
               >
-                <i className="bi bi-arrow-clockwise"></i>
+                {syncStatus.consumption ? (
+                  <span className="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                ) : (
+                  <i className="bi bi-arrow-clockwise"></i>
+                )}
               </button>
             </Card.Header>
             <Card.Body className="p-0">
@@ -496,12 +515,14 @@ export const Dashboard = () => {
               </span>
               <button
                 className="btn btn-sm py-0 px-1"
-                onClick={() =>
-                  handleSync("actuador", "actuators", actuatorCode)
-                }
-                hidden={!actuatorCode}
+                onClick={() => handleSync("actuador", "actuators", actuatorCode)}
+                disabled={syncStatus.actuator}
               >
-                <i className="bi bi-arrow-clockwise"></i>
+                {syncStatus.actuator ? (
+                  <span className="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                ) : (
+                  <i className="bi bi-arrow-clockwise"></i>
+                )}
               </button>
             </Card.Header>
             <Card.Body className="p-0">
